@@ -7,6 +7,9 @@ set spell
 " Auto indent
 set ai
 
+" Vim coloring as default on virtual terminals
+color ron
+
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
 " http://billodom.com/talks/vim-key-mapping.pdf
