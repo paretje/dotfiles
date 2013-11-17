@@ -1,3 +1,10 @@
+" Vim coloring as default on virtual terminals
+" Apparently, Vim uses a white background as basis of the color scheme
+" on xterm, although default is dark.
+if !has("gui_running")
+	set background=dark
+endif
+
 " Syntax highlighting
 syntax on
 " Line numbers
@@ -6,9 +13,6 @@ set nu
 set spell
 " Auto indent
 set ai
-
-" Vim coloring as default on virtual terminals
-color ron
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
