@@ -24,5 +24,11 @@ inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
 
+" Tab shortcuts
+nmap <C-n> :tabn<CR>
+nmap <C-p> :tabp<CR>
+imap <C-n> <esc><C-n>
+imap <C-p> <esc><C-p>
+
 " http://jhshi.wordpress.com/2012/11/05/enabledisable-spell-checking-according-to-file-type-in-vim/
 au BufNewFile,BufRead,BufEnter *.hs	set nospell
