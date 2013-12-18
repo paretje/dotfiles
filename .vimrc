@@ -28,3 +28,5 @@ vnoremap <down> gj
 au BufNewFile,BufRead,BufEnter *.hs	set nospell
 au BufNewFile,BufRead,BufEnter *.pl	set nospell
 au BufNewFile,BufRead,BufEnter *.m	set nospell
+
+au BufNewFile,BufRead,BufEnter *.tex	setlocal spell spelllang=nl
