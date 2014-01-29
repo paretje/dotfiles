@@ -110,3 +110,4 @@ if ! shopt -oq posix; then
 fi
 
 alias su='su -l'
+alias cal='ncal -b'
