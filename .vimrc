@@ -36,3 +36,4 @@ au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
 
 au BufNewFile,BufRead,BufEnter *.scala.html	set tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
+au BufNewFile,BufRead,BufEnter *.java		set tags+=/home/kevin/vcs/ugent/vop/java/.ctags
