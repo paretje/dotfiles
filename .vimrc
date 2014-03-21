@@ -13,6 +13,8 @@ set nu
 set spell
 " Auto indent
 set ai
+" http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
+set tags=./.ctags;$HOME
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
