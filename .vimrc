@@ -16,6 +16,7 @@ set ai
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
 
+
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
 " http://billodom.com/talks/vim-key-mapping.pdf
@@ -34,3 +35,4 @@ au BufNewFile,BufRead,BufEnter *.m		set nospell
 au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
 
 au BufNewFile,BufRead,BufEnter *.scala.html	set tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
