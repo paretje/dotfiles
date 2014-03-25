@@ -15,7 +15,8 @@ set spell
 set ai
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
-
+" run pathogen in order to have syntastic
+execute pathogen#infect()
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
@@ -36,4 +37,4 @@ au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
 
 au BufNewFile,BufRead,BufEnter *.scala.html	set tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
-au BufNewFile,BufRead,BufEnter *.java		set tags+=/home/kevin/vcs/ugent/vop/java/.ctags
+au BufNewFile,BufRead,BufEnter *.java		set tags+=/usr/src/openjdk-7-source/.ctags
