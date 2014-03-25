@@ -15,8 +15,6 @@ set spell
 set ai
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
-" run pathogen in order to have syntastic
-execute pathogen#infect()
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
