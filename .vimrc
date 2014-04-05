@@ -27,12 +27,13 @@ vnoremap <up> gk
 vnoremap <down> gj
 
 " http://jhshi.wordpress.com/2012/11/05/enabledisable-spell-checking-according-to-file-type-in-vim/
-au BufNewFile,BufRead,BufEnter *.hs		set nospell
-au BufNewFile,BufRead,BufEnter *.pl		set nospell
-au BufNewFile,BufRead,BufEnter *.m		set nospell
+au BufNewFile,BufRead,BufEnter *.hs		setlocal nospell
+au BufNewFile,BufRead,BufEnter *.pl		setlocal nospell
+au BufNewFile,BufRead,BufEnter *.m		setlocal nospell
 
 au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
 
-au BufNewFile,BufRead,BufEnter *.scala.html	set tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tabstop=2 shiftwidth=2 expandtab
 au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
-au BufNewFile,BufRead,BufEnter *.java		set tags+=/usr/src/openjdk-7-source/.ctags
+au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
+au BufNewFile,BufRead,BufEnter /home/kevin/.gvfs/**	setlocal noswapfile
