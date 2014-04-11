@@ -33,7 +33,7 @@ au BufNewFile,BufRead,BufEnter *.m		setlocal nospell
 
 au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
 
-au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
 au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter /home/kevin/.gvfs/**	setlocal noswapfile
