@@ -21,8 +21,15 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# Add locally installed software using software-specific package management
-PATH="$PATH:$HOME/.cabal/bin:$HOME/.gem/ruby/1.9.1/bin"
+# set PATH so it includes user's cabal bin if it exists
+if [ -d "$HOME/.cabal/bin" ] ; then
+	PATH="$PATH:$HOME/.cabal/bin"
+fi
+
+# set PATH so it includes user's rubygems bin if it exists
+if [ -d "$HOME/.gem/ruby/1.9.1/bin" ] ; then
+	PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
+fi
 
 # Start gpg-agent if not yet running
 if [ ! -f "$HOME/.gpg-agent-info" ]; then
