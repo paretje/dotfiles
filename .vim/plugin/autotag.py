@@ -27,8 +27,13 @@ vim_global_defaults = dict(maxTagsFileSize = 1024*1024*7,
                            Disabled = 0,
                            StopAt = "/home/kevin")
 
+try:
+   DEVNULL = subprocess.DEVNULL
+except AttributeError:
+   DEVNULL = open(os.devnull, 'w')
+
 def do_cmd(cmd, cwd):
-   p = subprocess.Popen(cmd, shell=True, stdout=None, stderr=None, cwd=cwd)
+   p = subprocess.Popen(cmd, shell=True, stdout=DEVNULL, stderr=DEVNULL, cwd=cwd)
 
 def vim_global(name, kind = string):
    ret = vim_global_defaults.get(name, None)
