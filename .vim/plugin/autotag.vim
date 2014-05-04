@@ -20,11 +20,11 @@ let s:current_file=expand("<sfile>")
 python << EEOOFF
 import sys, os, vim
 sys.path.insert(0, os.path.dirname(vim.eval("s:current_file")))
-from autotag import autotag
+from autotag import autoTag
 EEOOFF
 
 function! AutoTag()
-   python autotag()
+   python autoTag()
    if exists(":TlistUpdate")
       TlistUpdate
    endif

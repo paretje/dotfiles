@@ -169,7 +169,7 @@ class AutoTag:
       try:
          for l in input:
             l = l.strip()
-            if goodTag(l, sources):
+            if AutoTag.goodTag(l, sources):
 	       print l
 	    else:
 	       AutoTag.LOGGER.debug("Delete line: %s", l)
@@ -190,17 +190,16 @@ class AutoTag:
          if os.path.isfile(os.path.join(tagsDir, source)):
             cmd += " '%s'" % source
       AutoTag.LOGGER.debug("%s: %s", tagsDir, cmd)
-      for l in do_cmd(cmd, tagsDir):
-         AutoTags.LOGGER.info("ctags: %s", l)
+      do_cmd(cmd, tagsDir)
 
    def rebuildTagFiles(self):
       for ((tagsDir, tagsFile), sources) in self.tags.items():
          self.updateTagsFile(tagsDir, tagsFile, sources)
 
-def autotag():
+def autoTag():
    try:
       if not vim_global("Disabled", bool):
-         at = autotag.AutoTag()
+         at = AutoTag()
          at.addSource(vim.eval("expand(\"%:p\")"))
          at.rebuildTagFiles()
    except:
