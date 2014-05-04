@@ -12,7 +12,8 @@ set nu
 " Spelling checker
 set spell
 " Auto indent
-set ai
+"set ai
+set cindent
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
 
