@@ -13,7 +13,8 @@ set nu
 set spell
 " Auto indent
 "set ai
-set cindent
+"set cindent
+filetype indent on
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
 
@@ -29,6 +30,7 @@ vnoremap <down> gj
 noremap <M-Space> <Esc>
 
 " http://jhshi.wordpress.com/2012/11/05/enabledisable-spell-checking-according-to-file-type-in-vim/
+" TODO: http://vim.wikia.com/wiki/Keep_your_vimrc_file_clean
 au BufNewFile,BufRead,BufEnter *.hs		setlocal nospell
 au BufNewFile,BufRead,BufEnter *.pl		setlocal nospell
 au BufNewFile,BufRead,BufEnter *.m		setlocal nospell
