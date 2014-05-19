@@ -12,8 +12,6 @@ set nu
 " Spelling checker
 set spell
 " Auto indent
-"set ai
-"set cindent
 filetype indent on
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
@@ -43,5 +41,7 @@ au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
 au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter *.rb		setlocal tabstop=2 shiftwidth=2 expandtab
+
+autocmd FileType tex				setlocal makeprg=pdflatex\ --output-directory\ $(dirname\ '%')\ '%'
 
 au BufNewFile,BufRead,BufEnter /home/kevin/.gvfs/**	setlocal noswapfile
