@@ -108,8 +108,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-alias su='su -l'
-alias cal='ncal -b'
-alias mutt-info='mutt -F /home/kevin/.mutt/info.rc'
-alias mutt-ugent='mutt -F /home/kevin/.mutt/ugent.rc'
