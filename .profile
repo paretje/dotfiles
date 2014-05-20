@@ -39,4 +39,6 @@ if [ ! -f "$HOME/.gpg-agent-info" ]; then
 	gpg-agent --daemon --enable-ssh-support --write-env-file "$HOME/.gpg-agent-info"
 fi
 
-export WWW_HOME="https://duckduckgo.com/?kl=be-nl&kp=-1"
+if [ "$(hostname)" = "kevin-laptop" ]; then
+	export VDPAU_DRIVER="va_gl"
+fi
