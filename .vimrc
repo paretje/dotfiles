@@ -42,6 +42,6 @@ au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/
 au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter *.rb		setlocal tabstop=2 shiftwidth=2 expandtab
 
-autocmd FileType tex				setlocal makeprg=pdflatex\ --output-directory\ $(dirname\ '%')\ '%'
+autocmd FileType tex				setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 au BufNewFile,BufRead,BufEnter /home/kevin/.gvfs/**	setlocal noswapfile
