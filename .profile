@@ -8,14 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
-fi
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -39,6 +31,15 @@ if [ ! -f "$HOME/.gpg-agent-info" ]; then
 	gpg-agent --daemon --enable-ssh-support --write-env-file "$HOME/.gpg-agent-info"
 fi
 
+# Set the appropriate VDPAU driver to tuse
 if [ "$(hostname)" = "kevin-laptop" ]; then
 	export VDPAU_DRIVER="va_gl"
+fi
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
 fi
