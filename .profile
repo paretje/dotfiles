@@ -42,3 +42,6 @@ fi
 if [ "$(hostname)" = "kevin-laptop" ]; then
 	export VDPAU_DRIVER="va_gl"
 fi
+if [ "$(hostname)" = "kevin-desktop" ]; then
+	export VDPAU_DRIVER="nouveau"
+fi
