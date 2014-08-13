@@ -41,6 +41,7 @@ au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
 au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tags+=/usr/src/openjdk-7-source/.ctags
 au BufNewFile,BufRead,BufEnter *.rb		setlocal tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead,BufEnter *.oz		setlocal tabstop=8 shiftwidth=3 expandtab filetype=ruby
 
 autocmd FileType tex				setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
