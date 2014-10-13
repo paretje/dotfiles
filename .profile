@@ -39,6 +39,9 @@ if [ "$(hostname)" = "kevin-desktop" ]; then
 	export VDPAU_DRIVER="nouveau"
 fi
 
+# Use GTK style in Qt5 applications
+export QT_STYLE_OVERRIDE=gtk
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
