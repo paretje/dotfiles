@@ -42,6 +42,11 @@ fi
 # Use GTK style in Qt5 applications
 export QT_STYLE_OVERRIDE=gtk
 
+# Fool Qt we're using gnome in order to get themes icons
+# Remember that this requires setting the gconf settings, otherwise you'll get
+# default gnome styling: no icons ... 
+export DESKTOP_SESSION=gnome
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
