@@ -13,6 +13,9 @@ set nu
 set spell
 " Auto indent
 filetype indent on
+" File-type plugins
+" TODO: activate per file-type?
+filetype plugin on
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
 
