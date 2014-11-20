@@ -32,19 +32,14 @@ vnoremap <up> gk
 vnoremap <down> gj
 noremap <M-Space> <Esc>
 
-" http://jhshi.wordpress.com/2012/11/05/enabledisable-spell-checking-according-to-file-type-in-vim/
-" TODO: http://vim.wikia.com/wiki/Keep_your_vimrc_file_clean
-au BufNewFile,BufRead,BufEnter *.hs		setlocal nospell
-au BufNewFile,BufRead,BufEnter *.pl		setlocal nospell
-au BufNewFile,BufRead,BufEnter *.m		setlocal nospell
+autocmd FileType haskell	setlocal nospell
+autocmd FileType prolog		setlocal nospell
+autocmd FileType matlab		setlocal nospell
 
-au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tabstop=4 shiftwidth=4 expandtab
-au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
-au BufNewFile,BufRead,BufEnter *.java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
-au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tags+=/usr/src/openjdk-7-source/.ctags
-au BufNewFile,BufRead,BufEnter *.rb		setlocal tabstop=2 shiftwidth=2 expandtab
-au BufNewFile,BufRead,BufEnter *.oz		setlocal tabstop=8 shiftwidth=3 expandtab filetype=ruby
+autocmd FileType ruby		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
+autocmd FileType r		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 
-autocmd FileType tex				setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
+autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 
-au BufNewFile,BufRead,BufEnter /home/kevin/.gvfs/**	setlocal noswapfile
+autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
