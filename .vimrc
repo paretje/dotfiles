@@ -18,6 +18,8 @@ filetype indent on
 filetype plugin on
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
+" Location of org-files
+let g:org_agenda_files=['~/cloud/config/notes/*.org']
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
