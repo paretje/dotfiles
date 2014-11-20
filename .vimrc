@@ -10,7 +10,7 @@ syntax on
 " Line numbers
 set nu
 " Spelling checker
-set spell
+set spell spelllang=nl
 " Auto indent
 filetype indent on
 " File-type plugins
@@ -37,9 +37,6 @@ noremap <M-Space> <Esc>
 au BufNewFile,BufRead,BufEnter *.hs		setlocal nospell
 au BufNewFile,BufRead,BufEnter *.pl		setlocal nospell
 au BufNewFile,BufRead,BufEnter *.m		setlocal nospell
-
-au BufNewFile,BufRead,BufEnter *.tex		setlocal spell spelllang=nl
-au BufNewFile,BufRead,BufEnter *.txt		setlocal spell spelllang=nl
 
 au BufNewFile,BufRead,BufEnter *.scala.html	setlocal tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead,BufEnter *.java		noremap <F5> :call JavaInsertImport()<CR>
