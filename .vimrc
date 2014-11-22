@@ -16,6 +16,10 @@ filetype indent on
 " File-type plugins
 " TODO: activate per file-type?
 filetype plugin on
+" Search case-insensitive, unless caps are used
+" TODO: enable this only for searches, not when replacing
+set ignorecase
+set smartcase
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
 set tags=./.ctags;$HOME
 " Location of org-files
