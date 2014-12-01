@@ -40,6 +40,8 @@ inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
 noremap <M-Space> <Esc>
+vnoremap > >gv
+vnoremap < <gv
 
 autocmd FileType haskell	setlocal nospell
 autocmd FileType prolog		setlocal nospell
