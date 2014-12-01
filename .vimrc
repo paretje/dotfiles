@@ -53,3 +53,5 @@ autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+
+autocmd BufNewFile,BufRead,BufEnter /run/user/*/gvfs/**    setlocal noswapfile
