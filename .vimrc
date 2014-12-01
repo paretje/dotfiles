@@ -47,6 +47,8 @@ autocmd FileType haskell	setlocal nospell
 autocmd FileType prolog		setlocal nospell
 autocmd FileType matlab		setlocal nospell
 
+autocmd FileType gitcommit	setlocal spelllang=en
+
 autocmd FileType ruby		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 autocmd FileType r		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 autocmd FileType matlab		setlocal tabstop=4 shiftwidth=4 expandtab smarttab
