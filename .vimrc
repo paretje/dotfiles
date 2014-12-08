@@ -59,3 +59,4 @@ autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 autocmd BufNewFile,BufRead /run/user/*/gvfs/**		setlocal directory=/tmp backupdir=/tmp
+autocmd BufNewFile,BufRead /home/kevin/vcs/ugent/**	setlocal spelllang=nl
