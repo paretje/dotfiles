@@ -15,6 +15,7 @@ set nu
 " Spelling checker
 set spell spelllang=nl
 " Auto indent
+set autoindent
 filetype indent on
 " File-type plugins
 " TODO: activate per file-type?
