@@ -28,7 +28,6 @@ fi
 
 # Start gpg-agent if not yet running
 if ! killall -s 0 gpg-agent ; then
-else
 	gpg-agent --daemon --enable-ssh-support --write-env-file "$HOME/.gpg-agent-info"
 fi
 
