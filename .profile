@@ -27,10 +27,11 @@ if [ -d "$HOME/.gem/ruby/2.0.0/bin" ] ; then
 fi
 
 # Start gpg-agent if not yet running
-. "$HOME/.gpg-agent-info"
+GPG_ENV_FILE="$HOME/.gnupg/gpg-agent-info-$(hostname)"
+. "$GPG_ENV_FILE"
 export GPG_AGENT_INFO
 if ! gpg-agent; then
-	gpg-agent --daemon --enable-ssh-support --write-env-file "$HOME/.gpg-agent-info"
+	gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
 fi
 
 # Set the appropriate VDPAU driver to use
