@@ -27,7 +27,7 @@ if [ -d "$HOME/.gem/ruby/2.0.0/bin" ] ; then
 fi
 
 # Start gpg-agent if not yet running
-GPG_ENV_FILE="$HOME/.gnupg/gpg-agent-info-$(hostname)"
+GPG_ENV_FILE="$HOME/.gpg-agent-info"
 . "$GPG_ENV_FILE"
 export GPG_AGENT_INFO
 if ! gpg-agent; then
