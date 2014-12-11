@@ -1,0 +1,3 @@
+#!/bin/sh
+sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' /home/kevin/.icedove/nkpjv9fq.default/localstore.rdf
+/usr/bin/icedove

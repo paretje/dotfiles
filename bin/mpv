@@ -1,0 +1,16 @@
+#!/bin/sh
+files=0
+started=false
+for var in "$@"; do
+	if $started; then
+		files=$((files+1))
+	elif [ "$var" = "--" ]; then
+		started=true
+	fi
+done
+
+if [ $files -gt 1 ]; then
+	/usr/bin/mpv --no-resume-playback "$@"
+else
+	/usr/bin/mpv "$@"
+fi
