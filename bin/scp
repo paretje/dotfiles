@@ -1,0 +1,3 @@
+#!/bin/sh -e
+gpg-connect-agent updatestartuptty /bye > /dev/null
+/usr/bin/scp "$@"
