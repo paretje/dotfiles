@@ -6,4 +6,5 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AUTH_SOCK
     export SSH_AGENT_PID
 fi
+/usr/lib/gvfs/gvfsd &
 exec startxfce4
