@@ -90,12 +90,12 @@ shift
 
 # unar extracts files in the current working directory, unrar in the
 # directory containing the file. We should force this behaviour.
-OPTS="$DIR $OPTS -o $(dirname $FILE)"
+OPTS="$DIR $OPTS -o "$(dirname "$FILE")
 
 if [ $OUT = 'stderr' ]; then
-	unar $OPTS $FILE >&2
+	unar $OPTS "$FILE" >&2
 elif [ $OUT = 'null' ]; then
-	unar $OPTS $FILE > /dev/null
+	unar $OPTS "$FILE" > /dev/null
 else
-	unar $OPTS $FILE
+	unar $OPTS "$FILE"
 fi
