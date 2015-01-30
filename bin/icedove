@@ -1,4 +1,4 @@
 #!/bin/sh
-emacs Tasks.org --batch -f org-html-export-to-html &
+emacs $HOME/cloud/config/notes/Tasks.org --batch -f org-html-export-to-html &
 sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' $HOME/.icedove/*/localstore.rdf
 /usr/bin/icedove
