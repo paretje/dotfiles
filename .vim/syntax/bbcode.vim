@@ -35,8 +35,8 @@ syn region bbcodeUnderlineItalic contained start="\[i\]" end="\[/i\]"me=e-4 cont
 syn region bbcodeUnderlineItalicBold contained start="\[b\]" end="\[/b\]"me=e-4 contains=bbcodeTag
 
 syn region bbcodeUrl start="\[url\s*[=\]]" end="\[/url\]"me=e-6 contains=@NoSpell,bbcodeTag
-syn region bbcodeCode start="\[code\]" end="\[/code\]"me=e-6 contains=@NoSpell,bbcodeTag
-syn region bbquoteQuote start="\[quote\]" end="\[/quote\]"me=e-6 contains=@NoSpell,bbquoteTag
+syn region bbcodeCode start="\[code\]" end="\[/code\]"me=e-7 contains=@NoSpell,bbcodeTag
+syn region bbquoteQuote start="\[quote\]" end="\[/quote\]"me=e-8 contains=@NoSpell,bbquoteTag
 
 hi link bbcodeTag Identifier
 hi link bbcodeItem Statement
