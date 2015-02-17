@@ -1,4 +1,4 @@
 #!/bin/sh
-sh -c "emacs $HOME/cloud/config/notes/Tasks.org --batch -f org-html-export-to-html ; sed -i '7i<link rel=\"shortcut icon\" href=\"file:///usr/share/icons/gnome/16x16/status/task-due.png\" type=\"image/png\" />' $HOME/cloud/config/notes/Tasks.html" &
+org2html $HOME/cloud/config/notes/Tasks.org &
 sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' $HOME/.icedove/*/localstore.rdf
 /usr/bin/icedove
