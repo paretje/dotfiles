@@ -25,7 +25,7 @@ vim_global_defaults = dict(maxTagsFileSize = 1024*1024*7,
                            CtagsCmd = "ctags",
                            TagsFile = ".ctags",
                            Disabled = 0,
-                           StopAt = "/home/kevin")
+                           StopAt = os.getenv('HOME'))
 
 try:
    DEVNULL = subprocess.DEVNULL
@@ -82,7 +82,7 @@ class AutoTag:
    MAXTAGSFILESIZE = long(vim_global("maxTagsFileSize"))
    DEBUG_NAME = "autotag_debug"
    LOGGER = logging.getLogger(DEBUG_NAME)
-   logging.basicConfig(filename='/home/kevin/autotag.log')
+   logging.basicConfig(filename=os.getenv('HOME')+'/autotag.log')
    HANDLER = makeAndAddHandler(LOGGER, DEBUG_NAME)
 
    @staticmethod
