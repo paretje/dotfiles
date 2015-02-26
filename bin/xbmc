@@ -1,0 +1,7 @@
+#!/bin/sh
+disable-xscreensaver &
+dis_pid=$!
+/usr/bin/xbmc "$@"
+code=$?
+kill $dis_pid
+exit $code
