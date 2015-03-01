@@ -1,0 +1,1 @@
+/usr/share/vim-ultisnips/pythonx/UltiSnips/snippet/definition/snipmate.py

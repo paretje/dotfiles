@@ -1,0 +1,1 @@
+/usr/share/vim-ultisnips/pythonx/UltiSnips/_diff.py

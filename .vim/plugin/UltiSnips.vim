@@ -1,0 +1,1 @@
+/usr/share/vim-ultisnips/plugin/UltiSnips.vim

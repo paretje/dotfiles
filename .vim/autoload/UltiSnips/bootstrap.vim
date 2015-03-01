@@ -1,0 +1,1 @@
+/usr/share/vim-ultisnips/autoload/UltiSnips/bootstrap.vim
