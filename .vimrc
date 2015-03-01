@@ -24,13 +24,15 @@ filetype plugin on
 " TODO: enable this only for searches, not when replacing?
 set ignorecase
 set smartcase
-" http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
+" Set ctags options
 set tags=./tags;$HOME/vcs
 let g:ycm_collect_identifiers_from_tags_files=1
 " Location of org-files
 let g:org_agenda_files=['~/cloud/config/notes/*.org']
 " Max number of tabs
 set tabpagemax=32
+" Disable exit code checks
+let g:syntastic_exit_checks=0
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
