@@ -46,6 +46,7 @@ vnoremap <down> gj
 noremap <M-Space> <Esc>
 vnoremap > >gv
 vnoremap < <gv
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 autocmd FileType haskell	setlocal nospell
 autocmd FileType prolog		setlocal nospell
