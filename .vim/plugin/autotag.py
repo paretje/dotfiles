@@ -3,9 +3,7 @@ import subprocess
 import string
 import os.path
 import fileinput
-import sys
 import vim
-import time
 import logging
 from traceback import format_exc
 from collections import defaultdict
@@ -23,7 +21,7 @@ vim_global_defaults = dict(maxTagsFileSize = 1024*1024*7,
                            ExcludeSuffixes = "tml.xml.text.txt",
                            VerbosityLevel = logging.INFO,
                            CtagsCmd = "ctags",
-                           TagsFile = ".ctags",
+                           TagsFile = "tags",
                            Disabled = 0,
                            StopAt = os.getenv('HOME'))
 

@@ -25,7 +25,8 @@ filetype plugin on
 set ignorecase
 set smartcase
 " http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
-set tags=./.ctags;$HOME
+set tags=./tags;$HOME/vcs
+let g:ycm_collect_identifiers_from_tags_files=1
 " Location of org-files
 let g:org_agenda_files=['~/cloud/config/notes/*.org']
 " Max number of tabs
