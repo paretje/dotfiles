@@ -1,6 +1,7 @@
 #!/bin/sh
 disable-xscreensaver &
 dis_pid=$!
+amixer set Master unmute
 /usr/bin/xbmc "$@"
 code=$?
 kill $dis_pid
