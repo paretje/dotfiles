@@ -29,6 +29,7 @@ set tags=./tags;$HOME/vcs
 let g:ycm_collect_identifiers_from_tags_files=1
 " Location of org-files
 let g:org_agenda_files=['~/cloud/config/notes/*.org']
+command TODO tabnew ~/cloud/config/notes/Tasks.org
 " Max number of tabs
 set tabpagemax=32
 " Disable exit code checks
