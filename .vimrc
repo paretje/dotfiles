@@ -64,6 +64,9 @@ autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
-autocmd BufNewFile,BufRead /run/user/*/gvfs/**		setlocal directory=/tmp backupdir=/tmp
-"autocmd BufNewFile,BufRead /home/kevin/vcs/ugent/**	setlocal spelllang=nl
-autocmd BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
+au FileType tex,text,bbcode	setlocal linebreak
+au FileType mail,gitcommit	setlocal formatoptions+=a
+
+" TODO: does this really work?
+au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
+au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
