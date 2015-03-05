@@ -258,6 +258,7 @@ END
 endf
 
 " Refactoring commands                                                  {{{2
+
 if !exists("*s:BikeRename")
 function! s:BikeRename()
 " Rename a function/method/class.
@@ -278,7 +279,6 @@ if newname:
 else:
     print "Aborted"
 END
-e
 endf
 endif
 
@@ -413,6 +413,10 @@ def saveChanges():
             vim.command("sp %s | q" % opened_files[f])
         except KeyError:
             pass
+
+    # Just in case:
+    vim.command("e")
+
 END
 
 " Make sure modified files are reimported into BRM
