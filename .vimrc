@@ -44,7 +44,6 @@ inoremap <up> <C-O>gk
 inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
-noremap <M-Space> <Esc>
 vnoremap > >gv
 vnoremap < <gv
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -63,6 +62,8 @@ autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+
+autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
 
 au FileType tex,text,bbcode	setlocal linebreak
 au FileType mail,gitcommit	setlocal formatoptions+=a
