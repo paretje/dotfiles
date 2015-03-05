@@ -64,7 +64,7 @@ autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
-autocmd FileType python		noremap <C-S-R> :BikeRename<CR>
+autocmd FileType python		noremap r :BikeRename<CR>
 
 au FileType tex,text,bbcode	setlocal linebreak
 au FileType mail,gitcommit	setlocal formatoptions+=a
