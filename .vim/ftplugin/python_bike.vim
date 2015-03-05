@@ -278,7 +278,6 @@ if newname:
 else:
     print "Aborted"
 END
-checktime
 e
 endf
 endif
