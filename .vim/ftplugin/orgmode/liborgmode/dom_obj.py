@@ -29,10 +29,10 @@ REGEX_TODO = re.compile(r'^[^\s]*$')
 # - [X] checkbox item
 # - [ ]
 # - no status checkbox
-UnOrderListType = [u'-', 'u+', 'u*']
+UnOrderListType = [u'-', u'+', u'*']
 OrderListType = [u'.', u')']
 REGEX_CHECKBOX = re.compile(
-	r'^(?P<level>\s*)(?P<type>[%s]|([a-zA-Z]|[\d]+)[%s])\s*(?P<status>\[.\])?\s*(?P<title>.*)$'
+	r'^(?P<level>\s*)(?P<type>[%s]|([a-zA-Z]|[\d]+)[%s])(\s+(?P<status>\[.\]))?\s*(?P<title>.*)$'
 	% (''.join(UnOrderListType), ''.join(OrderListType)), flags=re.U | re.L)
 
 
@@ -220,6 +220,12 @@ class DomObj(object):
 			return self.start + len(self.body)
 
 	@property
+	def end_check(self):
+		u""" Access to the ending line of the checkbox dom obj """
+		if self.start is not None:
+			return self.start + len([line for line in self.body if line != u''])
+
+	@property
 	def end_vim(self):
 		if self.end is not None:
 			return self.end + 1
@@ -233,6 +239,16 @@ class DomObj(object):
 				child = child.children[-1]
 			return child.end
 		return self.end
+
+	@property
+	def end_of_last_child_check(self):
+		u""" Access to end of the last checkbox child """
+		if self.children:
+			child = self.children[-1]
+			while child.children:
+				child = child.children[-1]
+			return child.end_check
+		return self.end_check
 
 	@property
 	def end_of_last_child_vim(self):
