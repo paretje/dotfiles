@@ -58,12 +58,13 @@ autocmd FileType ruby		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 autocmd FileType r		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 autocmd FileType matlab		setlocal tabstop=4 shiftwidth=4 expandtab smarttab
 
-autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
 
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
+autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
+autocmd FileType python		noremap <C-S-R> :BikeRename<CR>
 
 au FileType tex,text,bbcode	setlocal linebreak
 au FileType mail,gitcommit	setlocal formatoptions+=a
