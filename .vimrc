@@ -1,3 +1,6 @@
+" Enable pathogen
+execute pathogen#infect()
+
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
 " on xterm, although default is dark.
