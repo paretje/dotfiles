@@ -1,0 +1,3 @@
+[submodule ".vim/bundle/orgmode"]
+	path = .vim/bundle/orgmode
+	url = https://github.com/paretje/vim-orgmode.git
