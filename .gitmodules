@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/orgmode"]
 	path = .vim/bundle/orgmode
 	url = https://github.com/paretje/vim-orgmode.git
+[submodule ".vim/bundle/speeddating"]
+	path = .vim/bundle/speeddating
+	url = https://github.com/tpope/vim-speeddating.git

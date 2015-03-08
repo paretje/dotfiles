@@ -12,7 +12,6 @@
 'NERDSpaceDelims'	NERD_commenter.txt	/*'NERDSpaceDelims'*
 'NERDUsePlaceHolders'	NERD_commenter.txt	/*'NERDUsePlaceHolders'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
-:SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
 :UltiSnipsAddFiletypes	UltiSnips.txt	/*:UltiSnipsAddFiletypes*
 :UltiSnipsEdit	UltiSnips.txt	/*:UltiSnipsEdit*
 :YcmCompleter	youcompleteme.txt	/*:YcmCompleter*
@@ -162,19 +161,6 @@ libpython	youcompleteme.txt	/*libpython*
 libpython2.7.a-...-relocation-R_X86_64_32	youcompleteme.txt	/*libpython2.7.a-...-relocation-R_X86_64_32*
 snippet	UltiSnips.txt	/*snippet*
 snippets	UltiSnips.txt	/*snippets*
-speeddating	speeddating.txt	/*speeddating*
-speeddating-.	speeddating.txt	/*speeddating-.*
-speeddating-CTRL-A	speeddating.txt	/*speeddating-CTRL-A*
-speeddating-CTRL-X	speeddating.txt	/*speeddating-CTRL-X*
-speeddating-author	speeddating.txt	/*speeddating-author*
-speeddating-caveats	speeddating.txt	/*speeddating-caveats*
-speeddating-d_CTRL-A	speeddating.txt	/*speeddating-d_CTRL-A*
-speeddating-d_CTRL-X	speeddating.txt	/*speeddating-d_CTRL-X*
-speeddating-formats	speeddating.txt	/*speeddating-formats*
-speeddating-maps	speeddating.txt	/*speeddating-maps*
-speeddating-v_CTRL-A	speeddating.txt	/*speeddating-v_CTRL-A*
-speeddating-v_CTRL-X	speeddating.txt	/*speeddating-v_CTRL-X*
-speeddating.vim	speeddating.txt	/*speeddating.vim*
 vim-sub-autoclose	youcompleteme.txt	/*vim-sub-autoclose*
 youcompleteme-c-family-semantic-completion-engine-usage	youcompleteme.txt	/*youcompleteme-c-family-semantic-completion-engine-usage*
 youcompleteme-c-semantic-completion	youcompleteme.txt	/*youcompleteme-c-semantic-completion*
