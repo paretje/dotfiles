@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/speeddating"]
 	path = .vim/bundle/speeddating
 	url = https://github.com/tpope/vim-speeddating.git
+[submodule ".vim/bundle/haskell-syntax"]
+	path = .vim/bundle/haskell-syntax
+	url = https://github.com/vim-scripts/haskell.vim.git
