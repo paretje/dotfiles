@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/autotag"]
 	path = .vim/bundle/autotag
 	url = https://github.com/craigemery/vim-autotag.git
+[submodule ".vim/bundle/snippets"]
+	path = .vim/bundle/snippets
+	url = https://github.com/paretje/vim-snippets.git
