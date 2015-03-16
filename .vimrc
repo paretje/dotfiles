@@ -62,6 +62,7 @@ autocmd FileType r		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
 autocmd FileType matlab		setlocal tabstop=4 shiftwidth=4 expandtab smarttab
 
 autocmd FileType java		setlocal tags+=/usr/src/openjdk-7-source/.ctags
+autocmd FileType java		setlocal omnifunc=javacomplete#Complete
 
 autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
