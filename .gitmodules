@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/java-get-set"]
 	path = .vim/bundle/java-get-set
 	url = https://github.com/Dinduks/vim-java-get-set.git
+[submodule ".vim/bundle/refact"]
+	path = .vim/bundle/refact
+	url = https://github.com/taq/vim-refact.git
