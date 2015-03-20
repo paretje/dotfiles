@@ -37,6 +37,9 @@ command TODO tabnew ~/cloud/config/notes/Tasks.org
 set tabpagemax=32
 " Disable exit code checks
 let g:syntastic_exit_checks=0
+" Set YouCompleteMe options
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_seed_identifiers_with_syntax=1
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
