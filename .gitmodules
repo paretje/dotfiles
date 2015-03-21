@@ -25,3 +25,9 @@
 [submodule ".vim/bundle/refact"]
 	path = .vim/bundle/refact
 	url = https://github.com/taq/vim-refact.git
+[submodule ".vim/bundle/dbg"]
+	path = .vim/bundle/dbg
+	url = https://github.com/yuratomo/dbg.vim.git
+[submodule ".vim/bundle/vimproc"]
+	path = .vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
