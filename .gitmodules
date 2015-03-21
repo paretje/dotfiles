@@ -16,18 +16,18 @@
 [submodule ".vim/bundle/snippets"]
 	path = .vim/bundle/snippets
 	url = https://github.com/paretje/vim-snippets.git
-[submodule ".vim/bundle/javacomplete"]
-	path = .vim/bundle/javacomplete
-	url = https://github.com/vim-scripts/javacomplete.git
 [submodule ".vim/bundle/java-get-set"]
 	path = .vim/bundle/java-get-set
 	url = https://github.com/Dinduks/vim-java-get-set.git
-[submodule ".vim/bundle/refact"]
-	path = .vim/bundle/refact
-	url = https://github.com/taq/vim-refact.git
 [submodule ".vim/bundle/dbg"]
 	path = .vim/bundle/dbg
 	url = https://github.com/yuratomo/dbg.vim.git
 [submodule ".vim/bundle/vimproc"]
 	path = .vim/bundle/vimproc
 	url = https://github.com/Shougo/vimproc.vim.git
+[submodule ".vim/bundle/javacomplete"]
+	path = .vim/bundle/javacomplete
+	url = https://github.com/VictorDenisov/javacomplete.git
+[submodule ".vim/bundle/refact"]
+	path = .vim/bundle/refact
+	url = https://github.com/paretje/vim-refact.git
