@@ -29,7 +29,6 @@ set ignorecase
 set smartcase
 " Set ctags options
 set tags=./tags;$HOME/vcs
-let g:ycm_collect_identifiers_from_tags_files=1
 " Location of org-files
 let g:org_agenda_files=['~/cloud/config/notes/*.org']
 command TODO tabnew ~/cloud/config/notes/Tasks.org
