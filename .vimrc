@@ -61,9 +61,10 @@ autocmd FileType matlab		setlocal nospell
 
 autocmd FileType gitcommit	setlocal spelllang=en
 
-autocmd FileType ruby		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
-autocmd FileType r		setlocal tabstop=2 shiftwidth=2 expandtab smarttab
-autocmd FileType matlab		setlocal tabstop=4 shiftwidth=4 expandtab smarttab
+autocmd FileType ruby		setlocal softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType matlab		setlocal softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType java		setlocal softtabstop=4 shiftwidth=4 expandtab
 
 autocmd FileType java		setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 autocmd FileType java		setlocal omnifunc=javacomplete#Complete
