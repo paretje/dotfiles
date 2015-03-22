@@ -27,6 +27,8 @@ filetype plugin on
 " TODO: enable this only for searches, not when replacing?
 set ignorecase
 set smartcase
+" Highlight searches
+set hlsearch
 " Set ctags options
 set tags=./tags;$HOME/vcs
 " Location of org-files
