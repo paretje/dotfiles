@@ -81,3 +81,8 @@ au FileType mail,gitcommit	setlocal formatoptions+=a
 " TODO: does this really work?
 au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
+
+let g:nailgun_port='2113'
+let g:javacomplete_ng='ng-nailgun'
+call javacomplete#AddClassPath('/home/kevin/vcs/ugent/hersch2/Unification/build/classes')
+call javacomplete#AddSourcePath('/home/kevin/vcs/ugent/hersch2/Unification/src')
