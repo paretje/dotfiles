@@ -1,5 +1,23 @@
-" Enable pathogen
-execute pathogen#infect()
+" Enable Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'vim-scripts/haskell.vim'
+Plugin 'craigemery/vim-autotag'
+Plugin 'tpope/vim-speeddating'
+Plugin 'paretje/vim-orgmode'
+Plugin 'paretje/vim-snippets'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'paretje/javacomplete'
+Plugin 'Dinduks/vim-java-get-set'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'yuratomo/dbg.vim'
+Plugin 'paretje/vim-refact'
+
+call vundle#end()
 
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
@@ -21,7 +39,6 @@ set spell spelllang=nl
 set autoindent
 filetype indent on
 " File-type plugins
-" TODO: activate per file-type?
 filetype plugin on
 " Search case-insensitive, unless caps are used
 " TODO: enable this only for searches, not when replacing?
