@@ -2,7 +2,10 @@
 disable-xscreensaver &
 dis_pid=$!
 amixer set Master unmute
+volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
+amixer set Master 100%
 /usr/bin/xbmc "$@"
 code=$?
+amixer set Master $volume
 kill $dis_pid
 exit $code
