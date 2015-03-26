@@ -9,6 +9,7 @@ Plugin 'vim-scripts/haskell.vim'
 Plugin 'craigemery/vim-autotag'
 Plugin 'tpope/vim-speeddating'
 Plugin 'paretje/vim-orgmode'
+Plugin 'scrooloose/syntastic'
 Plugin 'paretje/vim-snippets'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'paretje/javacomplete'
@@ -55,9 +56,15 @@ command TODO tabnew ~/cloud/config/notes/Tasks.org
 set tabpagemax=32
 " Disable exit code checks
 let g:syntastic_exit_checks=0
+let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle.jar'
+let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
+let g:syntastic_java_checkers = ['javac', 'checkstyle']
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
+" Set javacomplete options
+let g:nailgun_port='2113'
+let g:javacomplete_ng='ng-nailgun'
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
@@ -86,7 +93,8 @@ autocmd FileType java		setlocal softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType java		setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 autocmd FileType java		setlocal omnifunc=javacomplete#Complete
 
-autocmd FileType tex		setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+autocmd FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+autocmd FileType java		compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 
 autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
 autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
@@ -99,7 +107,6 @@ au FileType mail,gitcommit	setlocal formatoptions+=a
 au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
 
-let g:nailgun_port='2113'
-let g:javacomplete_ng='ng-nailgun'
+" TODO: This should be separated, as project-specific
 call javacomplete#AddClassPath('/home/kevin/vcs/ugent/hersch2/Unification/build/classes')
 call javacomplete#AddSourcePath('/home/kevin/vcs/ugent/hersch2/Unification/src')
