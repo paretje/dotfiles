@@ -69,7 +69,9 @@ let g:ycm_seed_identifiers_with_syntax=1
 " Set javacomplete options
 let g:nailgun_port='2113'
 let g:javacomplete_ng='ng-nailgun'
-source ~/.vim/projects.vim
+if filereadable('~/.vim/projects.vim')
+	source ~/.vim/projects.vim
+endif
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
