@@ -1,1 +1,0 @@
-/usr/share/vim-ultisnips/pythonx/UltiSnips/snippet/definition/__init__.py

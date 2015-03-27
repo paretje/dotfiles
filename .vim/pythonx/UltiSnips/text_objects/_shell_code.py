@@ -1,1 +1,0 @@
-/usr/share/vim-ultisnips/pythonx/UltiSnips/text_objects/_shell_code.py

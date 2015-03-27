@@ -1,1 +1,0 @@
-/usr/share/vim-ultisnips/autoload/UltiSnips.vim
