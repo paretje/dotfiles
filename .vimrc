@@ -101,9 +101,9 @@ autocmd FileType java		setlocal omnifunc=javacomplete#Complete
 autocmd FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 autocmd FileType java		compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 
-autocmd FileType java		noremap <F5> :call JavaInsertImport()<CR>
+autocmd FileType java		nnoremap i :JavaCompleteAddImport<CR>
 autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
-autocmd FileType python		noremap r :BikeRename<CR>
+autocmd FileType python		nnoremap r :BikeRename<CR>
 
 au FileType tex,text,bbcode	setlocal linebreak
 au FileType mail,gitcommit	setlocal formatoptions+=a
