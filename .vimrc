@@ -69,6 +69,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 " Set javacomplete options
 let g:nailgun_port='2113'
 let g:javacomplete_ng='ng-nailgun'
+source ~/.vim/projects.vim
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
@@ -110,7 +111,3 @@ au FileType mail,gitcommit	setlocal formatoptions+=a
 " TODO: does this really work?
 au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
-
-" TODO: This should be separated, as project-specific
-call javacomplete#AddClassPath('/home/kevin/vcs/ugent/hersch2/Unification/build/classes')
-call javacomplete#AddSourcePath('/home/kevin/vcs/ugent/hersch2/Unification/src')
