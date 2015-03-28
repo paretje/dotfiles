@@ -18,8 +18,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'ciaranm/detectindent'
 Plugin 'paretje/javacomplete'
 Plugin 'paretje/vim-java-get-set'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'yuratomo/dbg.vim'
 Plugin 'paretje/vim-refact'
 
 call vundle#end()
