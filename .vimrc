@@ -58,7 +58,7 @@ command TODO tabnew ~/cloud/config/notes/Tasks.org
 set tabpagemax=32
 " Disable exit code checks
 let g:syntastic_exit_checks=0
-let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle.jar'
+let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle/checkstyle.jar'
 let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
 let g:syntastic_java_checkers = ['javac', 'checkstyle']
 " Set YouCompleteMe options
