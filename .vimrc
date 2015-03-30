@@ -68,6 +68,8 @@ let g:ycm_seed_identifiers_with_syntax=1
 let g:nailgun_port='2113'
 let g:javacomplete_ng='ng-nailgun'
 let g:javacomplete_methods_paren=0
+" Use LaTeX by default
+let g:tex_flavor="latex"
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
