@@ -25,6 +25,9 @@ fi
 if [ -d "$HOME/.gem/ruby/2.0.0/bin" ] ; then
 	PATH="$PATH:$HOME/.gem/ruby/2.0.0/bin"
 fi
+if [ -d "$HOME/.gem/ruby/2.1.0/bin" ] ; then
+	PATH="$PATH:$HOME/.gem/ruby/2.1.0/bin"
+fi
 
 # Start gpg-agent if not yet running
 export GPG_ENV_FILE="$HOME/.gpg-agent-info"
