@@ -2,7 +2,7 @@
 SRC='src'
 TEST='test'
 DEBUG='build/debug'
-TEST_DEBUG='build/test'
+TEST_DEBUG='build/debug-test'
 
 if [ "$1" = "--test" ]; then
 	SRCPATH="$SRC:$TEST"
