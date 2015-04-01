@@ -12,6 +12,7 @@ Plugin 'paretje/vim-orgmode'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'paretje/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
@@ -67,7 +68,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 " Set javacomplete options
 let g:nailgun_port='2113'
 let g:javacomplete_ng='ng-nailgun'
-let g:javacomplete_methods_paren=0
+let g:javacomplete_methods_paren_close_noargs=1
 " Use LaTeX by default
 let g:tex_flavor="latex"
 
