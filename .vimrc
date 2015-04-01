@@ -51,7 +51,7 @@ set smartcase
 " Highlight searches
 set hlsearch
 " Set ctags options
-set tags=./tags;$HOME/vcs
+set tags=./tags;$HOME
 " Location of org-files
 let g:org_agenda_files=['~/cloud/config/notes/*.org']
 command TODO tabnew ~/cloud/config/notes/Tasks.org
