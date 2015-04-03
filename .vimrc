@@ -114,3 +114,4 @@ au BufReadPost fugitive://*	set bufhidden=delete
 " TODO: does this really work?
 au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
+au BufRead ~/.mozilla/firefox/*/itsalltext/github*	setlocal ft=markdown
