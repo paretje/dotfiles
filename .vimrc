@@ -20,6 +20,7 @@ Plugin 'ciaranm/detectindent'
 Plugin 'paretje/javacomplete'
 Plugin 'paretje/vim-java-get-set'
 Plugin 'paretje/vim-refact'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 
@@ -71,6 +72,9 @@ let g:javacomplete_ng='ng-nailgun'
 let g:javacomplete_methods_paren_close_noargs=1
 " Use LaTeX by default
 let g:tex_flavor="latex"
+" Enable airline
+set laststatus=2
+let g:airline_powerline_fonts = 1
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
