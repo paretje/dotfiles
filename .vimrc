@@ -21,6 +21,7 @@ Plugin 'paretje/javacomplete'
 Plugin 'paretje/vim-java-get-set'
 Plugin 'paretje/vim-refact'
 Plugin 'bling/vim-airline'
+Plugin 'Keithbsmiley/tmux.vim'
 
 call vundle#end()
 
@@ -92,6 +93,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 autocmd FileType haskell	setlocal nospell
 autocmd FileType prolog		setlocal nospell
 autocmd FileType matlab		setlocal nospell
+autocmd FileType tmux		setlocal nospell
 
 autocmd FileType gitcommit	setlocal spelllang=en
 
