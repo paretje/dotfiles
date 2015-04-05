@@ -40,7 +40,7 @@ syntax on
 " Line numbers
 set nu
 " Spelling checker
-set spell spelllang=nl
+set spell spelllang=en
 " Auto indent
 set autoindent
 filetype indent on
@@ -90,34 +90,29 @@ vnoremap > >gv
 vnoremap < <gv
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-autocmd FileType haskell	setlocal nospell
-autocmd FileType prolog		setlocal nospell
-autocmd FileType matlab		setlocal nospell
-autocmd FileType tmux		setlocal nospell
+au FileType haskell,prolog,matlab,tmux	setlocal nospell
+au FileType tex,text,bbcode		setlocal linebreak
+au FileType mail,gitcommit		setlocal formatoptions+=a
 
-autocmd FileType gitcommit	setlocal spelllang=en
+au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
+au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 
-autocmd FileType ruby		setlocal softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType matlab		setlocal softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType java		setlocal softtabstop=4 shiftwidth=4 expandtab
+au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
+au FileType java	setlocal omnifunc=javacomplete#Complete
 
-autocmd FileType java		setlocal tags+=/usr/lib/jvm/openjdk-8/tags
-autocmd FileType java		setlocal omnifunc=javacomplete#Complete
+au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 
-autocmd FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
-autocmd FileType java		compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-
-autocmd FileType java		nnoremap i :JavaCompleteAddImport<CR>
-autocmd FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
-autocmd FileType python		nnoremap r :BikeRename<CR>
-
-au FileType tex,text,bbcode	setlocal linebreak
-au FileType mail,gitcommit	setlocal formatoptions+=a
+au FileType java	nnoremap i :JavaCompleteAddImport<CR>
+au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
+au FileType python	nnoremap r :BikeRename<CR>
 
 au BufReadPost fugitive://*	set bufhidden=delete
 
 " TODO: does this really work?
 au BufNewFile,BufRead /run/user/*/gvfs/**	setlocal directory=/tmp backupdir=/tmp
+
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=bbcode
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*	setlocal ft=markdown
