@@ -2,6 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Enable 256 colors in xfce4-terminal
+if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM"="xterm" ]; then
+	TERM=xterm-256color
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -37,7 +42,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    *-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -109,6 +114,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Load gpg-agent variables
 if [ -f "$GPG_ENV_FILE" ]; then
     . "$GPG_ENV_FILE"
     export GPG_TTY=$(tty)
