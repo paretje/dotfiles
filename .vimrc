@@ -93,6 +93,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType tex,text,bbcode		setlocal linebreak
 au FileType mail,gitcommit		setlocal formatoptions+=a
+au FileType org				setlocal spelllang=nl
 
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
