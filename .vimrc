@@ -30,6 +30,7 @@ call vundle#end()
 " on xterm, although default is dark.
 if !has("gui_running")
 	set background=dark
+	hi SpellBad ctermfg=White
 else
 	" Always show tab-bar in GVIM
 	set showtabline=2
