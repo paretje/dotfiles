@@ -22,6 +22,7 @@ Plugin 'paretje/vim-java-get-set'
 Plugin 'paretje/vim-refact'
 Plugin 'bling/vim-airline'
 Plugin 'Keithbsmiley/tmux.vim'
+Plugin 'klen/python-mode'
 
 call vundle#end()
 
@@ -109,7 +110,6 @@ au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 
 au FileType java	nnoremap i :JavaCompleteAddImport<CR>
 au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
-au FileType python	nnoremap r :BikeRename<CR>
 
 au BufReadPost fugitive://*	set bufhidden=delete
 
