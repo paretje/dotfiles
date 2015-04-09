@@ -23,6 +23,7 @@ Plugin 'paretje/vim-refact'
 Plugin 'bling/vim-airline'
 Plugin 'Keithbsmiley/tmux.vim'
 Plugin 'klen/python-mode'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 
@@ -80,6 +81,8 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 " Disable pymode autocompletion
 let g:pymode_rope_complete_on_dot=0
+" CtrlP settings
+let g:ctrlp_cmd='CtrlPMixed'
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
