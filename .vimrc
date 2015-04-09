@@ -78,6 +78,8 @@ let g:tex_flavor="latex"
 " Enable airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+" Disable pymode autocompletion
+let g:pymode_rope_complete_on_dot=0
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
