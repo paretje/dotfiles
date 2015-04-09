@@ -24,6 +24,7 @@ Plugin 'bling/vim-airline'
 Plugin 'Keithbsmiley/tmux.vim'
 Plugin 'klen/python-mode'
 Plugin 'kien/ctrlp.vim'
+Plugin 'fs111/pydoc.vim'
 
 call vundle#end()
 
@@ -83,6 +84,8 @@ let g:airline_powerline_fonts = 1
 let g:pymode_rope_complete_on_dot=0
 " CtrlP settings
 let g:ctrlp_cmd='CtrlPMixed'
+" Use python3 documentation
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
