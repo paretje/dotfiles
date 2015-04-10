@@ -53,6 +53,13 @@ export QT_STYLE_OVERRIDE=gtk
 # default gnome styling: no icons ... 
 export DESKTOP_SESSION=gnome
 
+# set PYTHONPATH
+if [ -d "$HOME/.vim/bundle/ropevim" ] ; then
+	PYTHONPATH="$PYTHONPATH:$HOME/.vim/bundle/ropevim"
+fi
+
+export PYTHONPATH
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
