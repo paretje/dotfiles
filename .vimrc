@@ -68,6 +68,7 @@ let g:syntastic_exit_checks=0
 let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle/checkstyle.jar'
 let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
 let g:syntastic_java_checkers = ['javac', 'checkstyle']
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
