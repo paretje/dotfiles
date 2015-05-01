@@ -85,6 +85,8 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_cmd='CtrlPMixed'
 " Use python3 documentation
 let g:pydoc_cmd = '/usr/bin/pydoc3'
+" Always enable mouse. This enables mouse in tmux
+set mouse=a
 
 " Arrow keys
 " https://gist.github.com/hugoroy/5822226
