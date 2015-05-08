@@ -25,6 +25,7 @@ Plugin 'Keithbsmiley/tmux.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'fs111/pydoc.vim'
 Plugin 'python-rope/ropevim'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
@@ -108,6 +109,7 @@ au FileType org				setlocal spelllang=nl
 
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType org		setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 
