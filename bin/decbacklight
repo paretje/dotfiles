@@ -1,5 +1,0 @@
-#!/bin/sh
-CURRENT=$(xbacklight | sed 's/^\([0-9]*\)\.[0-9]*$/\1/')
-if [ $CURRENT -gt 10 ]; then
-	xbacklight -dec 10
-fi
