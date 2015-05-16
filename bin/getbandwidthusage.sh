@@ -13,7 +13,7 @@ elif [ "$(/sbin/iwgetid)" = 'wlan0     ESSID:"LG-E410i_7795"' ]; then
 	# but bash requires the option -e as well, to support the \n, while dash
 	# doesn't need it, and will simply output it. printf seems to be a more
 	# universal solution to print without newline
-	printf '+\np' | cat /sys/class/net/wlan0/statistics/rx_bytes /sys/class/net/wlan0/statistics/tx_bytes - | dc | bytes2human.sh
+	printf '+\np' | cat /sys/class/net/wlan0/statistics/rx_bytes /sys/class/net/wlan0/statistics/tx_bytes - | dc | bytes2human
 else
 	echo ""
 fi
