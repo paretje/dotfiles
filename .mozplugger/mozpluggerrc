@@ -1,0 +1,222 @@
+# Configure file for MozPlugger 1.14.2
+# Version: Sept 18, 2010
+#
+# Commands which are not installed on your system will not be used.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111, USA.
+
+
+###################
+### m4 macros   ###
+###################
+
+changequote([,])
+
+### Helpers
+
+### MPlayer
+
+# define(MP_CMD,[mplayer -really-quiet -nojoystick -nofs -zoom -vo xv,x11 -ao esd,alsa,oss,arts,null -osdlevel 0 $1 </dev/null])
+define(MP_CMD,[mpv --really-quiet $1 </dev/null])
+
+# define(MP_EMBED,[embed noisy ignore_errors: MP_CMD(-xy $width -wid $window $1)])
+define(MP_EMBED,[embed noisy ignore_errors: MP_CMD(--autofit=$width --wid=$window $1)])
+
+define(MP_NOEMBED,[noembed noisy ignore_errors maxaspect swallow(MPlayer): MP_CMD($1)])
+
+# If you want a small controls in top left corner of embedded window when using
+# mplayer then uncomment the first and comment the second below 
+
+# define(MP_VIDEO_STREAM,[controls stream MP_EMBED($1 "$file")
+# 	stream MP_NOEMBED($1 "$file")])
+
+define(MP_VIDEO_STREAM,[stream MP_EMBED($1 "$file")
+	stream MP_NOEMBED($1 "$file")])
+
+# define(MP_VIDEO_PLAYLIST, [fmatch($1) MP_EMBED(-playlist "$file")
+define(MP_VIDEO_PLAYLIST, [fmatch($1) MP_EMBED(--playlist="$file")
+	                   fmatch($1) MP_NOEMBED(-playlist "$file")])
+# Special case for Quicktime
+define(MP_LINKS,[stream links noisy ignore_errors: MP_CMD($1)])
+
+# define(MP_AUDIO,[mplayer -really-quiet -nojoystick $1 </dev/null])
+define(MP_AUDIO,[mpv --really-quiet $1 </dev/null])
+
+# define(MP_AUDIO_STREAM,[controls stream noisy ignore_errors: mplayer -really-quiet -nojoystick $1 "$file" </dev/null])
+define(MP_AUDIO_STREAM,[controls stream noisy ignore_errors: mpv --really-quiet $1 "$file" </dev/null])
+
+###################
+### Video       ###
+###################
+
+video/mpeg:mpeg,mpg,mpe:MPEG animation
+video/x-mpeg:mpeg,mpg,mpe:MPEG animation
+video/x-mpeg2:mpv2,mp2ve:MPEG2 animation
+	MP_VIDEO_STREAM()
+	TM_VIDEO_STREAM()
+        nokill noisy: xine -pq "$file"
+	loop: mtvp -l -W$window "$file"
+	: mtvp -W$window "$file"
+	loop: xanim +Av100 -Zr +W$window +q +f "$file"
+	: xanim +Av100 -Zr +W$window +q +Ze +f "$file"
+
+video/mp4:mp4:MPEG4 animation
+video/msvideo:avi:AVI animation
+video/x-msvideo:avi:AVI animation
+video/fli:fli,flc:FLI animation
+video/x-fli:fli,flc:FLI animation
+	MP_VIDEO_STREAM()
+	TM_VIDEO_STREAM()
+        nokill noisy: xine -pq "$file"
+
+application/x-mplayer2:*:Windows Media video
+video/x-ms-asf:asf,asx:Windows Media video
+video/x-ms-wm:wm:Windows Media video
+video/x-ms-wmv:wmv:Windows Media video
+video/x-ms-wvx:wvx:Windows Media video
+video/x-ms-asf-plugin:*:Window Media video
+        MP_VIDEO_PLAYLIST(%.asx)
+	MP_VIDEO_STREAM()
+	TM_VIDEO_STREAM()
+
+application/asx:asx:Windows Media video
+	MP_VIDEO_STREAM(-playlist)
+	TM_VIDEO_STREAM()
+
+application/x-quicktimeplayer:mov:Quicktime animation
+image/x-macpaint:pntg,mov:Quicktime animation
+video/quicktime:mov,qt:Quicktime animation
+video/x-quicktime:mov,qt:Quicktime animation
+	MP_VIDEO_STREAM()
+        MP_LINKS("$file")
+	TM_VIDEO_STREAM()
+        TM_LINKS("$file")
+	stream links : xine -pq "$file"
+	nokill noisy: xine -pq "$file"
+
+video/x-theora:ogg:OGG stream with video
+video/theora:ogg:OGG stream with video
+video/ogg:ogg:OGG stream with video
+video/x-ogg:ogm,ogv:OGG stream with video
+	MP_VIDEO_STREAM()
+	TM_VIDEO_STREAM()
+
+video/dl:dl:DL animation
+video/x-dl:dl:DL animation
+video/sgi-movie:movie,movi,mv:SGI animation
+video/x-sgi-movie:movie,movi,mv:SGI animation
+video/anim:iff,anim5,anim3,anim7:IFF animation
+video/x-anim:iff,anim5,anim3,anim7:IFF animation
+	loop: xanim +Av100 -Zr +W$window +q +f "$file"
+	: xanim +Av100 -Zr +W$window +q +Ze +f "$file"
+
+
+##################
+### Audio      ###
+##################
+
+audio/mid:midi,mid:MIDI audio file
+audio/x-mid:midi,mid:MIDI audio file
+audio/midi:midi,mid:MIDI audio file
+audio/x-midi:midi,mid:MIDI audio file
+	controls noisy stream: timidity "$file"
+	controls: playmidi "$file"
+
+audio/mod:mod:Soundracker audio Module
+audio/x-mod:mod:Soundracker audio Module
+	controls loop noisy: mikmod -q --interpolate "$file"
+	controls noisy: mikmod -q --interpolate "$file"
+	controls loop noisy: xmp -l --nocmd "$file"
+	controls noisy: xmp --nocmd "$file"
+
+audio/mp3:mp3:MPEG audio
+audio/x-mp3:mp3:MPEG audio
+audio/mpeg2:mp2:MPEG audio
+audio/x-mpeg2:mp2:MPEG audio
+audio/mpeg3:mp3:MPEG audio
+audio/x-mpeg3:mp3:MPEG audio
+audio/mpeg:mpa,abs,mpega:MPEG audio
+audio/x-mpeg:mpa,abs,mpega:MPEG audio
+	MP_AUDIO_STREAM()
+	TM_AUDIO_STREAM()
+	controls: mpg321 -q "$file"
+	controls: mpg123 -q "$file"
+	controls: splay -t 200 "$file"
+	controls: amp -b 200 -q "$file"
+	controls: maplay "$file"
+	controls: mpeg3play "$file"
+	nokill noisy : xmms -e -p "$file"
+	repeat noisy swallow(alsaplayer): alsaplayer -q "$file"
+
+audio/mpeg-url:m3u:MPEG music resource locator
+audio/x-mpeg-url:m3u:MPEG music resource locator
+audio/mpegurl:m3u:MPEG music resource locator
+audio/x-mpegurl:m3u:MPEG music resource locator
+audio/x-scpls:pls:Shoutcast Playlists
+#	controls: mpg321 -q -@ "$file"
+	nokill noisy : xmms -e -p "$file"
+
+audio/x-ogg:ogg:OGG audio
+application/x-ogg:ogg:OGG audio
+application/ogg:ogg:OGG audio
+	MP_AUDIO_STREAM()
+	TM_AUDIO_STREAM()
+	controls stream noisy: ogg123 -q -b 128 "$file"
+	nokill noisy : xmms -e -p "$file"
+
+audio/x-flac:flac:FLAC audio
+application/x-flac:flac:FLAC audio
+	MP_AUDIO_STREAM()
+	nokill noisy : xmms -e -p "$file"
+
+audio/x-sidtune:sid,psid:Commodore 64 Audio
+audio/sidtune:sid,psid:Commodore 64 Audio
+audio/psid:psid,sid:Commodore 64 Audio
+audio/x-psid:psid,sid:Commodore 64 Audio
+	controls noisy: sidplay -16 -f44100 -a "$file"
+
+audio/basic:au,snd:Basic audio file
+audio/x-basic:au,snd:Basic audio file
+	controls: play "$file"
+	controls: sox "$file" -t .au - > /dev/audio
+
+audio/wav:wav:Microsoft wave file
+audio/x-wav:wav:Microsoft wave file
+audio/x-pn-wav:wav:Microsoft wave file
+audio/x-pn-windows-acm:wav:Microsoft wave file
+        controls: play "$file"
+	controls: wavplay -q "$file"
+	controls noisy: bplay "$file"
+	controls: splay "$file"
+	nokill noisy : xmms -e -p "$file"
+ 	repeat noisy swallow(alsaplayer): alsaplayer -q "$file"
+
+audio/x-pn-realaudio-plugin:rpm:RealPlayer Plugin Metafile
+audio/x-pn-realaudio:ra,rm,ram:Realaudio-plugin resource locator
+audio/x-realaudio:ra,rm,ram:RealAudio file
+application/vnd.rn-realmedia:rm:RealMedia file
+application/smil:smi:RealPlayer
+audio/vnd.rn-realaudio:ra,ram:RealAudio file
+audio/vnd.rn-realvideo:rv:RealVideo file
+	nokill stream: hxplay "$file"
+        nokill stream: realplay "$file"
+
+audio/x-ms-wax:wax:Windows Media Audio
+	MP_AUDIO_STREAM(-playlist-playlist))
+	TM_AUDIO_STREAM()
+
+audio/x-ms-wma:wma:Windows Media Audio
+	MP_AUDIO_STREAM()
+	TM_AUDIO_STREAM()

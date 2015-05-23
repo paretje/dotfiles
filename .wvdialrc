@@ -1,0 +1,16 @@
+
+[Dialer Defaults]
+Phone = *99#
+Username = ''
+Password = ''
+Stupid Mode = 1
+Dial Command = ATDT
+Modem = /dev/ttyUSB0
+Baud = 115200
+Init2 = ATZ
+Init3 = ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0
+Init4 = AT+CGDCONT=1,"IP","internet.proximus.be"
+ISDN = 0
+Modem Type = Analog Modem
+New PPPD = yes
+Auto DNS = yes
