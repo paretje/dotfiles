@@ -5,7 +5,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 
 main = xmonad $ xfceConfig
-	{ terminal = "xfce4-terminal"
+	{ modMask = mod4Mask
+        , terminal = "xfce4-terminal"
 	, manageHook = myManageHook <+> manageHook xfceConfig
 	, layoutHook = smartBorders $ layoutHook xfceConfig
 	, focusFollowsMouse = False }
