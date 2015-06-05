@@ -1,0 +1,13 @@
+#!/bin/sh
+if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] || /sbin/iwgetid | fgrep -v 'paretjesnetwork' > /dev/null; then
+	echo "Start proxy to Paretje's Network"
+	sshproxy paretje.online-urbanus.be 1081
+fi
+
+if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] || /sbin/iwgetid | fgrep 'LG-E410i_7795' > /dev/null; then
+	echo 'Start compressing proxy'
+	sshproxy sshproxy@vps.online-urbanus.be 1080
+	exec tsocks /usr/bin/iceweasel "$@"
+else
+	exec /usr/bin/iceweasel "$@"
+fi

@@ -10,7 +10,7 @@ for var in "$@"; do
 done
 
 if [ $files -gt 1 ]; then
-	/usr/bin/mpv --no-resume-playback "$@"
+	exec /usr/bin/mpv --no-resume-playback "$@"
 else
-	/usr/bin/mpv "$@"
+	exec /usr/bin/mpv "$@"
 fi

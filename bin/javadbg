@@ -16,4 +16,8 @@ else
 	MAIN="$@"
 fi
 
-rlwrap -f tags jdb -sourcepath $SRCPATH -classpath $CLASSPATH $MAIN
+if [ ! -f tags ]; then
+	ctags -R $SRCPATH
+fi
+
+exec rlwrap -f tags jdb -sourcepath $SRCPATH -classpath $CLASSPATH $MAIN
