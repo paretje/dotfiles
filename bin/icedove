@@ -1,4 +1,4 @@
 #!/bin/sh
 org2html $HOME/cloud/config/notes/Tasks.org &
 sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' $HOME/.icedove/*/localstore.rdf
-/usr/bin/icedove
+exec /usr/bin/icedove "$@"
