@@ -1,4 +1,10 @@
 #!/bin/sh
 org2html $HOME/cloud/config/notes/Tasks.org &
 sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' $HOME/.icedove/*/localstore.rdf
-exec /usr/bin/icedove "$@"
+
+if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] || /sbin/iwgetid | fgrep 'LG-E410i_7795' > /dev/null; then
+	sshproxy sshproxy@vps.online-urbanus.be 1080
+	exec tsocks /usr/bin/icedove "$@"
+else
+	exec /usr/bin/icedove "$@"
+fi
