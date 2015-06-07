@@ -74,10 +74,13 @@ let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle/checkstyle.jar'
 let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
 let g:syntastic_java_checkers = ['javac', 'checkstyle']
 let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_check_on_wq=0
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_comments_and_strings=1
 
 " Set javacomplete options
 let g:nailgun_port='2113'
@@ -102,7 +105,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 " 
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType tex,text,bbcode		setlocal linebreak " don't wrap randomly in a word
-au FileType mail,gitcommit		setlocal formatoptions+=a
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
