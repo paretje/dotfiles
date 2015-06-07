@@ -11,7 +11,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'paretje/vim-orgmode'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
-Plugin 'paretje/vim-snippets'
+Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
@@ -26,6 +26,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'fs111/pydoc.vim'
 Plugin 'python-rope/ropevim'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'danielmiessler/VimBlog'
 
 call vundle#end()
 
@@ -101,6 +102,9 @@ au BufReadPost fugitive://* set bufhidden=delete
 
 " UltiSnips options
 let g:UltiSnipsExpandTrigger="<c-j>"
+
+" VimBlog options
+let VIMPRESS = {} " circumvent bug when opening post
 
 " 
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
