@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-scripts/haskell.vim'
+" Plugin 'vim-scripts/haskell.vim'
 Plugin 'craigemery/vim-autotag'
 Plugin 'tpope/vim-speeddating'
 Plugin 'paretje/vim-orgmode'
@@ -27,6 +27,8 @@ Plugin 'fs111/pydoc.vim'
 Plugin 'python-rope/ropevim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'danielmiessler/VimBlog'
+Plugin 'raichoo/haskell-vim'
+Plugin 'eagletmt/neco-ghc'
 
 call vundle#end()
 
@@ -62,8 +64,6 @@ set hlsearch
 set tags=./tags;$HOME
 " Max number of tabs
 set tabpagemax=32
-" Use LaTeX by default
-let g:tex_flavor="latex"
 " Enable airline
 set laststatus=2
 " Always enable mouse. This enables mouse in tmux
@@ -82,6 +82,7 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
+let g:ycm_semantic_triggers={'haskell': ['.']}
 
 " Set javacomplete options
 let g:nailgun_port='2113'
@@ -105,6 +106,9 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 " VimBlog options
 let VIMPRESS = {} " circumvent bug when opening post
+
+" neco-ghc options
+let g:necoghc_enable_detailed_browse=1
 
 " 
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
@@ -132,7 +136,12 @@ au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 au FileType java	nnoremap i :JavaCompleteAddImport<CR>
 
 " LaTex ft options
+let g:tex_flavor="latex" " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+
+" Haskell ft options
+au FileType haskell	setlocal omnifunc=necoghc#omnifunc
+au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
