@@ -73,9 +73,10 @@ set mouse=a
 let g:syntastic_exit_checks=0
 let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle/checkstyle.jar'
 let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
-let g:syntastic_java_checkers = ['javac', 'checkstyle']
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_java_checkers=['javac', 'checkstyle']
+let g:syntastic_python_python_exec='/usr/bin/python3'
 let g:syntastic_check_on_wq=0
+let g:syntastic_java_javac_classpath='.'
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion=1
@@ -134,6 +135,7 @@ au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 au FileType java	nnoremap i :JavaCompleteAddImport<CR>
+au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
 let g:tex_flavor="latex" " Use LaTeX by default
@@ -159,3 +161,4 @@ vnoremap < <gv
 
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
+com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
