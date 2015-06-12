@@ -140,6 +140,7 @@ au FileType java	JavaCompleteAddSourcePath .
 " LaTex ft options
 let g:tex_flavor="latex" " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+au FileType tex		setlocal spelllang=nl
 
 " Haskell ft options
 au FileType haskell	setlocal omnifunc=necoghc#omnifunc
