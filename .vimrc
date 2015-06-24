@@ -112,8 +112,9 @@ let VIMPRESS = {} " circumvent bug when opening post
 " neco-ghc options
 let g:necoghc_enable_detailed_browse=1
 
-" 
+" Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
+au FileType org,latex,mail		setlocal spelllang=nl
 au FileType tex,text,bbcode		setlocal linebreak " don't wrap randomly in a word
 
 " Ruby ft options
@@ -123,7 +124,6 @@ au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " Org ft options
-au FileType org		setlocal spelllang=nl
 au FileType org		setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
 
@@ -141,7 +141,6 @@ au FileType java	JavaCompleteAddSourcePath .
 " LaTex ft options
 let g:tex_flavor="latex" " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
-au FileType tex		setlocal spelllang=nl
 
 " Haskell ft options
 au FileType haskell	setlocal omnifunc=necoghc#omnifunc
