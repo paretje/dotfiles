@@ -68,6 +68,9 @@ set tabpagemax=32
 set laststatus=2
 " Always enable mouse. This enables mouse in tmux
 set mouse=a
+" Don't do full autocompletion in command mode
+set wildmenu
+set wildmode=longest,list,full
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
