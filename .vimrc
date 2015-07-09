@@ -71,6 +71,9 @@ set mouse=a
 " Don't do full autocompletion in command mode
 set wildmenu
 set wildmode=longest,list,full
+" enable folding
+set foldmethod=syntax
+let xml_syntax_folding=1
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
@@ -162,6 +165,7 @@ vnoremap <up> gk
 vnoremap <down> gj
 vnoremap > >gv
 vnoremap < <gv
+nnoremap <tab> za
 
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
