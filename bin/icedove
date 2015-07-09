@@ -1,7 +1,4 @@
 #!/bin/sh
-org2html $HOME/cloud/config/notes/Tasks.org &
-sed -i '/messengerWindow/{N;N;N;N;N;s/sizemode="normal"/sizemode="maximized"/}' $HOME/.icedove/*/localstore.rdf
-
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] || /sbin/iwgetid | fgrep 'LG-E410i_7795' > /dev/null; then
 	sshproxy sshproxy@vps.online-urbanus.be 1080
 	cat > $HOME/.tsocks.conf <<EOF
