@@ -155,6 +155,9 @@ au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
 " HTML ft options
 au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
 
+" XML ft options
+au FileType xml		setlocal softtabstop=2 shiftwidth=2 expandtab
+
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
