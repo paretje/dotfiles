@@ -172,6 +172,9 @@ vnoremap <down> gj
 vnoremap > >gv
 vnoremap < <gv
 nnoremap <tab> za
+inoremap <A-A> <C-O>A
+inoremap <A-O> <C-O>O
+inoremap <A-o> <C-O>o
 
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
