@@ -7,7 +7,6 @@ touch $HOME/.tsocks.conf
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] || /sbin/iwgetid | fgrep -v 'paretjesnetwork' > /dev/null; then
 	echo "Start proxy to Paretje's Network"
 	sshproxy paretje.online-urbanus.be 1081
-	echo "local = 127.0.0.0/255.0.0.0\npath {\n"
 	cat >> $HOME/.tsocks.conf <<EOF
 local = 127.0.0.0/255.0.0.0
 path {
