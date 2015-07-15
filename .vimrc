@@ -80,8 +80,8 @@ set wildmode=longest,list,full
 " enable folding
 set foldmethod=syntax
 let xml_syntax_folding=1
-" Set timeout to 50 ms. Reduces lag when pressing Alt-O on terminal and between leaving insert mode and update of airline
-set timeoutlen=50
+" Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and between leaving insert mode and update of airline
+set ttimeoutlen=0
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
