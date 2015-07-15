@@ -39,8 +39,14 @@ if !has("gui_running")
 	set background=dark
 	hi SpellBad ctermfg=Black
 else
-	" Always show tab-bar in GVIM
+	" Always show tab-bar in GVim
 	set showtabline=2
+
+	" Fix airline in GVim
+	if !exists('g:airline_symbols')
+		let g:airline_symbols = {}
+	endif
+	let g:airline_symbols.space = "\u3000"
 endif
 
 " Syntax highlighting
