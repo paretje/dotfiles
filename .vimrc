@@ -170,6 +170,10 @@ au FileType xml		setlocal softtabstop=2 shiftwidth=2 expandtab
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
+" org mode files in cloud
+au BufWritePre ~/cloud/**.org	call SetBackup()
+au BufWritePost ~/cloud/**.org	call UnsetBackup()
+
 " Custom key mappings
 nnoremap <up> gk
 nnoremap <down> gj
@@ -187,3 +191,17 @@ inoremap <A-o> <C-O>o
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+
+" Primitive backup mechanism
+fun! SetBackup()
+	let g:org_backup_backup=&backup
+	let g:org_backup_backupdir=&backupdir
+	let g:org_backup_backupext=&backupext
+	set backup backupdir=./.backups
+	let &backupext="~" . strftime("%Y%m%d%H%M%S")
+endfun
+fun! UnsetBackup()
+	let &backup=g:org_backup_backup
+	let &backupdir=g:org_backup_backupdir
+	let &backupext=g:org_backup_backupext
+endfun
