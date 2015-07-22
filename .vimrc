@@ -140,7 +140,7 @@ au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " Org ft options
-au FileType org		setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType org		setlocal shiftwidth=1
 au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
 
 " Matlab ft options
