@@ -168,6 +168,9 @@ au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
 " XML ft options
 au FileType xml		setlocal softtabstop=2 shiftwidth=2 expandtab
 
+" ATL ft options
+au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
+
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
