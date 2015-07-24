@@ -1,0 +1,11 @@
+binding "gtk-readline"
+{
+  bind "<ctrl>a" { "move-cursor" (paragraph-ends, -1, 0) }
+  bind "<shift><ctrl>a" { "move-cursor" (paragraph-ends, -1, 1) }
+  bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) }
+  bind "<shift><ctrl>e" { "move-cursor" (paragraph-ends, 1, 1) }
+
+  bind "<ctrl>d" { "delete-from-cursor" (chars, 1) }
+}
+
+class "GtkEntry" binding "gtk-readline"
