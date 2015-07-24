@@ -3,3 +3,5 @@
 	email = info@Online-Urbanus.be
 [push]
 	default = simple
+[instaweb]
+	httpd = webrick
