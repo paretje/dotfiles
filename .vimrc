@@ -193,6 +193,7 @@ nnoremap <tab> za
 inoremap <A-A> <C-O>A
 inoremap <A-O> <C-O>O
 " inoremap <A-o> <C-O>o
+nnoremap <C-n> :nohlsearch<CR>
 
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
