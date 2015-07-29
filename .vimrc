@@ -97,7 +97,7 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
-let g:ycm_semantic_triggers={'haskell': ['.']}
+let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</']}
 let g:ycm_filetype_blacklist={}
 
 " Set javacomplete options
@@ -112,6 +112,7 @@ let g:airline_powerline_fonts=1
 let g:ctrlp_cmd='CtrlPMixed'
 let g:ctrlp_user_command='find %s -maxdepth 5 -type f | grep -v "/\.git/\|/tmp/\|~$\|\.swp$\|\.mp4$\|\.mpg$\|\.mkv$\|\.jpg$"'
 let g:ctrlp_mruf_exclude='/\.git/.*'
+let g:ctrlp_working_path_mode=0
 
 " Pydoc options
 let g:pydoc_cmd = '/usr/bin/pydoc3'
