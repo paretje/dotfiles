@@ -9,7 +9,8 @@ main = xmonad $ xfceConfig
     , terminal = "xfce4-terminal"
     , manageHook = myManageHook <+> manageHook xfceConfig
     , layoutHook = smartBorders $ layoutHook xfceConfig
-    , focusFollowsMouse = False }
+    , focusFollowsMouse = False
+    , clickJustFocuses = False }
         `additionalKeysP`
     [ ("M-S-z", spawn "xflock4") ]
 
