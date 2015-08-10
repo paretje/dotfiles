@@ -1,1 +1,2 @@
-nmap x :javascript<Space>document.getElementById("hdrAHTButton").click()<CR>
+nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>
+nmap <C-i> :javascript createEventWithDialog()<CR>
