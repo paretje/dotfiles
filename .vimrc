@@ -97,7 +97,7 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
-let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</']}
+let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
 let g:ycm_filetype_blacklist={}
 
 " Set javacomplete options
@@ -129,6 +129,9 @@ let VIMPRESS = {} " circumvent bug when opening post
 " neco-ghc options
 let g:necoghc_enable_detailed_browse=1
 
+" vim-orgmode options
+let g:org_agenda_files=['~/cloud/config/notes/*.org']
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType org,latex,mail		setlocal spelllang=nl
@@ -143,6 +146,8 @@ au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 " Org ft options
 au FileType org		setlocal shiftwidth=1
 au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
+au FileType org		setlocal indentexpr=		" temporally measure to fix some problems
+au FileType org		iabbrev <expr> <buffer> <silent> :time: '['.strftime('%F %a %R').']'
 
 " Matlab ft options
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
@@ -167,10 +172,14 @@ au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " XML ft options
-au FileType xml		setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType xml,xsd		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " ATL ft options
 au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
+au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
+
+" orgagenda ft options
+au FileType orgagenda	setlocal nospell
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
@@ -195,6 +204,8 @@ inoremap <A-O> <C-O>O
 " inoremap <A-o> <C-O>o
 nnoremap <C-n> :nohlsearch<CR>
 cnoremap <C-a> <C-b>
+cnoremap <C-d> <Del>
+nnoremap gA :py ORGMODE.plugins[u"Agenda"].list_all_todos()<CR>
 
 " Custom commands
 com TODO tabnew ~/cloud/config/notes/Tasks.org
