@@ -174,11 +174,13 @@ au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " XML ft options
-au FileType xml,xsd		setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType xml,xsd	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " ATL ft options
 au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
 au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
+au BufRead *.atl	setlocal nospell
+au BufRead *.atl	setlocal commentstring=--%s
 
 " orgagenda ft options
 au FileType orgagenda	setlocal nospell
