@@ -1,0 +1,2 @@
+#!/bin/bash
+for file in "$1"/*.mkv ; do ffmpeg -i "$file" -acodec copy -vcodec copy -f mpegts "${file::-4}.ts" ; done
