@@ -5,3 +5,6 @@
 	default = simple
 [instaweb]
 	httpd = webrick
+[gcrypt]
+	participants = FB6D160B
+	signingkey = FB6D160B
