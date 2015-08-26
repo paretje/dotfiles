@@ -13,4 +13,4 @@ Init4 = AT+CGDCONT=1,"IP","internet.proximus.be"
 ISDN = 0
 Modem Type = Analog Modem
 New PPPD = yes
-Auto DNS = yes
+Auto DNS = no
