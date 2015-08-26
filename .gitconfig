@@ -6,5 +6,5 @@
 [instaweb]
 	httpd = webrick
 [gcrypt]
-	participants = FB6D160B
-	signingkey = FB6D160B
+	participants = 64AD7E10
+	signingkey = 64AD7E10
