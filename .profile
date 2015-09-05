@@ -55,10 +55,8 @@ export DESKTOP_SESSION=gnome
 
 # set PYTHONPATH
 if [ -d "$HOME/.vim/bundle/ropevim" ] ; then
-	PYTHONPATH="$PYTHONPATH:$HOME/.vim/bundle/ropevim"
+	export PYTHONPATH="$PYTHONPATH:$HOME/.vim/bundle/ropevim"
 fi
-
-export PYTHONPATH
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -66,4 +64,22 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
     fi
+fi
+
+# set default editor
+export EDITOR=vi
+
+# set default man path
+export MANPATH=$(manpath)
+
+# set MANPATH so it includes user's private man's if it exists
+if [ -d "$HOME/doc/man" ]; then
+	MANPATH="$HOME/doc/man:$MANPATH"
+fi
+
+# set MANPATH so it includes user's rubygems man's if it exists
+if [ -d "$HOME/.gem/ruby/2.1.0/gems" ] ; then
+	for dir in $HOME/.gem/ruby/2.1.0/gems/*/man ; do
+		MANPATH="$MANPATH:$dir"
+	done
 fi
