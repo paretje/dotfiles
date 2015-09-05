@@ -151,6 +151,12 @@ au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
 au FileType org		setlocal indentexpr=		" temporally measure to fix some problems
 au FileType org		iabbrev <expr> <buffer> <silent> :time: '['.strftime('%F %a %R').']'
 
+au BufUnload ~/vcs/config/notes/*.org	!git -C <afile>:p:h autocommit
+au BufAdd ~/vcss/config/notes/*.org	!git -C <afile>:p:h autocommit
+
+" orgagenda ft options
+au FileType orgagenda	setlocal nospell
+
 " Matlab ft options
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
 
@@ -181,9 +187,6 @@ au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to A
 au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
 au BufRead *.atl	setlocal nospell
 au BufRead *.atl	setlocal commentstring=--%s
-
-" orgagenda ft options
-au FileType orgagenda	setlocal nospell
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
