@@ -1,0 +1,2 @@
+#!/bin/sh
+hledger is 'income:week' 'expenses:(adjust|automate|dining|education|garbage|groceries|maintenance|medical|phone|public-transport|supplies)' $@
