@@ -1,0 +1,7 @@
+#!/bin/sh
+for repo in $HOME/vcs/config/* $HOME $HOME/bin $HOME/.ssh $HOME/.gnupg $HOME/bin/*.git; do
+	echo $repo
+	git -C $repo pull
+done
+
+vi +PluginUpdate
