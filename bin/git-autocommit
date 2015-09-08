@@ -1,6 +1,6 @@
 #!/bin/sh -e
 if ! git diff-index --quiet HEAD --; then
 	git commit -a -m '' --allow-empty-message
-	git pull
-	git push
 fi
+git pull
+git push
