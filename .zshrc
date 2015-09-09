@@ -3,6 +3,9 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM"="xterm" ]; then
 	TERM=xterm-256color
 fi
 
+# manual installation of zsh-completions
+fpath=($HOME/vcs/downloads/zsh-completions/src $fpath)
+
 # Set up the prompt
 
 autoload -Uz promptinit
@@ -57,4 +60,5 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 
+# autocompletion for tsocks, which is well approached by completion for exec
 compdef tsocks=exec
