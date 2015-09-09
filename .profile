@@ -60,10 +60,10 @@ fi
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set default editor
@@ -83,3 +83,6 @@ if [ -d "$HOME/.gem/ruby/2.1.0/gems" ] ; then
 		MANPATH="$MANPATH:$dir"
 	done
 fi
+
+# set default ledger file
+export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
