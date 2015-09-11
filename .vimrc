@@ -29,6 +29,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'danielmiessler/VimBlog'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 
 call vundle#end()
 
