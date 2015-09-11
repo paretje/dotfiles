@@ -150,6 +150,9 @@ let g:necoghc_enable_detailed_browse=1
 " vim-orgmode options
 let g:org_agenda_files=['~/vcs/config/notes/*.org']
 
+" vim-notes options
+let g:notes_directories=['~/vcs/config/notes/notes']
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType org,latex,mail		setlocal spelllang=nl
