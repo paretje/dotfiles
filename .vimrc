@@ -12,7 +12,14 @@ Plugin 'paretje/vim-orgmode'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
+" YCM is unusable in big mails, as I type those in gvim, this seems like a
+" good heuristic. But it might me interesting to check wetter YCM provides
+" enough advantages on my daily use of vim.
+if !has("gui_running")
+	Plugin 'Valloric/YouCompleteMe'
+else
+	Plugin 'Shougo/neocomplete.vim'
+endif
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
@@ -127,6 +134,13 @@ au BufReadPost fugitive://* set bufhidden=delete
 " UltiSnips options
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+if has("gui_running")
+	" Neocomplete options
+	let g:neocomplete#enable_at_start=1
+	let g:neocomplete#sources#omni#input_patterns = {}
+	call neocomplete#initialize()
+endif
+
 " VimBlog options
 let VIMPRESS = {} " circumvent bug when opening post
 
@@ -211,6 +225,13 @@ nnoremap <C-n> :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
 nnoremap gA :py ORGMODE.plugins[u"Agenda"].list_all_todos()<CR>
+
+" keymappings for Neocomplete
+if has("gui_running")
+	inoremap <C-Space> <C-x><C-o>
+	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+	imap <C-@> <C-Space>
+endif
 
 " Custom commands
 com TODO tabnew ~/vcs/config/notes/Tasks.org
