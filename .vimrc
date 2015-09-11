@@ -12,7 +12,7 @@ Plugin 'paretje/vim-orgmode'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" YCM is unusable in big mails, as I type those in gvim, this seems like a
+" YCM is unusable in big mails. As I type those in gvim, this seems like a
 " good heuristic. But it might me interesting to check wetter YCM provides
 " enough advantages on my daily use of vim.
 if !has("gui_running")
@@ -211,7 +211,7 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
 au BufUnload ~/vcs/config/notes/*	!git -C <afile>:p:h autocommit
-au BufAdd ~/vcss/config/notes/*		!git -C <afile>:p:h autocommit
+au BufAdd ~/vcs/config/notes/*		!git -C <afile>:p:h autocommit
 
 " Custom key mappings
 nnoremap <up> gk
