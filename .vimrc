@@ -38,6 +38,7 @@ Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
+Plugin 'dhruvasagar/vim-dotoo'
 
 call vundle#end()
 
@@ -170,9 +171,6 @@ au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
 au FileType org		setlocal indentexpr=		" temporally measure to fix some problems
 au FileType org		iabbrev <expr> <buffer> <silent> :time: '['.strftime('%F %a %R').']'
 
-au BufUnload ~/vcs/config/notes/*.org	!git -C <afile>:p:h autocommit
-au BufAdd ~/vcss/config/notes/*.org	!git -C <afile>:p:h autocommit
-
 " orgagenda ft options
 au FileType orgagenda	setlocal nospell
 
@@ -210,6 +208,10 @@ au BufRead *.atl	setlocal commentstring=--%s
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
+
+" notes options
+au BufUnload ~/vcs/config/notes/*	!git -C <afile>:p:h autocommit
+au BufAdd ~/vcss/config/notes/*		!git -C <afile>:p:h autocommit
 
 " Custom key mappings
 nnoremap <up> gk
