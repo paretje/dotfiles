@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This wrapper provides automatic reloading on file modifications
 # to the pdfviewer llpp via inotify.
 
