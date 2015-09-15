@@ -2,8 +2,5 @@
 if 3gusage; then
 	exec tsocks /usr/bin/icedove "$@"
 else
-	if /sbin/iwgetid | fgrep 'bewan_wifi' > /dev/null && ! nc -z 127.0.0.1 1143; then
-		davmail > /dev/null &
-	fi
 	exec /usr/bin/icedove "$@"
 fi
