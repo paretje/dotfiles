@@ -1,2 +1,16 @@
 nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>
 nmap <C-i> :javascript createEventWithDialog()<CR>
+imap <C-o> <ESC>e
+nmap r :javascript smartReply()<CR>
+
+javascript <<EOF
+function smartReply() {
+	var button = document.getElementById("hdrSmartReplyButton");
+	for (i=0; i < button.children.length; i++) {
+		if (!button.children[i].hidden) {
+			button.children[i].click();
+			break;
+		}
+	}
+}
+EOF
