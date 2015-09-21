@@ -205,6 +205,10 @@ au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
 au BufRead *.atl	setlocal nospell
 au BufRead *.atl	setlocal commentstring=--%s
 
+" VimL ft options
+au FileType vim		setlocal softtabstop=2 shiftwidth=2 expandtab
+au BufRead ~/.vimrc,~/vcs/config/vimrc/.vimrc	setlocal softtabstop=8 shiftwidth=8 noexpandtab
+
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
