@@ -220,8 +220,6 @@ inoremap <up> <C-O>gk
 inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
-vnoremap > >gv
-vnoremap < <gv
 nnoremap <tab> za
 inoremap <A-A> <C-O>A
 inoremap <A-O> <C-O>O
