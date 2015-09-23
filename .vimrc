@@ -8,7 +8,6 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'vim-scripts/haskell.vim'
 Plugin 'craigemery/vim-autotag'
 Plugin 'tpope/vim-speeddating'
-Plugin 'paretje/vim-orgmode'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -94,6 +93,8 @@ let xml_syntax_folding=1
 set ttimeoutlen=0
 " Set default comments format
 set commentstring=#%s
+" Disable unloading buffer when abandoned, as needed by vim-dotoo
+set hidden
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
@@ -148,16 +149,20 @@ let VIMPRESS = {} " circumvent bug when opening post
 " neco-ghc options
 let g:necoghc_enable_detailed_browse=1
 
-" vim-orgmode options
-let g:org_agenda_files=['~/vcs/config/notes/*.org']
+" vim-dotoo options
+let g:dotoo#agenda#files=['~/vcs/personal/notes/*.org', '~/vcs/active/vim-dotoo/todo.dotoo']
+let g:dotoo#capture#refile='~/vcs/personal/notes/refile.org'
 
 " vim-notes options
-let g:notes_directories=['~/vcs/config/notes/notes']
+let g:notes_directories=['~/vcs/personal/notes/notes']
+
+" vim-speeddating options
+au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 
 " Bulk options
-au FileType haskell,prolog,matlab,tmux	setlocal nospell
-au FileType org,latex,mail		setlocal spelllang=nl
-au FileType tex,text,bbcode		setlocal linebreak " don't wrap randomly in a word
+au FileType dotoo*,latex,mail				setlocal spelllang=nl
+au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
+au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -166,13 +171,10 @@ au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " Org ft options
-au FileType org		setlocal shiftwidth=1
-au FileType org		inoremap <C-L> <Esc>:OrgCheckBoxNewBelow<CR>
-au FileType org		setlocal indentexpr=		" temporally measure to fix some problems
-au FileType org		iabbrev <expr> <buffer> <silent> :time: '['.strftime('%F %a %R').']'
-
-" orgagenda ft options
-au FileType orgagenda	setlocal nospell
+au BufRead,BufNewFile *.org	setf dotoo
+au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
+au FileType dotoo		nunmap <buffer> <C-A>
+au FileType dotoo		nunmap <buffer> <C-X>
 
 " Matlab ft options
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
@@ -214,8 +216,8 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=m
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
-au BufUnload ~/vcs/config/notes/*	!git -C <afile>:p:h autocommit
-au BufAdd ~/vcs/config/notes/*		!git -C <afile>:p:h autocommit
+au VimLeave *		if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au FileType dotoo*	if !exists('g:sync_notes') | let g:sync_notes=1 | exec '!git -C ~/vcs/personal/notes autocommit' | endif
 
 " Custom key mappings
 nnoremap <up> gk
@@ -231,7 +233,6 @@ inoremap <A-O> <C-O>O
 nnoremap <C-n> :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
-nnoremap gA :py ORGMODE.plugins[u"Agenda"].list_all_todos()<CR>
 
 " keymappings for Neocomplete
 if has("gui_running")
@@ -241,5 +242,4 @@ if has("gui_running")
 endif
 
 " Custom commands
-com TODO tabnew ~/vcs/config/notes/Tasks.org
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
