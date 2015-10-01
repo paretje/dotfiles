@@ -88,3 +88,6 @@ fi
 
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
+
+# add system binary locations
+PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
