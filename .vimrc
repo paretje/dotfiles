@@ -35,7 +35,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'danielmiessler/VimBlog'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
-Plugin 'dhruvasagar/vim-dotoo'
+" Plugin 'dhruvasagar/vim-dotoo'
+set rtp+=~/vcs/active/vim-dotoo
 
 call vundle#end()
 
