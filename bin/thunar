@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ "$1" = "--sort-date" ]; then
-	shift
-	/usr/bin/thunar "$@" ; xdotool key ctrl+k
-else
-	/usr/bin/thunar "$@" ; xdotool key ctrl+j
-fi
