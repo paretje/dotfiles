@@ -65,6 +65,10 @@ case "$extension" in
         try lynx   -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         try elinks -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
         ;; # fall back to highlight/cat if the text browsers fail
+    # PS documents
+    ps)
+        try ps2ascii "$path" && \
+            { dump | trim | fmt -s -w $width; exit 0; } || exit 1;;
 esac
 
 case "$mimetype" in
