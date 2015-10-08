@@ -2,6 +2,7 @@ nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>
 nmap <C-i> :javascript createEventWithDialog()<CR>
 imap <C-o> <ESC>e
 nmap r :javascript smartReply()<CR>
+nmap / <C-S-k>
 
 javascript <<EOF
 function smartReply() {
