@@ -4,6 +4,7 @@ nmap <C-i> :javascript createEventWithDialog()<CR>
 imap <C-o> <ESC>e
 nmap r :javascript smartReply()<CR>
 nmap / <C-S-k>
+nmap <Tab> za
 
 javascript <<EOF
 function smartReply() {
