@@ -1,6 +1,0 @@
-#!/bin/sh
-if 3gusage; then
-	exec tsocks /usr/bin/iceweasel "$@"
-else
-	exec /usr/bin/iceweasel "$@"
-fi
