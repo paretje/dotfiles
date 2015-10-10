@@ -5,6 +5,8 @@ imap <C-o> <ESC>e
 nmap r :javascript smartReply()<CR>
 nmap / <C-S-k>
 nmap <Tab> za
+mmap d <C-d>
+mmap u <C-u>
 
 javascript <<EOF
 function smartReply() {
