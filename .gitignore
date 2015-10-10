@@ -68,3 +68,14 @@ workspace
 .gconf
 .eclipse
 .config/libreoffice
+.zsh_history
+.xmonad
+.weechat
+.mysql_history
+.gmrun_history
+.config/llpp-recent.conf
+.config/llpp.conf
+.config/ranger/bookmarks
+.config/ranger/commands.pyo
+.config/ranger/history
+.config/ranger/tagged
