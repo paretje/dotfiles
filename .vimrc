@@ -110,6 +110,7 @@ let g:ctrlp_user_command='find %s -maxdepth 3 -type f | grep -v "/\.git/\|/tmp/\
 let g:ctrlp_mruf_exclude='/\.git/.*'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_switch_buffer=''
+let g:ctrlp_follow_symlinks=1
 
 " Pydoc options
 let g:pydoc_cmd = '/usr/bin/pydoc3'
