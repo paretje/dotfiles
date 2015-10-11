@@ -35,9 +35,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'danielmiessler/VimBlog'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
-Plugin 'dhruvasagar/vim-dotoo'
+" Plugin 'dhruvasagar/vim-dotoo'
+set rtp+=~/vcs/active/vim-dotoo
 
 call vundle#end()
 
@@ -113,7 +112,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
-let g:ycm_filetype_blacklist={'help': 1, 'text': 1}
+let g:ycm_filetype_blacklist={'help': 1, 'text': 1, 'mail': 1}
 
 " Set javacomplete options
 let g:nailgun_port='2113'
