@@ -86,6 +86,8 @@ set ttimeoutlen=0
 set commentstring=#%s
 " Disable unloading buffer when abandoned, as needed by vim-dotoo
 set hidden
+" Return to previous position in file when when opening
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
