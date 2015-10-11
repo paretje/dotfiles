@@ -25,7 +25,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'fs111/pydoc.vim'
 Plugin 'python-rope/ropevim'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'danielmiessler/VimBlog'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 " Plugin 'dhruvasagar/vim-dotoo'
@@ -124,9 +123,6 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:neocomplete#enable_at_start=1
 let g:neocomplete#sources#omni#input_patterns = {}
 call neocomplete#initialize()
-
-" VimBlog options
-let VIMPRESS = {} " circumvent bug when opening post
 
 " neco-ghc options
 let g:necoghc_enable_detailed_browse=1
