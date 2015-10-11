@@ -2,7 +2,7 @@
 if [ $# -eq 1 ]; then
 	cd "$(dirname "$1")"
 	files=$(ls -1v)
-	echo "$files" | /usr/bin/sxiv -i -n $(echo "$files" | fgrep -n -m 1 "$(basename "$1")" | cut -d: -f1)
+	exec /usr/bin/sxiv -n $(echo "$files" | fgrep -n -m 1 -x "$(basename "$1")" | cut -d: -f1) $files
 else
 	exec /usr/bin/sxiv "$@"
 fi
