@@ -11,14 +11,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" YCM is unusable in big mails. As I type those in gvim, this seems like a
-" good heuristic. But it might me interesting to check wetter YCM provides
-" enough advantages on my daily use of vim.
-if !has("gui_running")
-	Plugin 'Valloric/YouCompleteMe'
-else
-	Plugin 'Shougo/neocomplete.vim'
-endif
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
@@ -104,14 +97,6 @@ let g:syntastic_python_python_exec='/usr/bin/python3'
 let g:syntastic_check_on_wq=0
 let g:syntastic_java_javac_classpath='.'
 
-" Set YouCompleteMe options
-let g:ycm_autoclose_preview_window_after_insertion=1
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_complete_in_comments=1
-let g:ycm_collect_identifiers_from_comments_and_strings=1
-let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
-let g:ycm_filetype_blacklist={'help': 1, 'text': 1, 'mail': 1}
-
 " Set javacomplete options
 let g:nailgun_port='2113'
 let g:javacomplete_ng='ng-nailgun'
@@ -135,12 +120,10 @@ au BufReadPost fugitive://* set bufhidden=delete
 " UltiSnips options
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-if has("gui_running")
-	" Neocomplete options
-	let g:neocomplete#enable_at_start=1
-	let g:neocomplete#sources#omni#input_patterns = {}
-	call neocomplete#initialize()
-endif
+" Neocomplete options
+let g:neocomplete#enable_at_start=1
+let g:neocomplete#sources#omni#input_patterns = {}
+call neocomplete#initialize()
 
 " VimBlog options
 let VIMPRESS = {} " circumvent bug when opening post
@@ -162,6 +145,12 @@ au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d
 let g:rubycomplete_buffer_loading=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
+
+" neocomplete options
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
@@ -239,11 +228,9 @@ cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
 
 " keymappings for Neocomplete
-if has("gui_running")
-	inoremap <C-Space> <C-x><C-o>
-	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-	imap <C-@> <C-Space>
-endif
+inoremap <C-Space> <C-x><C-o>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <C-@> <C-Space>
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
