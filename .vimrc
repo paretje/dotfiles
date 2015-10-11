@@ -106,7 +106,7 @@ let g:airline_powerline_fonts=1
 
 " CtrlP options
 let g:ctrlp_cmd='CtrlPMixed'
-let g:ctrlp_user_command='find %s -maxdepth 5 -type f | grep -v "/\.git/\|/tmp/\|~$\|\.swp$\|\.mp4$\|\.mpg$\|\.mkv$\|\.jpg$"'
+let g:ctrlp_user_command='find %s -maxdepth 3 -type f | grep -v "/\.git/\|/tmp/\|~$\|\.swp$\|\.mp4$\|\.mpg$\|\.mkv$\|\.jpg$"'
 let g:ctrlp_mruf_exclude='/\.git/.*'
 let g:ctrlp_working_path_mode=0
 
