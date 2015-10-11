@@ -109,6 +109,7 @@ let g:ctrlp_cmd='CtrlPMixed'
 let g:ctrlp_user_command='find %s -maxdepth 3 -type f | grep -v "/\.git/\|/tmp/\|~$\|\.swp$\|\.mp4$\|\.mpg$\|\.mkv$\|\.jpg$"'
 let g:ctrlp_mruf_exclude='/\.git/.*'
 let g:ctrlp_working_path_mode=0
+let g:ctrlp_switch_buffer=''
 
 " Pydoc options
 let g:pydoc_cmd = '/usr/bin/pydoc3'
