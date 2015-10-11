@@ -222,6 +222,11 @@ inoremap <A-O> <C-O>O
 nnoremap <C-n> :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-S-l> <C-l>
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
