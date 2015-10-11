@@ -158,6 +158,11 @@ let g:notes_directories=['~/vcs/personal/notes/notes']
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 
+" rubycomplete options
+let g:rubycomplete_buffer_loading=1
+let g:rubycomplete_classes_in_global=1
+let g:rubycomplete_rails=1
+
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
