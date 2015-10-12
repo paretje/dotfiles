@@ -16,7 +16,7 @@ main = xmonad $ xfceConfig
     , clickJustFocuses = False }
         `additionalKeysP`
     [ ("M-S-z", spawn "xflock4")
-    , ("M-p", spawn "gmrun")
+    , ("M-p", spawn "exec gmrun")
     , ("M-S-p", spawn "xfrun4") ]
 
 myManageHook :: Query (Endo WindowSet)
