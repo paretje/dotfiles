@@ -88,6 +88,8 @@ set commentstring=#%s
 set hidden
 " Return to previous position in file when when opening
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" Set mapleader
+let mapleader=';'
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
@@ -177,7 +179,7 @@ au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap i :JavaCompleteAddImport<CR>
+au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
 au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
@@ -223,7 +225,7 @@ nnoremap <tab> za
 inoremap <A-A> <C-O>A
 inoremap <A-O> <C-O>O
 " inoremap <A-o> <C-O>o
-nnoremap <C-n> :nohlsearch<CR>
+nnoremap <Leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
 nnoremap <C-h> <C-w>h
