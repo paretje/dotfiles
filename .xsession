@@ -7,6 +7,10 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
+xmodmap -e 'clear Control'
+xmodmap -e 'clear Mod3'
+xmodmap -e 'add Control = Control_L'
+xmodmap -e 'add Mod3 = Control_R'
 if [ "$HOST" = "kevin-laptop" ]; then
 	xmodmap -e 'keysym Super_L = Escape'
 else
