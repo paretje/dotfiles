@@ -7,6 +7,5 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
-/usr/lib/gvfs/gvfsd &
 setxkbmap -option caps:super
 exec startxfce4
