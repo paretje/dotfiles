@@ -8,7 +8,7 @@ import Data.Monoid
 
 main :: IO ()
 main = xmonad $ xfceConfig
-    { modMask = mod4Mask
+    { modMask = mod3Mask
     , terminal = "xfce4-terminal"
     , manageHook = hideNotifications <+> myManageHook <+> manageHook xfceConfig
     , layoutHook = smartBorders $ layoutHook xfceConfig
