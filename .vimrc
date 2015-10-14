@@ -233,6 +233,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <Leader>l :redraw!<CR>
+nnoremap <C-n> :CtrlPBuffer<CR>
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
