@@ -1,0 +1,11 @@
+#!/bin/bash
+choice=$(echo -e "logout\nshutdown\nreboot\nsuspend\nhibernate" | dmenu)
+mod="Control_R"
+
+case "$choice" in
+  logout) xdotool key $mod+ctrl+shift+q & ;;
+  shutdown) systemctl poweroff & ;;
+  reboot) systemctl reboot & ;;
+  suspend) systemctl suspend & ;;
+  hibernate) systemctl hibernate & ;;
+esac
