@@ -1,8 +1,18 @@
 #!/bin/sh
 if [ $# -eq 1 ]; then
-	cd "$(dirname "$1")"
-	files=$(ls -1v)
-	exec /usr/bin/sxiv -n $(echo "$files" | fgrep -n -m 1 -x "$(basename "$1")" | cut -d: -f1) $files
+	tmp=mktemp
+	dir="$1"
+	file=""
+	if [ -f "$1" ]; then
+		dir="$(dirname "$1")"
+	fi
+	cd "$dir"
+	ls -1v | grep '.jpg$' > $tmp
+	if [ -f "$1" ]; then
+		file="-n $(fgrep -n -m 1 -x "$(basename "$1")" $tmp | cut -d: -f1)"
+	fi
+	cat $tmp | /usr/bin/sxiv -i $file
+	rm $tmp
 else
 	exec /usr/bin/sxiv "$@"
 fi
