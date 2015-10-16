@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .ICEauthority
 .Rhistory
 .Xauthority
@@ -79,3 +80,4 @@ workspace
 .config/ranger/commands.pyo
 .config/ranger/history
 .config/ranger/tagged
+*.pyc
