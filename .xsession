@@ -27,5 +27,5 @@ fi
 # Start some daemons
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
-/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
+dunst &
 exec xmonad
