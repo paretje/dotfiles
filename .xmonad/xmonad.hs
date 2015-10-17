@@ -14,7 +14,7 @@ main = xmonad =<< xmobar myConfig
 myConfig = defaultConfig
     { modMask = mod3Mask
     , terminal = "exec xfce4-terminal -x sh -c 'TERM=xterm-256color exec tmux'"
-    , manageHook = hideNotifications <+> myManageHook <+> manageHook defaultConfig
+    , manageHook = myManageHook <+> manageHook defaultConfig
     , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
     , focusFollowsMouse = False
     , clickJustFocuses = False }
@@ -39,9 +39,6 @@ myManageHook = composeAll
     , className =? "mpv" --> doFloat
     , className =? "Wrapper" --> doFloat
     , className =? "Pinentry" --> doIgnore ]
-
-hideNotifications :: Query (Endo WindowSet)
-hideNotifications = className =? "Xfce4-notifyd" <&&> (focusedHasClassName "mpv" <||> focusedHasClassName "xbmc.bin") --> doKill
 
 focusedHasClassName :: String -> Query Bool
 focusedHasClassName cn = liftX $ focusedHasProperty $ ClassName cn
