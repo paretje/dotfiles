@@ -10,7 +10,11 @@ for var in "$@"; do
 done
 
 if [ $files -gt 1 ]; then
-	exec /usr/bin/mpv --no-resume-playback "$@"
+	pkill -u $USER -USR1 dunst
+	/usr/bin/mpv --no-resume-playback "$@"
+	pkill -u $USER -USR2 dunst
 else
-	exec /usr/bin/mpv "$@"
+	pkill -u $USER -USR1 dunst
+	/usr/bin/mpv "$@"
+	pkill -u $USER -USR2 dunst
 fi
