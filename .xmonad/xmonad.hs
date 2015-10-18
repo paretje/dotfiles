@@ -19,7 +19,7 @@ myConfig = defaultConfig
     , focusFollowsMouse = False
     , clickJustFocuses = False }
         `additionalKeysP`
-    [ ("M-S-z", spawn "xflock4")
+    [ ("M-S-z", spawn "xscreensaver-command --lock")
     , ("M-p", spawn "exec gmrun")
     , ("M-S-p", spawn "xfrun4")
     , ("M-S-q", spawn "dmenu-logout")
