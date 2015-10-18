@@ -39,9 +39,3 @@ myManageHook = composeAll
     , className =? "mpv" --> doFloat
     , className =? "Wrapper" --> doFloat
     , className =? "Pinentry" --> doIgnore ]
-
-focusedHasClassName :: String -> Query Bool
-focusedHasClassName cn = liftX $ focusedHasProperty $ ClassName cn
-
-doKill :: ManageHook
-doKill = ask >>= \w -> liftX (killWindow w) >> doF (W.delete w)
