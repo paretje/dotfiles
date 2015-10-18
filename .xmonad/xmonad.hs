@@ -36,5 +36,4 @@ myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "Xfrun4" --> doFloat
     , className =? "mpv" --> doFloat
-    , className =? "Wrapper" --> doFloat
     , className =? "Pinentry" --> doIgnore ]
