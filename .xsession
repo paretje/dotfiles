@@ -8,15 +8,14 @@ if [ -f "$GPG_ENV_FILE" ]; then
 fi
 
 # Remap some keys
-xmodmap -e 'clear Control'
-xmodmap -e 'clear Mod3'
-xmodmap -e 'add Control = Control_L'
-xmodmap -e 'add Mod3 = Control_R'
-if [ "$HOST" = "kevin-laptop" ]; then
-	xmodmap -e 'keysym Super_L = Escape'
-else
-	xmodmap -e 'keysym Caps_Lock = Escape'
-fi
+xmodmap -e 'clear lock'
+xmodmap -e 'keysym Super_L = Escape'
+xmodmap -e 'keysym Caps_Lock = Escape'
+
+xmodmap -e 'remove control = Control_R'
+xmodmap -e 'remove mod4 = Super_R'
+xmodmap -e 'add mod3 = Control_R'
+xmodmap -e 'add mod3 = Super_R'
 
 # Add HD output mode
 if [ "$HOST" = "kevin-laptop" ]; then
