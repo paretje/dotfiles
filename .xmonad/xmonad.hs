@@ -34,8 +34,7 @@ myConfig = defaultConfig
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "Xfce4-notifyd" --> doIgnore
-    , className =? "Xfrun4" --> doFloat
+    [ className =? "Xfrun4" --> doFloat
     , className =? "mpv" --> doFloat
     , className =? "Wrapper" --> doFloat
     , className =? "Pinentry" --> doIgnore ]
