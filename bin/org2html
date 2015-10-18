@@ -1,3 +1,0 @@
-#!/bin/sh
-emacs $1 --batch -f org-html-export-to-html
-sed -i '7i<link rel="shortcut icon" href="file:///usr/share/icons/gnome/16x16/status/task-due.png" type="image/png" />' ${1%.*}.html
