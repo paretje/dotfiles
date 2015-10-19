@@ -1,0 +1,13 @@
+#!/bin/sh
+message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
+level=$(echo $message | sed 's/^Discharging, \([0-9]\+\)%,.*$/\1/')
+
+if [ $level -le 10 ]; then
+	notify-send -u low "Battery getting low" "$message"
+elif [ $level -le 5 ]; then
+	notify-send -u critical "Battery getting very low" "$message"
+elif [ $level -le 3 ]; then
+	notify-send "Battery Critically low, suspending in 30s!" "$message"
+	sleep 30s
+	systemctl suspend
+fi
