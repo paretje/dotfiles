@@ -1,15 +1,15 @@
+{-# LANGUAGE FlexibleContexts #-}
 import XMonad
 import XMonad.Util.EZConfig
 import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
-import XMonad.Util.WindowProperties
 import Data.Monoid
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import System.Exit
+import XMonad.Layout.LayoutModifier
 
 main :: IO ()
-main = xmonad =<< xmobar myConfig
+main = xmonad =<< myXmobar myConfig
 
 myConfig = defaultConfig
     { modMask = mod3Mask
@@ -37,3 +37,13 @@ myManageHook = composeAll
     [ className =? "Xfrun4" --> doFloat
     , className =? "mpv" --> doFloat
     , className =? "Pinentry" --> doIgnore ]
+
+myXmobar :: LayoutClass l Window
+       => XConfig l -> IO (XConfig (ModifiedLayout AvoidStruts l))
+myXmobar conf = statusBar xmobarCommand xmobarPP toggleStrutsKey conf where
+    xmobarCommand = "if [ \"$HOST\" = 'kevin-laptop' ]; then exec xmobar -t '" ++ lTemplate ++ "' ; else exec xmobar -t '" ++ dTemplate ++ "' ; fi"
+    dTemplate = "%StdinReader% }{ %vpnactivated.sh% %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
+    lTemplate = "%StdinReader% }{ %3gmonitor% %vpnactivated.sh% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
+
+toggleStrutsKey :: XConfig t -> (KeyMask, KeySym)
+toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )
