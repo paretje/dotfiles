@@ -41,7 +41,7 @@ myManageHook = composeAll
 myXmobar :: LayoutClass l Window
        => XConfig l -> IO (XConfig (ModifiedLayout AvoidStruts l))
 myXmobar conf = statusBar xmobarCommand xmobarPP toggleStrutsKey conf where
-    xmobarCommand = "if [ \"$HOST\" = 'kevin-laptop' ]; then exec xmobar -t '" ++ lTemplate ++ "' ; else exec xmobar -t '" ++ dTemplate ++ "' ; fi"
+    xmobarCommand = "if [ \"$(hostname)\" = 'kevin-laptop' ]; then exec xmobar -t '" ++ lTemplate ++ "' ; else exec xmobar -t '" ++ dTemplate ++ "' ; fi"
     dTemplate = "%StdinReader% }{ %vpnactivated.sh% %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
     lTemplate = "%StdinReader% }{ %3gmonitor% %vpnactivated.sh% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
 
