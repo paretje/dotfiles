@@ -161,6 +161,7 @@ au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a wor
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType eruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " R ft options
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
