@@ -91,6 +91,10 @@ set hidden
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Set mapleader
 let mapleader=';'
+" Start searching while typing pattern
+set incsearch
+" Use smartcase matching in autocompletion
+set infercase
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
@@ -128,7 +132,10 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Neocomplete options
 let g:neocomplete#enable_at_start=1
-let g:neocomplete#sources#omni#input_patterns = {}
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 call neocomplete#initialize()
 
 " neco-ghc options
@@ -148,12 +155,6 @@ au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d
 let g:rubycomplete_buffer_loading=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
-
-" neocomplete options
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
