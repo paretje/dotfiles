@@ -95,7 +95,7 @@ class SlackAPI
     body.lines.map do |line|
       fixed = fix_join_parts(fix_usernames(line.chomp, members))
 
-      "#{user["name"]}\t#{CGI.unescapeHTML(fixed)}"
+      "_#{user["name"]}\t#{CGI.unescapeHTML(fixed)}"
     end
   end
 

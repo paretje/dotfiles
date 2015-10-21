@@ -85,7 +85,7 @@ def handle_msg(data, pbuffer, date, tags, displayed, highlight, prefix, message)
 
     if buffer_type == "private" and query:
         notify_user(buffer_name, message)
-    elif buffer_type == "channel" and (highlight or buffer_name == "#unipept"):
+    elif buffer_type == "channel" and (highlight or buffer_name == "#unipept" and prefix.isalnum()):
         notify_user("{} @ {}".format(prefix, buffer_name), message)
 
     return weechat.WEECHAT_RC_OK
