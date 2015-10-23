@@ -2,6 +2,10 @@
 message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
 level=$(echo $message | sed 's/^Discharging, \([0-9]\+\)%,.*$/\1/')
 
+if echo "$message" | grep -vq '^Discharging, '; then
+	exit
+fi
+
 if [ $level -le 10 ]; then
 	notify-send -u low "Battery getting low" "$message"
 elif [ $level -le 5 ]; then
