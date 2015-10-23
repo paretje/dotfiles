@@ -31,6 +31,7 @@ Plugin 'eagletmt/neco-ghc'
 set rtp+=~/vcs/active/vim-dotoo
 Plugin 'Yggdroot/indentLine'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'vim-ruby/vim-ruby'
 
 call vundle#end()
 
@@ -156,6 +157,7 @@ au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d
 let g:rubycomplete_buffer_loading=1
 let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
+let g:rubycomplete_use_bundler=1
 
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
