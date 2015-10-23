@@ -30,6 +30,7 @@ Plugin 'eagletmt/neco-ghc'
 " Plugin 'dhruvasagar/vim-dotoo'
 set rtp+=~/vcs/active/vim-dotoo
 Plugin 'Yggdroot/indentLine'
+Plugin 'Shougo/vimproc.vim'
 
 call vundle#end()
 
