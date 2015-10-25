@@ -186,6 +186,8 @@ au BufRead,BufNewFile *.org	setf dotoo
 au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
 au FileType dotoo		nunmap <buffer> <C-A>
 au FileType dotoo		nunmap <buffer> <C-X>
+au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
+au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 
 " Matlab ft options
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
