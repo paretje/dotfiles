@@ -32,6 +32,7 @@ set rtp+=~/vcs/active/vim-dotoo
 Plugin 'Yggdroot/indentLine'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 
@@ -159,6 +160,11 @@ let g:rubycomplete_classes_in_global=1
 let g:rubycomplete_rails=1
 let g:rubycomplete_use_bundler=1
 
+" NERDTree options
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
@@ -243,6 +249,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <Leader>l :redraw!<CR>
 nnoremap <C-n> :CtrlPBuffer<CR>
+nnoremap <C-g> :NERDTreeToggle<CR>
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
