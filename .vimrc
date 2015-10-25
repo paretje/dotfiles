@@ -166,6 +166,9 @@ let g:NERDTreeMapActivateNode='l'
 let g:NERDTreeMapJumpParent='h'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" indentLine options
+let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
+
 " Bulk options
 au FileType dotoo*,latex,mail				setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
