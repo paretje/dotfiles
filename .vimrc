@@ -4,7 +4,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " Plugin 'vim-scripts/haskell.vim'
 Plugin 'craigemery/vim-autotag'
 Plugin 'tpope/vim-speeddating'
