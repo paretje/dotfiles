@@ -33,6 +33,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-rails'
 
 call vundle#end()
 
