@@ -1,20 +1,18 @@
 #!/bin/sh
 files=0
-started=false
-for var in "$@"; do
-	if $started; then
+smart=true
+for arg in "$@"; do
+	if [ "$arg" = "--resume-playback" -o "$arg" = "--no-resume-playback" ]; then
+		smart=false
+	elif [ -f "$arg" ]; then
 		files=$((files+1))
-	elif [ "$var" = "--" ]; then
-		started=true
 	fi
 done
 
-if [ $files -gt 1 ]; then
-	pkill -u $USER -USR1 dunst
+pkill -u $USER -USR1 dunst
+if $smart && test $files -gt 1; then
 	/usr/bin/mpv --no-resume-playback "$@"
-	pkill -u $USER -USR2 dunst
 else
-	pkill -u $USER -USR1 dunst
 	/usr/bin/mpv "$@"
-	pkill -u $USER -USR2 dunst
 fi
+pkill -u $USER -USR2 dunst
