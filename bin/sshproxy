@@ -1,2 +1,2 @@
 #!/bin/sh
-nc -z 127.0.0.1 $2 || autossh -CTND $2 $1 &
+nc -z 127.0.0.1 $2 || exec autossh -CTND $2 $1
