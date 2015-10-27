@@ -1,0 +1,34 @@
+#!/bin/sh
+if [ -x /usr/bin/beep ]; then
+	beep "$@"
+else
+	freq=440
+	mili=200
+	rep=1
+	delay=100
+	while [ "$1" != "" ]; do
+		case $1 in
+			-f )
+				freq=$2
+				shift
+				;;
+			-l )
+				mili=$2
+				shift
+				;;
+			-r )
+				rep=$2
+				shift
+				;;
+			-d )
+				delay=$2
+				shift
+				;;
+		esac
+		shift
+	done
+	for i in $(seq $rep); do
+		play -n synth 0.$mili tri $freq 2>&-
+		sleep 0.$delay
+	done
+fi
