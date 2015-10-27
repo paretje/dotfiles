@@ -256,6 +256,10 @@ nnoremap <C-l> <C-w>l
 nnoremap <Leader>l :redraw!<CR>
 nnoremap <C-n> :CtrlPBuffer<CR>
 nnoremap <C-g> :NERDTreeToggle<CR>
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
