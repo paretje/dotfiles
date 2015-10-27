@@ -164,7 +164,7 @@ let g:rubycomplete_use_bundler=1
 " NERDTree options
 let g:NERDTreeMapActivateNode='l'
 let g:NERDTreeMapJumpParent='h'
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
