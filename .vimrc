@@ -170,7 +170,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
 
 " Bulk options
-au FileType dotoo*,latex,mail				setlocal spelllang=nl
+au FileType dotoo*,latex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
 au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
 
