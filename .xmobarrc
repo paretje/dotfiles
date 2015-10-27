@@ -34,6 +34,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
 		    , Run StdinReader
 		    , Run Wireless "wlan0" ["-t","<essid> <qualityvbar>"] 10
 		    , Run CoreTemp ["-t","<core0>C"] 100
+		    , Run Com "batmonitor" ["-s","-r"] "" 1200
                     ]
        , sepChar = "%"
        , alignSep = "}{"
