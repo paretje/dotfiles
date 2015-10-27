@@ -92,7 +92,7 @@ set commentstring=#%s
 " Disable unloading buffer when abandoned, as needed by vim-dotoo
 set hidden
 " Return to previous position in file when when opening
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Set mapleader
 let mapleader=';'
 " Start searching while typing pattern
