@@ -233,7 +233,7 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
 au VimLeave *		if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotoo*	if !exists('g:sync_notes') | let g:sync_notes=1 | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au FileType dotoo*	let g:sync_notes=1
 
 " Custom key mappings
 nnoremap <up> gk
@@ -260,6 +260,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
