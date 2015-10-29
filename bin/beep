@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -x /usr/bin/beep ]; then
-	beep "$@"
+	exec /usr/bin/beep "$@"
 else
 	freq=440
 	mili=200
