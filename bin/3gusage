@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] ; then
 	vnstat --oneline | sed 's/1;.*;\([^;]*\);[^;]*;[^;]*;[^;]*;[^;]*$/\1/'
-elif /sbin/iwgetid | fgrep 'LG-E410i_7795' > /dev/null; then
+elif /sbin/iwgetid | fgrep 'paretjesphonenetwork' > /dev/null; then
 	# echo differ between bash and dash: both require and support the option -n,
 	# but bash requires the option -e as well, to support the \n, while dash
 	# doesn't need it, and will simply output it. printf seems to be a more
