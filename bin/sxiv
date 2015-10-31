@@ -7,7 +7,7 @@ if [ $# -eq 1 ]; then
 		dir="$(dirname "$1")"
 	fi
 	cd "$dir"
-	ls -1v | grep '.jpg$' > $tmp
+	ls -1v | grep '.jpg\|png$' > $tmp
 	if [ -f "$1" ]; then
 		file="-n $(fgrep -n -m 1 -x "$(basename "$1")" $tmp | cut -d: -f1)"
 	fi
