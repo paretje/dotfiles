@@ -7,7 +7,7 @@ if echo "$message" | grep -vq '^Discharging, '; then
 fi
 
 if [ $level -le 3 ]; then
-	notify-send "Battery Critically low, suspending in 30s!" "$message"
+	notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
 	sleep 30s
 	systemctl suspend
 elif [ $level -le 5 ]; then
