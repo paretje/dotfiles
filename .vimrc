@@ -170,7 +170,7 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
 
 " Bulk options
-au FileType dotoo*,latex,mail,mkd.markdown		setlocal spelllang=nl
+au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
 au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
 
@@ -261,6 +261,7 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <Leader>l :ToggleSpellLang<CR>
 
 " keymappings for Neocomplete
 inoremap <C-Space> <C-x><C-o>
@@ -269,3 +270,4 @@ imap <C-@> <C-Space>
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com ToggleSpellLang if &spelllang == "en" | setlocal spelllang=nl | else | setlocal spelllang=en | endif
