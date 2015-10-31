@@ -1,0 +1,5 @@
+[Default Applications]
+x-scheme-handler/http=iceweasel.desktop
+x-scheme-handler/https=iceweasel.desktop
+x-scheme-handler/mailto=icedove.desktop
+application/pdf=llpp.desktop
