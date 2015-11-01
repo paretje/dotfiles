@@ -168,6 +168,7 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 
 " indentLine options
 let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
+let g:indentLine_faster=1
 
 " Bulk options
 au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
