@@ -263,7 +263,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <Leader>l :redraw!<CR>
+nnoremap <Leader>r :redraw!<CR>
 nnoremap <C-n> :CtrlPBuffer<CR>
 nnoremap <C-g> :NERDTreeToggle<CR>
 nnoremap j gj
