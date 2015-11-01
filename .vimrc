@@ -43,6 +43,7 @@ call vundle#end()
 if !has("gui_running")
 	set background=dark
 	hi SpellBad ctermfg=Black
+	highlight SpecialKey ctermfg=8
 else
 	" Always show tab-bar in GVim
 	set showtabline=2
@@ -99,6 +100,9 @@ let mapleader=';'
 set incsearch
 " Use smartcase matching in autocompletion
 set infercase
+" Show tab indentation levels
+set list
+set listchars=tab:¦\ 
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
@@ -169,11 +173,13 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 " indentLine options
 let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda']
 let g:indentLine_faster=1
+let g:indentLine_showFirstIndentLevel=1
 
 " Bulk options
 au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
 au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
+au FileType help,dotoo*					setlocal nolist
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
