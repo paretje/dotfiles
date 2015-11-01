@@ -234,6 +234,9 @@ au BufRead ~/.vimrc,~/vcs/config/vimrc/.vimrc	setlocal softtabstop=8 shiftwidth=
 " SQL ft options
 au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
 
+" xmobarrc options
+au FileType ~/.xmobarrc	setlocal expandtab
+
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
