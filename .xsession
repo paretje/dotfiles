@@ -27,4 +27,5 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
 dunst &
+clipit --daemon &
 exec xmonad
