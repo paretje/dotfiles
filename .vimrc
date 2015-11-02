@@ -34,6 +34,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-rails'
+Plugin 'reedes/vim-pencil'
 
 call vundle#end()
 
@@ -180,6 +181,7 @@ au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
 au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*					setlocal nolist
+au FileType dotoo*,mail					call pencil#init()
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
