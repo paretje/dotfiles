@@ -178,7 +178,7 @@ let g:indentLine_showFirstIndentLevel=1
 " Bulk options
 au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
-au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
+au FileType tex,text,bbcode,mkd.markdown		setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*					setlocal nolist
 
 " Ruby ft options
