@@ -11,14 +11,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-" YCM is unusable in big mails. As I type those in gvim, this seems like a
-" good heuristic. But it might me interesting to check wetter YCM provides
-" enough advantages on my daily use of vim.
-if !has("gui_running")
-	Plugin 'Valloric/YouCompleteMe'
-else
-	Plugin 'Shougo/neocomplete.vim'
-endif
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'godlygeek/tabular'
@@ -154,16 +147,6 @@ au BufReadPost fugitive://* set bufhidden=delete
 " UltiSnips options
 let g:UltiSnipsExpandTrigger="<c-j>"
 
-" Neocomplete options
-if has("gui_running")
-	let g:neocomplete#enable_at_start=1
-	if !exists('g:neocomplete#force_omni_input_patterns')
-		let g:neocomplete#force_omni_input_patterns = {}
-	endif
-	let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-	call neocomplete#initialize()
-endif
-
 " neco-ghc options
 let g:necoghc_enable_detailed_browse=1
 
@@ -294,13 +277,6 @@ nnoremap gj j
 nnoremap gk k
 nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <Leader>l :ToggleSpellLang<CR>
-
-" keymappings for Neocomplete
-if has("gui_running")
-	inoremap <C-Space> <C-x><C-o>
-	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-	imap <C-@> <C-Space>
-endif
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
