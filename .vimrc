@@ -176,12 +176,14 @@ let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda'
 let g:indentLine_faster=1
 let g:indentLine_showFirstIndentLevel=1
 
+" vim-pencil options
+au FileType mail	call pencil#init({'wrap': 'hard', 'textwidth': 72})
+
 " Bulk options
 au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
 au FileType tex,text,bbcode				setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*					setlocal nolist
-au FileType dotoo*,mail					call pencil#init()
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
