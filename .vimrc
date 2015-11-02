@@ -229,7 +229,7 @@ au BufRead *.atl	setlocal commentstring=--%s
 
 " VimL ft options
 au FileType vim		setlocal softtabstop=2 shiftwidth=2 expandtab
-au BufRead ~/.vimrc,~/vcs/config/vimrc/.vimrc	setlocal softtabstop=8 shiftwidth=8 noexpandtab
+au BufRead ~/.vimrc	setlocal softtabstop=8 shiftwidth=8 noexpandtab
 
 " SQL ft options
 au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
