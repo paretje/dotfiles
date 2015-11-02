@@ -34,7 +34,6 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-rails'
-Plugin 'reedes/vim-pencil'
 
 call vundle#end()
 
@@ -176,9 +175,6 @@ let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda'
 let g:indentLine_faster=1
 let g:indentLine_showFirstIndentLevel=1
 
-" vim-pencil options
-au FileType mail	call pencil#init({'wrap': 'hard', 'textwidth': 72})
-
 " Bulk options
 au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
@@ -237,6 +233,9 @@ au BufRead ~/.vimrc	setlocal softtabstop=8 shiftwidth=8 noexpandtab
 
 " SQL ft options
 au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
+
+" mail ft options
+au FileType mail	setlocal formatoptions+=na
 
 " xmobarrc options
 au FileType ~/.xmobarrc	setlocal expandtab
