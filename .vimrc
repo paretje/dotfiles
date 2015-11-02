@@ -242,8 +242,9 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=m
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
-au VimLeave *		if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotoo*	let g:sync_notes=1
+au VimLeave *				if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au FileType dotooagenda,dotoocapture	let g:sync_notes=1
+au BufRead ~/vcs/personal/notes/*	let g:sync_notes=1
 
 " Custom key mappings
 nnoremap <up> gk
