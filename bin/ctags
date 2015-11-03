@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ "$PWD" = "/home/kevin/vcs/ugent/thesis/unipept" ]; then
-	exec ripper-tags "$@"
+	exec ripper-tags -R .
 else
 	exec /usr/bin/ctags "$@"
 fi
