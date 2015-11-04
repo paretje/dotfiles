@@ -23,6 +23,9 @@ if [ "$HOST" = "kevin-laptop" ]; then
 	xrandr --addmode HDMI1 1920x1080
 fi
 
+# Load Xresources
+xrdb ~/.Xresources
+
 # Start some daemons
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &

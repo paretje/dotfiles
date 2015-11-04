@@ -13,7 +13,7 @@ main = xmonad =<< myXmobar myConfig
 
 myConfig = defaultConfig
     { modMask = mod3Mask
-    , terminal = "exec xfce4-terminal -x sh -c 'TERM=xterm-256color exec tmux'"
+    , terminal = "exec urxvtcd -e tmux"
     , manageHook = myManageHook <+> manageHook defaultConfig
     , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
     , focusFollowsMouse = False
