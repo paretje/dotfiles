@@ -238,7 +238,10 @@ au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType mail	setlocal formatoptions+=na
 
 " xmobarrc options
-au FileType ~/.xmobarrc	setlocal expandtab
+au BufRead ~/.xmobarrc	setlocal expandtab
+
+" xsession options
+au BufRead ~/.xsession	setfiletype sh
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
