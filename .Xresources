@@ -106,6 +106,7 @@ URxvt.letterSpace: -1
 ! URxvt*perl-ext-common:                string
 ! URxvt*perl-ext:                       string
 ! URxvt*iso14755:                       boolean
+URxvt.iso14755: false
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
 ! URxvt*keysym.sym:                     keysym
