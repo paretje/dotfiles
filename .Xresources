@@ -80,6 +80,7 @@ URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10.5
 ! URxvt*title:                          string
 ! URxvt*iconName:                       string
 ! URxvt*saveLines:                      number
+URxvt.saveLines: 0
 ! URxvt*buffered:                       boolean
 ! URxvt*depth:                          number
 ! URxvt*visual:                         number
