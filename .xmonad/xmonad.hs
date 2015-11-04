@@ -21,7 +21,6 @@ myConfig = defaultConfig
         `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command --lock")
     , ("M-p", spawn "exec gmrun")
-    , ("M-S-p", spawn "xfrun4")
     , ("M-S-q", spawn "dmenu-logout")
     , ("M-C-S-q", io (exitWith ExitSuccess))
     , ("M-<F5>", spawn "scrot \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
