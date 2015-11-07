@@ -1,0 +1,27 @@
+@binding-set gtk-readline
+{
+  bind "<ctrl>a" { "move-cursor" (paragraph-ends, -1, 0) };
+  bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) };
+
+  bind "<ctrl>d" { "delete-from-cursor" (chars, 1) };
+}
+
+@binding-set gtk-vi-tree-view
+{
+    bind "j" { "move-cursor" (display-lines, 1) };
+    bind "k" { "move-cursor" (display-lines, -1) };
+    bind "l" { "move-cursor" (logical-positions, 1) };
+    bind "h" { "move-cursor" (logical-positions, -1) };
+}
+
+GtkEntry {
+  gtk-key-bindings: gtk-readline;
+}
+
+GtkTextView {
+  gtk-key-bindings: gtk-readline;
+}
+
+GtkTreeView {
+  gtk-key-bindings: gtk-vi-tree-view;
+}
