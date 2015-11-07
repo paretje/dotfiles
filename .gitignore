@@ -81,3 +81,5 @@ workspace
 .config/ranger/history
 .config/ranger/tagged
 *.pyc
+.vim/bundle
+.vim/.netrwhist
