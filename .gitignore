@@ -83,3 +83,10 @@ workspace
 *.pyc
 .vim/bundle
 .vim/.netrwhist
+.config/yad.conf
+.config/7kaa
+.config/Qtrac\ Ltd./DiffPDF.conf
+.config/Trolltech.conf
+.config/gtk-2.0/gtkfilechooser.ini
+.config/supertuxkart
+.nmcli-history
