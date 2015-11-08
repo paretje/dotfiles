@@ -24,7 +24,6 @@ Plugin 'Keithbsmiley/tmux.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'fs111/pydoc.vim'
 Plugin 'python-rope/ropevim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'raichoo/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 " Plugin 'dhruvasagar/vim-dotoo'
@@ -35,6 +34,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-rails'
 Plugin 'jaxbot/browserlink.vim'
+Plugin 'tpope/vim-markdown'
 
 call vundle#end()
 
@@ -176,10 +176,13 @@ let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda'
 let g:indentLine_faster=1
 let g:indentLine_showFirstIndentLevel=1
 
+" vim-markdown optioms
+let g:markdown_folding=1
+
 " Bulk options
-au FileType dotoo*,tex,mail,mkd.markdown		setlocal spelllang=nl
+au FileType dotoo*,tex,mail,markdown		setlocal spelllang=nl
 au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
-au FileType tex,text,bbcode,mkd.markdown		setlocal linebreak " don't wrap randomly in a word
+au FileType tex,text,bbcode,markdown		setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*					setlocal nolist
 
 " Ruby ft options
@@ -237,6 +240,9 @@ au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " mail ft options
 au FileType mail	setlocal formatoptions+=na
+
+" markdown ft options
+au FileType markdown		setlocal softtabstop=2 shiftwidth=1 expandtab
 
 " xmobarrc options
 au BufRead ~/.xmobarrc	setlocal expandtab
