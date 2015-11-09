@@ -129,6 +129,7 @@ let g:javacomplete_methods_paren_close_noargs=1
 
 " Airline options
 let g:airline_powerline_fonts=1
+let g:airline_theme='bubblegum'
 
 " CtrlP options
 let g:ctrlp_cmd='CtrlPMixed'
