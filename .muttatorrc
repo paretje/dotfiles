@@ -7,6 +7,7 @@ nmap / <C-S-k>
 nmap <Tab> za
 mmap d <C-d>
 mmap u <C-u>
+nmap ;n /<C-d><ESC>
 
 javascript <<EOF
 function smartReply() {
