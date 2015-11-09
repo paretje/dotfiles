@@ -90,3 +90,4 @@ workspace
 .config/gtk-2.0/gtkfilechooser.ini
 .config/supertuxkart
 .nmcli-history
+.emacs.d
