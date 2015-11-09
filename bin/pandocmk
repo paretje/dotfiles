@@ -1,0 +1,13 @@
+#!/bin/sh
+eval input=\${$#}
+dir="$(dirname "$input")"
+src="$(basename "$input")"
+
+pandoc "$@"
+inotifywait -m -e close_write "$dir" | while read dir ev file; do
+	if [ "$file" = "$src" ]; then
+		echo "Start recompiling"
+		pandoc "$@"
+		echo "Done"
+	fi
+done
