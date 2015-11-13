@@ -8,6 +8,7 @@ nmap <Tab> za
 mmap d <C-d>
 mmap u <C-u>
 nmap ;n /<C-d><ESC>
+nmap ;lt :javascript addMessageToOrg(gMessageDisplay.displayedMessage)<CR>
 
 javascript <<EOF
 function smartReply() {
@@ -18,5 +19,33 @@ function smartReply() {
 			break;
 		}
 	}
+}
+EOF
+" Source: http://mdn.beonex.com/en/Extensions/Thunderbird/HowTos/Common_Thunderbird_Use_Cases/View_Message.html#Get_Message_Body_by_Header
+javascript <<EOF
+function getMessageBody(aMessageHeader)
+{
+  let messenger = Components.classes["@mozilla.org/messenger;1"]
+                            .createInstance(Components.interfaces.nsIMessenger);
+  let listener = Components.classes["@mozilla.org/network/sync-stream-listener;1"]
+                           .createInstance(Components.interfaces.nsISyncStreamListener);
+  let uri = aMessageHeader.folder.getUriForMsg(aMessageHeader);
+  messenger.messageServiceFromURI(uri)
+           .streamMessage(uri, listener, null, null, false, "");
+  let folder = aMessageHeader.folder;
+  return folder.getMsgTextFromStream(listener.inputStream,
+                                     aMessageHeader.Charset,
+                                     65536,
+                                     32768,
+                                     false,
+                                     true,
+                                     { });
+}
+EOF
+javascript <<EOF
+function addMessageToOrg(message) {
+	var item = "* MAIL " + message.subject + "\n";
+	item += getMessageBody(message) + "\n";
+	io.system("cat - | dos2unix >> /home/kevin/vcs/personal/notes/refile.org", item);
 }
 EOF
