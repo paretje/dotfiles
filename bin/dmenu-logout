@@ -7,11 +7,11 @@ case "$choice" in
 		xdotool key $mod+ctrl+shift+q &
 		;;
 	shutdown)
-		nmcli device disconnect wlan0
+		test -x /usr/bin/nmcli && nmcli device disconnect wlan0
 		systemctl poweroff &
 		;;
 	reboot)
-		nmcli device disconnect wlan0
+		test -x /usr/bin/nmcli && nmcli device disconnect wlan0
 		systemctl reboot &
 		;;
 	suspend)
