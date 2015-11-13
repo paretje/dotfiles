@@ -177,8 +177,11 @@ let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda'
 let g:indentLine_faster=1
 let g:indentLine_showFirstIndentLevel=1
 
-" vim-markdown optioms
+" vim-markdown options
 let g:markdown_folding=1
+
+" TComments options
+call tcomment#DefineType('matlab', '# %s')
 
 " Bulk options
 au FileType dotoo*,tex,mail,markdown		setlocal spelllang=nl
