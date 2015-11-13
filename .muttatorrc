@@ -8,7 +8,7 @@ nmap <Tab> za
 mmap d <C-d>
 mmap u <C-u>
 nmap ;n /<C-d><ESC>
-nmap ;lt :javascript addMessageToOrg(gMessageDisplay.displayedMessage)<CR>
+nmap lo :javascript addMessageToOrg(gMessageDisplay.displayedMessage)<CR>
 
 javascript <<EOF
 function smartReply() {
