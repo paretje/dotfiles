@@ -154,6 +154,18 @@ let g:necoghc_enable_detailed_browse=1
 " vim-dotoo options
 let g:dotoo#agenda#files=['~/vcs/personal/notes/*.org', '~/vcs/active/vim-dotoo/todo.dotoo']
 let g:dotoo#capture#refile='~/vcs/personal/notes/refile.org'
+let g:dotoo#parser#todo_keywords=['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
+let g:dotoo_todo_keyword_faces=[
+	\ ['TODO', [':foreground 160', ':weight bold']],
+	\ ['NEXT', [':foreground 27', ':weight bold']],
+	\ ['DONE', [':foreground 22', ':weight bold']],
+	\ ['WAITING', [':foreground 202', ':weight bold']],
+	\ ['HOLD', [':foreground 53', ':weight bold']],
+	\ ['CANCELLED', [':foreground 22', ':weight bold']],
+	\ ['MEETING', [':foreground 22', ':weight bold']],
+	\ ['PHONE', [':foreground 22', ':weight bold']],
+	\ ['MAIL', [':foreground 25', ':weight bold']]
+	\ ]
 
 " vim-notes options
 let g:notes_directories=['~/vcs/personal/notes/notes']
