@@ -44,8 +44,9 @@ function getMessageBody(aMessageHeader)
 EOF
 javascript <<EOF
 function addMessageToOrg(message) {
-	var item = "* MAIL " + message.subject + "\n";
+	var file = "/home/kevin/vcs/personal/notes/refile.org"
+	var item = "* MAIL " + message.mime2DecodedSubject + "\n";
 	item += getMessageBody(message) + "\n";
-	io.system("cat - | dos2unix >> /home/kevin/vcs/personal/notes/refile.org", item);
+	io.system("cat - | sed 's/\r//;1!s/^/  /;1s/[]:[]//g' >> " + file, item);
 }
 EOF
