@@ -10,7 +10,7 @@ fpath=($HOME/vcs/downloads/zsh-completions/src $fpath)
 
 autoload -Uz promptinit
 promptinit
-# prompt adam1
+prompt adam1
 
 setopt histignorealldups sharehistory histignorespace
 
@@ -63,8 +63,3 @@ fi
 
 # autocompletion for tsocks, which is well approached by completion for exec
 compdef tsocks=exec
-
-source $HOME/vcs/downloads/zsh-git-prompt/zshrc.sh
-PROMPT='%B%m%~%b$(git_super_status) %# '
-prompt='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
-%}%F{white} %# %b%f%k'
