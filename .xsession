@@ -29,9 +29,4 @@ fi
 # Load Xresources
 xrdb ~/.Xresources
 
-# Start some daemons
-eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
-xscreensaver -no-splash &
-dunst &
-clipit --daemon &
-exec xmonad
+exec urxvt -e sh -c 'xwit -resize 800 480;exec tmux'
