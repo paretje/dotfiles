@@ -11,6 +11,7 @@ nmap ;n /<C-d><ESC>
 nmap lo :javascript addMessageToOrg(gMessageDisplay.displayedMessage)<CR>
 mmap a :javascript nextAttachment()<CR>m
 mmap <CR> :javascript openAttachment()<CR>
+mmap A :javascript document.getElementById("attachmentView").childNodes[0].childNodes[3].childNodes[0].childNodes[0].childNodes[1].click()<CR>
 
 javascript <<EOF
 function smartReply() {
