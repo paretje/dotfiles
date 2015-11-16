@@ -68,7 +68,7 @@ function nextAttachment() {
 	if (current == -1) {
 		attachments.childNodes[0].selected = true;
 	} else if (current == attachments.childElementCount-1) {
-		attachments.childNodes[current] = false;
+		attachments.childNodes[current].selected = false;
 		attachments.childNodes[0].selected = true;
 	} else {
 		attachments.childNodes[current].selected = false;
