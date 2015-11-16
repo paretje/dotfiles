@@ -1,4 +1,4 @@
-nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>
+nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
 mmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
 nmap r :javascript smartReply()<CR>
 nmap / <C-S-k>
