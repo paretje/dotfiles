@@ -10,7 +10,7 @@ mmap u <C-u>
 nmap ;n /<C-d><ESC>
 nmap lo :javascript addMessageToOrg(gMessageDisplay.displayedMessage)<CR>
 mmap a :javascript nextAttachment()<CR>m
-mmap <CR> :javascript openAttachment()<CR>m
+mmap <CR> :javascript openAttachment()<CR>
 
 javascript <<EOF
 function smartReply() {
