@@ -91,3 +91,16 @@ workspace
 .config/supertuxkart
 .nmcli-history
 .emacs.d
+.local/share/lftp
+.gnuplot_history
+node_modules
+.qalculate/definitions
+.qalculate/qalc.history
+.qalculate/eurofxref-daily.xml
+.pki
+.npm
+.p2
+.netrc
+.config/pulse/cookie
+.config/htop/htoprc
+.config/chromium
