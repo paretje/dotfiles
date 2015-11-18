@@ -104,6 +104,8 @@ set infercase
 " Show tab indentation levels
 set list
 set listchars=tab:¦\ 
+" Always show 3 or 5 lines under or above current line
+set scrolloff=3
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
