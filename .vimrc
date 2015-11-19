@@ -5,7 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'vim-scripts/haskell.vim'
 Plugin 'craigemery/vim-autotag'
 Plugin 'tpope/vim-speeddating'
 Plugin 'scrooloose/syntastic'
@@ -35,6 +34,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-rails'
 Plugin 'jaxbot/browserlink.vim'
 Plugin 'tpope/vim-markdown'
+Plugin 'dhruvasagar/vim-table-mode'
 
 call vundle#end()
 
