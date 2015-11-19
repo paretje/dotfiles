@@ -3,24 +3,17 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
 	TERM=xterm-256color
 fi
 
-# antigen
-source $HOME/.zsh/antigen/antigen.zsh
+# Load antigen and plugins
+ADOTDIR="$HOME/.zsh/antigen-files"
+source "$HOME/.zsh/antigen/antigen.zsh"
 
 antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-completions
 antigen bundle vi-mode
 
-# manual installation of zsh-completions
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
-
-# Set up the prompt
-
-autoload -Uz promptinit
-promptinit
-
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -46,8 +39,12 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# disable user completion for ssh
 zstyle ':completion:*:(ssh|scp):*:users' users
 zstyle ':completion:*:(ssh|scp):*:hosts' hosts
+
+# autocompletion for tsocks
+compdef tsocks=exec
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
@@ -63,15 +60,17 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 
-# autocompletion for tsocks, which is well approached by completion for exec
-compdef tsocks=exec
-
+# Set additional keybindings for vi-mode
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
 bindkey -M viins '^d' delete-char
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
+
+# Set up the prompt
+autoload -Uz promptinit
+promptinit
 
 PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
 %}%F{white} %# %b%f%k'
