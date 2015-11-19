@@ -68,6 +68,7 @@ compdef tsocks=exec
 
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
+bindkey -M viins '^d' delete-char
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
