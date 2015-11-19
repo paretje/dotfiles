@@ -67,5 +67,11 @@ fi
 # autocompletion for tsocks, which is well approached by completion for exec
 compdef tsocks=exec
 
+bindkey -M viins '^a' beginning-of-line
+bindkey -M viins '^e' end-of-line
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-forward
+
 PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
 %}%F{white} %# %b%f%k'
