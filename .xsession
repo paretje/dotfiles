@@ -34,4 +34,6 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
 dunst &
 clipit --daemon &
+test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
+
 exec xmonad
