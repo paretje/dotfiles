@@ -286,8 +286,9 @@ vnoremap <up> gk
 vnoremap <down> gj
 nnoremap <tab> za
 inoremap <A-A> <C-O>A
+inoremap <A-I> <C-O>I
 inoremap <A-O> <C-O>O
-" inoremap <A-o> <C-O>o
+inoremap <A-o> <C-O>o
 nnoremap <Leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
