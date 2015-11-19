@@ -3,8 +3,14 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
 	TERM=xterm-256color
 fi
 
+# antigen
+source $HOME/.zsh/antigen/antigen.zsh
+
+antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle zsh-users/zsh-completions
+
 # manual installation of zsh-completions
-fpath=($HOME/vcs/downloads/zsh-completions/src $fpath)
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 # Set up the prompt
 
@@ -64,7 +70,5 @@ fi
 # autocompletion for tsocks, which is well approached by completion for exec
 compdef tsocks=exec
 
-source $HOME/vcs/downloads/zsh-git-prompt/zshrc.sh
-PROMPT='%B%m%~%b$(git_super_status) %# '
-prompt='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
+PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
 %}%F{white} %# %b%f%k'
