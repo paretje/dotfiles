@@ -35,6 +35,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'jaxbot/browserlink.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'tpope/vim-endwise'
+Plugin 'Raimondi/delimitMate'
 
 call vundle#end()
 
@@ -288,7 +290,7 @@ nnoremap <tab> za
 inoremap <A-A> <C-O>A
 inoremap <A-I> <C-O>I
 inoremap <A-O> <C-O>O
-inoremap <A-o> <C-O>o
+imap <A-o> <C-O>A<CR>
 nnoremap <Leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
