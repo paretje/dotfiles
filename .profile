@@ -66,8 +66,9 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
-# set default editor
+# set default editor and pager
 export EDITOR=vi
+export PAGER=less
 
 # set default man path
 export MANPATH=$(manpath)
