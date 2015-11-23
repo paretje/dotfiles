@@ -37,22 +37,6 @@ if ! gpg-agent; then
 	gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
 fi
 
-# Set the appropriate VDPAU driver to use
-if [ "$(hostname)" = "kevin-laptop" ]; then
-	export VDPAU_DRIVER="va_gl"
-fi
-if [ "$(hostname)" = "kevin-desktop" ]; then
-	export VDPAU_DRIVER="nouveau"
-fi
-
-# Use GTK style in Qt5 applications
-export QT_STYLE_OVERRIDE=gtk
-
-# Fool Qt we're using gnome in order to get themes icons
-# Remember that this requires setting the gconf settings, otherwise you'll get
-# default gnome styling: no icons ... 
-export DESKTOP_SESSION=gnome
-
 # set PYTHONPATH
 if [ -d "$HOME/.vim/bundle/ropevim" ] ; then
 	export PYTHONPATH="$PYTHONPATH:$HOME/.vim/bundle/ropevim"
