@@ -51,7 +51,7 @@ case "$extension" in
         try bsdtar -lf "$path" && { dump | trim; exit 0; }
         exit 1;;
     rar)
-        try unrar -p- lt "$path" && { dump | trim; exit 0; } || exit 1;;
+        try lsar "$path" && { dump | trim; exit 0; } || exit 1;;
     # PDF documents:
     pdf)
         try pdftotext -l 10 -nopgbrk -q "$path" - && \
