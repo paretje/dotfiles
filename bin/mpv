@@ -1,4 +1,14 @@
 #!/bin/sh
+mpv() {
+	if [ "$VDPAU_DRIVER" = "nouveau" ]; then
+		/usr/bin/mpv --profile=vdpau "$@"
+	elif [ "$VDPAU_DRIVER" = "va_gl" ]; then
+		/usr/bin/mpv --profile=vaapi "$@"
+	else
+		/usr/bin/mpv "$@"
+	fi
+}
+
 files=0
 smart=true
 for arg in "$@"; do
@@ -11,8 +21,8 @@ done
 
 pkill -u $USER -USR1 dunst
 if $smart && test $files -gt 1; then
-	/usr/bin/mpv --no-resume-playback "$@"
+	mpv --no-resume-playback "$@"
 else
-	/usr/bin/mpv "$@"
+	mpv "$@"
 fi
 pkill -u $USER -USR2 dunst
