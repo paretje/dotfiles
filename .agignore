@@ -1,2 +1,5 @@
 .git
 tags
+*.pdf
+*.swp
+*.pyc

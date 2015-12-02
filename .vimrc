@@ -137,7 +137,7 @@ let g:airline_theme='bubblegum'
 
 " CtrlP options
 let g:ctrlp_cmd='CtrlPMixed'
-let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g "" | grep -v "/\.git/\|/tmp/\|~$\|\.swp$\|\.mp4$\|\.mpg$\|\.mkv$\|\.jpg$\|\.pdf$"'
+let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_mruf_exclude='/\.git/.*\|/tmp/.*'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_switch_buffer=''
