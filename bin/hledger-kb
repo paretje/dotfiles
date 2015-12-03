@@ -1,2 +1,2 @@
 #!/bin/sh
-hledger balance 'income:week' 'expenses:(adjust|automate|dining|education|garbage|groceries|maintenance|medical|phone|public-transport|supplies)' -E -p 'every 7 days from 2015-09-19' | less -Sc
+hledger balance 'income:week' 'expenses:(adjust|automate|dining|education|garbage|groceries|maintenance|medical|phone|public-transport|supplies)' -E -p 'every 7 days from 2015-09-19' | head -n -1 | awk '{print $0} END {total=0; for (i=3; i<=NF; i+=2)  total+=$i; printf " total=%.2f", total}' | less -Sc
