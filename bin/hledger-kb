@@ -1,2 +1,2 @@
 #!/bin/sh
-hledger balance 'income:week' 'expenses:(adjust|automate|dining|education|garbage|groceries|maintenance|medical|phone|public-transport|supplies)' -E -p 'every 7 days from 2015-09-19' | less -S
+hledger balance 'income:week' 'expenses:(adjust|automate|dining|education|garbage|groceries|maintenance|medical|phone|public-transport|supplies)' -E -p 'every 7 days from 2015-09-19' | less -Sc
