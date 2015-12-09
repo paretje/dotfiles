@@ -264,6 +264,12 @@ au FileType mail	setlocal formatoptions+=na
 " markdown ft options
 au FileType markdown		setlocal softtabstop=2 shiftwidth=1 expandtab
 
+" javascript ft options
+au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
+
+" less ft options
+au FileType less	setlocal softtabstop=4 shiftwidth=4 expandtab
+
 " xmobarrc options
 au BufRead ~/.xmobarrc	setlocal expandtab
 
