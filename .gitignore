@@ -107,3 +107,6 @@ node_modules
 .zsh-update
 .zsh/antigen-files
 .local/share/nvim
+.pip/pip.log
+.local/lib
+.local/include
