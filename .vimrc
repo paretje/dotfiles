@@ -86,9 +86,6 @@ set mouse=a
 " Don't do full autocompletion in command mode
 set wildmenu
 set wildmode=longest,list,full
-" enable folding
-set foldmethod=syntax
-let xml_syntax_folding=1
 " Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and between leaving insert mode and update of airline
 set ttimeoutlen=0
 " Set default comments format
@@ -198,6 +195,9 @@ let g:markdown_folding=1
 
 " TComments options
 call tcomment#DefineType('matlab', '# %s')
+
+" xml options
+let g:xml_syntax_folding=1
 
 " Bulk options
 au FileType dotoo*,tex,mail,markdown		setlocal spelllang=nl
@@ -314,7 +314,17 @@ nnoremap gj j
 nnoremap gk k
 nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <Leader>l :ToggleSpellLang<CR>
+nnoremap <silent> zi :call ToggleFolding()<CR>
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
 com ToggleSpellLang if &spelllang == "en" | setlocal spelllang=nl | else | setlocal spelllang=en | endif
+
+" Custom functions
+fun ToggleFolding()
+	if &l:foldmethod == "manual"
+		setlocal foldmethod=syntax
+		return
+	endif
+	normal! zi
+endfun
