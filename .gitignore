@@ -103,3 +103,6 @@ node_modules
 .config/pulse/cookie
 .config/htop/htoprc
 .config/chromium
+.oh-my-zsh
+.zsh-update
+.zsh/antigen-files
