@@ -114,3 +114,4 @@ node_modules
 .gimp-2.8
 .local/share/gegl-0.2
 .config/gtk-3.0/bookmarks
+.sane/xsane
