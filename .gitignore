@@ -111,3 +111,6 @@ node_modules
 .local/lib
 .local/include
 .config/transmission-remote-gtk
+.config/calibre
+.gimp-2.8
+.local/share/gegl-0.2
