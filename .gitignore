@@ -106,3 +106,4 @@ node_modules
 .oh-my-zsh
 .zsh-update
 .zsh/antigen-files
+.local/share/nvim
