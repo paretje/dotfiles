@@ -1,0 +1,16 @@
+set editing-mode vi
+set show-all-if-ambiguous on
+set completion-ignore-case on
+set menu-complete-display-prefix on
+
+set keymap vi-insert
+Control-a: beginning-of-line
+Control-d: delete-char
+Control-e: end-of-line
+Control-n: next-history
+Control-p: previous-history
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+
+set keymap emacs-ctlx
+v: vi-editing-mode
