@@ -9,7 +9,7 @@ Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular'
-Plug 'ciaranm/detectindent'
+Plug 'ciaranm/detectindent', {'on': 'DetectIndent'}
 Plug 'paretje/javacomplete', {'do': 'mvn -f java/pom.xml initialize package'}
 Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact'
@@ -24,7 +24,7 @@ Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'vim-ruby/vim-ruby'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-rails'
 Plug 'jaxbot/browserlink.vim'
 Plug 'tpope/vim-markdown'
