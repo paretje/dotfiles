@@ -8,30 +8,30 @@ Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'ciaranm/detectindent', {'on': 'DetectIndent'}
-Plug 'paretje/javacomplete', {'do': 'mvn -f java/pom.xml initialize package'}
-Plug 'Dinduks/vim-java-get-set'
-Plug 'taq/vim-refact'
+Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml initialize package'}
+Plug 'Dinduks/vim-java-get-set', {'for': 'java'}
+Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'bling/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'fs111/pydoc.vim'
-Plug 'python-rope/ropevim'
-Plug 'raichoo/haskell-vim'
-Plug 'eagletmt/neco-ghc'
+Plug 'fs111/pydoc.vim', {'for': 'python'}
+Plug 'python-rope/ropevim', {'for': 'python'}
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'vim-ruby/vim-ruby'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'tpope/vim-rails'
-Plug 'jaxbot/browserlink.vim'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
+Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
 Plug 'tpope/vim-markdown'
-Plug 'dhruvasagar/vim-table-mode'
+Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/bbcode'
+Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
 
