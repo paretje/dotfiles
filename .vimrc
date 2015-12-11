@@ -32,6 +32,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/bbcode'
+Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 
 call plug#end()
 
