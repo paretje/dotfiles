@@ -1,44 +1,38 @@
-" Enable Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'craigemery/vim-autotag'
-Plugin 'tpope/vim-speeddating'
-Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'godlygeek/tabular'
-Plugin 'ciaranm/detectindent'
-Plugin 'paretje/javacomplete'
-Plugin 'Dinduks/vim-java-get-set'
-Plugin 'taq/vim-refact'
-Plugin 'bling/vim-airline'
-Plugin 'Keithbsmiley/tmux.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'fs111/pydoc.vim'
-Plugin 'python-rope/ropevim'
-Plugin 'raichoo/haskell-vim'
-Plugin 'eagletmt/neco-ghc'
-" Plugin 'dhruvasagar/vim-dotoo'
-set rtp+=~/vcs/active/vim-dotoo
-Plugin 'Yggdroot/indentLine'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-rails'
-Plugin 'jaxbot/browserlink.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'tpope/vim-endwise'
-Plugin 'Raimondi/delimitMate'
+Plug 'craigemery/vim-autotag'
+Plug 'tpope/vim-speeddating'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-fugitive'
+Plug 'tomtom/tcomment_vim'
+Plug 'godlygeek/tabular'
+Plug 'ciaranm/detectindent'
+Plug 'paretje/javacomplete'
+Plug 'Dinduks/vim-java-get-set'
+Plug 'taq/vim-refact'
+Plug 'bling/vim-airline'
+Plug 'Keithbsmiley/tmux.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'fs111/pydoc.vim'
+Plug 'python-rope/ropevim'
+Plug 'raichoo/haskell-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'paretje/vim-dotoo', {'branch': 'merged'}
+Plug 'Yggdroot/indentLine'
+Plug 'Shougo/vimproc.vim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-rails'
+Plug 'jaxbot/browserlink.vim'
+Plug 'tpope/vim-markdown'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-endwise'
+Plug 'Raimondi/delimitMate'
 
-call vundle#end()
+call plug#end()
 
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
