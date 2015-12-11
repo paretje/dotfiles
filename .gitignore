@@ -115,3 +115,7 @@ node_modules
 .local/share/gegl-0.2
 .config/gtk-3.0/bookmarks
 .sane/xsane
+.vim/javacomplete.txt
+.vim/javacomplete_java.log
+.vim/autoload/plug.vim
+.vim/.init.vim-rplugin~
