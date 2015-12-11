@@ -31,6 +31,7 @@ Plug 'tpope/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
+Plug 'vim-scripts/bbcode'
 
 call plug#end()
 
