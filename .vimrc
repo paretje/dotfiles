@@ -33,6 +33,7 @@ Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/bbcode'
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
+Plug 'ciaranm/securemodelines'
 
 call plug#end()
 
