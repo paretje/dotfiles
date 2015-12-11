@@ -5,12 +5,12 @@ Plug 'tpope/vim-speeddating'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular'
 Plug 'ciaranm/detectindent'
-Plug 'paretje/javacomplete'
+Plug 'paretje/javacomplete', {'do': 'mvn -f java/pom.xml initialize package'}
 Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact'
 Plug 'bling/vim-airline'
@@ -22,7 +22,7 @@ Plug 'raichoo/haskell-vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-rails'
