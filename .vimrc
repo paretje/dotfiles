@@ -294,7 +294,7 @@ nnoremap <tab> za
 inoremap <A-A> <C-O>A
 inoremap <A-I> <C-O>I
 inoremap <A-O> <C-O>O
-imap <A-o> <C-O>A<CR>
+inoremap <A-o> <C-O>A<CR>
 nnoremap <Leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
