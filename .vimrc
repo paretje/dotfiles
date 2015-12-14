@@ -34,6 +34,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
