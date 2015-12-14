@@ -274,6 +274,13 @@ au BufRead ~/.xmobarrc	setlocal expandtab
 " xsession options
 au BufRead ~/.xsession	setfiletype sh
 
+" terminal options
+if exists(':terminal')
+	au TermOpen * setlocal nospell
+	au TermOpen * set nohlsearch
+	au TermClose * set hlsearch
+endif
+
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
