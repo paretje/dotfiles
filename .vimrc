@@ -212,8 +212,8 @@ au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 " Org ft options
 au BufRead,BufNewFile *.org	setf dotoo
 au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
-au FileType dotoo		nunmap <buffer> <C-A>
-au FileType dotoo		nunmap <buffer> <C-X>
+au FileType dotoo		nmap <buffer> <C-a> <Plug>SpeedDatingUp
+au FileType dotoo		nmap <buffer> <C-x> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture	inoremap <buffer> <C-l> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
