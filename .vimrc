@@ -320,6 +320,9 @@ nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <Leader>tm :TableModeToggle<CR>
+if exists(':tnoremap')
+	tnoremap <Esc><Esc> <C-\><C-n>
+endif
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
