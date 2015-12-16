@@ -1,3 +1,7 @@
+if !filereadable($HOME . '/.vim/autoload/plug.vim')
+	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+
 call plug#begin('~/.vim/bundle')
 
 Plug 'craigemery/vim-autotag'
