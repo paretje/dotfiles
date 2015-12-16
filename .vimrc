@@ -322,7 +322,7 @@ nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <Leader>tm :TableModeToggle<CR>
 if exists(':tnoremap')
-	tnoremap <Esc><Esc> <C-\><C-n>
+	tnoremap <C-x> <C-\><C-n>
 endif
 
 " Custom commands
