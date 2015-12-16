@@ -184,7 +184,7 @@ let g:NERDTreeMapJumpParent='h'
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown']
+let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
 let g:indentLine_faster=1
 let g:indentLine_showFirstIndentLevel=1
 
