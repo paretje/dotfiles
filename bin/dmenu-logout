@@ -7,11 +7,15 @@ case "$choice" in
 		xdotool key $mod+ctrl+shift+q &
 		;;
 	shutdown)
-		test -x /usr/bin/nmcli && nmcli device disconnect wlan0
+		if [ -x /usr/bin/nmcli ]; then
+			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
+		fi
 		systemctl poweroff &
 		;;
 	reboot)
-		test -x /usr/bin/nmcli && nmcli device disconnect wlan0
+		if [ -x /usr/bin/nmcli ]; then
+			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
+		fi
 		systemctl reboot &
 		;;
 	suspend)
