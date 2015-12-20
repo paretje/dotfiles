@@ -41,6 +41,7 @@ Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
 Plug 'airblade/vim-gitgutter'
+Plug 'ledger/vim-ledger'
 
 call plug#end()
 
@@ -206,6 +207,9 @@ let g:xml_syntax_folding=1
 " calendar-vim options
 let g:calendar_monday=1
 
+" ledger-vim options
+let g:ledger_bin='echo' " disable use of ledger command, as I'm using hledger
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar	setlocal nospell
@@ -278,6 +282,11 @@ au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
 
 " less ft options
 au FileType less	setlocal softtabstop=4 shiftwidth=4 expandtab
+
+" ledger ft options
+au BufRead,BufNewFile *.journal	setf ledger
+au FileType ledger	setlocal softtabstop=4 shiftwidth=4 expandtab
+au FileType ledger	normal! zn
 
 " xmobarrc options
 au BufRead ~/.xmobarrc	setlocal expandtab
