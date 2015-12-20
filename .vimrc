@@ -39,6 +39,7 @@ Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
+Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
 
 call plug#end()
 
@@ -201,11 +202,15 @@ call tcomment#DefineType('matlab', '# %s')
 " xml options
 let g:xml_syntax_folding=1
 
+" calendar-vim options
+let g:calendar_monday=1
+
 " Bulk options
-au FileType dotoo*,tex,mail,markdown		setlocal spelllang=nl
-au FileType haskell,prolog,matlab,tmux,dotooagenda	setlocal nospell
-au FileType tex,text,bbcode,markdown		setlocal linebreak " don't wrap randomly in a word
-au FileType help,dotoo*					setlocal nolist
+au FileType haskell,prolog,matlab,tmux	setlocal nospell
+au FileType dotooagenda,calendar	setlocal nospell
+au FileType dotoo*,tex,mail,markdown	setlocal spelllang=nl
+au FileType tex,text,bbcode,markdown	setlocal linebreak " don't wrap randomly in a word
+au FileType help,dotoo*			setlocal nolist " disable indentation lines
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -323,6 +328,8 @@ nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <Leader>tm :TableModeToggle<CR>
+nmap <Leader>cal <Plug>CalendarV
+
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
 endif
