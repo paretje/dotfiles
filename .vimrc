@@ -40,6 +40,7 @@ Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
