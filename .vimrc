@@ -110,6 +110,8 @@ set list
 set listchars=tab:¦\ 
 " Always show 3 or 5 lines under or above current line
 set scrolloff=3
+" Substitute all occurrences by default
+set gdefault
 
 " Set Syntastic options
 let g:syntastic_exit_checks=0
