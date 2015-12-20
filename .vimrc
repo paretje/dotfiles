@@ -303,10 +303,8 @@ inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
 nnoremap <tab> za
-inoremap <A-A> <C-O>A
-inoremap <A-I> <C-O>I
-inoremap <A-O> <C-O>O
-inoremap <A-o> <C-O>A<CR>
+inoremap <C-e> <C-O>A
+inoremap <C-a> <C-O>I
 nnoremap <Leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
