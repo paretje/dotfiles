@@ -1,0 +1,21 @@
+[MIME Cache]
+application/arj=rifle.desktop;
+application/gzip=rifle.desktop;
+application/x-7z-compressed=rifle.desktop;
+application/x-arj=rifle.desktop;
+application/x-bzip=rifle.desktop;
+application/x-bzip-compressed-tar=rifle.desktop;
+application/x-bzip2=rifle.desktop;
+application/x-bzip2-compressed-tar=rifle.desktop;
+application/x-compressed-tar=rifle.desktop;
+application/x-gzip=rifle.desktop;
+application/x-lzma=rifle.desktop;
+application/x-lzma-compressed-tar=rifle.desktop;
+application/x-rar=rifle.desktop;
+application/x-rar-compressed=rifle.desktop;
+application/x-tar=rifle.desktop;
+application/x-xz=rifle.desktop;
+application/x-xz-compressed-tar=rifle.desktop;
+application/x-zip=rifle.desktop;
+application/x-zip-compressed=rifle.desktop;
+application/zip=rifle.desktop;
