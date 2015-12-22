@@ -176,9 +176,6 @@ let g:dotoo_todo_keyword_faces=[
 	\ ['MAIL', [':foreground 25', ':weight bold']]
 	\ ]
 
-" vim-notes options
-let g:notes_directories=['~/vcs/personal/notes/notes']
-
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 
