@@ -43,6 +43,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger'
 Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
 Plug 'benekastah/neomake'
+Plug 'bkad/CamelCaseMotion'
 
 call plug#end()
 
@@ -205,6 +206,9 @@ let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
 au BufWritePost * Neomake
 let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
+
+" CamelCaseMotion options
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
