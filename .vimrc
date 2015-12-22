@@ -115,6 +115,8 @@ set listchars=tab:¦\
 set scrolloff=3
 " Substitute all occurrences by default
 set gdefault
+" Show normal mode commands
+set showcmd
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
