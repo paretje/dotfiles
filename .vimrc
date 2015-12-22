@@ -101,7 +101,7 @@ set hidden
 " Return to previous position in file when when opening
 au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Set mapleader
-let mapleader=';'
+let mapleader = ';'
 " Start searching while typing pattern
 set incsearch
 " Use smartcase matching in autocompletion
@@ -115,29 +115,29 @@ set scrolloff=3
 set gdefault
 
 " Set YouCompleteMe options
-let g:ycm_autoclose_preview_window_after_insertion=1
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_complete_in_comments=1
-let g:ycm_collect_identifiers_from_comments_and_strings=1
-let g:ycm_semantic_triggers={'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
-let g:ycm_filetype_blacklist={'help': 1, 'text': 1, 'mail': 1, 'dotoo': 1}
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_semantic_triggers = {'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
+let g:ycm_filetype_blacklist = {'help': 1, 'text': 1, 'mail': 1, 'dotoo': 1}
 
 " Set javacomplete options
-let g:nailgun_port='2113'
-let g:javacomplete_ng='ng-nailgun'
-let g:javacomplete_methods_paren_close_noargs=1
+let g:nailgun_port = '2113'
+let g:javacomplete_ng = 'ng-nailgun'
+let g:javacomplete_methods_paren_close_noargs = 1
 
 " Airline options
-let g:airline_powerline_fonts=1
-let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'bubblegum'
 
 " CtrlP options
-let g:ctrlp_cmd='CtrlPMixed'
-let g:ctrlp_user_command='ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_mruf_exclude='/\.git/.*\|/tmp/.*'
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_switch_buffer=''
-let g:ctrlp_follow_symlinks=1
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_switch_buffer = ''
+let g:ctrlp_follow_symlinks = 1
 
 " Pydoc options
 let g:pydoc_cmd = '/usr/bin/pydoc3'
@@ -146,16 +146,16 @@ let g:pydoc_cmd = '/usr/bin/pydoc3'
 au BufReadPost fugitive://* set bufhidden=delete
 
 " UltiSnips options
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
 
 " neco-ghc options
-let g:necoghc_enable_detailed_browse=1
+let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files=['~/vcs/personal/notes/*.org']
-let g:dotoo#capture#refile='~/vcs/personal/notes/refile.org'
-let g:dotoo#parser#todo_keywords=['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
-let g:dotoo_todo_keyword_faces=[
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
+let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
+let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
+let g:dotoo_todo_keyword_faces = [
 	\ ['TODO', [':foreground 160', ':weight bold']],
 	\ ['NEXT', [':foreground 27', ':weight bold']],
 	\ ['DONE', [':foreground 22', ':weight bold']],
@@ -171,32 +171,32 @@ let g:dotoo_todo_keyword_faces=[
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 
 " rubycomplete options
-let g:rubycomplete_buffer_loading=1
-let g:rubycomplete_classes_in_global=1
-let g:rubycomplete_rails=1
-let g:rubycomplete_use_bundler=1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_use_bundler = 1
 
 " NERDTree options
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapJumpParent = 'h'
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude=['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
-let g:indentLine_faster=1
-let g:indentLine_showFirstIndentLevel=1
+let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
+let g:indentLine_faster = 1
+let g:indentLine_showFirstIndentLevel = 1
 
 " vim-markdown options
-let g:markdown_folding=1
+let g:markdown_folding = 1
 
 " TComments options
 call tcomment#DefineType('matlab', '# %s')
 
 " xml options
-let g:xml_syntax_folding=1
+let g:xml_syntax_folding = 1
 
 " calendar-vim options
-let g:calendar_monday=1
+let g:calendar_monday = 1
 
 " ledger-vim options
 let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
@@ -241,7 +241,7 @@ au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
 au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
-let g:tex_flavor="latex" " Use LaTeX by default
+let g:tex_flavor = "latex" " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 " Haskell ft options
