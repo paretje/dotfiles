@@ -44,6 +44,7 @@ Plug 'ledger/vim-ledger'
 Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
 Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
