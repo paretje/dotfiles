@@ -42,6 +42,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
 Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger'
+Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
 
 call plug#end()
 
