@@ -6,7 +6,6 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
-Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
@@ -43,6 +42,7 @@ Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
 Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger'
 Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
+Plug 'benekastah/neomake'
 
 call plug#end()
 
@@ -113,15 +113,6 @@ set listchars=tab:¦\
 set scrolloff=3
 " Substitute all occurrences by default
 set gdefault
-
-" Set Syntastic options
-let g:syntastic_exit_checks=0
-let g:syntastic_java_checkstyle_classpath='~/bin/checkstyle/checkstyle.jar'
-let g:syntastic_java_checkstyle_conf_file='~/bin/checkstyle/paretje_checks.xml'
-let g:syntastic_java_checkers=['javac', 'checkstyle']
-let g:syntastic_python_python_exec='/usr/bin/python3'
-let g:syntastic_check_on_wq=0
-let g:syntastic_java_javac_classpath='.'
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion=1
@@ -208,7 +199,12 @@ let g:xml_syntax_folding=1
 let g:calendar_monday=1
 
 " ledger-vim options
-let g:ledger_bin='echo' " disable use of ledger command, as I'm using hledger
+let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
+
+" neomake options
+au BufWritePost * Neomake
+let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
+let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
