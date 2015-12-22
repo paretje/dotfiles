@@ -118,4 +118,5 @@ node_modules
 .vim/javacomplete.txt
 .vim/javacomplete_java.log
 .vim/autoload/plug.vim
+.vim/autoload/plug.vim.old
 .vim/.init.vim-rplugin~
