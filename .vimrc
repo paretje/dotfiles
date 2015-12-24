@@ -292,7 +292,7 @@ au FileType ledger	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType ledger	normal! zn
 
 " xmobarrc options
-au BufRead ~/.xmobarrc	setlocal expandtab
+au BufRead ~/.xmobarrc	setfiletype haskell
 
 " xsession options
 au BufRead ~/.xsession	setfiletype sh
