@@ -54,7 +54,7 @@ call plug#end()
 if !has("gui_running")
 	set background=dark
 	hi SpellBad ctermfg=Black
-	highlight SpecialKey ctermfg=8
+	hi SpecialKey ctermfg=8
 else
 	" Always show tab-bar in GVim
 	set showtabline=2
