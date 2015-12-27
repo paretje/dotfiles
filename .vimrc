@@ -291,6 +291,9 @@ au BufRead,BufNewFile *.journal	setf ledger
 au FileType ledger	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType ledger	normal! zn
 
+" aptconf ft options
+au FileType aptconf	setlocal commentstring=//%s
+
 " xmobarrc options
 au BufRead ~/.xmobarrc	setfiletype haskell
 
