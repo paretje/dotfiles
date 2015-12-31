@@ -18,15 +18,14 @@ if [ -d "$HOME/.cabal/bin" ] ; then
 	PATH="$PATH:$HOME/.cabal/bin"
 fi
 
+# set GEM_HOME according to detected location
+if [ -d "$HOME/.gem/ruby" ] ; then
+	export GEM_HOME="$HOME/.gem/ruby"
+fi
+
 # set PATH so it includes user's rubygems bin if it exists
-if [ -d "$HOME/.gem/ruby/1.9.1/bin" ] ; then
-	PATH="$PATH:$HOME/.gem/ruby/1.9.1/bin"
-fi
-if [ -d "$HOME/.gem/ruby/2.0.0/bin" ] ; then
-	PATH="$PATH:$HOME/.gem/ruby/2.0.0/bin"
-fi
-if [ -d "$HOME/.gem/ruby/2.1.0/bin" ] ; then
-	PATH="$PATH:$HOME/.gem/ruby/2.1.0/bin"
+if [ "$GEM_HOME" != "" ] ; then
+	PATH="$PATH:$GEM_HOME/bin"
 fi
 
 # Start gpg-agent if not yet running
