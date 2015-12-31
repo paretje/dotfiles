@@ -215,7 +215,7 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
-au FileType dotooagenda,calendar,qf	setlocal nospell
+au FileType dotooagenda,calendar,qf,man	setlocal nospell
 au FileType dotoo*,tex,mail,markdown	setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown	setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*			setlocal nolist " disable indentation lines
