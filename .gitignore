@@ -53,7 +53,7 @@ unison.log
 vcs
 PDF
 davmail.log*
-simutrans
+.simutrans
 workspace
 .zcompdump
 .xsel.log
@@ -120,3 +120,4 @@ node_modules
 .vim/autoload/plug.vim
 .vim/autoload/plug.vim.old
 .vim/.init.vim-rplugin~
+.config/QtProject.conf
