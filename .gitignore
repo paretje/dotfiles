@@ -121,3 +121,4 @@ node_modules
 .vim/autoload/plug.vim.old
 .vim/.init.vim-rplugin~
 .config/QtProject.conf
+Gemfile.lock
