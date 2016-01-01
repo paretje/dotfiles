@@ -14,4 +14,4 @@ alias l='ls -CF'
 
 alias su='su -l'
 alias cal='ncal -b'
-alias less='less -R'
+alias less='less -R -i'
