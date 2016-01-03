@@ -64,7 +64,7 @@
 /.java
 /.gnome2
 *.swp
-.gconf
+/.gconf
 /.eclipse
 /.config/libreoffice
 /.zsh_history
@@ -123,3 +123,4 @@
 /.config/QtProject.conf
 /Gemfile.lock
 /.local/bin
+tags
