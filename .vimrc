@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'ciaranm/detectindent', {'on': 'DetectIndent'}
-Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml initialize package'}
+Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml clean install'}
 Plug 'Dinduks/vim-java-get-set', {'for': 'java'}
 Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'bling/vim-airline'
