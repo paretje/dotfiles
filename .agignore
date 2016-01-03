@@ -1,5 +1,7 @@
-.git
 tags
 *.pdf
 *.swp
 *.pyc
+*.log
+node_modules
+Gemfile.lock

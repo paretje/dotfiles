@@ -137,11 +137,13 @@ let g:airline_theme = 'bubblegum'
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
+let g:ctrlp_mruf_relative = 1
+let g:ctrlp_mruf_exclude_nomod = 1
 
 " Pydoc options
 let g:pydoc_cmd = '/usr/bin/pydoc3'
