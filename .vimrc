@@ -8,7 +8,6 @@ Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
@@ -45,6 +44,7 @@ Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
 Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Shougo/deoplete.nvim'
 
 call plug#end()
 
@@ -213,6 +213,9 @@ let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<leader>')
 
+" deoplete options
+let g:deoplete#enable_at_startup = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -345,6 +348,7 @@ nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <Leader>tm :TableModeToggle<CR>
 nmap <Leader>cal <Plug>CalendarV
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
