@@ -45,6 +45,7 @@ Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/deoplete.nvim'
+Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 
 call plug#end()
 
