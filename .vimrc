@@ -46,6 +46,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 
