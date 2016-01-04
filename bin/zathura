@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/zathura --plugins-dir="$HOME/.local/lib/zathura" "$@"
