@@ -6,3 +6,6 @@ set inputbar-bg "#000000"
 set inputbar-fg "#ffffff"
 
 set adjust-open width
+
+map [normal] d scroll half-down
+map [normal] u scroll half-up
