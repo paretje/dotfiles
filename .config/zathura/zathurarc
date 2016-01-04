@@ -1,0 +1,8 @@
+set font "monospace normal 10"
+
+set default-bg "#000000"
+set default-fg "#ffffff"
+set inputbar-bg "#000000"
+set inputbar-fg "#ffffff"
+
+set adjust-open width

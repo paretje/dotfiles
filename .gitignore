@@ -124,3 +124,4 @@
 /Gemfile.lock
 /.local/bin
 tags
+/.local/share/zathura
