@@ -8,7 +8,7 @@ amixer set Master 100%
 
 pkill -u $USER -USR1 dunst
 
-/usr/bin/xbmc "$@"
+/usr/bin/kodi "$@"
 
 pkill -u $USER -USR2 dunst
 
