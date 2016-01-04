@@ -4,3 +4,4 @@ x-scheme-handler/https=iceweasel.desktop
 x-scheme-handler/mailto=icedove.desktop
 x-scheme-handler/magnet=transmission-remote-gtk.desktop
 application/pdf=llpp.desktop
+application/epub+zip=zathura.desktop
