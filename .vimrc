@@ -285,7 +285,8 @@ au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType mail	setlocal formatoptions+=na
 
 " markdown ft options
-au FileType markdown		setlocal softtabstop=2 shiftwidth=1 expandtab
+au FileType markdown	setlocal softtabstop=2 shiftwidth=1 expandtab
+au FileType markdown	au BufWritePost <buffer> Neomake!
 
 " javascript ft options
 au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
