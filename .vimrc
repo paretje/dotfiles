@@ -47,6 +47,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
+Plug 'Shougo/neopairs.vim'
 
 call plug#end()
 
