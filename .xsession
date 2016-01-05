@@ -18,11 +18,6 @@ fi
 # Use GTK style in Qt5 applications
 export QT_STYLE_OVERRIDE=gtk
 
-# Fool Qt we're using gnome in order to get themes icons
-# Remember that this requires setting the gconf settings, otherwise you'll get
-# default gnome styling: no icons ... 
-export DESKTOP_SESSION=gnome
-
 # Remap some keys
 xmodmap -e 'clear lock'
 xmodmap -e 'keysym Super_L = Escape'
