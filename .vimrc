@@ -47,6 +47,7 @@ Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
