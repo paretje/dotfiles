@@ -19,3 +19,4 @@ application/x-xz-compressed-tar=rifle.desktop;
 application/x-zip=rifle.desktop;
 application/x-zip-compressed=rifle.desktop;
 application/zip=rifle.desktop;
+text/plain=gvim.desktop;
