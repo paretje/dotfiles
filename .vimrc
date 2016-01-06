@@ -18,7 +18,6 @@ Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'bling/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'python-rope/ropevim', {'for': 'python'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -47,6 +46,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 
 call plug#end()
 
@@ -147,9 +147,6 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude_nomod = 1
 
-" Pydoc options
-let g:pydoc_cmd = '/usr/bin/pydoc3'
-
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
 
@@ -219,6 +216,10 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
+
+" jedi options
+let g:jedi#completions_enabled = 0
+let g:jedi#force_py_version = 3
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
@@ -301,6 +302,9 @@ au FileType ledger	normal! zn
 
 " aptconf ft options
 au FileType aptconf	setlocal commentstring=//%s
+
+" python ft options
+autocmd FileType python	setlocal omnifunc=jedi#completions
 
 " xmobarrc options
 au BufRead ~/.xmobarrc	setfiletype haskell
