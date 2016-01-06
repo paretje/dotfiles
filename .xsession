@@ -7,6 +7,17 @@ if [ -f "$GPG_ENV_FILE" ]; then
 	export SSH_AGENT_PID
 fi
 
+# Set the appropriate VDPAU driver to use
+if [ "$(hostname)" = "kevin-laptop" ]; then
+	export VDPAU_DRIVER="va_gl"
+fi
+if [ "$(hostname)" = "kevin-desktop" ]; then
+	export VDPAU_DRIVER="nouveau"
+fi
+
+# Use GTK style in Qt5 applications
+export QT_STYLE_OVERRIDE=gtk
+
 # Remap some keys
 xmodmap -e 'clear lock'
 xmodmap -e 'keysym Super_L = Escape'
