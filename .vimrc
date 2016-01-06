@@ -4,21 +4,12 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'bling/vim-airline'
-Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-endwise'
-Plug 'Raimondi/delimitMate'
-Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
-Plug 'airblade/vim-gitgutter'
 Plug 'bkad/CamelCaseMotion'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 
 call plug#end()
@@ -58,8 +49,6 @@ set ignorecase
 set smartcase
 " Highlight searches
 set hlsearch
-" Set ctags options
-set tags=./tags;$HOME
 " Max number of tabs
 set tabpagemax=32
 " Enable airline
@@ -81,30 +70,12 @@ au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line
 let mapleader = ';'
 " Start searching while typing pattern
 set incsearch
-" Use smartcase matching in autocompletion
-set infercase
-" Show tab indentation levels
-set list
-set listchars=tab:¦\ 
 " Always show 3 or 5 lines under or above current line
 set scrolloff=3
 " Substitute all occurrences by default
 set gdefault
 " Show normal mode commands
 set showcmd
-
-" Set YouCompleteMe options
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_semantic_triggers = {'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
-let g:ycm_filetype_blacklist = {'help': 1, 'text': 1, 'mail': 1, 'dotoo': 1, 'markdown': 1}
-
-" Set javacomplete options
-let g:nailgun_port = '2113'
-let g:javacomplete_ng = 'ng-nailgun'
-let g:javacomplete_methods_paren_close_noargs = 1
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -119,15 +90,6 @@ let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude_nomod = 1
-
-" Fugitive options
-au BufReadPost fugitive://* set bufhidden=delete
-
-" UltiSnips options
-let g:UltiSnipsExpandTrigger = "<c-j>"
-
-" neco-ghc options
-let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
 let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
@@ -145,60 +107,14 @@ let g:dotoo_todo_keyword_faces = [
 	\ ['MAIL', [':foreground 25', ':weight bold']]
 	\ ]
 
-" vim-speeddating options
-au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
-
-" rubycomplete options
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-let g:rubycomplete_use_bundler = 1
-
-" NERDTree options
-let g:NERDTreeMapActivateNode = 'l'
-let g:NERDTreeMapJumpParent = 'h'
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
-let g:indentLine_faster = 1
-let g:indentLine_showFirstIndentLevel = 1
-
-" vim-markdown options
-let g:markdown_folding = 1
-
 " TComments options
 call tcomment#DefineType('matlab', '# %s')
-
-" xml options
-let g:xml_syntax_folding = 1
-
-" calendar-vim options
-let g:calendar_monday = 1
-
-" ledger-vim options
-let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
-
-" neomake options
-let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
-let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
-
-" CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<leader>')
-
-" deoplete options
-let g:deoplete#enable_at_startup = 1
-
-" jedi options
-let g:jedi#completions_enabled = 0
-let g:jedi#force_py_version = 3
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
 au FileType dotoo*,tex,mail,markdown	setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown	setlocal linebreak " don't wrap randomly in a word
-au FileType help,dotoo*			setlocal nolist " disable indentation lines
 
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -210,8 +126,6 @@ au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 " Org ft options
 au BufRead,BufNewFile *.org	setf dotoo
 au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
-au FileType dotoo		nmap <buffer> <C-a> <Plug>SpeedDatingUp
-au FileType dotoo		nmap <buffer> <C-x> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture	inoremap <buffer> <C-l> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
@@ -221,17 +135,12 @@ au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
 
 " Java ft options
 au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
-au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
-au FileType java	setlocal omnifunc=javacomplete#Complete
-au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
 
 " LaTex ft options
 let g:tex_flavor = "latex" " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 " Haskell ft options
-au FileType haskell	setlocal omnifunc=necoghc#omnifunc
 au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
 
 " HTML ft options
@@ -239,12 +148,6 @@ au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " XML ft options
 au FileType xml,xsd	setlocal softtabstop=2 shiftwidth=2 expandtab
-
-" ATL ft options
-au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
-au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
-au BufRead *.atl	setlocal nospell
-au BufRead *.atl	setlocal commentstring=--%s
 
 " VimL ft options
 au FileType vim		setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -258,7 +161,6 @@ au FileType mail	setlocal formatoptions+=na
 
 " markdown ft options
 au FileType markdown	setlocal softtabstop=2 shiftwidth=1 expandtab
-au FileType markdown	au BufWritePost <buffer> Neomake!
 
 " javascript ft options
 au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
@@ -266,38 +168,11 @@ au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
 " less ft options
 au FileType less	setlocal softtabstop=4 shiftwidth=4 expandtab
 
-" ledger ft options
-au BufRead,BufNewFile *.journal	setf ledger
-au FileType ledger	setlocal softtabstop=4 shiftwidth=4 expandtab
-au FileType ledger	normal! zn
-
 " aptconf ft options
 au FileType aptconf	setlocal commentstring=//%s
 
-" python ft options
-autocmd FileType python	setlocal omnifunc=jedi#completions
-
-" xmobarrc options
-au BufRead ~/.xmobarrc	setfiletype haskell
-
 " xsession options
 au BufRead ~/.xsession	setfiletype sh
-
-" terminal options
-if exists(':terminal')
-	au TermOpen * setlocal nospell
-	au TermOpen * set nohlsearch
-	au TermClose * set hlsearch
-endif
-
-" It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
-au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
-
-" notes options
-au VimLeave *				if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotooagenda,dotoocapture	let g:sync_notes=1
-au BufRead ~/vcs/personal/notes/*	let g:sync_notes=1
 
 " Custom key mappings
 nnoremap <up> gk
@@ -318,7 +193,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <Leader>r :redraw!<CR>
 nnoremap <C-n> :CtrlPBuffer<CR>
-nnoremap <C-g> :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
@@ -326,16 +200,6 @@ nnoremap gk k
 nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <Leader>tm :TableModeToggle<CR>
-nmap <Leader>cal <Plug>CalendarV
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-if exists(':tnoremap')
-	tnoremap <C-x> <C-\><C-n>
-endif
-
-" Custom commands
-com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
 
 " Custom functions
 fun ToggleSpellLang()
