@@ -29,11 +29,13 @@ if [ "$GEM_HOME" != "" ] ; then
 fi
 
 # Start gpg-agent if not yet running
-export GPG_ENV_FILE="$HOME/.gpg-agent-info"
-. "$GPG_ENV_FILE"
-export GPG_AGENT_INFO
-if ! gpg-agent; then
-	gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+if hash gpg-agent; then
+	export GPG_ENV_FILE="$HOME/.gpg-agent-info"
+	. "$GPG_ENV_FILE"
+	export GPG_AGENT_INFO
+	if ! gpg-agent; then
+		gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+	fi
 fi
 
 # set PYTHONPATH
