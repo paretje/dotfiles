@@ -140,7 +140,7 @@ let g:airline_theme = 'bubblegum'
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
