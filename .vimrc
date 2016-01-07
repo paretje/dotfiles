@@ -23,7 +23,7 @@ Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimproc.vim', {'do': 'make'} " used by neco-ghc
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
@@ -49,6 +49,8 @@ Plug 'Shougo/neopairs.vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'rking/ag.vim'
+Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
+Plug 'radenling/vim-dispatch-neovim'
 
 call plug#end()
 
