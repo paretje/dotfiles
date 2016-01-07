@@ -51,6 +51,7 @@ Plug 'tpope/vim-surround'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'radenling/vim-dispatch-neovim'
+Plug 'vim-utils/vim-man'
 
 call plug#end()
 
