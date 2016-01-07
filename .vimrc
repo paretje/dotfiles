@@ -356,7 +356,7 @@ inoremap <up> <C-O>gk
 inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
-nnoremap <tab> za
+nmap <tab> za
 inoremap <C-e> <C-O>A
 inoremap <C-a> <C-O>I
 nnoremap <leader>n :nohlsearch<CR>
