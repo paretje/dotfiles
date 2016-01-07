@@ -347,8 +347,8 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
 au VimLeave *				if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotooagenda,dotoocapture	let g:sync_notes=1
-au BufRead ~/vcs/personal/notes/*	let g:sync_notes=1
+au FileType dotooagenda,dotoocapture	let g:sync_notes = 1
+au BufRead ~/vcs/personal/notes/*	let g:sync_notes = 1
 
 " Custom key mappings
 nnoremap <up> gk
@@ -387,7 +387,7 @@ if exists(':tnoremap')
 endif
 
 " Custom commands
-com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
 com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 
 " Custom functions
