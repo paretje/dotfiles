@@ -35,10 +35,10 @@ Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
-Plug 'mattn/calendar-vim', {'on': ['<Plug>CalendarV']}
+Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
 Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger'
-Plug 'simnalamburt/vim-mundo', {'on': ['GundoToggle']}
+Plug 'simnalamburt/vim-mundo', {'on': 'GundoToggle'}
 Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
