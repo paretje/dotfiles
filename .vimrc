@@ -52,6 +52,7 @@ Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-utils/vim-man'
 Plug 'mhinz/vim-grepper'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -238,6 +239,9 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:jedi#force_py_version = 3
 
+" tagbar options
+let g:tagbar_ctags_bin = 'ctags'
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -375,6 +379,7 @@ nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <leader>tm :TableModeToggle<CR>
 nmap <leader>cal <Plug>CalendarV
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+nnoremap <leader>tag :TagbarToggle<CR>
 
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
