@@ -135,7 +135,7 @@ set nostartofline
 " Skip intro
 set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
-set pastetoggle=<Leader>p
+set pastetoggle=<leader>p
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -229,7 +229,7 @@ let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
 
 " CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<Leader>')
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
@@ -269,7 +269,7 @@ au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
+au FileType java	nnoremap <leader>i :JavaCompleteAddImport<CR>
 au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
@@ -355,26 +355,26 @@ vnoremap <down> gj
 nnoremap <tab> za
 inoremap <C-e> <C-O>A
 inoremap <C-a> <C-O>I
-nnoremap <Leader>n :nohlsearch<CR>
+nnoremap <leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <Leader>r :redraw!<CR>
+nnoremap <leader>r :redraw!<CR>
 nnoremap <C-n> :CtrlPBuffer<CR>
 nnoremap <C-g> :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
-nnoremap <Leader>l :call ToggleSpellLang()<CR>
+nnoremap <leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <Leader>tm :TableModeToggle<CR>
-nmap <Leader>cal <Plug>CalendarV
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+nnoremap <leader>tm :TableModeToggle<CR>
+nmap <leader>cal <Plug>CalendarV
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
