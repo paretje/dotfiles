@@ -120,6 +120,18 @@ set scrolloff=3
 set gdefault
 " Show normal mode commands
 set showcmd
+" Open vertical splits at the right
+set splitright
+" Single spaces when joining (aka French spacing)
+set nojoinspaces
+" Use X clipboard as default yank register
+set clipboard=unnamedplus
+" Stay on same column when jumping in file
+set nostartofline
+" Skip intro
+set shortmess+=I
+" Toggle paste option to safely paste via tmux (eg. when using ssh)
+set pastetoggle=<Leader>p
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
