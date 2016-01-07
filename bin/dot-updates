@@ -1,9 +1,0 @@
-#!/bin/sh
-for repo in $HOME $HOME/bin $HOME/.ssh $HOME/.gnupg $HOME/bin/*.git; do
-	echo $repo
-	git -C $repo pull
-done
-
-gem update
-
-vi -c PluginUpdate -c quitall
