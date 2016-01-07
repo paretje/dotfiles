@@ -64,9 +64,6 @@ if !has("gui_running")
 	hi SpellBad ctermfg=Black
 	hi SpecialKey ctermfg=8
 else
-	" Always show tab-bar in GVim
-	set showtabline=2
-
 	" Fix airline in GVim
 	if !exists('g:airline_symbols')
 		let g:airline_symbols = {}
