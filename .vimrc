@@ -213,7 +213,7 @@ let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
 
 " CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<leader>')
+call camelcasemotion#CreateMotionMappings('<Leader>')
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
