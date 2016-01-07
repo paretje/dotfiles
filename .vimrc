@@ -52,7 +52,7 @@ Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-utils/vim-man'
 Plug 'mhinz/vim-grepper'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 call plug#end()
 
@@ -154,6 +154,7 @@ let g:javacomplete_methods_paren_close_noargs = 1
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
+let g:airline#extensions#tagbar#enabled = 0
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
