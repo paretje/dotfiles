@@ -48,10 +48,10 @@ Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
-Plug 'rking/ag.vim'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'vim-utils/vim-man'
+Plug 'mhinz/vim-grepper'
 
 call plug#end()
 
@@ -238,10 +238,6 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:jedi#force_py_version = 3
 
-" Ag.vim options
-let g:ag_prg="ag --vimgrep --smart-case"
-let g:ag_highlight=1
-
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -386,6 +382,7 @@ endif
 
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 
 " Custom functions
 fun ToggleSpellLang()
@@ -403,4 +400,9 @@ fun ToggleFolding()
 		return
 	endif
 	normal! zi
+endfun
+
+fun HighlightSearch(args)
+	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
