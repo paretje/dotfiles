@@ -1,20 +1,8 @@
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
-       , borderColor = "black"
+Config { font = "xft:DejaVu Sans Mono for Powerline:size=9"
+       , borderColor = "#1C1C1C"
        , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
-       , alpha = 255
-       , position = Top
-       , textOffset = -1
-       , iconOffset = -1
-       , lowerOnStart = True
-       , pickBroadest = False
-       , persistent = False
-       , hideOnStart = False
-       , iconRoot = "."
-       , allDesktops = True
-       , overrideRedirect = True
+       , bgColor = "#1C1C1C"
+       , fgColor = "#E4E4E4"
        , commands = [ Run Weather "EBOS" ["-t","<tempC>C",
                                           "-L","18","-H","25",
                                           "--normal","green",
@@ -36,6 +24,4 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     , Run CoreTemp ["-t","<core0>C"] 100
                     , Run Com "batmonitor" ["-s","-r"] "" 1200
                     ]
-       , sepChar = "%"
-       , alignSep = "}{"
        }
