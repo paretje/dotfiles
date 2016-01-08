@@ -387,9 +387,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <leader>r :redraw!<CR>
-nnoremap <C-n> :CtrlPBuffer<CR>
-nnoremap <C-g> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>r :redraw!<CR>
+nnoremap <silent> <C-n> :CtrlPBuffer<CR>
+nnoremap <silent> <C-g> :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
@@ -397,10 +397,10 @@ nnoremap gk k
 nnoremap <leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <leader>tm :call TableModeToggle()<CR>
+nnoremap <silent> <leader>tm :call TableModeToggle()<CR>
 nmap <leader>cal <Plug>CalendarV
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-nnoremap <leader>tag :TagbarToggle<CR>
+nnoremap <silent> <leader>tag :TagbarToggle<CR>
 nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
 
 if exists(':tnoremap')
