@@ -240,6 +240,26 @@ let g:jedi#force_py_version = 3
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
 
+" securemodelines options
+let g:secure_modelines_allowed_items = [
+	\ "textwidth",		"tw",
+	\ "softtabstop",	"sts",
+	\ "tabstop",		"ts",
+	\ "shiftwidth",		"sw",
+	\ "expandtab",		"et",		"noexpandtab",		"noet",
+	\ "filetype",		"ft",
+	\ "foldmethod",		"fdm",
+	\ "formatoptions",	"fo",
+	\ "readonly",		"ro",		"noreadonly",		"noro",
+	\ "rightleft",		"rl",		"norightleft",		"norl",
+	\ "cindent",		"cin",		"nocindent",		"nocin",
+	\ "smartindent",	"si",		"nosmartindent",	"nosi",
+	\ "autoindent",		"ai",		"noautoindent",		"noai",
+	\ "spell",		"nospell",
+	\ "spelllang",
+	\ "wrap",		"nowrap"
+	\ ]
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
