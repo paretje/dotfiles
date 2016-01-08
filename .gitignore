@@ -65,7 +65,10 @@
 /.eclipse
 /.config/libreoffice
 /.zsh_history
-/.xmonad
+/.xmonad/xmonad-x86_64-linux
+/.xmonad/xmonad.errors
+/.xmonad/xmonad.hi
+/.xmonad/xmonad.o
 /.weechat/sec.conf
 /.weechat/logs
 /.mysql_history
