@@ -1,6 +1,14 @@
 #!/bin/sh
 if [ "$PWD" = "/home/kevin/vcs/ugent/thesis/unipept" ]; then
-	exec ripper-tags -R .
+	# Fool tagbar we're using ctags-exuberant
+	if [ "$1" = "--version" ]; then
+		exec /usr/bin/ctags-exuberant --version
+	elif [ "$1" = "-f" ]; then
+		for last; do true; done
+		exec ripper-tags -f - "$last"
+	else
+		exec ripper-tags -R .
+	fi
 else
 	exec /usr/bin/ctags "$@"
 fi
