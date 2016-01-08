@@ -378,6 +378,7 @@ nnoremap <leader>tm :TableModeToggle<CR>
 nmap <leader>cal <Plug>CalendarV
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 nnoremap <leader>tag :TagbarToggle<CR>
+nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
 
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
@@ -408,4 +409,10 @@ endfun
 fun HighlightSearch(args)
 	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
 	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
+endfun
+
+fun OrgRecalculateTable(file)
+	write
+	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
+	edit
 endfun
