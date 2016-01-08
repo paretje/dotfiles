@@ -260,6 +260,9 @@ let g:secure_modelines_allowed_items = [
 	\ "wrap",		"nowrap"
 	\ ]
 
+" table-mode options
+let g:table_mode_toggle_map = 't'
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -394,7 +397,7 @@ nnoremap gk k
 nnoremap <leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
 nnoremap <leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <leader>tm :TableModeToggle<CR>
+nnoremap <leader>tm :call TableModeToggle()<CR>
 nmap <leader>cal <Plug>CalendarV
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 nnoremap <leader>tag :TagbarToggle<CR>
@@ -436,3 +439,15 @@ fun OrgRecalculateTable(file)
 	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
 	edit
 endfun
+
+fun TableModeToggle()
+	TableModeToggle
+	AirlineRefresh
+endfun
+
+fun AirlineTableMode(...)
+	if exists('b:table_mode_active') && b:table_mode_active
+		let w:airline_section_a = 'TABLE MODE'
+	endif
+endfun
+call airline#add_statusline_func('AirlineTableMode')
