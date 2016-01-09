@@ -45,18 +45,15 @@
 /.xsession-errors
 /.xsession-errors.old
 /Downloads
-/autotag.log
 /bin
 /cloud
 /octave-workspace
-/unison.log
 /vcs
 /PDF
 /davmail.log*
 /.simutrans
 /workspace
 /.zcompdump
-/.xsel.log
 /.swt
 /.purple
 /.muttator
@@ -68,8 +65,12 @@
 /.eclipse
 /.config/libreoffice
 /.zsh_history
-/.xmonad
-/.weechat
+/.xmonad/xmonad-x86_64-linux
+/.xmonad/xmonad.errors
+/.xmonad/xmonad.hi
+/.xmonad/xmonad.o
+/.weechat/sec.conf
+/.weechat/logs
 /.mysql_history
 /.gmrun_history
 /.config/llpp-recent.conf
@@ -106,7 +107,6 @@
 /.zsh-update
 /.zsh/antigen-files
 /.local/share/nvim
-/.pip/pip.log
 /.local/lib
 /.local/include
 /.config/transmission-remote-gtk
@@ -116,7 +116,6 @@
 /.config/gtk-3.0/bookmarks
 /.sane/xsane
 /.vim/javacomplete.txt
-/.vim/javacomplete_java.log
 /.vim/autoload/plug.vim
 /.vim/autoload/plug.vim.old
 /.vim/.init.vim-rplugin~
@@ -125,3 +124,5 @@
 /.local/bin
 tags
 /.local/share/zathura
+/.urxvt
+*.log

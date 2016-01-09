@@ -20,6 +20,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-utils/vim-man'
 
 call plug#end()
 
@@ -31,9 +33,6 @@ if !has("gui_running")
 	hi SpellBad ctermfg=Black
 	hi SpecialKey ctermfg=8
 else
-	" Always show tab-bar in GVim
-	set showtabline=2
-
 	" Fix airline in GVim
 	if !exists('g:airline_symbols')
 		let g:airline_symbols = {}
@@ -92,6 +91,18 @@ set scrolloff=3
 set gdefault
 " Show normal mode commands
 set showcmd
+" Open vertical splits at the right
+set splitright
+" Single spaces when joining (aka French spacing)
+set nojoinspaces
+" Use X clipboard as default yank register
+set clipboard=unnamedplus
+" Stay on same column when jumping in file
+set nostartofline
+" Skip intro
+set shortmess+=I
+" Toggle paste option to safely paste via tmux (eg. when using ssh)
+set pastetoggle=<leader>p
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -109,10 +120,11 @@ let g:javacomplete_methods_paren_close_noargs = 1
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
+let g:airline#extensions#tagbar#enabled = 0
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
@@ -193,6 +205,32 @@ let g:deoplete#enable_at_startup = 1
 let g:jedi#completions_enabled = 0
 let g:jedi#force_py_version = 3
 
+" tagbar options
+let g:tagbar_ctags_bin = 'ctags'
+
+" securemodelines options
+let g:secure_modelines_allowed_items = [
+	\ "textwidth",		"tw",
+	\ "softtabstop",	"sts",
+	\ "tabstop",		"ts",
+	\ "shiftwidth",		"sw",
+	\ "expandtab",		"et",		"noexpandtab",		"noet",
+	\ "filetype",		"ft",
+	\ "foldmethod",		"fdm",
+	\ "formatoptions",	"fo",
+	\ "readonly",		"ro",		"noreadonly",		"noro",
+	\ "rightleft",		"rl",		"norightleft",		"norl",
+	\ "cindent",		"cin",		"nocindent",		"nocin",
+	\ "smartindent",	"si",		"nosmartindent",	"nosi",
+	\ "autoindent",		"ai",		"noautoindent",		"noai",
+	\ "spell",		"nospell",
+	\ "spelllang",
+	\ "wrap",		"nowrap"
+	\ ]
+
+" table-mode options
+let g:table_mode_toggle_map = 't'
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -224,7 +262,7 @@ au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
+au FileType java	nnoremap <leader>i :JavaCompleteAddImport<CR>
 
 " LaTex ft options
 let g:tex_flavor = "latex" " Use LaTeX by default
@@ -296,8 +334,8 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
 
 " notes options
 au VimLeave *				if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotooagenda,dotoocapture	let g:sync_notes=1
-au BufRead ~/vcs/personal/notes/*	let g:sync_notes=1
+au FileType dotooagenda,dotoocapture	let g:sync_notes = 1
+au BufRead ~/vcs/personal/notes/*	let g:sync_notes = 1
 
 " Custom key mappings
 nnoremap <up> gk
@@ -306,36 +344,39 @@ inoremap <up> <C-O>gk
 inoremap <down> <C-O>gj
 vnoremap <up> gk
 vnoremap <down> gj
-nnoremap <tab> za
+nmap <tab> za
 inoremap <C-e> <C-O>A
 inoremap <C-a> <C-O>I
-nnoremap <Leader>n :nohlsearch<CR>
+nnoremap <leader>n :nohlsearch<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-d> <Del>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <Leader>r :redraw!<CR>
-nnoremap <C-n> :CtrlPBuffer<CR>
-nnoremap <C-g> :NERDTreeToggle<CR>
+nnoremap <silent> <leader>r :redraw!<CR>
+nnoremap <silent> <C-n> :CtrlPBuffer<CR>
+nnoremap <silent> <C-g> :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
-nnoremap <Leader>l :call ToggleSpellLang()<CR>
+nnoremap <leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <Leader>tm :TableModeToggle<CR>
-nmap <Leader>cal <Plug>CalendarV
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+nnoremap <silent> <leader>tm :call TableModeToggle()<CR>
+nmap <leader>cal <Plug>CalendarV
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+nnoremap <silent> <leader>tag :TagbarToggle<CR>
+nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
 
 if exists(':tnoremap')
 	tnoremap <C-x> <C-\><C-n>
 endif
 
 " Custom commands
-com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath=g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 
 " Custom functions
 fun ToggleSpellLang()
@@ -354,3 +395,26 @@ fun ToggleFolding()
 	endif
 	normal! zi
 endfun
+
+fun HighlightSearch(args)
+	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
+endfun
+
+fun OrgRecalculateTable(file)
+	write
+	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
+	edit
+endfun
+
+fun TableModeToggle()
+	TableModeToggle
+	AirlineRefresh
+endfun
+
+fun AirlineTableMode(...)
+	if exists('b:table_mode_active') && b:table_mode_active
+		let w:airline_section_a = 'TABLE MODE'
+	endif
+endfun
+call airline#add_statusline_func('AirlineTableMode')
