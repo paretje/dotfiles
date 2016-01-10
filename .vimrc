@@ -50,7 +50,6 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'vim-utils/vim-man'
 Plug 'mhinz/vim-grepper'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
@@ -263,9 +262,6 @@ let g:secure_modelines_allowed_items = [
 " table-mode options
 let g:table_mode_toggle_map = 't'
 
-" vim-man options
-let g:loaded_man = 1 " prevent built-in plugin file to be loaded
-
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -454,3 +450,30 @@ fun AirlineTableMode(...)
 	endif
 endfun
 call airline#add_statusline_func('AirlineTableMode')
+
+" man page support using neovim terminals
+if exists(':tnoremap')
+	com! -narg=* -complete=customlist,man#completion#run Man vsp +call\ Man(<f-args>)
+	let g:loaded_man = 1
+
+	au User ManOpen tmap <buffer> <C-h> <C-w>h
+	au User ManOpen tmap <buffer> <C-j> <C-w>j
+	au User ManOpen tmap <buffer> <C-k> <C-w>k
+	au User ManOpen tmap <buffer> <C-l> <C-w>l
+
+	fun Man(...)
+		enew
+		call termopen('man ' . join(a:000, ' '))
+		setlocal syntax=man
+
+		tnoremap <silent> <buffer> q <C-\><C-n>:bd!<CR>
+		tnoremap <C-w> <C-\><C-n><C-w>
+		doau User ManOpen
+
+		au BufEnter <buffer> startinsert
+		startinsert
+	endfun
+else
+	source $VIMRUNTIME/ftplugin/man.vim
+	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+endif
