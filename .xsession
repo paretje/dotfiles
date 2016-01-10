@@ -32,6 +32,9 @@ xmodmap -e 'add mod3 = Super_R'
 xrandr --newmode "1920x1080_sharp"  141.50  1920 2032 2232 2544  1080 1083 1088 1114 -hsync +vsync
 if [ "$HOST" = "kevin-laptop" ]; then
 	xrandr --addmode HDMI1 1920x1080_sharp
+	if xrandr | fgrep -q 'HDMI1 connected 1920x1080'; then
+		xrandr --output eDP1 --off
+	fi
 elif [ "$HOST" = "kevin-desktop" ]; then
 	xrandr --addmode VGA-1 1920x1080_sharp
 	xrandr --output VGA-1 --mode 1920x1080_sharp
