@@ -453,7 +453,7 @@ call airline#add_statusline_func('AirlineTableMode')
 
 " man page support using neovim terminals
 if exists(':tnoremap')
-	com! -narg=* -complete=customlist,man#completion#run Man vsp +call\ Man(<f-args>)
+	com! -narg=+ -complete=customlist,man#completion#run Man vsp +call\ Man(<f-args>)
 	let g:loaded_man = 1
 
 	au User ManOpen tmap <buffer> <C-h> <C-w>h
@@ -476,4 +476,6 @@ if exists(':tnoremap')
 else
 	source $VIMRUNTIME/ftplugin/man.vim
 	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+	au FileType man wincmd L
+	nmap K :Man <cword><CR>
 endif
