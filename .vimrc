@@ -263,6 +263,9 @@ let g:secure_modelines_allowed_items = [
 " table-mode options
 let g:table_mode_toggle_map = 't'
 
+" vim-man options
+let g:loaded_man = 1 " prevent built-in plugin file to be loaded
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
