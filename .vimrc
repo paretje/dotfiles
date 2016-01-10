@@ -403,7 +403,8 @@ nnoremap <silent> <leader>tag :TagbarToggle<CR>
 nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
 
 if exists(':tnoremap')
-	tnoremap <C-x> <C-\><C-n>
+	tnoremap <C-q> <C-\><C-n>
+	nnoremap <C-q> i<C-q>
 endif
 
 " Custom commands
