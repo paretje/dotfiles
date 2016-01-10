@@ -42,18 +42,24 @@ Plug 'simnalamburt/vim-mundo', {'on': 'GundoToggle'}
 Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
-Plug 'radenling/vim-dispatch-neovim'
 Plug 'mhinz/vim-grepper'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'radenling/vim-dispatch-neovim'
+	Plug 'paretje/nvim-man'
+endif
+
 call plug#end()
+
+set rtp^=~/vcs/once/vim-man
 
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
@@ -354,7 +360,7 @@ au BufRead ~/.xmobarrc	setfiletype haskell
 au BufRead ~/.xsession	setfiletype sh
 
 " terminal options
-if exists(':terminal')
+if has('nvim')
 	au TermOpen * setlocal nospell
 	au TermOpen * set nohlsearch
 	au TermClose * set hlsearch
@@ -402,9 +408,19 @@ inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
 nnoremap <silent> <leader>tag :TagbarToggle<CR>
 nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
 
-if exists(':tnoremap')
+if has('nvim')
 	tnoremap <C-q> <C-\><C-n>
 	nnoremap <C-q> i<C-q>
+
+	au User ManOpen tmap <buffer> <C-h> <C-w>h
+	au User ManOpen tmap <buffer> <C-j> <C-w>j
+	au User ManOpen tmap <buffer> <C-k> <C-w>k
+	au User ManOpen tmap <buffer> <C-l> <C-w>l
+else
+	source $VIMRUNTIME/ftplugin/man.vim
+	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+	au FileType man wincmd L
+	nmap K :Man <cword><CR>
 endif
 
 " Custom commands
@@ -451,32 +467,3 @@ fun AirlineTableMode(...)
 	endif
 endfun
 call airline#add_statusline_func('AirlineTableMode')
-
-" man page support using neovim terminals
-if exists(':tnoremap')
-	com! -narg=+ -complete=customlist,man#completion#run Man vsp +call\ Man(<f-args>)
-	let g:loaded_man = 1
-
-	au User ManOpen tmap <buffer> <C-h> <C-w>h
-	au User ManOpen tmap <buffer> <C-j> <C-w>j
-	au User ManOpen tmap <buffer> <C-k> <C-w>k
-	au User ManOpen tmap <buffer> <C-l> <C-w>l
-
-	fun Man(...)
-		enew
-		call termopen('man ' . join(a:000, ' '))
-		setlocal syntax=man
-
-		tnoremap <silent> <buffer> q <C-\><C-n>:bd!<CR>
-		tnoremap <C-w> <C-\><C-n><C-w>
-		doau User ManOpen
-
-		au BufEnter <buffer> startinsert
-		startinsert
-	endfun
-else
-	source $VIMRUNTIME/ftplugin/man.vim
-	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
-	au FileType man wincmd L
-	nmap K :Man <cword><CR>
-endif
