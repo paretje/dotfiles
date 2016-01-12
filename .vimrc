@@ -414,6 +414,7 @@ if has('nvim')
 	au User ManOpen tmap <buffer> <C-j> <C-w>j
 	au User ManOpen tmap <buffer> <C-k> <C-w>k
 	au User ManOpen tmap <buffer> <C-l> <C-w>l
+	au User ManOpen tmap <buffer> <esc> <C-\><C-n>M
 else
 	source $VIMRUNTIME/ftplugin/man.vim
 	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
