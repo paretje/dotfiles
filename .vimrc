@@ -50,6 +50,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'mhinz/vim-grepper'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'tpope/vim-scriptease', {'for': 'vim'}
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim'
