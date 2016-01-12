@@ -59,8 +59,6 @@ endif
 
 call plug#end()
 
-set rtp^=~/vcs/once/vim-man
-
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
 " on xterm, although default is dark.
@@ -351,7 +349,7 @@ au FileType ledger	normal! zn
 au FileType aptconf	setlocal commentstring=//%s
 
 " python ft options
-autocmd FileType python	setlocal omnifunc=jedi#completions
+au FileType python	setlocal omnifunc=jedi#completions
 
 " xmobarrc options
 au BufRead ~/.xmobarrc	setfiletype haskell
