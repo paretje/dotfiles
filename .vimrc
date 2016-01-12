@@ -363,6 +363,7 @@ if has('nvim')
 	au TermOpen * setlocal nospell
 	au TermOpen * set nohlsearch
 	au TermClose * set hlsearch
+	au TermOpen * setlocal nobuflisted
 endif
 
 " It's All Text options
