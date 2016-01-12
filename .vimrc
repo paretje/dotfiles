@@ -160,7 +160,7 @@ let g:airline#extensions#tagbar#enabled = 0
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
-let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*'
+let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
@@ -361,8 +361,6 @@ au BufRead ~/.xsession	setfiletype sh
 " terminal options
 if has('nvim')
 	au TermOpen * setlocal nospell
-	au TermOpen * set nohlsearch
-	au TermClose * set hlsearch
 	au TermOpen * setlocal nobuflisted
 endif
 
