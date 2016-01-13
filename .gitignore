@@ -126,3 +126,4 @@ tags
 /.local/share/zathura
 /.urxvt
 *.log
+/rfs
