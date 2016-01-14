@@ -449,9 +449,11 @@ fun HighlightSearch(args)
 endfun
 
 fun OrgRecalculateTable(file)
+	let pos = getcurpos()
 	write
 	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
 	edit
+	call setpos('.', pos)
 endfun
 
 fun TableModeToggle()
