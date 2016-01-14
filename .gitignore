@@ -20,7 +20,12 @@
 /.ghc
 /.gksu.lock
 /.gnome2/keyrings
-/.gnupg
+/.gnupg/private-keys-v1.d
+/.gnupg/pubring.gpg
+/.gnupg/random_seed
+/.gnupg/secring.gpg
+/.gnupg/sshcontrol
+/.gnupg/trustdb.gpg
 /.gpg-agent-info
 /.gstreamer-0.10
 /.icedove
@@ -61,6 +66,7 @@
 /.java
 /.gnome2
 *.swp
+*~
 /.gconf
 /.eclipse
 /.config/libreoffice
@@ -118,7 +124,6 @@
 /.vim/javacomplete.txt
 /.vim/autoload/plug.vim
 /.vim/autoload/plug.vim.old
-/.vim/.init.vim-rplugin~
 /.config/QtProject.conf
 /Gemfile.lock
 /.local/bin
