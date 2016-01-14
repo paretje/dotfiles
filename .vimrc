@@ -164,7 +164,6 @@ let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
-let g:ctrlp_mruf_relative = 1
 let g:ctrlp_mruf_exclude_nomod = 1
 
 " Fugitive options
