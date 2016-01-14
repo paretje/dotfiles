@@ -49,6 +49,6 @@ xscreensaver -no-splash &
 dunst &
 clipit --daemon &
 test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
-unisister --no-gui &
+! pgrep unisister > /dev/null && unisister --no-gui &
 
 exec xmonad
