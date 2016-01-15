@@ -3,6 +3,7 @@ Config { font = "xft:DejaVu Sans Mono for Powerline:size=9"
        , border = TopB
        , bgColor = "#1C1C1C"
        , fgColor = "#E4E4E4"
+       , pickBroadest = True
        , commands = [ Run Weather "EBOS" ["-t","<tempC>C",
                                           "-L","18","-H","25",
                                           "--normal","green",
