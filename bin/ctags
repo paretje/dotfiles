@@ -2,7 +2,8 @@
 if [ "$1" = "-f" ]; then
 	for arg; do
 		if [ "$arg" = "--language-force=ruby" ]; then
-			exec ripper-tags -f - "$arg"
+			for last; do true; done
+			exec ripper-tags -f - "$last"
 		fi
 	done
 	exec /usr/bin/ctags "$@"
