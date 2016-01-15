@@ -6,7 +6,7 @@ if [ "$1" = "-f" ]; then
 		fi
 	done
 	exec /usr/bin/ctags "$@"
-elif [ -e "$PWD/Gemfile" ]; then
+elif [ -e "$PWD/Gemfile" -a "$PWD" != "$HOME" ]; then
 	# Fool tagbar we're using ctags-exuberant
 	if [ "$1" = "--version" ]; then
 		exec /usr/bin/ctags-exuberant "$@"
