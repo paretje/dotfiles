@@ -15,7 +15,7 @@ Plug 'ciaranm/detectindent', {'on': 'DetectIndent'}
 Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml clean install'}
 Plug 'Dinduks/vim-java-get-set', {'for': 'java'}
 Plug 'taq/vim-refact', {'for': 'java'}
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'python-rope/ropevim', {'for': 'python'}
