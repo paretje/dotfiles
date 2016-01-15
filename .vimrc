@@ -276,6 +276,7 @@ au FileType help,dotoo*			setlocal nolist " disable indentation lines
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType eruby	setlocal softtabstop=2 shiftwidth=2 expandtab
+au FileType eruby	inoremap <silent> <buffer> / <C-o>:call CloseTag()<CR>
 
 " R ft options
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -467,3 +468,11 @@ fun AirlineTableMode(...)
 	endif
 endfun
 call airline#add_statusline_func('AirlineTableMode')
+
+" Close HTML tag, assuming the use of delimitMate
+fun CloseTag()
+	call feedkeys("/", 'n')
+	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') == '<'
+		call feedkeys("\<C-x>\<C-o>\<bs>\<right>", 'n')
+	endif
+endfun
