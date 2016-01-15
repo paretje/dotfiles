@@ -289,6 +289,7 @@ au FileType dotoo		nmap <buffer> <C-x> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture	inoremap <buffer> <C-l> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
+au BufHidden *.org		setlocal nobuflisted
 
 " Matlab ft options
 au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
