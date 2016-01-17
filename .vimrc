@@ -366,8 +366,8 @@ if has('nvim')
 endif
 
 " It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=mkd spelllang=nl
-au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=mkd
+au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=markdown spelllang=nl
+au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=markdown
 
 " notes options
 au VimLeave *				if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
