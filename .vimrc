@@ -137,7 +137,7 @@ set nostartofline
 " Skip intro
 set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
-set pastetoggle=<leader>p
+set pastetoggle=<Leader>p
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -231,7 +231,7 @@ let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
 
 " CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<leader>')
+call camelcasemotion#CreateMotionMappings('<Leader>')
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
@@ -276,7 +276,7 @@ au FileType help,dotoo*			setlocal nolist " disable indentation lines
 " Ruby ft options
 au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType eruby	setlocal softtabstop=2 shiftwidth=2 expandtab
-au FileType eruby	inoremap <silent> <buffer> / <C-o>:call CloseTag()<CR>
+au FileType eruby	inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " R ft options
 au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
@@ -284,11 +284,11 @@ au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 " Org ft options
 au BufRead,BufNewFile *.org	setf dotoo
 au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
-au FileType dotoo		nmap <buffer> <C-a> <Plug>SpeedDatingUp
-au FileType dotoo		nmap <buffer> <C-x> <Plug>SpeedDatingDown
+au FileType dotoo		nmap <buffer> <C-A> <Plug>SpeedDatingUp
+au FileType dotoo		nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture	inoremap <buffer> <C-l> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
+au FileType dotoo,dotoocapture	inoremap <buffer> <C-L> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
 au BufHidden *.org		setlocal nobuflisted
 
 " Matlab ft options
@@ -299,7 +299,7 @@ au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <leader>i :JavaCompleteAddImport<CR>
+au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
 au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
@@ -375,47 +375,47 @@ au FileType dotooagenda,dotoocapture	let g:sync_notes = 1
 au BufRead ~/vcs/personal/notes/*	let g:sync_notes = 1
 
 " Custom key mappings
-nnoremap <up> gk
-nnoremap <down> gj
-inoremap <up> <C-O>gk
-inoremap <down> <C-O>gj
-vnoremap <up> gk
-vnoremap <down> gj
-nmap <tab> za
-inoremap <C-e> <C-O>A
-inoremap <C-a> <C-O>I
-nnoremap <leader>n :nohlsearch<CR>
-cnoremap <C-a> <C-b>
-cnoremap <C-d> <Del>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <silent> <leader>r :redraw!<CR>
-nnoremap <silent> <C-n> :CtrlPBuffer<CR>
-nnoremap <silent> <C-g> :NERDTreeToggle<CR>
+nnoremap <Up> gk
+nnoremap <Down> gj
+inoremap <Up> <C-O>gk
+inoremap <Down> <C-O>gj
+vnoremap <Up> gk
+vnoremap <Down> gj
+nmap <Tab> za
+inoremap <C-E> <C-O>A
+inoremap <C-A> <C-O>I
+nnoremap <Leader>n :nohlsearch<CR>
+cnoremap <C-A> <C-B>
+cnoremap <C-D> <Del>
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <silent> <Leader>r :redraw!<CR>
+nnoremap <silent> <C-N> :CtrlPBuffer<CR>
+nnoremap <silent> <C-G> :NERDTreeToggle<CR>
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
-nnoremap <leader>l :call ToggleSpellLang()<CR>
+nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
-nnoremap <silent> <leader>tm :call TableModeToggle()<CR>
-nmap <leader>cal <Plug>CalendarV
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<TAB>"
-nnoremap <silent> <leader>tag :TagbarToggle<CR>
-nnoremap <leader>tfo :call OrgRecalculateTable(@%)<CR>
+nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
+nmap <Leader>cal <Plug>CalendarV
+inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+nnoremap <silent> <Leader>tab :TagbarToggle<CR>
+nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
 
 if has('nvim')
-	tnoremap <C-q> <C-\><C-n>
-	nnoremap <C-q> i<C-q>
+	tnoremap <C-Q> <C-\><C-N>
+	nnoremap <C-Q> i<C-Q>
 
-	au User ManOpen tmap <buffer> <C-h> <C-w>h
-	au User ManOpen tmap <buffer> <C-j> <C-w>j
-	au User ManOpen tmap <buffer> <C-k> <C-w>k
-	au User ManOpen tmap <buffer> <C-l> <C-w>l
-	au User ManOpen tmap <buffer> <esc> <C-\><C-n>M
+	au User ManOpen tmap <buffer> <C-H> <C-W>h
+	au User ManOpen tmap <buffer> <C-J> <C-W>j
+	au User ManOpen tmap <buffer> <C-K> <C-W>k
+	au User ManOpen tmap <buffer> <C-L> <C-W>l
+	au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
 else
 	source $VIMRUNTIME/ftplugin/man.vim
 	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
@@ -474,6 +474,6 @@ call airline#add_statusline_func('AirlineTableMode')
 fun CloseTag()
 	call feedkeys("/", 'n')
 	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') == '<'
-		call feedkeys("\<C-x>\<C-o>\<bs>\<right>", 'n')
+		call feedkeys("\<C-X>\<C-O>\<BS>\<Right>", 'n')
 	endif
 endfun
