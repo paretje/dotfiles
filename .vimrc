@@ -406,6 +406,7 @@ nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tab :TagbarToggle<CR>
 nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
+nnoremap <Leader>ut :GundoToggle<CR>
 
 if has('nvim')
 	tnoremap <C-Q> <C-\><C-N>
