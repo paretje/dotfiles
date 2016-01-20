@@ -404,7 +404,7 @@ nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
 nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-nnoremap <silent> <Leader>tab :TagbarToggle<CR>
+nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
 nnoremap <Leader>ut :GundoToggle<CR>
 
