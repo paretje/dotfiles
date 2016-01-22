@@ -134,3 +134,4 @@ tags
 /rfs
 /.kodi
 /.vim/javacomplete_java.log.*
+/.guard_history
