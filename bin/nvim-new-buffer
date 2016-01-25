@@ -3,4 +3,4 @@ from neovim import attach
 import os
 import sys
 nvim = attach('socket', path=os.getenv('NVIM_LISTEN_ADDRESS'))
-nvim.command('e ' + sys.argv[1])
+nvim.command('e ' + sys.argv[1].replace(' ', '\ '))

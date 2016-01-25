@@ -1,6 +1,7 @@
 #!/bin/bash
 export NVIM_LISTEN_ADDRESS=/tmp/nvim-gui
 if [ ! -S $NVIM_LISTEN_ADDRESS ]; then
+	unset TERM
 	nvim-qt &
 	while [ ! -S $NVIM_LISTEN_ADDRESS ]; do
 		sleep 0.5s
@@ -8,5 +9,5 @@ if [ ! -S $NVIM_LISTEN_ADDRESS ]; then
 	sleep 0.5s
 fi
 if [ "$1" != "" ]; then
-	nvim-new-buffer "$(printf '%q' "$1")"
+	nvim-new-buffer "$1"
 fi
