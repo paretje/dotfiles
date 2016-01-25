@@ -8,6 +8,11 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 027
 
+# set GEM_HOME according to detected location
+if [ -d "$HOME/.gem/ruby" ] ; then
+	export GEM_HOME="$HOME/.gem/ruby"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -18,14 +23,14 @@ if [ -d "$HOME/.cabal/bin" ] ; then
 	PATH="$PATH:$HOME/.cabal/bin"
 fi
 
-# set GEM_HOME according to detected location
-if [ -d "$HOME/.gem/ruby" ] ; then
-	export GEM_HOME="$HOME/.gem/ruby"
-fi
-
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
 	PATH="$PATH:$GEM_HOME/bin"
+fi
+
+# set PATH so it includes user local bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Start gpg-agent if not yet running
