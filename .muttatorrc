@@ -1,3 +1,5 @@
+set editor=nvim-qt
+
 nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
 mmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
 nmap r :javascript smartReply()<CR>
