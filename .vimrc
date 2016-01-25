@@ -64,16 +64,16 @@ call plug#end()
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
 " on xterm, although default is dark.
-if !has("gui_running")
-	set background=dark
-	hi SpellBad ctermfg=Black
-	hi SpecialKey ctermfg=8
-else
+if has("gui_running")
 	" Fix airline in GVim
 	if !exists('g:airline_symbols')
 		let g:airline_symbols = {}
 	endif
 	let g:airline_symbols.space = "\u3000"
+elseif $TERM != ""
+	set background=dark
+	hi SpellBad ctermfg=Black
+	hi SpecialKey ctermfg=8
 endif
 
 " Syntax highlighting
