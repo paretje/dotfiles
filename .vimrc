@@ -7,8 +7,6 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
@@ -53,6 +51,11 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
+
+if has('python') || has('python3')
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+endif
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim'
