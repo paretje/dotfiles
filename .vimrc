@@ -337,6 +337,11 @@ au BufRead ~/.xmobarrc	setfiletype haskell
 " xsession options
 au BufRead ~/.xsession	setfiletype sh
 
+" help ft options
+au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
+au FileType help nnoremap <silent> <nowait> <buffer> u <C-U>
+au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
+
 " terminal options
 if has('nvim')
 	au TermOpen * setlocal nospell
