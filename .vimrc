@@ -331,10 +331,10 @@ au FileType aptconf	setlocal commentstring=//%s
 " python ft options
 au FileType python	setlocal omnifunc=jedi#completions
 
-" xmobarrc options
-au BufRead ~/.xmobarrc	setfiletype haskell
+" xmobarrc ft options
+au BufRead ~/.xmobarrc	setlocal syntax=haskell nospell
 
-" xsession options
+" sh ft options
 au BufRead ~/.xsession	setfiletype sh
 
 " help ft options
