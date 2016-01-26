@@ -1,6 +1,6 @@
 # Enable 256 colors in xfce4-terminal
 if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
-	TERM=xterm-256color
+    TERM=xterm-256color
 fi
 
 # Load antigen and plugins
