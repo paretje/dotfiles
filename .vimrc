@@ -12,7 +12,6 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
-Plug 'ciaranm/detectindent', {'on': 'DetectIndent'}
 Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml clean install'}
 Plug 'Dinduks/vim-java-get-set', {'for': 'java'}
 Plug 'taq/vim-refact', {'for': 'java'}
@@ -53,6 +52,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-sleuth'
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim'
@@ -276,16 +276,11 @@ au FileType tex,text,bbcode,markdown	setlocal linebreak " don't wrap randomly in
 au FileType help,dotoo*			setlocal nolist " disable indentation lines
 
 " Ruby ft options
-au FileType ruby	setlocal softtabstop=2 shiftwidth=2 expandtab
-au FileType eruby	setlocal softtabstop=2 shiftwidth=2 expandtab
 au FileType eruby	inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
-
-" R ft options
-au FileType r		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " Org ft options
 au BufRead,BufNewFile *.org	setf dotoo
-au FileType dotoo*		setlocal softtabstop=2 shiftwidth=1 expandtab textwidth=77
+au FileType dotoo*		setlocal textwidth=77
 au FileType dotoo		nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo		nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
@@ -293,11 +288,7 @@ au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:
 au FileType dotoo,dotoocapture	inoremap <buffer> <C-L> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
 au BufHidden *.org		setlocal nobuflisted
 
-" Matlab ft options
-au FileType matlab	setlocal softtabstop=4 shiftwidth=4 expandtab
-
 " Java ft options
-au FileType java	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
@@ -310,43 +301,20 @@ au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 " Haskell ft options
 au FileType haskell	setlocal omnifunc=necoghc#omnifunc
-au FileType haskell	setlocal softtabstop=4 shiftwidth=4 expandtab
-
-" HTML ft options
-au FileType html	setlocal softtabstop=2 shiftwidth=2 expandtab
-
-" XML ft options
-au FileType xml,xsd	setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " ATL ft options
 au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
-au BufRead *.atl	setlocal softtabstop=4 shiftwidth=4 expandtab
 au BufRead *.atl	setlocal nospell
 au BufRead *.atl	setlocal commentstring=--%s
-
-" VimL ft options
-au FileType vim		setlocal softtabstop=2 shiftwidth=2 expandtab
-au BufRead ~/.vimrc	setlocal softtabstop=8 shiftwidth=8 noexpandtab
-
-" SQL ft options
-au FileType sql		setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " mail ft options
 au FileType mail	setlocal formatoptions+=na
 
 " markdown ft options
-au FileType markdown	setlocal softtabstop=2 shiftwidth=1 expandtab
 au FileType markdown	au BufWritePost <buffer> Neomake!
-
-" javascript ft options
-au FileType javascript	setlocal softtabstop=4 shiftwidth=4 expandtab
-
-" less ft options
-au FileType less	setlocal softtabstop=4 shiftwidth=4 expandtab
 
 " ledger ft options
 au BufRead,BufNewFile *.journal	setf ledger
-au FileType ledger	setlocal softtabstop=4 shiftwidth=4 expandtab
 au FileType ledger	normal! zn
 
 " aptconf ft options
