@@ -1,3 +1,4 @@
+scriptencoding utf-8
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -64,13 +65,13 @@ call plug#end()
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
 " on xterm, although default is dark.
-if has("gui_running")
+if has('gui_running')
 	" Fix airline in GVim
 	if !exists('g:airline_symbols')
 		let g:airline_symbols = {}
 	endif
 	let g:airline_symbols.space = "\u3000"
-elseif $TERM != ""
+elseif $TERM !=# ''
 	set background=dark
 	hi SpellBad ctermfg=Black
 	hi SpecialKey ctermfg=8
@@ -79,7 +80,7 @@ endif
 " Syntax highlighting
 syntax on
 " Line numbers
-set nu
+set number
 " Spelling checker
 set spell spelllang=en
 " Auto indent
@@ -113,7 +114,7 @@ set hidden
 " Return to previous position in file when when opening
 au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " Set mapleader
-let mapleader = ';'
+let g:mapleader = ';'
 " Start searching while typing pattern
 set incsearch
 " Use smartcase matching in autocompletion
@@ -171,7 +172,7 @@ let g:ctrlp_mruf_exclude_nomod = 1
 au BufReadPost fugitive://* set bufhidden=delete
 
 " UltiSnips options
-let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsExpandTrigger = '<C-J>'
 
 " neco-ghc options
 let g:necoghc_enable_detailed_browse = 1
@@ -246,22 +247,22 @@ let g:tagbar_ctags_bin = 'ctags'
 
 " securemodelines options
 let g:secure_modelines_allowed_items = [
-	\ "textwidth",		"tw",
-	\ "softtabstop",	"sts",
-	\ "tabstop",		"ts",
-	\ "shiftwidth",		"sw",
-	\ "expandtab",		"et",		"noexpandtab",		"noet",
-	\ "filetype",		"ft",
-	\ "foldmethod",		"fdm",
-	\ "formatoptions",	"fo",
-	\ "readonly",		"ro",		"noreadonly",		"noro",
-	\ "rightleft",		"rl",		"norightleft",		"norl",
-	\ "cindent",		"cin",		"nocindent",		"nocin",
-	\ "smartindent",	"si",		"nosmartindent",	"nosi",
-	\ "autoindent",		"ai",		"noautoindent",		"noai",
-	\ "spell",		"nospell",
-	\ "spelllang",
-	\ "wrap",		"nowrap"
+	\ 'textwidth',		'tw',
+	\ 'softtabstop',	'sts',
+	\ 'tabstop',		'ts',
+	\ 'shiftwidth',		'sw',
+	\ 'expandtab',		'et',		'noexpandtab',		'noet',
+	\ 'filetype',		'ft',
+	\ 'foldmethod',		'fdm',
+	\ 'formatoptions',	'fo',
+	\ 'readonly',		'ro',		'noreadonly',		'noro',
+	\ 'rightleft',		'rl',		'norightleft',		'norl',
+	\ 'cindent',		'cin',		'nocindent',		'nocin',
+	\ 'smartindent',	'si',		'nosmartindent',	'nosi',
+	\ 'autoindent',		'ai',		'noautoindent',		'noai',
+	\ 'spell',		'nospell',
+	\ 'spelllang',
+	\ 'wrap',		'nowrap'
 	\ ]
 
 " table-mode options
@@ -304,7 +305,7 @@ au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
 au FileType java	JavaCompleteAddSourcePath .
 
 " LaTex ft options
-let g:tex_flavor = "latex" " Use LaTeX by default
+let g:tex_flavor = 'latex' " Use LaTeX by default
 au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 " Haskell ft options
@@ -431,7 +432,7 @@ com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -
 
 " Custom functions
 fun ToggleSpellLang()
-	if &spelllang == "en"
+	if &spelllang ==# 'en'
 		setlocal spelllang=nl
 	else
 		setlocal spelllang=en
@@ -440,7 +441,7 @@ fun ToggleSpellLang()
 endfun
 
 fun ToggleFolding()
-	if &l:foldmethod == "manual"
+	if &l:foldmethod ==# 'manual'
 		setlocal foldmethod=syntax
 		return
 	endif
@@ -453,11 +454,11 @@ fun HighlightSearch(args)
 endfun
 
 fun OrgRecalculateTable(file)
-	let pos = getcurpos()
+	let l:pos = getcurpos()
 	write
 	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
 	edit
-	call setpos('.', pos)
+	call setpos('.', l:pos)
 endfun
 
 fun TableModeToggle()
@@ -474,8 +475,8 @@ call airline#add_statusline_func('AirlineTableMode')
 
 " Close HTML tag, assuming the use of delimitMate
 fun CloseTag()
-	call feedkeys("/", 'n')
-	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') == '<'
+	call feedkeys('/', 'n')
+	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
 		call feedkeys("\<C-X>\<C-O>\<BS>\<Right>", 'n')
 	endif
 endfun
