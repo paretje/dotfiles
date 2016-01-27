@@ -3,6 +3,12 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
+# Clone antigen if unavailable
+if [ ! -f "$HOME/.zsh/antigen/antigen.zsh" ]; then
+    mkdir -p .zsh
+    git -C "$HOME/.zsh" clone https://github.com/zsh-users/antigen.git
+fi
+
 # Load antigen and plugins
 ADOTDIR="$HOME/.zsh/antigen-files"
 source "$HOME/.zsh/antigen/antigen.zsh"

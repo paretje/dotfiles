@@ -111,7 +111,7 @@
 /.config/chromium
 /.oh-my-zsh
 /.zsh-update
-/.zsh/antigen-files
+/.zsh
 /.local/share/nvim
 /.local/lib
 /.local/include
