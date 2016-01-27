@@ -17,6 +17,7 @@ fi
 
 # Use GTK style in Qt5 applications
 export QT_STYLE_OVERRIDE=gtk
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Remap some keys
 xmodmap -e 'clear lock'
