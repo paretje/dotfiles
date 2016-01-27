@@ -245,6 +245,9 @@ call camelcasemotion#CreateMotionMappings('<Leader>')
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.html = []
+let g:deoplete#omni_patterns.markdown = []
 
 " jedi options
 let g:jedi#completions_enabled = 0
