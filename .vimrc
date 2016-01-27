@@ -416,6 +416,7 @@ endif
 " Custom commands
 com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
 com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
+com BeamerBackground hi Normal ctermbg=232 | set background=dark
 
 " Custom functions
 fun ToggleSpellLang()
