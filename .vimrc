@@ -27,8 +27,8 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
 Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
 Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
-Plug 'tpope/vim-endwise'
 Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
 Plug 'ciaranm/securemodelines'
@@ -278,6 +278,9 @@ let g:secure_modelines_allowed_items = [
 
 " table-mode options
 let g:table_mode_toggle_map = 't'
+
+" delimitMate options
+let g:delimitMate_expand_cr = 1
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
