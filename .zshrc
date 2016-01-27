@@ -74,6 +74,9 @@ bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
 
+# Use similar word definition as vim
+WORDCHARS="_-."
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
