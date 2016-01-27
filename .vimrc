@@ -313,6 +313,9 @@ au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 " Haskell ft options
 au FileType haskell	setlocal omnifunc=necoghc#omnifunc
 
+" HTML ft options
+au FileType html	inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
+
 " ATL ft options
 au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
 au BufRead *.atl	setlocal nospell
