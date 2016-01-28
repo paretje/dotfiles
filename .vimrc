@@ -51,6 +51,7 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
+Plug 'vim-airline/vim-airline-themes'
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
