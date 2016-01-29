@@ -355,7 +355,6 @@ if has('nvim')
 endif
 
 " It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/blog.online-urbanus.be*	setlocal ft=markdown spelllang=nl
 au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=markdown
 
 " notes options
