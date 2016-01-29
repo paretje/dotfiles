@@ -136,3 +136,6 @@ tags
 /.vim/javacomplete_java.log.*
 /.guard_history
 /.nvimlog
+/.local/share/qutebrowser
+/.config/qutebrowser/bookmarks
+/.config/qutebrowser/quickmarks
