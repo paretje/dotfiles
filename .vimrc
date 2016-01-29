@@ -43,7 +43,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'mhinz/vim-grepper'
@@ -52,6 +51,7 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -250,10 +250,6 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
 
-" jedi options
-let g:jedi#completions_enabled = 0
-let g:jedi#force_py_version = 3
-
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
 
@@ -339,7 +335,7 @@ au FileType ledger	normal! zn
 au FileType aptconf	setlocal commentstring=//%s
 
 " python ft options
-au FileType python	setlocal omnifunc=jedi#completions
+au FileType python	setlocal omnifunc=
 
 " xmobarrc ft options
 au BufRead ~/.xmobarrc	setlocal syntax=haskell nospell
