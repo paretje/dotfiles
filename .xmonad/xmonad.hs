@@ -20,7 +20,8 @@ myConfig = defaultConfig
     , clickJustFocuses = False }
         `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command --lock")
-    , ("M-p", spawn "exec gmrun")
+    , ("M-p", spawn "exec rofi -show run")
+    , ("M-S-p", spawn "exec gmrun")
     , ("M-S-q", spawn "dmenu-logout")
     , ("M-C-S-q", io (exitWith ExitSuccess))
     , ("M-<F5>", spawn "scrot \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
