@@ -163,6 +163,7 @@ let g:javacomplete_methods_paren_close_noargs = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tagbar#enabled = 0
+let g:airline_theme_patch_func = 'AirlineThemePatch'
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -467,3 +468,12 @@ fun CloseTag()
 		call feedkeys("\<C-X>\<C-O>\<BS>\<Right>", 'n')
 	endif
 endfun
+
+function! AirlineThemePatch(palette)
+	if g:airline_theme ==# 'bubblegum'
+		for l:mode in keys(a:palette)
+			let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
+			let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
+		endfor
+	endif
+endfunction
