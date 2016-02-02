@@ -24,7 +24,7 @@ myConfig = defaultConfig
     , ("M-S-p", spawn "exec gmrun")
     , ("M-S-q", spawn "dmenu-logout")
     , ("M-C-S-q", io (exitWith ExitSuccess))
-    , ("M-<F5>", spawn "scrot \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
+    , ("M-<F5>", spawn "scrot --exec \"notify-send 'Screenshot saved' '\\$n'\" \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
     , ("M-<F6>", spawn "if [ $(xbacklight | sed 's/\\..*$//') -ge 10 ] ; then xbacklight -dec 10 ; fi")
     , ("M-<F7>", spawn "xbacklight -inc 10")
     , ("M-<F8>", spawn "amixer set Master toggle")
