@@ -1,6 +1,12 @@
 # Enable 256 colors in xfce4-terminal
 if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
-	TERM=xterm-256color
+    TERM=xterm-256color
+fi
+
+# Clone antigen if unavailable
+if [ ! -f "$HOME/.zsh/antigen/antigen.zsh" ]; then
+    mkdir -p .zsh
+    git -C "$HOME/.zsh" clone https://github.com/zsh-users/antigen.git
 fi
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
@@ -59,6 +65,9 @@ bindkey -M viins '^d' delete-char
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
+
+# Use similar word definition as vim
+WORDCHARS="_-."
 
 # Set up the prompt
 autoload -Uz promptinit

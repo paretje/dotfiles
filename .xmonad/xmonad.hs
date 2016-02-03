@@ -7,25 +7,24 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import System.Exit
 import XMonad.Layout.LayoutModifier
-import XMonad.Hooks.EwmhDesktops
 
 main :: IO ()
 main = xmonad =<< myXmobar myConfig
 
-myConfig = ewmh defaultConfig
+myConfig = defaultConfig
     { modMask = mod3Mask
     , terminal = "exec urxvtcd -e sh -c 'session=$(tmux ls | grep -v -m 1 \"(attached)$\" | sed \"s/^\\([0-9]*\\):.*$/\\1/\"); if [ \"$session\" = \"\" ]; then exec tmux new-session ; else exec tmux attach-session -t $session ; fi'"
     , manageHook = myManageHook <+> manageHook defaultConfig
     , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
     , focusFollowsMouse = False
-    , clickJustFocuses = False
-    , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook }
+    , clickJustFocuses = False }
         `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command --lock")
-    , ("M-p", spawn "exec gmrun")
+    , ("M-p", spawn "exec rofi -glob  -show run")
+    , ("M-S-p", spawn "exec gmrun")
     , ("M-S-q", spawn "dmenu-logout")
     , ("M-C-S-q", io (exitWith ExitSuccess))
-    , ("M-<F5>", spawn "scrot \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
+    , ("M-<F5>", spawn "scrot --exec \"notify-send 'Screenshot saved' '\\$n'\" \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")
     , ("M-<F6>", spawn "if [ $(xbacklight | sed 's/\\..*$//') -ge 10 ] ; then xbacklight -dec 10 ; fi")
     , ("M-<F7>", spawn "xbacklight -inc 10")
     , ("M-<F8>", spawn "amixer set Master toggle")

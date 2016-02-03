@@ -20,7 +20,12 @@
 /.ghc
 /.gksu.lock
 /.gnome2/keyrings
-/.gnupg
+/.gnupg/private-keys-v1.d
+/.gnupg/pubring.gpg
+/.gnupg/random_seed
+/.gnupg/secring.gpg
+/.gnupg/sshcontrol
+/.gnupg/trustdb.gpg
 /.gpg-agent-info
 /.gstreamer-0.10
 /.icedove
@@ -44,7 +49,7 @@
 /.xmonad/xmonad.o
 /.xsession-errors
 /.xsession-errors.old
-/Downloads
+/downloads
 /bin
 /cloud
 /octave-workspace
@@ -61,6 +66,7 @@
 /.java
 /.gnome2
 *.swp
+*~
 /.gconf
 /.eclipse
 /.config/libreoffice
@@ -105,7 +111,7 @@
 /.config/chromium
 /.oh-my-zsh
 /.zsh-update
-/.zsh/antigen-files
+/.zsh
 /.local/share/nvim
 /.local/lib
 /.local/include
@@ -118,7 +124,6 @@
 /.vim/javacomplete.txt
 /.vim/autoload/plug.vim
 /.vim/autoload/plug.vim.old
-/.vim/.init.vim-rplugin~
 /.config/QtProject.conf
 /Gemfile.lock
 /.local/bin
@@ -126,3 +131,11 @@ tags
 /.local/share/zathura
 /.urxvt
 *.log
+/rfs
+/.kodi
+/.vim/javacomplete_java.log.*
+/.guard_history
+/.nvimlog
+/.local/share/qutebrowser
+/.config/qutebrowser/bookmarks
+/.config/qutebrowser/quickmarks

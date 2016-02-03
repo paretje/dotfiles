@@ -1,5 +1,9 @@
+set editor=nvim-qt
+set hintchars=fjdkslaghrueiwovncm
+
 nmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
 mmap x :javascript document.getElementById("hdrAHTButton").click()<CR>m
+imap <C-O> <ESC>e
 nmap r :javascript smartReply()<CR>
 nmap / <C-S-k>
 nmap <Tab> za
