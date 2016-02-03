@@ -145,6 +145,8 @@ set nostartofline
 set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
 set pastetoggle=<Leader>p
+" Show print dialog instead of using the default printer
+set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 
 " Set YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_insertion = 1
