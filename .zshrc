@@ -3,12 +3,6 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
-# Clone antigen if unavailable
-if [ ! -f "$HOME/.zsh/antigen/antigen.zsh" ]; then
-    mkdir -p .zsh
-    git -C "$HOME/.zsh" clone https://github.com/zsh-users/antigen.git
-fi
-
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
 
