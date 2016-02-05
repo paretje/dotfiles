@@ -136,6 +136,15 @@ tags
 /.vim/javacomplete_java.log.*
 /.guard_history
 /.nvimlog
-/.local/share/qutebrowser
+/.local/share/qutebrowser/sessions
+/.local/share/qutebrowser/cmd-history
+/.local/share/qutebrowser/cookies
+/.local/share/qutebrowser/state
+/.local/share/qutebrowser/history
+/.local/share/qutebrowser/blocked-hosts
+/.local/share/qutebrowser/domains.yml
 /.config/qutebrowser/bookmarks
 /.config/qutebrowser/quickmarks
+.caff/keys
+.caff/gnupghome/random_seed
+.caff/gnupghome/*.gpg
