@@ -421,7 +421,7 @@ com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -
 com BeamerBackground hi Normal ctermbg=232 | set background=dark
 
 " Custom functions
-fun ToggleSpellLang()
+fun! ToggleSpellLang()
 	if &spelllang ==# 'en'
 		setlocal spelllang=nl
 	else
@@ -430,7 +430,7 @@ fun ToggleSpellLang()
 	setlocal spelllang?
 endfun
 
-fun ToggleFolding()
+fun! ToggleFolding()
 	if &l:foldmethod ==# 'manual'
 		setlocal foldmethod=syntax
 		return
@@ -438,12 +438,12 @@ fun ToggleFolding()
 	normal! zi
 endfun
 
-fun HighlightSearch(args)
+fun! HighlightSearch(args)
 	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
 	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
 
-fun OrgRecalculateTable(file)
+fun! OrgRecalculateTable(file)
 	let l:pos = getcurpos()
 	write
 	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
@@ -451,12 +451,12 @@ fun OrgRecalculateTable(file)
 	call setpos('.', l:pos)
 endfun
 
-fun TableModeToggle()
+fun! TableModeToggle()
 	TableModeToggle
 	AirlineRefresh
 endfun
 
-fun AirlineTableMode(...)
+fun! AirlineTableMode(...)
 	if exists('b:table_mode_active') && b:table_mode_active
 		let w:airline_section_a = 'TABLE MODE'
 	endif
@@ -464,18 +464,18 @@ endfun
 call airline#add_statusline_func('AirlineTableMode')
 
 " Close HTML tag, assuming the use of delimitMate
-fun CloseTag()
+fun! CloseTag()
 	call feedkeys('/', 'n')
 	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
 		call feedkeys("\<C-X>\<C-O>\<BS>\<Right>", 'n')
 	endif
 endfun
 
-function! AirlineThemePatch(palette)
+fun! AirlineThemePatch(palette)
 	if g:airline_theme ==# 'bubblegum'
 		for l:mode in keys(a:palette)
 			let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
 			let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
 		endfor
 	endif
-endfunction
+endfun
