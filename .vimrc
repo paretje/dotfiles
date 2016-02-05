@@ -51,7 +51,6 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -62,6 +61,7 @@ if has('nvim')
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'radenling/vim-dispatch-neovim'
 	Plug 'paretje/nvim-man'
+	Plug 'zchee/deoplete-jedi', {'for': 'python'}
 	Plug 'kassio/neoterm'
 endif
 
