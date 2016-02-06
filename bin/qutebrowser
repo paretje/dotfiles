@@ -1,0 +1,4 @@
+#!/bin/sh
+rm "$HOME/.local/share/qutebrowser/history"
+sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
+exec "$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser" "$@"
