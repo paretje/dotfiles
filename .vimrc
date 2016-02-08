@@ -16,6 +16,7 @@ Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'python-rope/ropevim', {'for': 'python'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -175,6 +176,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_exclude_nomod = 1
+
+" Pydoc options
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
