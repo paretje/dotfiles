@@ -50,6 +50,7 @@ xscreensaver -no-splash &
 dunst &
 clipit --daemon &
 test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
+getmails --daemon &
 ! pgrep unisister > /dev/null && unisister --no-gui &
 
 exec xmonad

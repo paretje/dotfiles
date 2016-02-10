@@ -145,6 +145,9 @@ tags
 /.local/share/qutebrowser/domains.yml
 /.config/qutebrowser/bookmarks
 /.config/qutebrowser/quickmarks
-.caff/keys
-.caff/gnupghome/random_seed
-.caff/gnupghome/*.gpg
+/.caff/keys
+/.caff/gnupghome/random_seed
+/.caff/gnupghome/*.gpg
+/.mail
+/.abook/addressbook
+/.sylfilter

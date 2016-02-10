@@ -1,0 +1,63 @@
+IMAPAccount prive
+Host rpi.online-urbanus.be
+UseIMAPS yes
+CertificateFile /etc/ssl/certs/rpi.online-urbanus.be
+User kevin@paretje.be
+PassCmd "secret-tool lookup email kevin@paretje.be"
+
+IMAPStore prive-remote
+Account prive
+
+MaildirStore prive-local
+Path ~/.mail/prive/
+Inbox ~/.mail/prive/INBOX
+Flatten .
+
+Channel prive
+Master :prive-remote:
+Slave :prive-local:
+Create Slave
+Patterns "*"
+SyncState "*"
+
+IMAPAccount ugent
+Host mail.ugent.be
+User kmvelghe
+PassCmd "secret-tool lookup email kevin.velghe@ugent.be"
+
+IMAPStore ugent-remote
+Account ugent
+
+MaildirStore ugent-local
+Path ~/.mail/ugent/
+Inbox ~/.mail/ugent/INBOX
+Flatten .
+
+Channel ugent
+Master :ugent-remote:
+Slave :ugent-local:
+Create Slave
+Patterns "*"
+SyncState "*"
+
+IMAPAccount notes
+Host rpi.online-urbanus.be
+UseIMAPS yes
+CertificateFile /etc/ssl/certs/rpi.online-urbanus.be
+User notes@online-urbanus.be
+PassCmd "secret-tool lookup email notes@online-urbanus.be"
+
+IMAPStore notes-remote
+Account notes
+
+MaildirStore notes-local
+Path ~/.mail/notes/
+Inbox ~/.mail/notes/INBOX
+Flatten .
+
+Channel notes
+Master :notes-remote:
+Slave :notes-local:
+Create Slave
+Patterns "*"
+SyncState "*"
