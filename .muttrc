@@ -105,6 +105,7 @@ bind index s vfolder-from-query
 bind index,pager c mail
 bind index,pager l modify-labels
 macro index o '<change-vfolder>?/'
+bind browser o search
 
 # only use html mails if nothing else
 alternative_order text/plain text/enriched text/html
