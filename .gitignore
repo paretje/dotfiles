@@ -151,3 +151,5 @@ tags
 /.mail
 /.abook/addressbook
 /.sylfilter
+/.config/qpdfview
+/.local/share/qpdfview
