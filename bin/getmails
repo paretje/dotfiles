@@ -11,7 +11,7 @@ fetch_mails() {
 }
 
 if [ "$1" = "--daemon" ]; then
-	sleep 10s
+	sleep 1s
 	while true; do
 		if ! 3gusage; then
 			fetch_mails
