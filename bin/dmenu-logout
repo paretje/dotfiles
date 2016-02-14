@@ -10,18 +10,34 @@ case "$choice" in
 		if [ -x /usr/bin/nmcli ]; then
 			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
 		fi
-		systemctl poweroff &
+		if [ -x /bin/systemctl ]; then
+			systemctl poweroff &
+		else
+			gksudo -- shutdown -h now
+		fi
 		;;
 	reboot)
 		if [ -x /usr/bin/nmcli ]; then
 			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
 		fi
-		systemctl reboot &
+		if [ -x /bin/systemctl ]; then
+			systemctl reboot &
+		else
+			gksudo -- shutdown -r now
+		fi
 		;;
 	suspend)
-		systemctl suspend &
+		if [ -x /bin/systemctl ]; then
+			systemctl suspend &
+		else
+			gksudo pm-suspend &
+		fi
 		;;
 	hibernate)
-		systemctl hibernate &
+		if [ -x /bin/systemctl ]; then
+			systemctl hibernate &
+		else
+			gksudo pm-hibernate &
+		fi
 		;;
 esac
