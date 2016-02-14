@@ -249,6 +249,21 @@ let g:neomake_vim_vint_maker = {
 		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
 	\ }
+let g:neomake_c_gcc_maker = {
+	\ 'args': ['-fsyntax-only', '-Wall', '-Wextra', '--std=gnu99'],
+	\ 'errorformat':
+		\ '%-G%f:%s:,' .
+		\ '%-G%f:%l: %#error: %#(Each undeclared identifier is reported only%.%#,' .
+		\ '%-G%f:%l: %#error: %#for each function it appears%.%#,' .
+		\ '%-GIn file included%.%#,' .
+		\ '%-G %#from %f:%l\,,' .
+		\ '%f:%l:%c: %trror: %m,' .
+		\ '%f:%l:%c: %tarning: %m,' .
+		\ '%f:%l:%c: %m,' .
+		\ '%f:%l: %trror: %m,' .
+		\ '%f:%l: %tarning: %m,'.
+		\ '%f:%l: %m'
+	\ }
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
