@@ -50,6 +50,9 @@ set nm_exclude_tags="spam,deleted"
 # set index format
 set index_format = "%Z %{%H:%m %b %d}  %-15.15L  %s %> (%g)"
 
+# set order of index
+set sort_aux=last-date-received
+
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
 set nm_record_tags=sent
