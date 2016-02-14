@@ -52,6 +52,7 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Rip-Rip/clang_complete'
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -257,6 +258,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources.c = ['omni', 'buffer']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -286,6 +289,12 @@ let g:table_mode_toggle_map = 't'
 
 " delimitMate options
 let g:delimitMate_expand_cr = 1
+
+" clang_complete options
+let g:clang_library_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
+let g:clang_complete_auto = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_hl_errors = 0
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
@@ -357,6 +366,9 @@ au BufRead ~/.xsession	setfiletype sh
 au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
 au FileType help nnoremap <silent> <nowait> <buffer> u <C-U>
 au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
+
+" C ft options
+au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
 
 " terminal options
 if has('nvim')
