@@ -124,3 +124,6 @@ macro index <space> '<change-vfolder><enter>'
 
 # easy selection of thread
 bind index T tag-thread
+
+# sync new mail status immediately when opening message
+macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
