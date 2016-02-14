@@ -1,8 +1,14 @@
 scriptencoding utf-8
+
+" remove all autocmd's
+autocmd!
+
+" download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+" load plug and declare all plugins
 call plug#begin('~/.vim/bundle')
 
 Plug 'craigemery/vim-autotag'
@@ -449,9 +455,9 @@ else
 endif
 
 " Custom commands
-com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
-com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
-com BeamerBackground hi Normal ctermbg=232 | set background=dark
+com! -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
+com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
+com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 
 " Custom functions
 fun! ToggleSpellLang()
