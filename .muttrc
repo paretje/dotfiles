@@ -14,7 +14,7 @@ virtual-mailboxes \
                   "compchal"       "notmuch://?query=tag:compchal" \
                   "hersch"         "notmuch://?query=tag:hersch" \
                   "discalg"        "notmuch://?query=tag:discalg" \
-                  "spam"           "notmuch://?query=tag:spam" \
+                  "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
                   "sent"           "notmuch://?query=tag:sent"
 
 # open first virtual mailbox when starting
