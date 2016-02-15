@@ -58,7 +58,7 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Rip-Rip/clang_complete'
+Plug 'Rip-Rip/clang_complete', {'for': 'c'}
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
