@@ -59,6 +59,10 @@ set nm_record_tags=sent
 send2-hook '~f ^Kevin.Velghe@UGent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^Kevin.Velghe@UGent.be$' 'set record="~/.mail/prive/Sent"'
 
+# set send command
+send2-hook '~f ^Kevin.Velghe@UGent.be$' 'set sendmail="/usr/bin/msmtp -a ugent"'
+send2-hook !'~f ^Kevin.Velghe@UGent.be$' 'set sendmail="/usr/bin/msmtp -a prive"'
+
 # just use default reply rules
 set fast_reply=yes
 set include=yes
