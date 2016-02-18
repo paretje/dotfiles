@@ -1,4 +1,8 @@
-. "$HOME/.profile"
+# Load profile if not done yet
+if [ "$GPG_ENV_FILE" = "" ]; then
+	. "$HOME/.profile"
+fi
+
 if [ -f "$GPG_ENV_FILE" ]; then
 	. "$GPG_ENV_FILE"
 	export GPG_TTY=$(tty)
@@ -18,6 +22,9 @@ fi
 # Use GTK style in Qt5 applications
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
+
+# set keyboard layout
+setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
 xmodmap -e 'clear lock'
@@ -39,6 +46,11 @@ if [ "$HOST" = "kevin-laptop" ]; then
 elif [ "$HOST" = "kevin-desktop" ]; then
 	xrandr --addmode VGA-1 1920x1080_sharp
 	xrandr --output VGA-1 --mode 1920x1080_sharp
+fi
+
+# Set brightness of laptop
+if [ "$HOST" = "kevin-laptop" ];then
+	xbacklight -set 30
 fi
 
 # Load Xresources

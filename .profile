@@ -77,6 +77,11 @@ export PAGER=less
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
 
+# if this is tty1, start X server
+if [ "$TTY" = "/dev/tty1" ]; then
+    exec startx
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
