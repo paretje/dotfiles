@@ -52,9 +52,9 @@ if [ -d "$HOME/.local/share/man" ]; then
 fi
 
 # set MANPATH so it includes user's rubygems man's if it exists
-if [ -d "$HOME/.gem/ruby/2.1.0/gems" ] ; then
-    if [ -n "$(find $HOME/.gem/ruby/2.1.0/gems -maxdepth 2 -path $HOME/.gem/ruby/2.1.0/gems'/*/man' -print -quit)" ]; then
-        for dir in $HOME/.gem/ruby/2.1.0/gems/*/man ; do
+if [ -d "$GEM_HOME/gems" ] ; then
+    if [ -n "$(find $GEM_HOME/gems -maxdepth 2 -path $GEM_HOME/gems'/*/man' -print -quit)" ]; then
+        for dir in $GEM_HOME/gems/*/man ; do
             MANPATH="$MANPATH:$dir"
         done
     fi
