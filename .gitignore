@@ -155,3 +155,6 @@ tags
 /.local/share/qpdfview
 /.weechat/script/plugins.xml.gz
 /.config/gaupol/gaupol.conf
+/.local/share/doc
+/.local/share/man
+/.local/etc

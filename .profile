@@ -47,8 +47,8 @@ fi
 export MANPATH=$(manpath)
 
 # set MANPATH so it includes user's private man's if it exists
-if [ -d "$HOME/.local/man" ]; then
-    MANPATH="$HOME/.local/man:$MANPATH"
+if [ -d "$HOME/.local/share/man" ]; then
+    MANPATH="$HOME/.local/share/man:$MANPATH"
 fi
 
 # set MANPATH so it includes user's rubygems man's if it exists
