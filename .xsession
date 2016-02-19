@@ -53,6 +53,9 @@ if [ "$HOST" = "kevin-laptop" ];then
 	xbacklight -set 30
 fi
 
+# Set default mouse pointer
+xsetroot -cursor_name left_ptr
+
 # Load Xresources
 xrdb ~/.Xresources
 
