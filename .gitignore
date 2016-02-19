@@ -158,3 +158,4 @@ tags
 /.local/share/doc
 /.local/share/man
 /.local/etc
+/.wget-hsts
