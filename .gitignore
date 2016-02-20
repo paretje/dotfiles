@@ -160,3 +160,4 @@ tags
 /.local/etc
 /.wget-hsts
 /.gnupg/crls.d/DIR.txt
+/.gnupg/.gpg-v21-migrated
