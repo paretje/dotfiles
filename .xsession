@@ -56,6 +56,9 @@ fi
 # Set default mouse pointer
 xsetroot -cursor_name left_ptr
 
+# Set wallpaper
+xloadimage -onroot /usr/share/wallpapers/joy_inksplat/contents/images/1920x1080.png
+
 # Load Xresources
 xrdb ~/.Xresources
 
