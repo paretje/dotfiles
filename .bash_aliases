@@ -17,3 +17,7 @@ alias cal='ncal -b'
 alias less='less -R -i'
 
 alias gpg='gpg2'
+
+if [ "$TERM" = "linux" ]; then
+  alias vi='vim'
+fi
