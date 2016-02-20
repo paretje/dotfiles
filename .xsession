@@ -1,9 +1,9 @@
 # Load profile if not done yet
-if [ "$GPG_ENV_FILE" = "" ]; then
+if [ -z "$LEDGER_FILE" ]; then
 	. "$HOME/.profile"
 fi
 
-if [ -f "$GPG_ENV_FILE" ]; then
+if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
 	. "$GPG_ENV_FILE"
 	export GPG_TTY=$(tty)
 	export GPG_AGENT_INFO

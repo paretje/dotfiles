@@ -62,11 +62,16 @@ fi
 
 # Start gpg-agent if not yet running
 if hash gpg-agent; then
-    export GPG_ENV_FILE="$HOME/.gpg-agent-info"
-    . "$GPG_ENV_FILE"
-    export GPG_AGENT_INFO
-    if ! gpg-agent; then
-        gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+    if gpg2 --version | fgrep -q 'gpg (GnuPG) 2.0'; then
+        export GPG_ENV_FILE="$HOME/.gpg-agent-info"
+        . "$GPG_ENV_FILE"
+        export GPG_AGENT_INFO
+        if ! gpg-agent; then
+            gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+        fi
+    else
+        gpgconf --launch gpg-agent
+        export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
     fi
 fi
 
