@@ -159,3 +159,4 @@ tags
 /.local/share/man
 /.local/etc
 /.wget-hsts
+/.gnupg/crls.d/DIR.txt
