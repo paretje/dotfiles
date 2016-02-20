@@ -382,7 +382,7 @@ au FileType python	setlocal omnifunc=
 au BufRead ~/.xmobarrc	setlocal syntax=haskell nospell
 
 " sh ft options
-au BufRead ~/.xsession	setfiletype sh
+au BufRead ~/.xsession	set filetype=sh
 
 " help ft options
 au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
