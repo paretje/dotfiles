@@ -89,8 +89,8 @@ bind attach,index,pager \CD next-page
 bind attach,index,pager \CU previous-page
 bind pager g top
 bind pager G bottom
-bind attach,index g first-entry
-bind attach,index G last-entry
+bind attach,index,browser g first-entry
+bind attach,index,browser G last-entry
 
 # enable backward search
 bind alias,attach,browser,index,compose,pager,pgp,postpone,mix N search-opposite
