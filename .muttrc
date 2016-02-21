@@ -111,8 +111,8 @@ bind index s vfolder-from-query
 # some muttator-like keybindings
 bind index,pager c mail
 bind index,pager l modify-labels
-macro index o '<change-vfolder>?/'
-bind browser o search
+macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
+macro index o '<change-vfolder>?o'
 
 # only use html mails if nothing else
 alternative_order text/plain text/enriched text/html
