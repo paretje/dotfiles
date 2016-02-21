@@ -63,6 +63,10 @@ send2-hook !'~f ^Kevin.Velghe@UGent.be$' 'set record="~/.mail/prive/Sent"'
 send2-hook '~f ^Kevin.Velghe@UGent.be$' 'set sendmail="/usr/bin/msmtp -a ugent"'
 send2-hook !'~f ^Kevin.Velghe@UGent.be$' 'set sendmail="/usr/bin/msmtp -a prive"'
 
+# set gpg key
+send2-hook '~f ^Kevin.Velghe@UGent.be$' 'set pgp_sign_as="42AF62E6"'
+send2-hook !'~f ^Kevin.Velghe@UGent.be$' 'set pgp_sign_as="64AD7E10"'
+
 # just use default reply rules
 set fast_reply=yes
 set include=yes
