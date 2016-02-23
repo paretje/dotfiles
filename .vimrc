@@ -314,7 +314,7 @@ let g:table_mode_toggle_map = 't'
 let g:delimitMate_expand_cr = 1
 
 " clang_complete options
-let g:clang_library_path = '/usr/lib/x86_64-linux-gnu/libclang.so.1'
+let g:clang_library_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
 let g:clang_complete_auto = 0
 let g:clang_make_default_keymappings = 0
 let g:clang_hl_errors = 0
