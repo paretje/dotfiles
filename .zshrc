@@ -16,6 +16,7 @@ source "$HOME/.zsh/antigen/antigen.zsh"
 antigen bundle olivierverdier/zsh-git-prompt
 antigen bundle zsh-users/zsh-completions
 antigen bundle vi-mode
+antigen bundle pip
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
