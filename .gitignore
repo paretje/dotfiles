@@ -163,3 +163,4 @@ tags
 /.gnupg/.gpg-v21-migrated
 /.gradle/caches
 /.gradle/daemon
+/.pip/zsh-cache
