@@ -161,3 +161,5 @@ tags
 /.wget-hsts
 /.gnupg/crls.d/DIR.txt
 /.gnupg/.gpg-v21-migrated
+/.gradle/caches
+/.gradle/daemon
