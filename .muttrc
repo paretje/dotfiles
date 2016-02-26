@@ -34,8 +34,8 @@ alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
 
 # set from header
 set realname="Kevin Velghe"
-send-hook '~t @UGent.be$' 'set from="Kevin.Velghe@UGent.be"'
-send-hook !'~t @UGent.be$' 'set from="kevin@paretje.be"'
+send-hook '~t @ugent.be$' 'set from="Kevin.Velghe@UGent.be"'
+send-hook !'~t @ugent.be$' 'set from="kevin@paretje.be"'
 
 # reply using identity sent to
 set reverse_name=yes
@@ -44,7 +44,6 @@ set reverse_name=yes
 set edit_headers=yes
 
 # don't show spam and deleted mails when searching
-# TODO: do I currently actually use the delete tag?
 set nm_exclude_tags="spam,deleted"
 
 # set index format
