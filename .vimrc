@@ -16,7 +16,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
-Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml clean install'}
 Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'vim-airline/vim-airline'
@@ -60,6 +59,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Rip-Rip/clang_complete', {'for': 'c'}
 Plug 'junegunn/gv.vim'
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -164,11 +164,6 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_semantic_triggers = {'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
 let g:ycm_filetype_blacklist = {'help': 1, 'text': 1, 'mail': 1, 'dotoo': 1, 'markdown': 1}
-
-" Set javacomplete options
-let g:nailgun_port = '2113'
-let g:javacomplete_ng = 'ng-nailgun'
-let g:javacomplete_methods_paren_close_noargs = 1
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -341,10 +336,8 @@ au BufHidden nmbs.org		setlocal nobuflisted
 
 " Java ft options
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
-au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
-au FileType java	JavaCompleteAddSourcePath .
+au FileType java	let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
@@ -457,7 +450,6 @@ else
 endif
 
 " Custom commands
-com! -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
 com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 
