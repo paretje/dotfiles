@@ -386,6 +386,9 @@ au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
 " C ft options
 au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
 
+" gradle ft options
+au BufRead,BufNewFile *.gradle setfiletype groovy
+
 " terminal options
 if has('nvim')
 	au TermOpen * setlocal nospell
