@@ -17,7 +17,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'paretje/javacomplete', {'for': 'java', 'do': 'mvn -f java/pom.xml clean install'}
-Plug 'Dinduks/vim-java-get-set', {'for': 'java'}
+Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
