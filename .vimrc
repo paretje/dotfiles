@@ -278,6 +278,7 @@ let g:deoplete#omni_patterns.markdown = []
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tags', 'buffer']
 let g:deoplete#ignore_sources.c = ['tags', 'buffer', 'omni']
+let g:deoplete#ignore_sources.java = ['tags', 'buffer', 'member']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
