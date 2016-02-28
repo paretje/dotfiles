@@ -390,6 +390,9 @@ au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
 
+" crontab ft options
+au BufRead,BufNewFile ~/.crontab setfiletype crontab
+
 " terminal options
 if has('nvim')
 	au TermOpen * setlocal nospell
