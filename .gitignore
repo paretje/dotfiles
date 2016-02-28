@@ -164,3 +164,4 @@ tags
 /.gradle/caches
 /.gradle/daemon
 /.pip/zsh-cache
+/.mutt/postponed

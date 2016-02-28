@@ -85,6 +85,9 @@ set timeout=10
 # enable caching
 set header_cache=~/.cache/mutt
 
+# postpone messages in mutt folder
+set postponed="~/.mutt/postponed"
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
@@ -144,3 +147,6 @@ macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mai
 
 # add binding to reply to send reply to all recipients
 bind index,pager R group-reply
+
+# add binding to fetch postponed message
+bind index D recall-message
