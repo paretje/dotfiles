@@ -9,11 +9,13 @@ virtual-mailboxes \
                   "admin"          "notmuch://?query=tag:admin" \
                   "thesis"         "notmuch://?query=tag:thesis" \
                   "oci"            "notmuch://?query=tag:oci" \
+                  "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
                   "announcements"  "notmuch://?query=tag:ann" \
                   "signature"      "notmuch://?query=tag:signature" \
                   "compchal"       "notmuch://?query=tag:compchal" \
                   "hersch"         "notmuch://?query=tag:hersch" \
                   "discalg"        "notmuch://?query=tag:discalg" \
+                  "kwaninf"        "notmuch://?query=tag:kwaninf" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
                   "sent"           "notmuch://?query=tag:sent"
 
