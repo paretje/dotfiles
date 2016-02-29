@@ -48,7 +48,7 @@ other_email=Kevin.Velghe@UGent.be;kevindeprey@online-urbanus.be;info@online-urba
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=unread;inbox;new
 ignore=
 
 # Search configuration
