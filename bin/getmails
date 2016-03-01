@@ -3,9 +3,9 @@ fetch_mails() {
 	chronic mbsync -a
 	chronic notmuch new
 
-	new=$(mailcheck -cb)
-	if [ "$new" != "" ]; then
-		notify-send "You've got new mail" "$new"
+	count=$(notmuch count tag:unread)
+	if [ $count -ne 0 ]; then
+		notify-send "You've got mail" "$count unread mail(s)"
 		beep-mail
 	fi
 }
