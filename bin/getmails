@@ -20,4 +20,6 @@ if [ "$1" = "--daemon" ]; then
 	done
 elif [ "$1" = "--now" ]; then
 	fetch_mails
+else
+	echo "Usage: getmails [--daemon|--now]"
 fi
