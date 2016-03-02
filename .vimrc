@@ -251,14 +251,12 @@ let g:neomake_vim_vint_maker = {
 		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
 	\ }
-let g:neomake_java_javac_maker = {
-	\ 'errorformat':
-		\ '%E%f:%l: error: %m,'.
-		\ '%W%f:%l: warning: %m,'.
-		\ '%E%f:%l: %m,'.
-		\ '%Z%p^,'.
-		\ '%-G%.%#'
-	\ }
+let g:neomake_java_javac_errorformat = 
+	\ '%E%f:%l: error: %m,'.
+	\ '%W%f:%l: warning: %m,'.
+	\ '%E%f:%l: %m,'.
+	\ '%Z%p^,'.
+	\ '%-G%.%#'
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
