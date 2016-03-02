@@ -266,6 +266,14 @@ let g:neomake_c_gcc_maker = {
 		\ '%f:%l: %tarning: %m,'.
 		\ '%f:%l: %m'
 	\ }
+let g:neomake_java_javac_maker = {
+	\ 'errorformat':
+		\ '%E%f:%l: error: %m,'.
+		\ '%W%f:%l: warning: %m,'.
+		\ '%E%f:%l: %m,'.
+		\ '%Z%p^,'.
+		\ '%-G%.%#'
+	\ }
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
