@@ -339,6 +339,7 @@ au BufHidden nmbs.org		setlocal nobuflisted
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 au FileType java	let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
+au FileType java	setlocal keywordprg=:JavaDoc
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
@@ -459,6 +460,7 @@ endif
 " Custom commands
 com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
+com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" | xargs qutebrowser')
 
 " Custom functions
 fun! ToggleSpellLang()
