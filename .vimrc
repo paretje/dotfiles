@@ -246,17 +246,25 @@ let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
 au BufWritePost * Neomake
 let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
+
 let g:neomake_vim_vint_maker = {
 	\ 'args': ['--style-problem', '-f',
 		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
 	\ }
+
 let g:neomake_java_javac_errorformat = 
 	\ '%E%f:%l: error: %m,'.
 	\ '%W%f:%l: warning: %m,'.
 	\ '%E%f:%l: %m,'.
 	\ '%Z%p^,'.
 	\ '%-G%.%#'
+let g:neomake_java_checkstyle_maker = {
+	\ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
+	\ 'errorformat':
+		\ '[%t%*[^]]] %f:%l:%c: %m [%s]'
+	\ }
+let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
