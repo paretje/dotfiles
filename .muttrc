@@ -129,7 +129,7 @@ auto_view text/html
 # basic tagging of mails
 macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo<return><sync-mailbox>' "archive mail"
 macro index,pager I '<modify-labels-then-hide>-inbox -unread<return><sync-mailbox>' "remove from inbox"
-macro index,pager S '<modify-labels-then-hide>-inbox -unread +spam<return><sync-mailbox>' "mark as spam"
+macro index,pager S '<modify-labels-then-hide>-inbox -unread -spamy +spam<return><sync-mailbox>' "mark as spam"
 
 # go to next mailbox with unread mails
 macro index <space> '<change-vfolder><enter>'
