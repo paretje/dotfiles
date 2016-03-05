@@ -467,7 +467,7 @@ endif
 " Custom commands
 com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
-com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" | xargs qutebrowser')
+com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 
 " Custom functions
 fun! ToggleSpellLang()
