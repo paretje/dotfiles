@@ -257,6 +257,7 @@ let g:neomake_vim_vint_maker = {
 
 let g:neomake_java_javac_maker = {
 	\ 'args': ['-Xlint'],
+	\ 'buffer_output': 1,
 	\ 'errorformat':
 		\ '%E%f:%l: error: %m,'.
 		\ '%W%f:%l: warning: %m,'.
