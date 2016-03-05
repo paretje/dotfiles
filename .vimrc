@@ -319,6 +319,9 @@ let g:clang_complete_auto = 0
 let g:clang_make_default_keymappings = 0
 let g:clang_hl_errors = 0
 
+" gitgutter options
+let g:gitgutter_sign_column_always = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
