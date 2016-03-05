@@ -447,6 +447,10 @@ inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
 nnoremap <Leader>ut :GundoToggle<CR>
+nnoremap , ;
+nnoremap \ ,
+vnoremap , ;
+vnoremap \ ,
 
 if has('nvim')
 	tnoremap <C-Q> <C-\><C-N>
