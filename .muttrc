@@ -152,3 +152,6 @@ bind index,pager R group-reply
 
 # add binding to fetch postponed message
 bind index D recall-message
+
+# add macro to fetch new mails
+macro index \CF '<shell-escape>getmails --now &<enter>'
