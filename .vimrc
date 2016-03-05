@@ -254,12 +254,15 @@ let g:neomake_vim_vint_maker = {
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
 	\ }
 
-let g:neomake_java_javac_errorformat = 
-	\ '%E%f:%l: error: %m,'.
-	\ '%W%f:%l: warning: %m,'.
-	\ '%E%f:%l: %m,'.
-	\ '%Z%p^,'.
-	\ '%-G%.%#'
+let g:neomake_java_javac_maker = {
+	\ 'args': ['-Xlint'],
+	\ 'errorformat':
+		\ '%E%f:%l: error: %m,'.
+		\ '%W%f:%l: warning: %m,'.
+		\ '%E%f:%l: %m,'.
+		\ '%Z%p^,'.
+		\ '%-G%.%#'
+	\ }
 let g:neomake_java_checkstyle_maker = {
 	\ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
 	\ 'errorformat':
