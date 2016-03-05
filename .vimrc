@@ -220,6 +220,7 @@ let g:rubycomplete_use_bundler = 1
 " NERDTree options
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
+let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
