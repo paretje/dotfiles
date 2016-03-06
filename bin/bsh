@@ -1,0 +1,2 @@
+#!/bin/sh
+exec rlwrap -a /usr/bin/bsh "$@"
