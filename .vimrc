@@ -253,7 +253,7 @@ let g:neomake_vim_vint_maker = {
 	\ 'args': ['--style-problem', '-f',
 		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
-	\ }
+\ }
 
 let g:neomake_java_javac_maker = {
 	\ 'args': ['-Xlint'],
@@ -264,13 +264,36 @@ let g:neomake_java_javac_maker = {
 		\ '%E%f:%l: %m,'.
 		\ '%Z%p^,'.
 		\ '%-G%.%#'
-	\ }
+\ }
 let g:neomake_java_checkstyle_maker = {
 	\ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
 	\ 'errorformat':
 		\ '[%t%*[^]]] %f:%l:%c: %m [%s]'
-	\ }
+\ }
 let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
+
+let g:neomake_sh_checkbashisms_maker = {
+	\ 'args': ['-fx'],
+	\ 'errorformat':
+		\ '%-Gscript %f is already a bash script; skipping,' .
+		\ '%Eerror: %f: %m\, opened in line %l,' .
+		\ '%Eerror: %f: %m,' .
+		\ '%Ecannot open script %f for reading: %m,' .
+		\ '%Wscript %f %m,%C%.# lines,' .
+		\ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
+		\ '%-G%.%#'
+\ }
+let g:neomake_sh_bashate_maker = {
+	\ 'errorformat': 
+		\ '%EE%n: %m,' .
+		\ '%Z - %f%\s%\+: L%l,' .
+		\ '%-G%.%#'
+\ }
+let g:neomake_sh_bash_maker = {
+	\ 'args': ['-n'],
+	\ 'errorformat': '%f: line %l: %m'
+\ }
+let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
