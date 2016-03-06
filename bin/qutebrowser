@@ -1,4 +1,17 @@
 #!/bin/sh
-rm "$HOME/.local/share/qutebrowser/history"
-sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
-exec "$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser" "$@"
+qutebrowser="$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser"
+
+clean_history() {
+	rm "$HOME/.local/share/qutebrowser/history"
+	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
+}
+
+if [ "$(pgrep -c qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
+	exec "$qutebrowser" "$@"
+elif 3gusage; then
+	clean_history
+	exec "$qutebrowser" "$@"
+else
+	clean_history
+	exec "$qutebrowser" :adblock-update "$@"
+fi
