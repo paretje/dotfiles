@@ -158,3 +158,4 @@ tags
 /.pip/zsh-cache
 /.mutt/postponed
 /.*_history
+/.config/pulse
