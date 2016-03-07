@@ -393,7 +393,7 @@ au FileType mail	setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z
 au BufRead /tmp/mutt*	1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
 
 " markdown ft options
-au FileType markdown	au BufWritePost <buffer> Neomake!
+au FileType markdown	call AutoMake()
 
 " ledger ft options
 au BufRead,BufNewFile *.journal	setf ledger
@@ -554,5 +554,11 @@ fun! AirlineThemePatch(palette)
 			let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
 			let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
 		endfor
+	endif
+endfun
+
+fun! AutoMake()
+	if filereadable('Makefile')
+		au BufWritePost <buffer> Neomake!
 	endif
 endfun
