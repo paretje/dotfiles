@@ -42,7 +42,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
 Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
-Plug 'simnalamburt/vim-mundo', {'on': 'GundoToggle'}
+Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'benekastah/neomake'
 Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -470,7 +470,7 @@ nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
-nnoremap <Leader>ut :GundoToggle<CR>
+nnoremap <Leader>ut :MundoToggle<CR>
 nnoremap , ;
 nnoremap \ ,
 vnoremap , ;
