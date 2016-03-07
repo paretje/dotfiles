@@ -61,6 +61,7 @@ Plug 'Rip-Rip/clang_complete', {'for': 'c'}
 Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'nelstrom/vim-markdown-folding'
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -220,9 +221,6 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
-
-" vim-markdown options
-let g:markdown_folding = 1
 
 " TComments options
 call tcomment#DefineType('matlab', '# %s')
@@ -388,6 +386,7 @@ au BufRead /tmp/mutt*	1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 " markdown ft options
 au FileType markdown	call AutoMake()
 au FileType markdown	setlocal filetype=markdown.pandoc
+au FileType markdown	setlocal foldmethod=manual
 
 " ledger ft options
 au BufRead,BufNewFile *.journal	setf ledger
@@ -503,7 +502,11 @@ endfun
 
 fun! ToggleFolding()
 	if &l:foldmethod ==# 'manual'
-		setlocal foldmethod=syntax
+		if &l:filetype =~# '^markdown'
+			setlocal foldmethod=expr
+		else
+			setlocal foldmethod=syntax
+		endif
 		return
 	endif
 	normal! zi
