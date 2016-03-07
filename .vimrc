@@ -60,6 +60,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Rip-Rip/clang_complete', {'for': 'c'}
 Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 if has('python') || has('python3')
 	Plug 'SirVer/ultisnips'
@@ -386,6 +387,7 @@ au BufRead /tmp/mutt*	1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 
 " markdown ft options
 au FileType markdown	call AutoMake()
+au FileType markdown	setlocal filetype=markdown.pandoc
 
 " ledger ft options
 au BufRead,BufNewFile *.journal	setf ledger
