@@ -1,3 +1,4 @@
+#!/bin/sh
 # Load profile if not done yet
 if [ -z "$LEDGER_FILE" ]; then
 	. "$HOME/.profile"
