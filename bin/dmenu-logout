@@ -13,7 +13,7 @@ case "$choice" in
 		if [ -x /bin/systemctl ]; then
 			systemctl poweroff &
 		else
-			gksudo -- shutdown -h now
+			sudo -- shutdown -h now
 		fi
 		;;
 	reboot)
@@ -23,21 +23,21 @@ case "$choice" in
 		if [ -x /bin/systemctl ]; then
 			systemctl reboot &
 		else
-			gksudo -- shutdown -r now
+			sudo -- shutdown -r now
 		fi
 		;;
 	suspend)
 		if [ -x /bin/systemctl ]; then
 			systemctl suspend &
 		else
-			gksudo pm-suspend &
+			sudo pm-suspend &
 		fi
 		;;
 	hibernate)
 		if [ -x /bin/systemctl ]; then
 			systemctl hibernate &
 		else
-			gksudo pm-hibernate &
+			sudo pm-hibernate &
 		fi
 		;;
 esac
