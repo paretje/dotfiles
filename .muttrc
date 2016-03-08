@@ -36,8 +36,8 @@ alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
 
 # set from header
 set realname="Kevin Velghe"
-send-hook '~t @ugent.be$' 'set from="Kevin.Velghe@UGent.be"'
-send-hook !'~t @ugent.be$' 'set from="kevin@paretje.be"'
+send-hook '~t ugent.be$' 'set from="Kevin.Velghe@UGent.be"'
+send-hook !'~t ugent.be$' 'set from="kevin@paretje.be"'
 
 # reply using identity sent to
 set reverse_name=yes
