@@ -163,3 +163,7 @@ tags
 /.aspell.nl.pws
 /.vim/spell/nl.utf-8.add
 /.vim/spell/nl.utf-8.add.spl
+/.newsbeuter/cache.db
+/.newsbeuter/history.cmdline
+/.newsbeuter/history.search
+/.newsbeuter/urls
