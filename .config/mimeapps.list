@@ -1,6 +1,6 @@
 [Default Applications]
-x-scheme-handler/http=iceweasel.desktop
-x-scheme-handler/https=iceweasel.desktop
+x-scheme-handler/http=qutebrowser.desktop
+x-scheme-handler/https=qutebrowser.desktop
 x-scheme-handler/mailto=icedove.desktop
 x-scheme-handler/magnet=transmission-remote-gtk.desktop
 application/pdf=zathura.desktop

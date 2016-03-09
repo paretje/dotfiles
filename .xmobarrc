@@ -17,12 +17,11 @@ Config { font = "xft:DejaVu Sans Mono for Powerline:size=9"
                     , Run Swap ["-t","<usedratio>%"] 10
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run Battery ["-t","<leftvbar> <timeleft>","-l","red","-p","blue"] 600
-                    , Run Volume "default" "Master" ["-t","<volumevbar> <status>"] 1
+                    , Run Volume "default" "Master" ["-t","<volumevbar> <status>"] 10
                     , Run Com "3gmonitor" ["-s","-r"] "" 300
                     , Run Com "vpnactivated.sh" ["-s","-r"] "" 100
                     , Run StdinReader
                     , Run Wireless "wlan0" ["-t","<essid> <qualityvbar>"] 10
                     , Run CoreTemp ["-t","<core0>C"] 100
-                    , Run Com "batmonitor" ["-s","-r"] "" 1200
                     ]
        }

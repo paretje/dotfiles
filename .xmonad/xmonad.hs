@@ -7,6 +7,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import System.Exit
 import XMonad.Layout.LayoutModifier
+import XMonad.Layout.ThreeColumns
 
 main :: IO ()
 main = xmonad =<< myXmobar myConfig
@@ -15,7 +16,7 @@ myConfig = defaultConfig
     { modMask = mod3Mask
     , terminal = "exec urxvtcd -e sh -c 'session=$(tmux ls | grep -v -m 1 \"(attached)$\" | sed \"s/^\\([0-9]*\\):.*$/\\1/\"); if [ \"$session\" = \"\" ]; then exec tmux new-session ; else exec tmux attach-session -t $session ; fi'"
     , manageHook = myManageHook <+> manageHook defaultConfig
-    , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
+    , layoutHook = smartBorders $ avoidStruts $ (layoutHook defaultConfig ||| ThreeColMid 1 (3/100) (1/2))
     , focusFollowsMouse = False
     , clickJustFocuses = False }
         `additionalKeysP`
@@ -43,7 +44,7 @@ myXmobar :: LayoutClass l Window
 myXmobar conf = statusBar xmobarCommand xmobarPP toggleStrutsKey conf where
     xmobarCommand = "if [ \"$(hostname)\" = 'kevin-laptop' ]; then exec xmobar -t '" ++ lTemplate ++ "' ; else exec xmobar -t '" ++ dTemplate ++ "' ; fi"
     dTemplate = "%StdinReader% }{ %vpnactivated.sh% %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
-    lTemplate = "%StdinReader% }{ %batmonitor% %3gmonitor% %vpnactivated.sh% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
+    lTemplate = "%StdinReader% }{ %3gmonitor% %vpnactivated.sh% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
 
 toggleStrutsKey :: XConfig t -> (KeyMask, KeySym)
 toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )

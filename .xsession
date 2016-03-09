@@ -1,5 +1,10 @@
-. "$HOME/.profile"
-if [ -f "$GPG_ENV_FILE" ]; then
+#!/bin/sh
+# Load profile if not done yet
+if [ -z "$LEDGER_FILE" ]; then
+	. "$HOME/.profile"
+fi
+
+if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
 	. "$GPG_ENV_FILE"
 	export GPG_TTY=$(tty)
 	export GPG_AGENT_INFO
@@ -18,6 +23,9 @@ fi
 # Use GTK style in Qt5 applications
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
+
+# set keyboard layout
+setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
 xmodmap -e 'clear lock'

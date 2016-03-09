@@ -1,8 +1,14 @@
 scriptencoding utf-8
+
+" remove all autocmd's
+autocmd!
+
+" download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
 	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+" load plug and declare all plugins
 call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
@@ -27,9 +33,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'nelstrom/vim-markdown-folding'
 
 if has('nvim')
 	Plug 'paretje/nvim-man'
+	Plug 'kassio/neoterm'
 endif
 
 call plug#end()
@@ -115,19 +124,6 @@ set pastetoggle=<Leader>p
 " Show print dialog instead of using the default printer
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 
-" Set YouCompleteMe options
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_semantic_triggers = {'haskell': ['.'], 'xml': ['</'], 'xsd': ['</']}
-let g:ycm_filetype_blacklist = {'help': 1, 'text': 1, 'mail': 1, 'dotoo': 1, 'markdown': 1}
-
-" Set javacomplete options
-let g:nailgun_port = '2113'
-let g:javacomplete_ng = 'ng-nailgun'
-let g:javacomplete_methods_paren_close_noargs = 1
-
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
@@ -142,6 +138,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_exclude_nomod = 1
+
+" Pydoc options
+let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -180,15 +179,13 @@ let g:rubycomplete_use_bundler = 1
 " NERDTree options
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
+let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
-
-" vim-markdown options
-let g:markdown_folding = 1
 
 " TComments options
 call tcomment#DefineType('matlab', '# %s')
@@ -203,13 +200,55 @@ let g:calendar_monday = 1
 let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
 
 " neomake options
-let g:neomake_error_sign = {'text': 'E>', 'texthl': 'Error'}
-let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'Todo'}
+let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
+let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
+let g:neomake_verbose = 0
+
 let g:neomake_vim_vint_maker = {
 	\ 'args': ['--style-problem', '-f',
 		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
 	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
-	\ }
+\ }
+
+let g:neomake_java_javac_maker = {
+	\ 'args': ['-Xlint'],
+	\ 'buffer_output': 1,
+	\ 'errorformat':
+		\ '%E%f:%l: error: %m,'.
+		\ '%W%f:%l: warning: %m,'.
+		\ '%E%f:%l: %m,'.
+		\ '%Z%p^,'.
+		\ '%-G%.%#'
+\ }
+let g:neomake_java_checkstyle_maker = {
+	\ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
+	\ 'errorformat':
+		\ '[%t%*[^]]] %f:%l:%c: %m [%s]'
+\ }
+let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
+
+let g:neomake_sh_checkbashisms_maker = {
+	\ 'args': ['-fx'],
+	\ 'errorformat':
+		\ '%-Gscript %f is already a bash script; skipping,' .
+		\ '%Eerror: %f: %m\, opened in line %l,' .
+		\ '%Eerror: %f: %m,' .
+		\ '%Ecannot open script %f for reading: %m,' .
+		\ '%Wscript %f %m,%C%.# lines,' .
+		\ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
+		\ '%-G%.%#'
+\ }
+let g:neomake_sh_bashate_maker = {
+	\ 'errorformat': 
+		\ '%EE%n: %m,' .
+		\ '%Z - %f%\s%\+: L%l,' .
+		\ '%-G%.%#'
+\ }
+let g:neomake_sh_bash_maker = {
+	\ 'args': ['-n'],
+	\ 'errorformat': '%f: line %l: %m'
+\ }
+let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
 
 " CamelCaseMotion options
 call camelcasemotion#CreateMotionMappings('<Leader>')
@@ -219,6 +258,10 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['tag', 'buffer']
+let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
+let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -249,6 +292,15 @@ let g:table_mode_toggle_map = 't'
 " delimitMate options
 let g:delimitMate_expand_cr = 1
 
+" clang_complete options
+let g:clang_library_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
+let g:clang_complete_auto = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_hl_errors = 0
+
+" gitgutter options
+let g:gitgutter_sign_column_always = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux	setlocal nospell
 au FileType dotooagenda,calendar,qf,man	setlocal nospell
@@ -266,14 +318,14 @@ au FileType dotoo		nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo		nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture	inoremap <buffer> <C-L> <CR><BS><BS><BS><BS><BS><BS>- [ ] 
-au BufHidden *.org		setlocal nobuflisted
+au FileType dotoo,dotoocapture	inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au BufHidden nmbs.org		setlocal nobuflisted
 
 " Java ft options
 au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
-au FileType java	setlocal omnifunc=javacomplete#Complete
 au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	nnoremap <Leader>i :JavaCompleteAddImport<CR>
+au FileType java	let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
+au FileType java	setlocal keywordprg=:JavaDoc
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
@@ -292,9 +344,13 @@ au BufRead *.atl	setlocal commentstring=--%s
 
 " mail ft options
 au FileType mail	setlocal formatoptions+=na
+au FileType mail	setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
+au BufRead /tmp/mutt*	1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
 
 " markdown ft options
-au FileType markdown	au BufWritePost <buffer> Neomake!
+au FileType markdown	call AutoMake()
+au FileType markdown	setlocal filetype=markdown.pandoc
+au FileType markdown	setlocal foldmethod=manual
 
 " ledger ft options
 au BufRead,BufNewFile *.journal	setf ledger
@@ -310,12 +366,21 @@ au FileType python	setlocal omnifunc=
 au BufRead ~/.xmobarrc	setlocal syntax=haskell nospell
 
 " sh ft options
-au BufRead ~/.xsession	setfiletype sh
+au BufRead ~/.xsession	set filetype=sh
 
 " help ft options
 au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
 au FileType help nnoremap <silent> <nowait> <buffer> u <C-U>
 au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
+
+" C ft options
+au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
+
+" gradle ft options
+au BufRead,BufNewFile *.gradle setfiletype groovy
+
+" crontab ft options
+au BufRead,BufNewFile ~/.crontab setfiletype crontab
 
 " terminal options
 if has('nvim')
@@ -362,7 +427,11 @@ nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
-nnoremap <Leader>ut :GundoToggle<CR>
+nnoremap <Leader>ut :MundoToggle<CR>
+nnoremap , ;
+nnoremap \ ,
+vnoremap , ;
+vnoremap \ ,
 
 if has('nvim')
 	tnoremap <C-Q> <C-\><C-N>
@@ -381,12 +450,12 @@ else
 endif
 
 " Custom commands
-com -narg=1 -complete=file AddJavaClasspath let g:syntastic_java_javac_classpath = g:syntastic_java_javac_classpath . ':' . <q-args> | JavaCompleteAddClassPath <q-args>
-com -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
-com BeamerBackground hi Normal ctermbg=232 | set background=dark
+com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
+com! BeamerBackground hi Normal ctermbg=232 | set background=dark
+com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 
 " Custom functions
-fun ToggleSpellLang()
+fun! ToggleSpellLang()
 	if &spelllang ==# 'en'
 		setlocal spelllang=nl
 	else
@@ -395,20 +464,24 @@ fun ToggleSpellLang()
 	setlocal spelllang?
 endfun
 
-fun ToggleFolding()
+fun! ToggleFolding()
 	if &l:foldmethod ==# 'manual'
-		setlocal foldmethod=syntax
+		if &l:filetype =~# '^markdown'
+			setlocal foldmethod=expr
+		else
+			setlocal foldmethod=syntax
+		endif
 		return
 	endif
 	normal! zi
 endfun
 
-fun HighlightSearch(args)
+fun! HighlightSearch(args)
 	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
 	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
 
-fun OrgRecalculateTable(file)
+fun! OrgRecalculateTable(file)
 	let l:pos = getcurpos()
 	write
 	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
@@ -416,12 +489,12 @@ fun OrgRecalculateTable(file)
 	call setpos('.', l:pos)
 endfun
 
-fun TableModeToggle()
+fun! TableModeToggle()
 	TableModeToggle
 	AirlineRefresh
 endfun
 
-fun AirlineTableMode(...)
+fun! AirlineTableMode(...)
 	if exists('b:table_mode_active') && b:table_mode_active
 		let w:airline_section_a = 'TABLE MODE'
 	endif
@@ -429,18 +502,24 @@ endfun
 call airline#add_statusline_func('AirlineTableMode')
 
 " Close HTML tag, assuming the use of delimitMate
-fun CloseTag()
+fun! CloseTag()
 	call feedkeys('/', 'n')
 	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
-		call feedkeys("\<C-X>\<C-O>\<BS>\<Right>", 'n')
+		call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>", 'n')
 	endif
 endfun
 
-function! AirlineThemePatch(palette)
+fun! AirlineThemePatch(palette)
 	if g:airline_theme ==# 'bubblegum'
 		for l:mode in keys(a:palette)
 			let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
 			let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
 		endfor
 	endif
-endfunction
+endfun
+
+fun! AutoMake()
+	if filereadable('Makefile')
+		au BufWritePost <buffer> Neomake!
+	endif
+endfun

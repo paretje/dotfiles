@@ -47,14 +47,14 @@ fi
 export MANPATH=$(manpath)
 
 # set MANPATH so it includes user's private man's if it exists
-if [ -d "$HOME/.local/man" ]; then
-    MANPATH="$HOME/.local/man:$MANPATH"
+if [ -d "$HOME/.local/share/man" ]; then
+    MANPATH="$HOME/.local/share/man:$MANPATH"
 fi
 
 # set MANPATH so it includes user's rubygems man's if it exists
-if [ -d "$HOME/.gem/ruby/2.1.0/gems" ] ; then
-    if [ -n "$(find $HOME/.gem/ruby/2.1.0/gems -maxdepth 2 -path $HOME/.gem/ruby/2.1.0/gems'/*/man' -print -quit)" ]; then
-        for dir in $HOME/.gem/ruby/2.1.0/gems/*/man ; do
+if [ -d "$GEM_HOME/gems" ] ; then
+    if [ -n "$(find $GEM_HOME/gems -maxdepth 2 -path $GEM_HOME/gems'/*/man' -print -quit)" ]; then
+        for dir in $GEM_HOME/gems/*/man ; do
             MANPATH="$MANPATH:$dir"
         done
     fi
@@ -62,11 +62,16 @@ fi
 
 # Start gpg-agent if not yet running
 if hash gpg-agent; then
-    export GPG_ENV_FILE="$HOME/.gpg-agent-info"
-    . "$GPG_ENV_FILE"
-    export GPG_AGENT_INFO
-    if ! gpg-agent; then
-        gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+    if gpg2 --version | fgrep -q 'gpg (GnuPG) 2.0'; then
+        export GPG_ENV_FILE="$HOME/.gpg-agent-info"
+        . "$GPG_ENV_FILE"
+        export GPG_AGENT_INFO
+        if ! gpg-agent; then
+            gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
+        fi
+    else
+        gpgconf --launch gpg-agent
+        export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
     fi
 fi
 
@@ -76,6 +81,11 @@ export PAGER=less
 
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
+
+# if this is tty1, start X server
+if [ "$TTY" = "/dev/tty1" ]; then
+    exec startx
+fi
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

@@ -7,5 +7,7 @@ set inputbar-fg "#ffffff"
 
 set adjust-open width
 
+set selection-clipboard clipboard
+
 map [normal] d scroll half-down
 map [normal] u scroll half-up

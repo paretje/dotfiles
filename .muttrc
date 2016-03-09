@@ -1,0 +1,154 @@
+# this isn't really used, but to keep mutt shut up
+set folder=$HOME/.mail
+
+# define virtual folders
+set nm_default_uri=notmuch://$HOME/.mail
+virtual-mailboxes \
+                  "inbox"          "notmuch://?query=tag:inbox" \
+                  "todo"           "notmuch://?query=tag:todo" \
+                  "admin"          "notmuch://?query=tag:admin" \
+                  "thesis"         "notmuch://?query=tag:thesis" \
+                  "oci"            "notmuch://?query=tag:oci" \
+                  "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
+                  "announcements"  "notmuch://?query=tag:ann" \
+                  "signature"      "notmuch://?query=tag:signature" \
+                  "compchal"       "notmuch://?query=tag:compchal" \
+                  "hersch"         "notmuch://?query=tag:hersch" \
+                  "discalg"        "notmuch://?query=tag:discalg" \
+                  "kwaninf"        "notmuch://?query=tag:kwaninf" \
+                  "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
+                  "sent"           "notmuch://?query=tag:sent"
+
+# open first virtual mailbox when starting
+set virtual_spoolfile=yes
+
+# pgp settings
+set pgp_autosign=yes
+set pgp_replyencrypt=yes
+set pgp_replysignencrypted=yes
+set pgp_verify_sig=yes
+set pgp_use_gpg_agent = yes
+
+# my addresses
+alternates "kevin@paretje.be"
+alternates "Kevin.Velghe@UGent.be"
+alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
+
+# set from header
+set realname="Kevin Velghe"
+send-hook '~t ugent.be$' 'set from="Kevin.Velghe@UGent.be"'
+send-hook !'~t ugent.be$' 'set from="kevin@paretje.be"'
+
+# reply using identity sent to
+set reverse_name=yes
+
+# edit headers in vim
+set edit_headers=yes
+
+# don't show spam and deleted mails when searching
+set nm_exclude_tags="spam,deleted"
+
+# set index format
+set index_format = "%Z %{%H:%m %b %d}  %-15.15L  %s %> (%g)"
+
+# set order of index
+set sort_aux=last-date-received
+
+# set sent folder in mutt, and index for notmuch
+set nm_record=yes
+set nm_record_tags=sent
+send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
+send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
+
+# set send command
+send2-hook '~f ^kevin.velghe@ugent.be$' 'set sendmail="/usr/bin/msmtp -a ugent"'
+send2-hook !'~f ^kevin.velghe@ugent.be$' 'set sendmail="/usr/bin/msmtp -a prive"'
+
+# set gpg key
+send2-hook '~f ^kevin.velghe@ugent.be$' 'set pgp_sign_as="42AF62E6"'
+send2-hook !'~f ^kevin.velghe@ugent.be$' 'set pgp_sign_as="64AD7E10"'
+
+# just use default reply rules
+set fast_reply=yes
+set include=yes
+
+# use utf-8
+set send_charset="utf-8"
+
+# use boxes in browser in order we defined
+set sort_browser=unsorted
+
+# don't show pluses on wrapped lines
+set markers=no
+
+# set time to refresh mutt when idle
+set timeout=10
+
+# enable caching
+set header_cache=~/.cache/mutt
+
+# postpone messages in mutt folder
+set postponed="~/.mutt/postponed"
+
+# vi keybindings (thanks to Arch wiki)
+bind pager j next-line
+bind pager k previous-line
+bind attach,index,pager \CD next-page
+bind attach,index,pager \CU previous-page
+bind pager g top
+bind pager G bottom
+bind attach,index,browser g first-entry
+bind attach,index,browser G last-entry
+
+# enable backward search
+bind alias,attach,browser,index,compose,pager,pgp,postpone,mix N search-opposite
+
+# keybindings to navigate in sidebar
+bind index,pager \CN sidebar-next
+bind index,pager \CP sidebar-prev
+bind index,pager \CO sidebar-open
+
+# use abook address book
+macro index,pager a '<pipe-message>abook --add-email<return>' "add the sender address to abook"
+bind editor <tab> complete-query
+
+# better bindings for basic notmuch actions
+bind index <tab> entire-thread
+bind index s vfolder-from-query
+
+# some muttator-like keybindings
+bind index,pager c mail
+bind index,pager l modify-labels
+macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
+macro index o '<change-vfolder>?o'
+
+# only use html mails if nothing else
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
+# basic tagging of mails
+macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo<return><sync-mailbox>' "archive mail"
+macro index,pager I '<modify-labels-then-hide>-inbox -unread<return><sync-mailbox>' "remove from inbox"
+macro index,pager S '<modify-labels-then-hide>-inbox -unread -spamy +spam<return><sync-mailbox>' "mark as spam"
+
+# go to next mailbox with unread mails
+macro index <space> '<change-vfolder><enter>'
+
+# easy selection of thread
+bind index T tag-thread
+
+# sync new mail status immediately when opening message
+macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
+
+# pager keybindings
+bind pager d next-page
+bind pager u previous-page
+
+# disable mutt's delete, and just tag with notmuch
+macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
+
+# add binding to reply to send reply to all recipients
+bind index,pager R group-reply
+
+# add macro to fetch new mails
+macro index \CF '<shell-escape>getmails --now &<enter>'
