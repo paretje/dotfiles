@@ -9,6 +9,9 @@ bind-key K prev article
 bind-key j down help
 bind-key k up help
 
+bind-key g home
+bind-key G end
+
 auto-reload yes
 reload-time 15
 
