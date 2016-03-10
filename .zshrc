@@ -52,6 +52,10 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 
+# Basic alternative to oh-my-zsh vi-mode
+bindkey '^p' up-history
+bindkey '^n' down-history
+
 # Set additional keybindings for vi-mode
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
