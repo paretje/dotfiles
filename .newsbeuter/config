@@ -12,6 +12,8 @@ bind-key k up help
 bind-key g home
 bind-key G end
 
+bind-key f goto-url
+
 auto-reload yes
 reload-time 15
 
