@@ -158,6 +158,8 @@ set shortmess+=I
 set pastetoggle=<Leader>p
 " Show print dialog instead of using the default printer
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
+" Don't use tabs unless sleuth detects them
+set expandtab
 
 " Airline options
 let g:airline_powerline_fonts = 1
