@@ -306,20 +306,20 @@ let g:tagbar_ctags_bin = 'ctags'
 
 " securemodelines options
 let g:secure_modelines_allowed_items = [
-	\ 'textwidth',		'tw',
-	\ 'softtabstop',	'sts',
-	\ 'tabstop',		'ts',
-	\ 'shiftwidth',		'sw',
-	\ 'expandtab',		'et',		'noexpandtab',		'noet',
-	\ 'filetype',		'ft',
-	\ 'foldmethod',		'fdm',
-	\ 'formatoptions',	'fo',
-	\ 'readonly',		'ro',		'noreadonly',		'noro',
-	\ 'rightleft',		'rl',		'norightleft',		'norl',
-	\ 'cindent',		'cin',		'nocindent',		'nocin',
-	\ 'smartindent',	'si',		'nosmartindent',	'nosi',
-	\ 'autoindent',		'ai',		'noautoindent',		'noai',
-	\ 'spell',		'nospell',
+	\ 'textwidth',     'tw',
+	\ 'softtabstop',   'sts',
+	\ 'tabstop',       'ts',
+	\ 'shiftwidth',    'sw',
+	\ 'expandtab',     'et',      'noexpandtab',   'noet',
+	\ 'filetype',      'ft',
+	\ 'foldmethod',    'fdm',
+	\ 'formatoptions', 'fo',
+	\ 'readonly',      'ro',      'noreadonly',    'noro',
+	\ 'rightleft',     'rl',      'norightleft',   'norl',
+	\ 'cindent',       'cin',     'nocindent',     'nocin',
+	\ 'smartindent',   'si',      'nosmartindent', 'nosi',
+	\ 'autoindent',    'ai',      'noautoindent',  'noai',
+	\ 'spell',         'nospell',
 	\ 'spelllang',
 	\ 'wrap',		'nowrap'
 	\ ]
@@ -340,71 +340,71 @@ let g:clang_hl_errors = 0
 let g:gitgutter_sign_column_always = 1
 
 " Bulk options
-au FileType haskell,prolog,matlab,tmux	setlocal nospell
-au FileType dotooagenda,calendar,qf,man	setlocal nospell
-au FileType dotoo*,tex,mail,markdown	setlocal spelllang=nl
-au FileType tex,text,bbcode,markdown	setlocal linebreak " don't wrap randomly in a word
-au FileType help,dotoo*			setlocal nolist " disable indentation lines
+au FileType haskell,prolog,matlab,tmux  setlocal nospell
+au FileType dotooagenda,calendar,qf,man setlocal nospell
+au FileType dotoo*,tex,mail,markdown    setlocal spelllang=nl
+au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
+au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
 " Ruby ft options
-au FileType eruby	inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
+au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufRead,BufNewFile *.org	setf dotoo
-au FileType dotoo*		setlocal textwidth=77
-au FileType dotoo		nmap <buffer> <C-A> <Plug>SpeedDatingUp
-au FileType dotoo		nmap <buffer> <C-X> <Plug>SpeedDatingDown
-au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
-au FileType dotoocapture	iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture	inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
-au BufHidden nmbs.org		setlocal nobuflisted
+au BufRead,BufNewFile *.org    setfiletype dotoo
+au FileType dotoo*             setlocal textwidth=77
+au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
+au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
+au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
+au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
+au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
-au FileType java	setlocal tags+=/usr/lib/jvm/openjdk-8/tags
-au FileType java	compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java	let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
-au FileType java	setlocal keywordprg=:JavaDoc
+au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
+au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
+au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
+au FileType java setlocal keywordprg=:JavaDoc
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
-au FileType tex		compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+au FileType tex compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
 
 " Haskell ft options
-au FileType haskell	setlocal omnifunc=necoghc#omnifunc
+au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " HTML ft options
-au FileType html	inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
+au FileType html inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " ATL ft options
-au BufRead *.atl	setlocal syntax=haskell " Haskell syntax seems to be close to ATL
-au BufRead *.atl	setlocal nospell
-au BufRead *.atl	setlocal commentstring=--%s
+au BufRead *.atl setlocal syntax=haskell " Haskell syntax seems to be close to ATL
+au BufRead *.atl setlocal nospell
+au BufRead *.atl setlocal commentstring=--%s
 
 " mail ft options
-au FileType mail	setlocal formatoptions+=na
-au FileType mail	setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
-au BufRead /tmp/mutt*	1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
+au FileType mail      setlocal formatoptions+=na
+au FileType mail      setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
+au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
 
 " markdown ft options
-au FileType markdown	call AutoMake()
-au FileType markdown	setlocal filetype=markdown.pandoc
-au FileType markdown	setlocal foldmethod=manual
+au FileType markdown call AutoMake()
+au FileType markdown setlocal filetype=markdown.pandoc
+au FileType markdown setlocal foldmethod=manual
 
 " ledger ft options
-au BufRead,BufNewFile *.journal	setf ledger
-au FileType ledger	normal! zn
+au BufRead,BufNewFile *.journal setfiletype ledger
+au FileType ledger              normal! zn
 
 " aptconf ft options
-au FileType aptconf	setlocal commentstring=//%s
+au FileType aptconf setlocal commentstring=//%s
 
 " python ft options
-au FileType python	setlocal omnifunc=
+au FileType python setlocal omnifunc=
 
 " xmobarrc ft options
-au BufRead ~/.xmobarrc	setlocal syntax=haskell nospell
+au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
 
 " sh ft options
-au BufRead ~/.xsession	set filetype=sh
+au BufRead ~/.xsession set filetype=sh
 
 " help ft options
 au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
@@ -427,11 +427,11 @@ if has('nvim')
 endif
 
 " It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/github*			setlocal ft=markdown
+au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
 
 " notes options
-au VimLeave *		if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
-au FileType dotoo*	let g:sync_notes = 1
+au VimLeave *      if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au FileType dotoo* let g:sync_notes = 1
 
 " Custom key mappings
 nnoremap <Up> gk
