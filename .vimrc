@@ -6,7 +6,7 @@ autocmd!
 
 " download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
-	execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
 " load plug and declare all plugins
@@ -65,16 +65,16 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'nelstrom/vim-markdown-folding'
 
 if has('python') || has('python3')
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 endif
 
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'radenling/vim-dispatch-neovim'
-	Plug 'paretje/nvim-man'
-	Plug 'zchee/deoplete-jedi', {'for': 'python'}
-	Plug 'kassio/neoterm'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'radenling/vim-dispatch-neovim'
+  Plug 'paretje/nvim-man'
+  Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  Plug 'kassio/neoterm'
 endif
 
 call plug#end()
@@ -83,15 +83,15 @@ call plug#end()
 " Apparently, Vim uses a white background as basis of the color scheme
 " on xterm, although default is dark.
 if has('gui_running')
-	" Fix airline in GVim
-	if !exists('g:airline_symbols')
-		let g:airline_symbols = {}
-	endif
-	let g:airline_symbols.space = "\u3000"
+  " Fix airline in GVim
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.space = "\u3000"
 elseif $TERM !=# ''
-	set background=dark
-	hi SpellBad ctermfg=Black
-	hi SpecialKey ctermfg=8
+  set background=dark
+  hi SpellBad ctermfg=Black
+  hi SpecialKey ctermfg=8
 endif
 
 " Syntax highlighting
@@ -194,16 +194,16 @@ let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
 let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
-	\ ['TODO', [':foreground 160', ':weight bold']],
-	\ ['NEXT', [':foreground 27', ':weight bold']],
-	\ ['DONE', [':foreground 22', ':weight bold']],
-	\ ['WAITING', [':foreground 202', ':weight bold']],
-	\ ['HOLD', [':foreground 53', ':weight bold']],
-	\ ['CANCELLED', [':foreground 22', ':weight bold']],
-	\ ['MEETING', [':foreground 22', ':weight bold']],
-	\ ['PHONE', [':foreground 22', ':weight bold']],
-	\ ['MAIL', [':foreground 25', ':weight bold']]
-	\ ]
+  \ ['TODO',      [':foreground 160', ':weight bold']],
+  \ ['NEXT',      [':foreground 27',  ':weight bold']],
+  \ ['DONE',      [':foreground 22',  ':weight bold']],
+  \ ['WAITING',   [':foreground 202', ':weight bold']],
+  \ ['HOLD',      [':foreground 53',  ':weight bold']],
+  \ ['CANCELLED', [':foreground 22',  ':weight bold']],
+  \ ['MEETING',   [':foreground 22',  ':weight bold']],
+  \ ['PHONE',     [':foreground 22',  ':weight bold']],
+  \ ['MAIL',      [':foreground 25',  ':weight bold']]
+\ ]
 
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
@@ -244,48 +244,48 @@ let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
 let g:neomake_verbose = 0
 
 let g:neomake_vim_vint_maker = {
-	\ 'args': ['--style-problem', '-f',
-		\ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
-	\ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
+  \ 'args': ['--style-problem', '-f',
+    \ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
+  \ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
 \ }
 
 let g:neomake_java_javac_maker = {
-	\ 'args': ['-Xlint'],
-	\ 'buffer_output': 1,
-	\ 'errorformat':
-		\ '%E%f:%l: error: %m,'.
-		\ '%W%f:%l: warning: %m,'.
-		\ '%E%f:%l: %m,'.
-		\ '%Z%p^,'.
-		\ '%-G%.%#'
+  \ 'args': ['-Xlint'],
+  \ 'buffer_output': 1,
+  \ 'errorformat':
+    \ '%E%f:%l: error: %m,'.
+    \ '%W%f:%l: warning: %m,'.
+    \ '%E%f:%l: %m,'.
+    \ '%Z%p^,'.
+    \ '%-G%.%#'
 \ }
 let g:neomake_java_checkstyle_maker = {
-	\ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
-	\ 'errorformat':
-		\ '[%t%*[^]]] %f:%l:%c: %m [%s]'
+  \ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
+  \ 'errorformat':
+    \ '[%t%*[^]]] %f:%l:%c: %m [%s]'
 \ }
 let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
 
 let g:neomake_sh_checkbashisms_maker = {
-	\ 'args': ['-fx'],
-	\ 'errorformat':
-		\ '%-Gscript %f is already a bash script; skipping,' .
-		\ '%Eerror: %f: %m\, opened in line %l,' .
-		\ '%Eerror: %f: %m,' .
-		\ '%Ecannot open script %f for reading: %m,' .
-		\ '%Wscript %f %m,%C%.# lines,' .
-		\ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
-		\ '%-G%.%#'
+  \ 'args': ['-fx'],
+  \ 'errorformat':
+    \ '%-Gscript %f is already a bash script; skipping,' .
+    \ '%Eerror: %f: %m\, opened in line %l,' .
+    \ '%Eerror: %f: %m,' .
+    \ '%Ecannot open script %f for reading: %m,' .
+    \ '%Wscript %f %m,%C%.# lines,' .
+    \ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
+    \ '%-G%.%#'
 \ }
 let g:neomake_sh_bashate_maker = {
-	\ 'errorformat': 
-		\ '%EE%n: %m,' .
-		\ '%Z - %f%\s%\+: L%l,' .
-		\ '%-G%.%#'
+  \ 'errorformat': 
+    \ '%EE%n: %m,' .
+    \ '%Z - %f%\s%\+: L%l,' .
+    \ '%-G%.%#'
 \ }
 let g:neomake_sh_bash_maker = {
-	\ 'args': ['-n'],
-	\ 'errorformat': '%f: line %l: %m'
+  \ 'args': ['-n'],
+  \ 'errorformat': '%f: line %l: %m'
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
 
@@ -307,23 +307,23 @@ let g:tagbar_ctags_bin = 'ctags'
 
 " securemodelines options
 let g:secure_modelines_allowed_items = [
-	\ 'textwidth',     'tw',
-	\ 'softtabstop',   'sts',
-	\ 'tabstop',       'ts',
-	\ 'shiftwidth',    'sw',
-	\ 'expandtab',     'et',      'noexpandtab',   'noet',
-	\ 'filetype',      'ft',
-	\ 'foldmethod',    'fdm',
-	\ 'formatoptions', 'fo',
-	\ 'readonly',      'ro',      'noreadonly',    'noro',
-	\ 'rightleft',     'rl',      'norightleft',   'norl',
-	\ 'cindent',       'cin',     'nocindent',     'nocin',
-	\ 'smartindent',   'si',      'nosmartindent', 'nosi',
-	\ 'autoindent',    'ai',      'noautoindent',  'noai',
-	\ 'spell',         'nospell',
-	\ 'spelllang',
-	\ 'wrap',		'nowrap'
-	\ ]
+  \ 'textwidth',     'tw',
+  \ 'softtabstop',   'sts',
+  \ 'tabstop',       'ts',
+  \ 'shiftwidth',    'sw',
+  \ 'expandtab',     'et',      'noexpandtab',   'noet',
+  \ 'filetype',      'ft',
+  \ 'foldmethod',    'fdm',
+  \ 'formatoptions', 'fo',
+  \ 'readonly',      'ro',      'noreadonly',    'noro',
+  \ 'rightleft',     'rl',      'norightleft',   'norl',
+  \ 'cindent',       'cin',     'nocindent',     'nocin',
+  \ 'smartindent',   'si',      'nosmartindent', 'nosi',
+  \ 'autoindent',    'ai',      'noautoindent',  'noai',
+  \ 'spell',         'nospell',
+  \ 'spelllang',
+  \ 'wrap',          'nowrap'
+\ ]
 
 " table-mode options
 let g:table_mode_toggle_map = 't'
@@ -423,8 +423,8 @@ au BufRead,BufNewFile ~/.crontab setfiletype crontab
 
 " terminal options
 if has('nvim')
-	au TermOpen * setlocal nospell
-	au TermOpen * setlocal nobuflisted
+  au TermOpen * setlocal nospell
+  au TermOpen * setlocal nobuflisted
 endif
 
 " It's All Text options
@@ -473,19 +473,19 @@ vnoremap , ;
 vnoremap \ ,
 
 if has('nvim')
-	tnoremap <C-Q> <C-\><C-N>
-	nnoremap <C-Q> i<C-Q>
+  tnoremap <C-Q> <C-\><C-N>
+  nnoremap <C-Q> i<C-Q>
 
-	au User ManOpen tmap <buffer> <C-H> <C-W>h
-	au User ManOpen tmap <buffer> <C-J> <C-W>j
-	au User ManOpen tmap <buffer> <C-K> <C-W>k
-	au User ManOpen tmap <buffer> <C-L> <C-W>l
-	au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
+  au User ManOpen tmap <buffer> <C-H> <C-W>h
+  au User ManOpen tmap <buffer> <C-J> <C-W>j
+  au User ManOpen tmap <buffer> <C-K> <C-W>k
+  au User ManOpen tmap <buffer> <C-L> <C-W>l
+  au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
 else
-	source $VIMRUNTIME/ftplugin/man.vim
-	au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
-	au FileType man wincmd L
-	nmap K :Man <cword><CR>
+  source $VIMRUNTIME/ftplugin/man.vim
+  au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+  au FileType man wincmd L
+  nmap K :Man <cword><CR>
 endif
 
 " Custom commands
@@ -495,70 +495,70 @@ com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/sh
 
 " Custom functions
 fun! ToggleSpellLang()
-	if &spelllang ==# 'en'
-		setlocal spelllang=nl
-	else
-		setlocal spelllang=en
-	endif
-	setlocal spelllang?
+  if &spelllang ==# 'en'
+    setlocal spelllang=nl
+  else
+    setlocal spelllang=en
+  endif
+  setlocal spelllang?
 endfun
 
 fun! ToggleFolding()
-	if &l:foldmethod ==# 'manual'
-		if &l:filetype =~# '^markdown'
-			setlocal foldmethod=expr
-		else
-			setlocal foldmethod=syntax
-		endif
-		return
-	endif
-	normal! zi
+  if &l:foldmethod ==# 'manual'
+    if &l:filetype =~# '^markdown'
+      setlocal foldmethod=expr
+    else
+      setlocal foldmethod=syntax
+    endif
+    return
+  endif
+  normal! zi
 endfun
 
 fun! HighlightSearch(args)
-	let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
-	call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
+  let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
+  call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
 
 fun! OrgRecalculateTable(file)
-	let l:pos = getcurpos()
-	write
-	call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
-	edit
-	call setpos('.', l:pos)
+  let l:pos = getcurpos()
+  write
+  call system('emacs "' . a:file . '" --batch -f org-table-recalculate-buffer-tables --eval "(save-buffer 0)"')
+  edit
+  call setpos('.', l:pos)
 endfun
 
 fun! TableModeToggle()
-	TableModeToggle
-	AirlineRefresh
+  TableModeToggle
+  AirlineRefresh
 endfun
 
 fun! AirlineTableMode(...)
-	if exists('b:table_mode_active') && b:table_mode_active
-		let w:airline_section_a = 'TABLE MODE'
-	endif
+  if exists('b:table_mode_active') && b:table_mode_active
+    let w:airline_section_a = 'TABLE MODE'
+  endif
 endfun
 call airline#add_statusline_func('AirlineTableMode')
 
 " Close HTML tag, assuming the use of delimitMate
 fun! CloseTag()
-	call feedkeys('/', 'n')
-	if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
-		call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>", 'n')
-	endif
+  call feedkeys('/', 'n')
+  if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
+    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>", 'n')
+  endif
 endfun
 
 fun! AirlineThemePatch(palette)
-	if g:airline_theme ==# 'bubblegum'
-		for l:mode in keys(a:palette)
-			let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
-			let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
-		endfor
-	endif
+  if g:airline_theme ==# 'bubblegum'
+    for l:mode in keys(a:palette)
+      let a:palette[l:mode]['airline_warning'] = ['Blue', 'Yellow', 0,  11]
+      let a:palette[l:mode]['airline_error'] = ['White', 'Red', 15, 9]
+    endfor
+  endif
 endfun
 
 fun! AutoMake()
-	if filereadable('Makefile')
-		au BufWritePost <buffer> Neomake!
-	endif
+  if filereadable('Makefile')
+    au BufWritePost <buffer> Neomake!
+  endif
 endfun
