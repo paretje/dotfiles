@@ -167,3 +167,4 @@ tags
 /.newsbeuter/history.cmdline
 /.newsbeuter/history.search
 /.newsbeuter/urls
+/.newsbeuter/cache.db.lock
