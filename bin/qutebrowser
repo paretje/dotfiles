@@ -1,5 +1,7 @@
 #!/bin/sh
-qutebrowser="$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser"
+qutebrowser() {
+	"$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+}
 
 clean_history() {
 	rm "$HOME/.local/share/qutebrowser/history"
@@ -7,11 +9,13 @@ clean_history() {
 }
 
 if [ "$(pgrep -c qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
-	exec "$qutebrowser" "$@"
+	qutebrowser "$@"
 elif 3gusage; then
 	clean_history
-	exec "$qutebrowser" "$@"
+	qutebrowser "$@"
 else
 	clean_history
-	exec "$qutebrowser" :adblock-update "$@"
+	qutebrowser :adblock-update "$@"
 fi
+
+exit
