@@ -1,5 +1,6 @@
 scriptencoding utf-8
 
+" vint: -ProhibitAutocmdWithNoGroup
 " remove all autocmd's
 autocmd!
 
