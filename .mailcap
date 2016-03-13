@@ -1,5 +1,4 @@
-text/html; w3m -dump -T text/html -cols 70; copiousoutput
-# text/html; html2text -width 70 -style compact; copiousoutput
+text/html; w3m -dump -o display_link_number -T text/html -cols 70; copiousoutput
 application/pdf; zathura '%s'
 application/octet-stream; zathura '%s'
 image/pdf; zathura '%s'
