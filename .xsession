@@ -50,7 +50,7 @@ elif [ "$HOST" = "kevin-desktop" ]; then
 fi
 
 # Set brightness of laptop
-if [ "$HOST" = "kevin-laptop" ];then
+if [ "$HOST" = "kevin-laptop" ]; then
 	xbacklight -set 30
 fi
 

@@ -82,6 +82,9 @@ export PAGER=less
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
 
+# set HOST variable
+export HOST=$(hostname)
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx
