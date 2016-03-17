@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ $# -eq 1 ]; then
-	tmp=mktemp
+	tmp=$(mktemp)
 	dir="$1"
 	file=""
 	if [ -f "$1" ]; then
