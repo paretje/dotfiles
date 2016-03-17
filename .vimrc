@@ -471,6 +471,7 @@ nnoremap , ;
 nnoremap \ ,
 vnoremap , ;
 vnoremap \ ,
+vnoremap <silent> <Leader>hs :call StageSelection()<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -561,4 +562,12 @@ fun! AutoMake()
   if filereadable('Makefile')
     au BufWritePost <buffer> Neomake!
   endif
+endfun
+
+fun! StageSelection() range
+  Gdiff!
+  execute a:firstline . ',' . a:lastline . 'diffput'
+  wincmd p
+  write
+  close
 endfun
