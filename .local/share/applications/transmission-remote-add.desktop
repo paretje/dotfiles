@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Transmission
+Exec=transmission-remote-add %u
+Type=Application
+Categories=Network;
+Terminal=false
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
