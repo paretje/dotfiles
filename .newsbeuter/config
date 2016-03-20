@@ -24,3 +24,6 @@ feedlist-format "%n %11u %t"
 datetime-format "%H:%m %b %d"
 
 browser "qutebrowser"
+
+show-read-articles no
+show-read-feeds no
