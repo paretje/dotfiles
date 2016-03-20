@@ -27,3 +27,5 @@ browser "qutebrowser"
 
 show-read-articles no
 show-read-feeds no
+
+keep-articles-days 14
