@@ -20,5 +20,7 @@ reload-time 15
 always-display-description true
 
 articlelist-format "%f %D  %?T?|%-10T|  &?%t"
+feedlist-format "%n %11u %t"
+datetime-format "%H:%m %b %d"
 
 browser "qutebrowser"
