@@ -1,8 +1,10 @@
 [MIME Cache]
 application/arj=rifle.desktop;
 application/gzip=rifle.desktop;
+application/rdf+xml=qutebrowser.desktop;
 application/x-7z-compressed=rifle.desktop;
 application/x-arj=rifle.desktop;
+application/x-bittorrent=transmission-remote-add.desktop;
 application/x-bzip=rifle.desktop;
 application/x-bzip-compressed-tar=rifle.desktop;
 application/x-bzip2=rifle.desktop;
@@ -18,5 +20,15 @@ application/x-xz=rifle.desktop;
 application/x-xz-compressed-tar=rifle.desktop;
 application/x-zip=rifle.desktop;
 application/x-zip-compressed=rifle.desktop;
+application/xhtml+xml=qutebrowser.desktop;
+application/xml=qutebrowser.desktop;
 application/zip=rifle.desktop;
+image/gif=qutebrowser.desktop;
+image/jpeg=qutebrowser.desktop;
+image/png=qutebrowser.desktop;
+text/html=qutebrowser.desktop;
 text/plain=gvim.desktop;
+text/xml=qutebrowser.desktop;
+x-scheme-handler/http=qutebrowser.desktop;
+x-scheme-handler/https=qutebrowser.desktop;
+x-scheme-handler/magnet=transmission-remote-add.desktop;
