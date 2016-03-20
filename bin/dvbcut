@@ -1,0 +1,2 @@
+#!/bin/sh
+DESKTOP_SESSION=gnome exec /usr/bin/dvbcut

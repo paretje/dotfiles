@@ -1,0 +1,19 @@
+#!/bin/sh
+if [ "$1" = "-f" ]; then
+	for arg; do
+		if [ "$arg" = "--language-force=ruby" ]; then
+			for last; do true; done
+			exec ripper-tags -f - "$last"
+		fi
+	done
+	exec /usr/bin/ctags "$@"
+elif [ -e "$PWD/Gemfile" -a "$PWD" != "$HOME" ]; then
+	# Fool tagbar we're using ctags-exuberant
+	if [ "$1" = "--version" ]; then
+		exec /usr/bin/ctags-exuberant "$@"
+	else
+		exec ripper-tags -R .
+	fi
+else
+	exec /usr/bin/ctags "$@"
+fi

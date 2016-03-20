@@ -1,0 +1,25 @@
+#!/bin/sh
+fetch_mails() {
+	chronic mbsync -a
+	chronic notmuch new
+
+	count=$(notmuch count tag:unread)
+	if [ $count -ne 0 ]; then
+		notify-send "You've got mail" "$count unread mail(s)"
+		beep-mail
+	fi
+}
+
+if [ "$1" = "--daemon" ]; then
+	sleep 1s
+	while true; do
+		if ! 3gusage; then
+			fetch_mails
+		fi
+		sleep 5m
+	done
+elif [ "$1" = "--now" ]; then
+	fetch_mails
+else
+	echo "Usage: getmails [--daemon|--now]"
+fi

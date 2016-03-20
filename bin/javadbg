@@ -1,0 +1,23 @@
+#!/bin/sh
+SRC='src'
+TEST='test'
+DEBUG='build/debug'
+TEST_DEBUG='build/debug-test'
+
+if [ "$1" = "--test" ]; then
+	SRCPATH="$SRC:$TEST"
+	CLASSPATH="/usr/share/java/junit4.jar:$DEBUG:$TEST_DEBUG"
+	shift
+	MAIN="org.junit.runner.JUnitCore $@"
+
+else
+	SRCPATH="$SRC"
+	CLASSPATH="$DEBUG"
+	MAIN="$@"
+fi
+
+if [ ! -f tags ]; then
+	ctags -R $SRCPATH
+fi
+
+exec rlwrap -f tags jdb -sourcepath $SRCPATH -classpath $CLASSPATH $MAIN

@@ -1,0 +1,43 @@
+#!/bin/bash
+choice=$(echo -e "logout\nshutdown\nreboot\nsuspend\nhibernate" | dmenu)
+mod="Control_R"
+
+case "$choice" in
+	logout)
+		xdotool key $mod+ctrl+shift+q &
+		;;
+	shutdown)
+		if [ -x /usr/bin/nmcli ]; then
+			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
+		fi
+		if [ -x /bin/systemctl ]; then
+			systemctl poweroff &
+		else
+			sudo -- shutdown -h now
+		fi
+		;;
+	reboot)
+		if [ -x /usr/bin/nmcli ]; then
+			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
+		fi
+		if [ -x /bin/systemctl ]; then
+			systemctl reboot &
+		else
+			sudo -- shutdown -r now
+		fi
+		;;
+	suspend)
+		if [ -x /bin/systemctl ]; then
+			systemctl suspend &
+		else
+			sudo pm-suspend &
+		fi
+		;;
+	hibernate)
+		if [ -x /bin/systemctl ]; then
+			systemctl hibernate &
+		else
+			sudo pm-hibernate &
+		fi
+		;;
+esac

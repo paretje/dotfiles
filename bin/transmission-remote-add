@@ -1,0 +1,2 @@
+#!/bin/sh
+exec transmission-remote $(sed 's/^machine \([^ ]*\) .*$/\1/' "$HOME/.netrc" | rofi -dmenu) --add "$1"
