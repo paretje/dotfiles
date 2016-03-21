@@ -358,6 +358,7 @@ au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au FileType dotooagenda        setlocal nowrap
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
