@@ -342,6 +342,7 @@ let g:gitgutter_sign_column_always = 1
 
 " neoterm options
 let g:neoterm_size = 15
+let g:neoterm_shell = "busybox sh"
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
