@@ -85,6 +85,9 @@ export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
 # set HOST variable
 export HOST=$(hostname)
 
+# set default ant options
+export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx
