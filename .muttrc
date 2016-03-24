@@ -49,7 +49,7 @@ set edit_headers=yes
 set nm_exclude_tags="spam,deleted"
 
 # set index format
-set index_format = "%Z %[%H:%m %b %d]  %-15.15L  %s %> (%g)"
+set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
 
 # set order of index
 set sort_aux=last-date-received
