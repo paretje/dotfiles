@@ -1,1 +1,1 @@
-/home/kevin/.profile
+.profile
