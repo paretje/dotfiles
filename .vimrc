@@ -167,6 +167,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme_patch_func = 'AirlineThemePatch'
+let g:airline_detect_spell = 0
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
