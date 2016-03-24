@@ -501,7 +501,7 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
+com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 
@@ -525,11 +525,6 @@ fun! ToggleFolding()
     return
   endif
   normal! zi
-endfun
-
-fun! HighlightSearch(args)
-  let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
-  call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
 
 fun! OrgRecalculateTable(file)
