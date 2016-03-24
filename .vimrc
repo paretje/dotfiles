@@ -15,7 +15,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'tomtom/tcomment_vim'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact', {'for': 'java'}
@@ -63,6 +62,7 @@ Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'nelstrom/vim-markdown-folding'
+Plug 'tpope/vim-commentary'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -224,9 +224,6 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
-
-" TComments options
-call tcomment#DefineType('matlab', '# %s')
 
 " xml options
 let g:xml_syntax_folding = 1
