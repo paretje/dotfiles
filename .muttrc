@@ -49,7 +49,7 @@ set edit_headers=yes
 set nm_exclude_tags="spam,deleted"
 
 # set index format
-set index_format = "%Z %{%H:%m %b %d}  %-15.15L  %s %> (%g)"
+set index_format = "%Z %[%H:%m %b %d]  %-15.15L  %s %> (%g)"
 
 # set order of index
 set sort_aux=last-date-received
@@ -127,7 +127,7 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html
 
 # basic tagging of mails
-macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo<return><sync-mailbox>' "archive mail"
+macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo -spamy<return><sync-mailbox>' "archive mail"
 macro index,pager I '<modify-labels-then-hide>-inbox -unread<return><sync-mailbox>' "remove from inbox"
 macro index,pager S '<modify-labels-then-hide>-inbox -unread -spamy +spam<return><sync-mailbox>' "mark as spam"
 

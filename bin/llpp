@@ -1,0 +1,6 @@
+#!/bin/sh
+sed '/<defaults/,/<\/defaults>/d;1d;$d' ~/.config/llpp.conf > ~/.config/llpp-recent.conf
+echo '<llppconfig>' > ~/.config/llpp.conf
+cat ~/.config/llpp-config.conf ~/.config/llpp-recent.conf >> ~/.config/llpp.conf
+echo '</llppconfig>' >> ~/.config/llpp.conf
+exec /usr/bin/llpp "$@"

@@ -304,9 +304,14 @@ let g:clang_hl_errors = 0
 " gitgutter options
 let g:gitgutter_sign_column_always = 1
 
+" neoterm options
+let g:neoterm_size = 15
+let g:neoterm_shell = "busybox sh"
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
+au FileType vim-plug,git                setlocal nospell
 au FileType dotoo*,tex,mail,markdown    setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
@@ -322,6 +327,7 @@ au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au FileType dotooagenda        setlocal nowrap
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
@@ -435,6 +441,14 @@ nnoremap , ;
 nnoremap \ ,
 vnoremap , ;
 vnoremap \ ,
+vnoremap <silent> <Leader>hs :call StageSelection()<CR>
+nnoremap <silent> <Leader>rt :call neoterm#test#run('all')<CR>
+nnoremap <silent> <Leader>rf :call neoterm#test#run('file')<CR>
+nnoremap <silent> <Leader>rc :call neoterm#test#run('current')<CR>
+nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
+nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
+nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
+nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -525,4 +539,12 @@ fun! AutoMake()
   if filereadable('Makefile')
     au BufWritePost <buffer> Neomake!
   endif
+endfun
+
+fun! StageSelection() range
+  Gdiff!
+  execute a:firstline . ',' . a:lastline . 'diffput'
+  wincmd p
+  write
+  close
 endfun

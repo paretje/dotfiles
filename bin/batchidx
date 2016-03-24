@@ -1,0 +1,2 @@
+#!/bin/sh
+for file in "$1"/*.ts ; do dvbcut -generateidx "$file" ; done

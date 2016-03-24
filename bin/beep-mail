@@ -1,0 +1,4 @@
+#!/bin/sh
+beep -f 750 -r 3
+beep -f 300 -r 3
+beep -f 750 -r 3

@@ -1,0 +1,2 @@
+#!/bin/sh
+git -C $(dirname "$LEDGER_FILE") autocommit

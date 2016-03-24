@@ -1,0 +1,40 @@
+#!/bin/sh
+if [ -x /usr/bin/beep ]; then
+	exec /usr/bin/beep "$@"
+else
+	freq=440
+	mili=200
+	rep=1
+	delay=100
+	while [ "$1" != "" ]; do
+		case $1 in
+			-f )
+				freq=$2
+				shift
+				;;
+			-l )
+				mili=$2
+				shift
+				;;
+			-r )
+				rep=$2
+				shift
+				;;
+			-d )
+				delay=$2
+				shift
+				;;
+		esac
+		shift
+	done
+
+	volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
+	amixer set Master 55%
+
+	for i in $(seq $rep); do
+		play -n synth 0.$mili tri $freq 2>&-
+		sleep 0.$delay
+	done
+
+	amixer set Master $volume
+fi
