@@ -33,8 +33,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-commentary'
 
 if has('nvim')
