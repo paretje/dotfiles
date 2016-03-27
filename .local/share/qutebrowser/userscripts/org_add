@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "* TODO $(echo "$QUTE_TITLE" | sed 's/:/ -/')\n  $QUTE_URL" >> /home/kevin/vcs/personal/notes/refile.org
+echo "* TODO $(echo "$QUTE_TITLE" | sed 's/:/ -/g')\n  $QUTE_URL" >> /home/kevin/vcs/personal/notes/refile.org

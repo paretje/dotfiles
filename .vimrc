@@ -14,7 +14,6 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -36,6 +35,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'nelstrom/vim-markdown-folding'
+Plug 'tpope/vim-commentary'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -132,6 +132,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme_patch_func = 'AirlineThemePatch'
+let g:airline_detect_spell = 0
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -189,9 +190,6 @@ au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType 
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
-
-" TComments options
-call tcomment#DefineType('matlab', '# %s')
 
 " xml options
 let g:xml_syntax_folding = 1
@@ -467,7 +465,7 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag call HighlightSearch(<q-args>) | Grepper -tool ag -open -switch -query <args>
+com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 
@@ -491,11 +489,6 @@ fun! ToggleFolding()
     return
   endif
   normal! zi
-endfun
-
-fun! HighlightSearch(args)
-  let @/= matchstr(a:args, "\\v(-)\@<!(\<)\@<=\\w+|['\"]\\zs.{-}\\ze['\"]")
-  call feedkeys(":let &hlsearch=1 \| echo \<CR>", 'n')
 endfun
 
 fun! OrgRecalculateTable(file)
