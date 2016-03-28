@@ -15,7 +15,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'godlygeek/tabular', {'on': 'Tabularize'}
+Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
 Plug 'Dinduks/vim-java-get-set'
 Plug 'taq/vim-refact', {'for': 'java'}
 Plug 'vim-airline/vim-airline'
