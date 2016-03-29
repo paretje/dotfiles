@@ -109,8 +109,8 @@ filetype plugin on
 " TODO: enable this only for searches, not when replacing?
 set ignorecase
 set smartcase
-" Highlight searches
-set hlsearch
+" Automatically de-highlight searches
+au InsertEnter,BufEnter * set nohlsearch
 " Set ctags options
 set tags=./tags;$HOME
 " Max number of tabs
@@ -483,6 +483,7 @@ nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
+nnoremap <silent> / :Search<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -504,6 +505,7 @@ endif
 com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
+com! Search exec 'set hlsearch' | call feedkeys("/", "nt")
 
 " Custom functions
 fun! ToggleSpellLang()
