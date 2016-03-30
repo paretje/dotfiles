@@ -1,5 +1,5 @@
 #!/bin/sh
-VINT="$HOME/.local/bin/vint"
+vint="$HOME/.local/bin/vint"
 
 for arg; do
 	if [ -f "$arg" ];then
@@ -12,11 +12,11 @@ done
 if [ "$file" != "" ]; then
 	tmp=$(mktemp --tmpdir tmp.XXXXXXXXXX)
 	sed_file=$(echo "$arg" |  sed 's/\//\\\//g' | sed 's/'\''/'\'\\\\\'\''/g')
-	sed 's/tnoremap/inoremap/' "$file" > $tmp
+	sed 's/!$//' "$file" > "$tmp"
 
-	$VINT $args $tmp | sed 's/^\/tmp\/tmp\..\{10\}/'"$sed_file"'/'
+	"$vint" $args "$tmp" | sed 's/^\/tmp\/tmp\..\{10\}/'"$sed_file"'/'
 
-	rm $tmp
+	rm "$tmp"
 else
-	exec $VINT
+	exec "$vint"
 fi
