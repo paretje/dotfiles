@@ -233,7 +233,7 @@ let g:calendar_monday = 1
 let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
 
 " neomake options
-au BufWritePost * Neomake
+au BufWritePost,BufReadPost * Neomake
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
 let g:neomake_verbose = 0
