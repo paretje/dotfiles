@@ -160,6 +160,8 @@ set pastetoggle=<Leader>p
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 " Don't use tabs unless sleuth detects them
 set expandtab
+" Disable folding by default
+set nofoldenable
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -355,6 +357,7 @@ au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 " Org ft options
 au BufRead,BufNewFile *.org    setfiletype dotoo
 au FileType dotoo*             setlocal textwidth=77
+au FileType dotoo              setlocal foldenable
 au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
@@ -392,7 +395,6 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 " markdown ft options
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
-au FileType markdown setlocal foldmethod=manual
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
@@ -516,11 +518,7 @@ endfun
 
 fun! ToggleFolding()
   if &l:foldmethod ==# 'manual'
-    if &l:filetype =~# '^markdown'
-      setlocal foldmethod=expr
-    else
-      setlocal foldmethod=syntax
-    endif
+    setlocal foldmethod=syntax foldenable
     return
   endif
   normal! zi
