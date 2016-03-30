@@ -20,7 +20,6 @@ Plug 'Dinduks/vim-java-get-set'
 Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'python-rope/ropevim', {'for': 'python'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
