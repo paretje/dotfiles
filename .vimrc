@@ -20,7 +20,6 @@ Plug 'Dinduks/vim-java-get-set'
 Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'fs111/pydoc.vim', {'for': 'python'}
 Plug 'python-rope/ropevim', {'for': 'python'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -62,6 +61,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -178,9 +178,6 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_exclude_nomod = 1
-
-" Pydoc options
-let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -342,6 +339,9 @@ let g:neoterm_shell = "busybox sh"
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
+
+" jedi-vim options
+let g:jedi#completions_enabled = 0
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
