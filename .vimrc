@@ -44,7 +44,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'paretje/neomake', {'branch': 'highlight'}
-Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
@@ -63,6 +62,7 @@ Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-commentary'
+Plug 'chaoren/vim-wordmotion'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -287,9 +287,6 @@ let g:neomake_sh_bash_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
 
-" CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<Leader>')
-
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
@@ -341,6 +338,9 @@ let g:gitgutter_sign_column_always = 1
 " neoterm options
 let g:neoterm_size = 15
 let g:neoterm_shell = "busybox sh"
+
+" wordmotion options
+let g:wordmotion_prefix = "\<Leader>"
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
