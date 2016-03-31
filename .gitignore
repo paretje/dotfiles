@@ -170,3 +170,4 @@ tags
 /.config/qutebrowser/qsettings/QtProject.conf
 /.weechat/slack.cache
 /.unipeptrc
+/.tox/distshare
