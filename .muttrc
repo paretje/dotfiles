@@ -46,7 +46,7 @@ set reverse_name=yes
 set edit_headers=yes
 
 # don't show spam and deleted mails when searching
-set nm_exclude_tags="spam,deleted"
+set nm_exclude_tags="spam,deleted,new"
 
 # set index format
 set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
