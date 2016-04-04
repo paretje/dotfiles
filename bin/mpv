@@ -1,5 +1,8 @@
 #!/bin/sh
 mpv() {
+        if test "$HOST" = "kevin-eeepc" && echo "$1" | grep -q '^http://'; then
+                /usr/bin/mpv "$(youtube-dl -f best -g "$1")"
+        fi
 	if [ "$VDPAU_DRIVER" = "nouveau" ]; then
 		/usr/bin/mpv --profile=vdpau "$@"
 	elif [ "$VDPAU_DRIVER" = "va_gl" ]; then
