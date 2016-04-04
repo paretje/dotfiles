@@ -160,8 +160,7 @@ tags
 /.config/pulse
 /.aspell.nl.prepl
 /.aspell.nl.pws
-/.vim/spell/nl.utf-8.add
-/.vim/spell/nl.utf-8.add.spl
+/.vim/spell
 /.newsbeuter/cache.db
 /.newsbeuter/history.cmdline
 /.newsbeuter/history.search
