@@ -18,7 +18,7 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle vi-mode
 antigen bundle pip
 
-# Abuse weechat to keep track of weechat plugins
+# Abuse antigen to keep track of weechat plugins
 antigen bundle rawdigits/wee-slack
 antigen bundle torhve/weechat-matrix-protocol-script
 
@@ -30,8 +30,9 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+antigen apply
+# autoload -Uz compinit
+# compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
