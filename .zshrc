@@ -18,6 +18,10 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle vi-mode
 antigen bundle pip
 
+# Abuse weechat to keep track of weechat plugins
+antigen bundle rawdigits/wee-slack
+antigen bundle torhve/weechat-matrix-protocol-script
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
 
