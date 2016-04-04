@@ -2,6 +2,7 @@
 mpv() {
         if test "$HOST" = "kevin-eeepc" && echo "$1" | grep -q '^http://'; then
                 /usr/bin/mpv "$(youtube-dl -f best -g "$1")"
+	# choose correct hardware acceleration
 	elif [ "$VDPAU_DRIVER" = "nouveau" ]; then
 		/usr/bin/mpv --profile=vdpau "$@"
 	elif [ "$VDPAU_DRIVER" = "va_gl" ]; then
@@ -11,6 +12,7 @@ mpv() {
 	fi
 }
 
+# do not resume playback when playing multiple files
 files=0
 smart=true
 for arg in "$@"; do
@@ -21,6 +23,7 @@ for arg in "$@"; do
 	fi
 done
 
+# disable notification during playback
 pkill -u $USER -USR1 dunst
 if $smart && test $files -gt 1; then
 	mpv --no-resume-playback "$@"
