@@ -55,6 +55,9 @@ ao=alsa
 # Disable softvol usage, and always use the system mixer if available.
 #softvol=no
 
+# Enable dynamic range compression
+af=drc
+
 
 ##################
 # other settings #
