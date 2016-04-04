@@ -38,11 +38,6 @@ if [ "$UID" != "0" ]; then
     PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 fi
 
-# set PYTHONPATH
-if [ -d "$HOME/.vim/bundle/ropevim" ] ; then
-    export PYTHONPATH="$PYTHONPATH:$HOME/.vim/bundle/ropevim"
-fi
-
 # set default man path
 export MANPATH=$(manpath)
 

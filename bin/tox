@@ -1,0 +1,4 @@
+#!/bin/sh
+mv "$HOME/.pip/pip.conf" "$HOME/.pip/pip.conf.old"
+/usr/bin/tox "$@"
+mv "$HOME/.pip/pip.conf.old" "$HOME/.pip/pip.conf"

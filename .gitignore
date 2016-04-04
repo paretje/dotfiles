@@ -47,7 +47,6 @@
 /.xsession-errors
 /.xsession-errors.old
 /downloads
-/bin
 /cloud
 /octave-workspace
 /vcs
@@ -169,3 +168,6 @@ tags
 /.newsbeuter/urls
 /.newsbeuter/cache.db.lock
 /.config/qutebrowser/qsettings/QtProject.conf
+/.weechat/slack.cache
+/.unipeptrc
+/.tox/distshare

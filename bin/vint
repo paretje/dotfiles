@@ -1,0 +1,22 @@
+#!/bin/sh
+vint="$HOME/.local/bin/vint"
+
+for arg; do
+	if [ -f "$arg" ];then
+		file="$arg"
+	else
+		args="$args $arg"
+	fi
+done
+
+if [ "$file" != "" ]; then
+	tmp=$(mktemp --tmpdir tmp.XXXXXXXXXX)
+	sed_file=$(echo "$arg" |  sed 's/\//\\\//g' | sed 's/'\''/'\'\\\\\'\''/g')
+	sed 's/!$//' "$file" > "$tmp"
+
+	"$vint" $args "$tmp" | sed 's/^\/tmp\/tmp\..\{10\}/'"$sed_file"'/'
+
+	rm "$tmp"
+else
+	exec "$vint"
+fi

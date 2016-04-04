@@ -26,7 +26,6 @@ Plug 'tpope/vim-endwise'
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
-Plug 'bkad/CamelCaseMotion'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -34,6 +33,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
+Plug 'chaoren/vim-wordmotion'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -124,6 +124,8 @@ set pastetoggle=<Leader>p
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 " Don't use tabs unless sleuth detects them
 set expandtab
+" Disable folding by default
+set nofoldenable
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -140,9 +142,6 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_exclude_nomod = 1
-
-" Pydoc options
-let g:pydoc_cmd = '/usr/bin/pydoc3'
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -249,9 +248,6 @@ let g:neomake_sh_bash_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
 
-" CamelCaseMotion options
-call camelcasemotion#CreateMotionMappings('<Leader>')
-
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
@@ -302,7 +298,13 @@ let g:gitgutter_sign_column_always = 1
 
 " neoterm options
 let g:neoterm_size = 15
-let g:neoterm_shell = "busybox sh"
+let g:neoterm_shell = 'busybox sh'
+
+" wordmotion options
+let g:wordmotion_prefix = "\<Leader>"
+
+" jedi-vim options
+let g:jedi#completions_enabled = 0
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
@@ -318,6 +320,7 @@ au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 " Org ft options
 au BufRead,BufNewFile *.org    setfiletype dotoo
 au FileType dotoo*             setlocal textwidth=77
+au FileType dotoo              setlocal foldenable
 au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
@@ -355,7 +358,6 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 " markdown ft options
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
-au FileType markdown setlocal foldmethod=manual
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
@@ -479,11 +481,7 @@ endfun
 
 fun! ToggleFolding()
   if &l:foldmethod ==# 'manual'
-    if &l:filetype =~# '^markdown'
-      setlocal foldmethod=expr
-    else
-      setlocal foldmethod=syntax
-    endif
+    setlocal foldmethod=syntax foldenable
     return
   endif
   normal! zi

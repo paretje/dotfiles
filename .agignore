@@ -4,5 +4,4 @@ tags
 *.swp
 *.pyc
 *.log
-/.zsh
 /.vim/spell

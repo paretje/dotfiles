@@ -2,5 +2,7 @@
 if ! git diff-index --quiet HEAD --; then
 	git commit -a -m '' --allow-empty-message
 fi
-git pull
-git push
+if ! 3gusage ; then
+	git pull
+	git push
+fi
