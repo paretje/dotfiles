@@ -3,24 +3,32 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
-# Clone antigen if unavailable
-if [ ! -f "$HOME/.zsh/antigen/antigen.zsh" ]; then
-    mkdir -p .zsh
-    git -C "$HOME/.zsh" clone https://github.com/zsh-users/antigen.git
+# Clone zplug if unavailable
+if [ ! -f "$HOME/.zplug/init.zsh" ]; then
+    curl -sL https://raw.githubusercontent.com/b4b4r07/zplug/v2/zplug | sed 's/git clone/git clone --branch v2/' | zsh
 fi
 
-# Load antigen and plugins
-ADOTDIR="$HOME/.zsh/antigen-files"
-source "$HOME/.zsh/antigen/antigen.zsh"
+# Load zplug and plugins
+local my_path="$PATH"
+source "$HOME/.zplug/init.zsh"
 
-antigen bundle olivierverdier/zsh-git-prompt
-antigen bundle zsh-users/zsh-completions
-antigen bundle vi-mode
-antigen bundle pip
+zplug "b4b4r07/zplug", at:v2, hook-build:"zplug update --self"
+
+zplug "olivierverdier/zsh-git-prompt", use:zshrc.sh, hook-build:"zplug clear"
+zplug "zsh-users/zsh-completions"
+
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh
 
 # Abuse antigen to keep track of weechat plugins
-antigen bundle rawdigits/wee-slack
-antigen bundle torhve/weechat-matrix-protocol-script
+zplug "rawdigits/wee-slack", use:
+zplug "torhve/weechat-matrix-protocol-script", use:
+
+zplug "paretje/unisister", as:command, use:unisister
+zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv"
+
+zplug load
+PATH="$my_path"
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
@@ -30,10 +38,6 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-antigen apply
-# autoload -Uz compinit
-# compinit
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'

@@ -101,9 +101,6 @@
 /.config/pulse/cookie
 /.config/htop/htoprc
 /.config/chromium
-/.oh-my-zsh
-/.zsh-update
-/.zsh
 /.local/share/nvim
 /.local/lib
 /.local/include
@@ -170,3 +167,4 @@ tags
 /.weechat/slack.cache
 /.unipeptrc
 /.tox/distshare
+/.zplug
