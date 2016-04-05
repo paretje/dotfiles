@@ -1,1 +1,1 @@
-../../.zsh/antigen-files/repos/https-COLON--SLASH--SLASH-github.com-SLASH-torhve-SLASH-weechat-matrix-protocol-script.git/matrix.lua
+../../.zplug/repos/torhve/weechat-matrix-protocol-script/matrix.lua

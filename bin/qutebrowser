@@ -1,6 +1,6 @@
 #!/bin/sh
 qutebrowser() {
-	"$HOME/bin/qutebrowser.git/.venv/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+	"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
 }
 
 clean_history() {

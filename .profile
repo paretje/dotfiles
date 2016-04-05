@@ -9,9 +9,12 @@
 # umask 027
 
 # set GEM_HOME according to detected location
-if [ -d "$HOME/.gem/ruby" ] ; then
-    export GEM_HOME="$HOME/.gem/ruby"
+if hash ruby ; then
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 fi
+
+# set ZPLUG_HOME
+export ZPLUG_HOME="$HOME/.zplug"
 
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
@@ -26,6 +29,11 @@ fi
 # set PATH so it includes user local bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH so it includes user's zplug bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$ZPLUG_HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists

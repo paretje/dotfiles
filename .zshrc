@@ -3,6 +3,22 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
+# Clone zplug if unavailable
+if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
+    git clone --branch v2 https://github.com/b4b4r07/zplug.git "$ZPLUG_HOME"
+fi
+
+# Load zplug and plugins
+local my_path="$PATH"
+source "$ZPLUG_HOME/init.zsh"
+
+zplug "b4b4r07/zplug", at:v2, hook-build:"zplug update --self"
+
+zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv"
+
+zplug load
+PATH="$my_path"
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace
 
@@ -11,9 +27,6 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
