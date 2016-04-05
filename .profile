@@ -9,8 +9,8 @@
 # umask 027
 
 # set GEM_HOME according to detected location
-if [ -d "$HOME/.gem/ruby" ] ; then
-    export GEM_HOME="$HOME/.gem/ruby"
+if hash ruby ; then
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 fi
 
 # set PATH so it includes user's rubygems bin if it exists
