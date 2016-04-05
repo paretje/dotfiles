@@ -1,1 +1,1 @@
-../../.zsh/antigen-files/repos/https-COLON--SLASH--SLASH-github.com-SLASH-rawdigits-SLASH-wee-slack.git/wee_slack.py
+../../.zplug/repos/rawdigits/wee-slack/wee_slack.py
