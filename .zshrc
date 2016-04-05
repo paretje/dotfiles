@@ -4,13 +4,13 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
 fi
 
 # Clone zplug if unavailable
-if [ ! -f "$HOME/.zplug/init.zsh" ]; then
-    curl -sL https://raw.githubusercontent.com/b4b4r07/zplug/v2/zplug | sed 's/git clone/git clone --branch v2/' | zsh
+if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
+    git clone --branch v2 https://github.com/b4b4r07/zplug.git "$ZPLUG_HOME"
 fi
 
 # Load zplug and plugins
 local my_path="$PATH"
-source "$HOME/.zplug/init.zsh"
+source "$ZPLUG_HOME/init.zsh"
 
 zplug "b4b4r07/zplug", at:v2, hook-build:"zplug update --self"
 

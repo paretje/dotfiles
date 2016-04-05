@@ -13,6 +13,9 @@ if hash ruby ; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 fi
 
+# set ZPLUG_HOME
+export ZPLUG_HOME="$HOME/.zplug"
+
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
     PATH="$GEM_HOME/bin:$PATH"
@@ -30,7 +33,7 @@ fi
 
 # set PATH so it includes user's zplug bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/.zplug/bin:$PATH"
+    PATH="$ZPLUG_HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
