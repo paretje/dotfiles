@@ -17,4 +17,6 @@ noremap k 2k
 cnoremap <C-p> <up>
 cnoremap <C-n> <down>
 
+command! q winclose
+
 " vim: set ft=vimperator:
