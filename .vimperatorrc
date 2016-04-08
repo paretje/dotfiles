@@ -7,7 +7,7 @@ set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
 set focuscontent=true
 
 noremap d <C-d>
-noremap x :quit<Return>
+noremap x :tabclose<Return>
 noremap u <C-u>
 noremap X :undo<Return>
 noremap s :stop<Return>
