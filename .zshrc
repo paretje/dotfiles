@@ -25,7 +25,7 @@ zplug "rawdigits/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 
 zplug "paretje/unisister", as:command, use:unisister
-zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv"
+zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
 zplug load
 PATH="$my_path"
