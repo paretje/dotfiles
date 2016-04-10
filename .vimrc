@@ -334,6 +334,7 @@ au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
 au FileType java setlocal keywordprg=:JavaDoc
+au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
@@ -382,6 +383,7 @@ au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
 
 " C ft options
 au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
+au FileType c setlocal commentstring=//%s
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -468,6 +470,7 @@ endif
 com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=232 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
+com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 
 " Custom functions
 fun! ToggleSpellLang()

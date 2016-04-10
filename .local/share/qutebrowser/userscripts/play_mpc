@@ -1,0 +1,3 @@
+#!/bin/sh
+youtube-dl -g -f bestaudio "$QUTE_URL" | mpc add
+mpc play

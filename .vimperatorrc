@@ -1,0 +1,22 @@
+set hintchars=hjklasdf
+set hintmatching=firstletters
+set editor=urxvt\ -e\ nvim
+set complete=l
+set defsearch=duckduckgo
+set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
+set focuscontent=true
+
+nnoremap d <C-d>
+nnoremap x :tabclose<Return>
+nnoremap u <C-u>
+nnoremap X :undo<Return>
+nnoremap s :stop<Return>
+nnoremap j 2j
+nnoremap k 2k
+
+cnoremap <C-p> <up>
+cnoremap <C-n> <down>
+
+command! q winclose
+
+" vim: set ft=vimperator:

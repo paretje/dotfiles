@@ -14,7 +14,7 @@ source "$ZPLUG_HOME/init.zsh"
 
 zplug "b4b4r07/zplug", at:v2, hook-build:"zplug update --self"
 
-zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv"
+zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
 zplug load
 PATH="$my_path"
