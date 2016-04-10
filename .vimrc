@@ -220,7 +220,7 @@ let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
+let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
 
@@ -396,6 +396,7 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 " markdown ft options
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
+au FileType markdown setlocal concealcursor=n
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
