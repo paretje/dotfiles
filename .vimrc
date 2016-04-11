@@ -189,7 +189,7 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/personal/library/**/.metadata.org']
 let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
@@ -364,6 +364,7 @@ au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strft
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
 au FileType dotooagenda        setlocal nowrap
+au FileType dotoo              nnoremap <buffer> <silent> gf :.w !tr '\n' '\0' <bar> sed 's/^\s*//' <bar> xargs -0 xdg-open &<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
