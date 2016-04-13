@@ -1,0 +1,6 @@
+#!/bin/sh -e
+cd "$HOME/vcs/once/qutebrowser"
+git checkout paretje
+git fetch upstream
+git merge upstream/master
+git push

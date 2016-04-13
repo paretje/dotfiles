@@ -25,3 +25,6 @@ alias gpg='gpg2'
 if [ "$TERM" = "linux" ]; then
   alias vi='vim'
 fi
+
+# transform symlinks when using sshfs
+alias sshfs='sshfs -o transform_symlinks'

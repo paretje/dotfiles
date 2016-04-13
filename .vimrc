@@ -153,7 +153,7 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/personal/library/**/.metadata.org']
 let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
@@ -184,7 +184,7 @@ let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown', '']
+let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', '']
 let g:indentLine_faster = 1
 let g:indentLine_showFirstIndentLevel = 1
 
@@ -327,6 +327,7 @@ au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strft
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
 au FileType dotooagenda        setlocal nowrap
+au FileType dotoo              nnoremap <buffer> <silent> gf :.w !tr '\n' '\0' <bar> sed 's/^\s*//' <bar> xargs -0 xdg-open &<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
@@ -359,6 +360,7 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 " markdown ft options
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
+au FileType markdown setlocal concealcursor=n
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
