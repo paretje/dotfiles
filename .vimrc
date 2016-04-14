@@ -364,7 +364,6 @@ au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strft
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
 au FileType dotooagenda        setlocal nowrap
-au FileType dotoo              nnoremap <buffer> <silent> gf :.w !tr '\n' '\0' <bar> sed 's/^\s*//' <bar> xargs -0 xdg-open &<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
@@ -489,6 +488,7 @@ nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
+nnoremap <silent> gf :call OpenFile()<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -579,4 +579,15 @@ fun! StageSelection() range
   wincmd p
   write
   close
+endfun
+
+fun! OpenFile()
+  if match(getline('.'), '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)')
+    let l:isfname = &isfname
+    set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
+    execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . '&'
+    let &isfname = l:isfname
+  else
+    normal! gf
+  endif
 endfun
