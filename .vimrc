@@ -373,6 +373,7 @@ au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
 au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
 au FileType java setlocal keywordprg=:JavaDoc
 au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
+au BufRead *Test.java let b:tagbar_ignore = 1
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
