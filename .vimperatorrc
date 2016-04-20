@@ -6,16 +6,18 @@ set defsearch=duckduckgo
 set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
 set focuscontent=true
 
-nnoremap d <C-d>
-nnoremap x :tabclose<Return>
+nnoremap d <C-D>
+nnoremap x :tabclose<CR>
 nnoremap u <C-u>
-nnoremap X :undo<Return>
-nnoremap s :stop<Return>
+nnoremap X :undo<CR>
+nnoremap s :stop<CR>
 nnoremap j 2j
 nnoremap k 2k
+nnoremap p :open <C-V><CR>
+nnoremap P :tabopen <C-V><CR>
 
-cnoremap <C-p> <up>
-cnoremap <C-n> <down>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
 
 command! q winclose
 
