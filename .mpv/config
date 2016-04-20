@@ -50,7 +50,7 @@ autofit-larger=90%x90%
 ##################
 
 # Specify default audio driver (see --ao=help for a list).
-ao=alsa
+ao=pulse
 
 # Disable softvol usage, and always use the system mixer if available.
 #softvol=no

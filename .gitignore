@@ -154,7 +154,6 @@ tags
 /.pip/zsh-cache
 /.mutt/postponed
 /.*_history
-/.config/pulse
 /.aspell.nl.prepl
 /.aspell.nl.pws
 /.vim/spell
@@ -170,3 +169,6 @@ tags
 /.zplug
 /.vimperator
 /.config/dvbcut.sf.net/dvbcut.conf
+.config/pulse/*-runtime
+.config/pulse/*.tdb
+.config/pulse/*-default-*
