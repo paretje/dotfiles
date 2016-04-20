@@ -1,5 +1,6 @@
 set hintchars=hjklasdf
 set hintmatching=firstletters
+set hintinputs=
 set editor=urxvt\ -e\ nvim
 set complete=l
 set defsearch=duckduckgo
