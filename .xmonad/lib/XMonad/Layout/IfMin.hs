@@ -22,6 +22,7 @@ module XMonad.Layout.IfMin
       -- $usage
       IfMin (..)
     , ifMin
+    , ifMinChoose
     ) where
 
 import Data.Maybe
@@ -56,5 +57,9 @@ mkNewIfMinF (IfMin n _ lt lf) mlf' =
     (\lf' -> IfMin n False lt lf') $ fromMaybe lf mlf'
 
 ifMin :: (LayoutClass l1 a, LayoutClass l2 a)
-      => Int -> (l1 a) -> (l2 a) -> IfMin l1 l2 a
+      => Int -> l1 a -> l2 a -> IfMin l1 l2 a
 ifMin n = IfMin n False
+
+ifMinChoose :: (LayoutClass l1 a, LayoutClass l2 a)
+            => Int -> l1 a -> l2 a -> IfMin (Choose l1 l2) l2 a
+ifMinChoose n lt le = IfMin n False (lt ||| le) le

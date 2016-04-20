@@ -34,11 +34,9 @@ myConfig = defaultConfig
     , ("M-<F10>", spawn "amixer set Master 10%+")
     ]
 
-myLayoutHook = ifMin 3 min3 $ ifMin 2 min2 min0 where
-    min0 = Full
-    min2 = tiled ||| Mirror tiled ||| min0
-    min3 = ThreeColMid 1 (3/100) (1/2) ||| min2
+myLayoutHook = ifMinChoose 3 threecol $ ifMinChoose 2 (tiled ||| Mirror tiled) Full where
     tiled = Tall 1 (3/100) (1/2)
+    threecol = ThreeColMid 1 (3/100) (1/2)
 
 myManageHook = composeAll
     [ className =? "Xfrun4" --> doFloat
