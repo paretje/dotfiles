@@ -169,6 +169,7 @@ tags
 /.zplug
 /.vimperator
 /.config/dvbcut.sf.net/dvbcut.conf
-.config/pulse/*-runtime
-.config/pulse/*.tdb
-.config/pulse/*-default-*
+/.config/pulse/*-runtime
+/.config/pulse/*.tdb
+/.config/pulse/*-default-*
+/.rnd
