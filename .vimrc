@@ -6,7 +6,12 @@ autocmd!
 
 " download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
-  execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  if executable("curl")
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  elseif executable("wget")
+    execute '!mkdir -P ~/.vim/autoload'
+    execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
 endif
 
 " load plug and declare all plugins
