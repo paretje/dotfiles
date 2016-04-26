@@ -337,6 +337,7 @@ let g:clang_hl_errors = 0
 
 " gitgutter options
 let g:gitgutter_sign_column_always = 1
+let g:gitgutter_eager = 0
 
 " neoterm options
 let g:neoterm_size = 15
