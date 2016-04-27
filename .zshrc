@@ -15,12 +15,12 @@ source "$ZPLUG_HOME/init.zsh"
 zplug "b4b4r07/zplug", hook-build:"zplug update --self"
 
 zplug "olivierverdier/zsh-git-prompt", use:zshrc.sh, hook-build:"zplug clear"
-zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-completions", hook-build:'compinit -d "$ZPLUG_HOME/zcompdump"'
 
 zplug "plugins/vi-mode", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
+zplug "plugins/pip", from:oh-my-zsh, hook-build:'compinit -d "$ZPLUG_HOME/zcompdump"'
 
-# Abuse antigen to keep track of weechat plugins
+# Abuse zplug to keep track of weechat plugins
 zplug "rawdigits/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 
