@@ -16,6 +16,7 @@ nnoremap j 2j
 nnoremap k 2k
 nnoremap p :open <C-V><CR>
 nnoremap P :tabopen <C-V><CR>
+nnoremap af ;F
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
