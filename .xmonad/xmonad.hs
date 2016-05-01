@@ -32,6 +32,7 @@ myConfig = defaultConfig
     , ("M-<F8>", spawn "amixer set Master toggle")
     , ("M-<F9>", spawn "amixer set Master 10%-")
     , ("M-<F10>", spawn "amixer set Master 10%+")
+    , ("M-x", spawn "dmenu-xrandr")
     ]
 
 myLayoutHook = ifMinChoose 3 threecol $ ifMinChoose 2 (tiled ||| Mirror tiled) Full where
