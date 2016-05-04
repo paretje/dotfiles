@@ -374,7 +374,7 @@ au BufHidden nmbs.org          setlocal nobuflisted
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
+au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test:lib/*"
 au FileType java setlocal keywordprg=:JavaDoc
 au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
 au BufRead *Test.java let b:tagbar_ignore = 1
