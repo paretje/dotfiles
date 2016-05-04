@@ -12,7 +12,7 @@ virtual-mailboxes \
                   "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
                   "announcements"  "notmuch://?query=tag:ann" \
                   "signature"      "notmuch://?query=tag:signature" \
-                  "compchal"       "notmuch://?query=tag:compchal" \
+                  "ccb"            "notmuch://?query=tag:ccb" \
                   "hersch"         "notmuch://?query=tag:hersch" \
                   "discalg"        "notmuch://?query=tag:discalg" \
                   "kwaninf"        "notmuch://?query=tag:kwaninf" \
