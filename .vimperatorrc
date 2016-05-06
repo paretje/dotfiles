@@ -21,6 +21,8 @@ nnoremap af ;F
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+inoremap <C-O> <C-I>
+
 command! q winclose
 
 " vim: set ft=vimperator:
