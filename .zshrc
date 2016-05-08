@@ -62,6 +62,13 @@ zstyle ':completion:*:(ssh|scp):*:hosts' hosts
 # autocompletion for tsocks
 compdef tsocks=exec
 
+# enable bash completions
+autoload bashcompinit
+bashcompinit
+
+# autocompletion for pandoc
+eval "$(pandoc --bash-completion)"
+
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
