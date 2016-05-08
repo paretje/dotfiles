@@ -173,3 +173,4 @@ tags
 /.config/pulse/*.tdb
 /.config/pulse/*-default-*
 /.rnd
+/.config/inkscape
