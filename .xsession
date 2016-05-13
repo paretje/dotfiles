@@ -24,7 +24,7 @@ fi
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
 
-# set keyboard layout
+# Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
@@ -40,6 +40,11 @@ xmodmap -e 'add mod3 = Super_R'
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
 	xbacklight -set 30
+fi
+
+# Set default pulseaudio sink
+if [ "$HOST" = "kevin-laptop" ] && ifconfig eth0 | fgrep -q 'inet'; then
+	pactl set-default-sink kevin-desktop
 fi
 
 # Set default mouse pointer
