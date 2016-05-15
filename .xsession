@@ -42,8 +42,12 @@ if [ "$HOST" = "kevin-laptop" ]; then
 	xbacklight -set 30
 fi
 
-# Set default pulseaudio sink
+# Some settings for laptop when working on desk
 if [ "$HOST" = "kevin-laptop" ] && ifconfig eth0 | fgrep -q 'inet'; then
+	if xrandr | fgrep -q 'HDMI1 connected'; then
+		xrandr --output HDMI1 --auto && xrandr --output eDP1 --off
+	fi
+
 	pactl set-default-sink kevin-desktop
 fi
 
