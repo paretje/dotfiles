@@ -263,6 +263,8 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
+let g:deoplete#member#prefix_patterns = {}
+let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
