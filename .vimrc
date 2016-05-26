@@ -67,6 +67,7 @@ Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
