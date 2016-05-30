@@ -57,7 +57,7 @@ set sort_aux=last-date-received
 
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
-set nm_record_tags=sent
+set nm_record_tags="-inbox sent"
 send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
 
