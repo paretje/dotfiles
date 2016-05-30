@@ -33,6 +33,7 @@ set pgp_use_gpg_agent = yes
 alternates "kevin@paretje.be"
 alternates "Kevin.Velghe@UGent.be"
 alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
+alternates ".*@noreply.github.com"
 
 # set from header
 set realname="Kevin Velghe"
@@ -148,7 +149,7 @@ bind pager u previous-page
 macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
-bind index,pager R group-reply
+bind index,pager r group-reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
