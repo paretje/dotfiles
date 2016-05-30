@@ -6,13 +6,13 @@ if echo "$message" | grep -vq '^Discharging, '; then
 	exit
 fi
 
-if [ $level -le 3 ]; then
+if [ $level -le 5 ]; then
 	notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
 	sleep 30s
 	if acpi-b | fgrep -vq 'Charging, '; then
 		sudo pm-suspend
 	fi
-elif [ $level -le 5 ]; then
+elif [ $level -le 7 ]; then
 	notify-send -u critical "Battery getting very low" "$message"
 elif [ $level -le 10 ]; then
 	notify-send -u low "Battery getting low" "$message"
