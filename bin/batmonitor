@@ -9,7 +9,7 @@ fi
 if [ $level -le 5 ]; then
 	notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
 	sleep 30s
-	if acpi-b | fgrep -vq 'Charging, '; then
+	if acpi -b | fgrep -vq 'Charging, '; then
 		sudo pm-suspend
 	fi
 elif [ $level -le 7 ]; then
