@@ -6,7 +6,12 @@ autocmd!
 
 " download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
-  execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  if executable("curl")
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  elseif executable("wget")
+    execute '!mkdir -P ~/.vim/autoload'
+    execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
 endif
 
 " load plug and declare all plugins
@@ -133,14 +138,14 @@ let g:airline_theme = 'bubblegum'
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
+let g:airline_symbols = get(g:, 'airline_symbols', {})
+let g:airline_symbols.maxlinenr = ''
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
-let g:ctrlp_working_path_mode = 0
 let g:ctrlp_switch_buffer = ''
-let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_mruf_exclude_nomod = 1
 
 " Fugitive options
@@ -202,51 +207,15 @@ let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
 let g:neomake_verbose = 0
 
-let g:neomake_vim_vint_maker = {
-  \ 'args': ['--style-problem', '-f',
-    \ '{file_path}:{line_number}:{column_number}:{severity}:{description}'],
-  \ 'errorformat': '%f:%l:%c:%t%*[^:]:%m'
-\ }
-
-let g:neomake_java_javac_maker = {
-  \ 'args': ['-Xlint'],
-  \ 'buffer_output': 1,
-  \ 'errorformat':
-    \ '%E%f:%l: error: %m,'.
-    \ '%W%f:%l: warning: %m,'.
-    \ '%E%f:%l: %m,'.
-    \ '%Z%p^,'.
-    \ '%-G%.%#'
-\ }
-let g:neomake_java_checkstyle_maker = {
-  \ 'args': ['-c', '/usr/share/checkstyle/google_checks.xml'],
-  \ 'errorformat':
-    \ '[%t%*[^]]] %f:%l:%c: %m [%s]'
-\ }
 let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
 
-let g:neomake_sh_checkbashisms_maker = {
-  \ 'args': ['-fx'],
-  \ 'errorformat':
-    \ '%-Gscript %f is already a bash script; skipping,' .
-    \ '%Eerror: %f: %m\, opened in line %l,' .
-    \ '%Eerror: %f: %m,' .
-    \ '%Ecannot open script %f for reading: %m,' .
-    \ '%Wscript %f %m,%C%.# lines,' .
-    \ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
-    \ '%-G%.%#'
-\ }
 let g:neomake_sh_bashate_maker = {
   \ 'errorformat': 
     \ '%EE%n: %m,' .
     \ '%Z - %f%\s%\+: L%l,' .
     \ '%-G%.%#'
 \ }
-let g:neomake_sh_bash_maker = {
-  \ 'args': ['-n'],
-  \ 'errorformat': '%f: line %l: %m'
-\ }
-let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'bash']
+let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
@@ -257,6 +226,8 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
+let g:deoplete#member#prefix_patterns = {}
+let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -327,15 +298,16 @@ au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strft
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
 au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
 au FileType dotooagenda        setlocal nowrap
-au FileType dotoo              nnoremap <buffer> <silent> gf :.w !tr '\n' '\0' <bar> sed 's/^\s*//' <bar> xargs -0 xdg-open &<CR>
+au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test"
+au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test:lib/*"
 au FileType java setlocal keywordprg=:JavaDoc
 au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
+au BufRead *Test.java let b:tagbar_ignore = 1
 
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
@@ -451,6 +423,7 @@ nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
+nnoremap <silent> gf :call OpenFile()<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -470,7 +443,7 @@ endif
 
 " Custom commands
 com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
-com! BeamerBackground hi Normal ctermbg=232 | set background=dark
+com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 
@@ -541,4 +514,15 @@ fun! StageSelection() range
   wincmd p
   write
   close
+endfun
+
+fun! OpenFile()
+  if match(getline('.'), '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)')
+    let l:isfname = &isfname
+    set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
+    execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . '&'
+    let &isfname = l:isfname
+  else
+    normal! gf
+  endif
 endfun

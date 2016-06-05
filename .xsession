@@ -24,7 +24,7 @@ fi
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
 
-# set keyboard layout
+# Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys

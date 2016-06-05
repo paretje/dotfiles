@@ -12,7 +12,7 @@ fi
 local my_path="$PATH"
 source "$ZPLUG_HOME/init.zsh"
 
-zplug "b4b4r07/zplug", at:v2, hook-build:"zplug update --self"
+zplug "b4b4r07/zplug", hook-build:"zplug update --self"
 
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
@@ -50,6 +50,13 @@ zstyle ':completion:*:(ssh|scp):*:hosts' hosts
 
 # autocompletion for tsocks
 compdef tsocks=exec
+
+# enable bash completions
+autoload bashcompinit
+bashcompinit
+
+# autocompletion for pandoc
+eval "$(pandoc --bash-completion)"
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then

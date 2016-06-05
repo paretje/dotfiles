@@ -5,6 +5,7 @@
 	default = simple
 [instaweb]
 	httpd = webrick
+	browser = xdg-open
 [gcrypt]
 	participants = 64AD7E10
 	signingkey = 64AD7E10

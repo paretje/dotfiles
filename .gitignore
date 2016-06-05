@@ -42,8 +42,8 @@
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
 /.xmonad/xmonad.errors
-/.xmonad/xmonad.hi
-/.xmonad/xmonad.o
+/.xmonad/**/*.hi
+/.xmonad/**/*.o
 /.xsession-errors
 /.xsession-errors.old
 /downloads
@@ -154,7 +154,6 @@ tags
 /.pip/zsh-cache
 /.mutt/postponed
 /.*_history
-/.config/pulse
 /.aspell.nl.prepl
 /.aspell.nl.pws
 /.vim/spell
@@ -169,3 +168,9 @@ tags
 /.tox/distshare
 /.zplug
 /.vimperator
+/.config/dvbcut.sf.net/dvbcut.conf
+/.config/pulse/*-runtime
+/.config/pulse/*.tdb
+/.config/pulse/*-default-*
+/.rnd
+/.config/inkscape

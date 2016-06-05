@@ -12,7 +12,7 @@ virtual-mailboxes \
                   "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
                   "announcements"  "notmuch://?query=tag:ann" \
                   "signature"      "notmuch://?query=tag:signature" \
-                  "compchal"       "notmuch://?query=tag:compchal" \
+                  "ccb"            "notmuch://?query=tag:ccb" \
                   "hersch"         "notmuch://?query=tag:hersch" \
                   "discalg"        "notmuch://?query=tag:discalg" \
                   "kwaninf"        "notmuch://?query=tag:kwaninf" \
@@ -33,6 +33,7 @@ set pgp_use_gpg_agent = yes
 alternates "kevin@paretje.be"
 alternates "Kevin.Velghe@UGent.be"
 alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
+alternates ".*@noreply.github.com"
 
 # set from header
 set realname="Kevin Velghe"
@@ -56,7 +57,7 @@ set sort_aux=last-date-received
 
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
-set nm_record_tags=sent
+set nm_record_tags="-inbox sent"
 send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
 
@@ -148,7 +149,7 @@ bind pager u previous-page
 macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
-bind index,pager R group-reply
+bind index,pager r group-reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
