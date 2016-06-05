@@ -50,7 +50,7 @@ autofit-larger=90%x90%
 ##################
 
 # Specify default audio driver (see --ao=help for a list).
-ao=pulse
+ao=alsa
 
 # Disable softvol usage, and always use the system mixer if available.
 #softvol=no
@@ -122,11 +122,14 @@ hwdec=vdpau
 hwdec-codecs=all
 # Most video filters do not work with vdpau.
 # vf-clr=yes vf-clr=yes
+# Use pulse audio
+ao=pulse
 
 [vaapi]
 vo=vaapi
 hwdec=vaapi
 hwdec-codecs=all
+ao=pulse
 
 # You can also include other configuration files.
 #include = /path/to/the/file/you/want/to/include
