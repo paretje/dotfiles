@@ -62,6 +62,11 @@ zstyle ':completion:*:(ssh|scp):*:hosts' hosts
 # autocompletion for tsocks
 compdef tsocks=exec
 
+# just use url completion for mpc
+_mpc_helper_files() {
+    _urls
+}
+
 # enable bash completions
 autoload bashcompinit
 bashcompinit
