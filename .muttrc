@@ -146,7 +146,7 @@ bind pager d next-page
 bind pager u previous-page
 
 # disable mutt's delete, and just tag with notmuch
-macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
+macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
 bind index,pager r group-reply
