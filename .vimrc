@@ -74,7 +74,7 @@ if has('python') || has('python3')
 endif
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', {'do': function('remote#host#UpdateRemotePlugins')}
   Plug 'radenling/vim-dispatch-neovim'
   Plug 'paretje/nvim-man'
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
