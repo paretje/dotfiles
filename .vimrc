@@ -465,6 +465,10 @@ nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
 nnoremap <silent> gf :call OpenFile()<CR>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+cnoremap <Up> <C-P>
+cnoremap <Down> <C-N>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
