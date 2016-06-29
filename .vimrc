@@ -6,9 +6,9 @@ autocmd!
 
 " download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
-  if executable("curl")
+  if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  elseif executable("wget")
+  elseif executable('wget')
     execute '!mkdir -P ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
@@ -74,7 +74,11 @@ if has('python') || has('python3')
 endif
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', {'do': function('remote#host#UpdateRemotePlugins')}
+  fun! UpdateRemotePlugins(info)
+    call remtote#host#UpdateRemotePlugins()
+  endfun
+
+  Plug 'Shougo/deoplete.nvim', {'do': function('UpdateRemotePlugins')}
   Plug 'radenling/vim-dispatch-neovim'
   Plug 'paretje/nvim-man'
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
