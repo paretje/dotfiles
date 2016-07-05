@@ -14,6 +14,9 @@ bind-key G end
 
 bind-key f goto-url
 
+bind-key h toggle-show-read-feeds
+bind-key l open
+
 auto-reload yes
 reload-time 15
 reload-threads 4
