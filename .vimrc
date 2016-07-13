@@ -353,6 +353,7 @@ au BufRead *Test.java let b:tagbar_ignore = 1
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
 au FileType tex compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+au FileType tex call AutoMake()
 
 " Haskell ft options
 au FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -549,6 +550,8 @@ endfun
 
 fun! AutoMake()
   if filereadable('Makefile')
+    au BufWritePost <buffer> Neomake!
+  elseif &filetype ==# 'tex' && len(glob('*.tex', 1, 1)) == 1
     au BufWritePost <buffer> Neomake!
   endif
 endfun
