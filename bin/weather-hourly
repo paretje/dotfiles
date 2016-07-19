@@ -1,0 +1,2 @@
+#!/bin/sh
+exec wget -q -O - http://api.buienradar.nl/data/forecast/1.1/all/2797656 | grep '"date"\|"hour"\|          "temperature"' | head -41
