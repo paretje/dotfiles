@@ -153,3 +153,6 @@ bind index,pager r group-reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
+
+# follow links in mail using urlscan
+macro pager f '<pipe-message>urlscan<enter>'
