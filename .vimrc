@@ -79,6 +79,7 @@ if has('nvim')
   Plug 'paretje/nvim-man'
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
+  Plug 'fishbullet/deoplete-ruby'
 endif
 
 call plug#end()
