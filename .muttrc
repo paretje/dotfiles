@@ -140,6 +140,7 @@ bind index T tag-thread
 
 # sync new mail status immediately when opening message
 macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
+macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
 bind pager d next-page
