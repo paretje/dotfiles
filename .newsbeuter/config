@@ -40,4 +40,6 @@ keep-articles-days 14
 
 goto-next-feed no
 
+prepopulate-query-feeds yes
+
 include "~/.newsbeuter/filter"
