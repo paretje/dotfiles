@@ -19,6 +19,7 @@
 /.ghc
 /.gksu.lock
 /.gnome2/keyrings
+/.local/share/keyrings
 /.gnupg/private-keys-v1.d
 /.gnupg/pubring.gpg
 /.gnupg/random_seed
@@ -174,3 +175,7 @@ tags
 /.config/pulse/*-default-*
 /.rnd
 /.config/inkscape
+/documents
+/.eteks/sweethome3d
+/.bundle/cache
+/.newsbeuter/filter

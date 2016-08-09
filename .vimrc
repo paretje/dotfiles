@@ -6,9 +6,9 @@ autocmd!
 
 " download vim-plug if needed
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
-  if executable("curl")
+  if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  elseif executable("wget")
+  elseif executable('wget')
     execute '!mkdir -P ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
@@ -43,6 +43,8 @@ Plug 'chaoren/vim-wordmotion'
 if has('nvim')
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'
+else
+  Plug 'congma/vim-fakeclip'
 endif
 
 call plug#end()
@@ -312,6 +314,7 @@ au BufRead *Test.java let b:tagbar_ignore = 1
 " LaTex ft options
 let g:tex_flavor = 'latex' " Use LaTeX by default
 au FileType tex compiler tex | setlocal makeprg=latexmk\ -pdf\ -cd\ '%'
+au FileType tex call AutoMake()
 
 " Haskell ft options
 au FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -424,6 +427,10 @@ nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
 nnoremap <silent> gf :call OpenFile()<CR>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+cnoremap <Up> <C-P>
+cnoremap <Down> <C-N>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -505,6 +512,8 @@ endfun
 fun! AutoMake()
   if filereadable('Makefile')
     au BufWritePost <buffer> Neomake!
+  elseif &filetype ==# 'tex' && len(glob('*.tex', 1, 1)) == 1
+    au BufWritePost <buffer> Neomake!
   endif
 endfun
 
@@ -517,10 +526,10 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if match(getline('.'), '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)')
+  if getline('.') =~? '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
     let l:isfname = &isfname
     set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
-    execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . '&'
+    execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &'
     let &isfname = l:isfname
   else
     normal! gf

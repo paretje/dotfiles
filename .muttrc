@@ -76,9 +76,6 @@ set include=yes
 # use utf-8
 set send_charset="utf-8"
 
-# use boxes in browser in order we defined
-set sort_browser=unsorted
-
 # don't show pluses on wrapped lines
 set markers=no
 
@@ -121,7 +118,7 @@ bind index s vfolder-from-query
 bind index,pager c mail
 bind index,pager l modify-labels
 macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
-macro index o '<change-vfolder>?o'
+macro index o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
 
 # only use html mails if nothing else
 alternative_order text/plain text/enriched text/html
@@ -140,16 +137,27 @@ bind index T tag-thread
 
 # sync new mail status immediately when opening message
 macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
+macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
 bind pager d next-page
 bind pager u previous-page
 
 # disable mutt's delete, and just tag with notmuch
-macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
+macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
 bind index,pager r group-reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
+
+# follow links in mail using urlscan
+macro pager f '<pipe-message>urlscan<enter>'
+
+# show home directory alphabetically sorted when adding attachment
+macro compose a '<attach-file>~/<tab><tab><sort>a'
+
+# add keybindings to change order
+bind index O sort-mailbox
+bind browser O sort

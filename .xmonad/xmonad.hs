@@ -18,6 +18,7 @@ myConfig = defaultConfig
     , terminal = "exec urxvtcd -e sh -c 'session=$(tmux ls | grep -v -m 1 \"(attached)$\" | sed \"s/^\\([0-9]*\\):.*$/\\1/\"); if [ \"$session\" = \"\" ]; then exec tmux new-session ; else exec tmux attach-session -t $session ; fi'"
     , manageHook = myManageHook <+> manageHook defaultConfig
     , layoutHook = smartBorders $ avoidStruts $ myLayoutHook
+    , handleEventHook = docksEventHook <+> handleEventHook defaultConfig
     , focusFollowsMouse = False
     , clickJustFocuses = False }
         `additionalKeysP`

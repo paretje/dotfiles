@@ -24,6 +24,9 @@ fi
 export QT_STYLE_OVERRIDE=gtk
 export QT_QPA_PLATFORMTHEME=gtk2
 
+# Disable overlay scrollbar in GTK 3
+export GTK_OVERLAY_SCROLLING=0
+
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
