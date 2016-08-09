@@ -80,6 +80,8 @@ if has('nvim')
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby'
+else
+  Plug 'congma/vim-fakeclip'
 endif
 
 call plug#end()
