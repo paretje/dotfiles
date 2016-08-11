@@ -23,6 +23,7 @@ nnoremap P :tabopen <C-V><CR>
 nnoremap <Leader>; ;<Esc>
 nmap af <Leader>;F
 nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR><Esc>
+nnoremap <Leader>v :execute ":! mpv '" + content.location.href + "' &"<CR><Esc>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
