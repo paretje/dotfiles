@@ -414,6 +414,7 @@ endif
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
+au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
 au VimLeave *      if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
