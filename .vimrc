@@ -473,6 +473,8 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 cnoremap <Up> <C-P>
 cnoremap <Down> <C-N>
+nmap [g <Plug>(grammarous-move-to-previous-error)
+nmap ]g <Plug>(grammarous-move-to-next-error)
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -568,7 +570,7 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if getline('.') =~? '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
+  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
     let l:isfname = &isfname
     set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
     execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &'
