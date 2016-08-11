@@ -1,0 +1,3 @@
+#!/bin/sh
+cabal update
+cabal install xmobar --flags="with_xft with_utf8 with_iwlib with_alsa"
