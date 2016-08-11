@@ -317,6 +317,9 @@ let g:wordmotion_prefix = "\<Leader>"
 " jedi-vim options
 let g:jedi#completions_enabled = 0
 
+" vim-grammarous options
+let g:grammarous#use_vim_spelllang = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
