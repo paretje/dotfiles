@@ -6,6 +6,7 @@ set complete=l
 set defsearch=duckduckgo
 set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
 set focuscontent=true
+let mapleader = ";"
 
 nnoremap d <C-D>
 nnoremap x :tabclose<CR>
@@ -16,8 +17,9 @@ nnoremap j 2j
 nnoremap k 2k
 nnoremap p :open <C-V><CR>
 nnoremap P :tabopen <C-V><CR>
-nnoremap af ;F
-nnoremap ;org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR>
+nnoremap <Leader>; ;<Esc>
+nmap af <Leader>;F
+nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
