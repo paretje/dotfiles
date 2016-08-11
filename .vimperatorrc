@@ -4,9 +4,12 @@ set hintinputs=
 set editor=urxvt\ -e\ nvim
 set complete=l
 set defsearch=duckduckgo
-set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
+set toolbars=noaddons,nobookmarks,nomenu,nonavigation,tabs
 set focuscontent=true
 let mapleader = ";"
+set status=input,location,bookmark,ssl,position,tabcount
+set newtab=addons,help
+set scrollbars=false
 
 nnoremap d <C-D>
 nnoremap x :tabclose<CR>
