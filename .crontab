@@ -1,2 +1,2 @@
 MAILTO=kevin@paretje.be
-*/2 * * * * DISPLAY=:0.0 $HOME/bin/batmonitor
+*/2 * * * * DISPLAY=:0 $HOME/bin/batmonitor
