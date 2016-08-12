@@ -32,4 +32,6 @@ inoremap <C-O> <C-I>
 
 command! q winclose
 
+autocmd PageLoad https://github.com/search.* normal <Esc>
+
 " vim: set ft=vimperator:
