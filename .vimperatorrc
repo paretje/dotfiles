@@ -12,23 +12,26 @@ set newtab=addons,help
 set scrollbars=false
 
 nnoremap d <C-D>
+nnoremap u <C-U>
 nnoremap x :tabclose<CR>
-nnoremap u <C-u>
 nnoremap X :undo<CR>
 nnoremap s :stop<CR>
 nnoremap j 2j
 nnoremap k 2k
 nnoremap p :open <C-V><CR>
 nnoremap P :tabopen <C-V><CR>
-nnoremap <Leader>; ;<Esc>
-nmap af <Leader>;F
-nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR><Esc>
-nnoremap <Leader>v :execute ":! mpv '" + content.location.href + "' &"<CR><Esc>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-inoremap <C-O> <C-I>
+inoremap <C-O> <C-I> " binding to open external editor
+
+nnoremap <Leader>; ;<Esc>
+nmap af <Leader>;F
+
+nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR><Esc>
+nnoremap <Leader>v :execute ":!mpv '" + content.location.href + "' &"<CR><Esc>
+nnoremap <Leader>qb :execute ":!qutebrowser '" + content.location.href + "' &"<CR><Esc>
 
 command! q winclose
 
