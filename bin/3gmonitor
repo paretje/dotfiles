@@ -1,5 +1,5 @@
 #!/bin/sh
-USAGE=$(3gusage)
+USAGE=$(3gusage -v)
 echo $USAGE
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] ; then
 	ORDER=$(echo $USAGE | cut -d ' ' -f2)
