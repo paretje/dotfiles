@@ -1,6 +1,5 @@
 #!/bin/sh
 temp=$(mktemp --suffix=.txt)
-iconv -c -f utf-8 -t iso8859-15 -o "$temp" "$QUTE_TEXT"
 echo "open file://$temp" >> "$QUTE_FIFO"
 sleep 1
 rm "$temp"
