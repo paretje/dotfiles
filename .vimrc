@@ -182,7 +182,7 @@ let g:airline_symbols.maxlinenr = ''
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
+let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
