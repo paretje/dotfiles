@@ -25,3 +25,7 @@ textview {
 treeview {
   -gtk-key-bindings: gtk-vi-tree-view;
 }
+
+viewport {
+  padding: 0px;
+}
