@@ -14,14 +14,14 @@
     bind "h" { "move-cursor" (logical-positions, -1) };
 }
 
-GtkEntry {
-  gtk-key-bindings: gtk-readline;
+entry {
+  -gtk-key-bindings: gtk-readline;
 }
 
-GtkTextView {
-  gtk-key-bindings: gtk-readline;
+textview {
+  -gtk-key-bindings: gtk-readline;
 }
 
-GtkTreeView {
-  gtk-key-bindings: gtk-vi-tree-view;
+treeview {
+  -gtk-key-bindings: gtk-vi-tree-view;
 }
