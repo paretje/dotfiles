@@ -55,6 +55,13 @@ set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
 # set order of index
 set sort_aux=last-date-received
 
+# enable sidebar
+set sidebar_visible=yes
+set sidebar_width=20
+set sidebar_divider_char=│
+set sidebar_format="%B%?F? [%F]?%* %S%?N?(%N)?"
+set mail_check_stats=yes
+
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
 set nm_record_tags="-inbox sent"
