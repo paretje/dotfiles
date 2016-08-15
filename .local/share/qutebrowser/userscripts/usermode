@@ -1,5 +1,2 @@
 #!/bin/sh
-temp=$(mktemp --suffix=.txt)
-echo "open file://$temp" >> "$QUTE_FIFO"
-sleep 1
-rm "$temp"
+echo "open file://$QUTE_TEXT" >> "$QUTE_FIFO"
