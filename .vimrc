@@ -343,6 +343,7 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
+au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -577,5 +578,20 @@ fun! OpenFile()
     let &isfname = l:isfname
   else
     normal! gf
+  endif
+endfun
+
+fun! GitRoot()
+  if exists('g:orig_root')
+    return
+  endif
+  let g:orig_root = getcwd()
+  execute 'cd ' . fnameescape(system('git -C ' . expand('%:p:h:S') . ' rev-parse --show-toplevel 2> /dev/null || pwd')[:-2])
+endfun
+
+fun! ResetRoot()
+  if exists('g:orig_root')
+    execute 'cd ' . fnameescape(g:orig_root)
+    unlet g:orig_root
   endif
 endfun
