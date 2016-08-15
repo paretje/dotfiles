@@ -168,3 +168,6 @@ macro compose a '<attach-file>~/<tab><tab><sort>a'
 # add keybindings to change order
 bind index O sort-mailbox
 bind browser O sort
+
+# add binding to select all mails
+macro index \CA '<tag-pattern>~A<return>'
