@@ -214,6 +214,7 @@ let g:dotoo_todo_keyword_faces = [
 
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
+au VimEnter * SpeedDatingFormat %Y/%m/%d
 
 " rubycomplete options
 let g:rubycomplete_buffer_loading = 1
