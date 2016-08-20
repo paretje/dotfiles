@@ -64,7 +64,7 @@ set mail_check_stats=yes
 
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
-set nm_record_tags="-inbox sent"
+set nm_record_tags="-inbox -todo sent"
 send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
 
