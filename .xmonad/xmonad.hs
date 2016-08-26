@@ -49,6 +49,6 @@ myXmobar :: LayoutClass l Window
          => XConfig l -> IO (XConfig (ModifiedLayout AvoidStruts l))
 myXmobar = statusBar xmobarCommand xmobarPP toggleStrutsKey where
     xmobarCommand = "if [ \"$(hostname)\" = 'kevin-laptop' ]; then exec xmobar -t '" ++ lTemplate ++ "' ; else exec xmobar -t '" ++ dTemplate ++ "' ; fi"
-    dTemplate = "%StdinReader% }{ %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
-    lTemplate = "%StdinReader% }{ %3gmonitor% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %EBOS% | <fc=#ee9a00>%date%</fc>"
+    dTemplate = "%StdinReader% }{ %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %default:Master%| %weather-temp% | <fc=#ee9a00>%date%</fc>"
+    lTemplate = "%StdinReader% }{ %3gmonitor% %wlan0wi% | %dynnetwork% | %memory% * %swap% | %cpu% %coretemp% | %battery% | %default:Master%| %weather-temp% | <fc=#ee9a00>%date%</fc>"
     toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )

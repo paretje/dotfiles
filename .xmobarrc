@@ -3,11 +3,7 @@ Config { font = "xft:DejaVu Sans Mono for Powerline:size=9"
        , border = TopB
        , bgColor = "#1C1C1C"
        , fgColor = "#E4E4E4"
-       , commands = [ Run Weather "EBOS" ["-t","<tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
+       , commands = [ Run Com "weather-temp" [] "" 36000
                     , Run DynNetwork [] 10
                     , Run Cpu ["-L","3","-H","50",
                                "--normal","green","--high","red",
@@ -17,7 +13,7 @@ Config { font = "xft:DejaVu Sans Mono for Powerline:size=9"
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run Battery ["-t","<leftvbar> <timeleft>","-l","red","-p","blue"] 600
                     , Run Volume "default" "Master" ["-t","<volumevbar> <status>"] 10
-                    , Run Com "3gmonitor" ["-s","-r"] "" 300
+                    , Run Com "3gmonitor" [] "" 300
                     , Run StdinReader
                     , Run Wireless "wlan0" ["-t","<essid> <qualityvbar>"] 10
                     , Run CoreTemp ["-t","<core0>C"] 100

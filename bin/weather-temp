@@ -1,0 +1,2 @@
+#!/bin/sh
+curl -s http://www.meteo.be/meteo/view/nl/123386-Waarnemingen.html | sed -n '/"6434">Melle/{N;N;s/^.*\n\s*<td>\(.*\)<\/td>\r/\1C/;p}'
