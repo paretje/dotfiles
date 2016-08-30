@@ -174,3 +174,5 @@ bind browser O sort
 
 # add binding to select all mails
 macro index \CA '<tag-pattern>~A<return>'
+
+macro index . '<modify-labels><up><return>'
