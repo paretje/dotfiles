@@ -180,3 +180,4 @@ tags
 /.bundle/cache
 /.newsbeuter/filter
 /.local/share/qutebrowser/offline-storage
+/.upnprc
