@@ -45,7 +45,7 @@ Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
 Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
-Plug 'paretje/neomake', {'branch': 'merged'}
+Plug 'paretje/neomake', {'branch': 'highlight'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
