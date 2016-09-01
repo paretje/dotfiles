@@ -1,0 +1,4 @@
+#!/bin/sh -e
+notspam train spam tag:spam and not tag:archive
+notmuch tag +archive tag:spam and not tag:archive
+notspam train ham not tag:spam and date:"$1"
