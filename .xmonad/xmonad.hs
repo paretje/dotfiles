@@ -9,6 +9,8 @@ import System.Exit
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.IfMin
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 
 main :: IO ()
 main = xmonad =<< myXmobar myConfig
@@ -24,7 +26,7 @@ myConfig = defaultConfig
         `additionalKeysP`
     [ ("M-S-z", spawn "xscreensaver-command --lock")
     , ("M-p", spawn "exec rofi -glob -modi run,ssh -ssh-client rtmux -show run")
-    , ("M-S-p", spawn "exec gmrun")
+    , ("M-S-p", shellPrompt def)
     , ("M-S-q", spawn "dmenu-logout")
     , ("M-C-S-q", io exitSuccess)
     , ("M-<F5>", spawn "scrot --exec \"notify-send 'Screenshot saved' '\\$n'\" \"$HOME/cloud/screens/%Y-%m-%d_%H-%M-%S.png\"")

@@ -181,3 +181,4 @@ tags
 /.newsbeuter/filter
 /.local/share/qutebrowser/offline-storage
 /.upnprc
+/.xmonad/history
