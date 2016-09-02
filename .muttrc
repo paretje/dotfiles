@@ -6,18 +6,7 @@ set nm_default_uri=notmuch://$HOME/.mail
 virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "todo"           "notmuch://?query=tag:todo" \
-                  "admin"          "notmuch://?query=tag:admin" \
-                  "thesis"         "notmuch://?query=tag:thesis" \
-                  "oci"            "notmuch://?query=tag:oci" \
-                  "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
-                  "announcements"  "notmuch://?query=tag:ann" \
-                  "signature"      "notmuch://?query=tag:signature" \
-                  "ccb"            "notmuch://?query=tag:ccb" \
-                  "hersch"         "notmuch://?query=tag:hersch" \
-                  "discalg"        "notmuch://?query=tag:discalg" \
-                  "kwaninf"        "notmuch://?query=tag:kwaninf" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
-                  "sent"           "notmuch://?query=tag:sent"
 
 # open first virtual mailbox when starting
 set virtual_spoolfile=yes
