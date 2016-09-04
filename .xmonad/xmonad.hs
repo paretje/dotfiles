@@ -45,7 +45,8 @@ myLayoutHook = ifMinChoose 3 threecol $ ifMinChoose 2 (tiled ||| Mirror tiled) F
 myManageHook = composeAll
     [ className =? "Xfrun4" --> doFloat
     , className =? "mpv" --> doFloat
-    , className =? "Pinentry" --> doIgnore ]
+    , className =? "Pinentry" --> doIgnore
+    , className =? "Dunst" --> doIgnore ]
 
 myXmobar :: LayoutClass l Window
          => XConfig l -> IO (XConfig (ModifiedLayout AvoidStruts l))
