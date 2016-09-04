@@ -164,4 +164,8 @@ bind browser O sort
 # add binding to select all mails
 macro index \CA '<tag-pattern>~A<return>'
 
+# hacky way to repeat previous labeling
 macro index . '<modify-labels><up><return>'
+
+# remove all tags
+macro index \CT '<untag-pattern>~A<return>'
