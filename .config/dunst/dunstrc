@@ -242,7 +242,4 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
-[mail]
-	appname = Icedove
-	script = beep-mail
 # vim: ft=cfg
