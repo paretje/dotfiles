@@ -91,6 +91,10 @@ export HOST=$(hostname)
 # set default ant options
 export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
+# set name and email address
+export NAME="Kevin Velghe"
+export EMAIL="kevin@paretje.be"
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then
     exec startx

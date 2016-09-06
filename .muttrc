@@ -12,7 +12,7 @@ virtual-mailboxes \
                   "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
                   "announcements"  "notmuch://?query=tag:ann" \
                   "signature"      "notmuch://?query=tag:signature" \
-                  "compchal"       "notmuch://?query=tag:compchal" \
+                  "ccb"            "notmuch://?query=tag:ccb" \
                   "hersch"         "notmuch://?query=tag:hersch" \
                   "discalg"        "notmuch://?query=tag:discalg" \
                   "kwaninf"        "notmuch://?query=tag:kwaninf" \
@@ -33,6 +33,7 @@ set pgp_use_gpg_agent = yes
 alternates "kevin@paretje.be"
 alternates "Kevin.Velghe@UGent.be"
 alternates "(kevindeprey|info|vraagje)@online-urbanus.be"
+alternates ".*@noreply.github.com"
 
 # set from header
 set realname="Kevin Velghe"
@@ -56,7 +57,7 @@ set sort_aux=last-date-received
 
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
-set nm_record_tags=sent
+set nm_record_tags="-inbox sent"
 send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
 
@@ -74,9 +75,6 @@ set include=yes
 
 # use utf-8
 set send_charset="utf-8"
-
-# use boxes in browser in order we defined
-set sort_browser=unsorted
 
 # don't show pluses on wrapped lines
 set markers=no
@@ -120,7 +118,7 @@ bind index s vfolder-from-query
 bind index,pager c mail
 bind index,pager l modify-labels
 macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
-macro index o '<change-vfolder>?o'
+macro index o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
 
 # only use html mails if nothing else
 alternative_order text/plain text/enriched text/html
@@ -139,16 +137,27 @@ bind index T tag-thread
 
 # sync new mail status immediately when opening message
 macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
+macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
 bind pager d next-page
 bind pager u previous-page
 
 # disable mutt's delete, and just tag with notmuch
-macro index d '<modify-labels-then-hide>+deleted -inbox -unread<return><sync-mailbox>' "delete mail"
+macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
-bind index,pager R group-reply
+bind index,pager r group-reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
+
+# follow links in mail using urlscan
+macro pager f '<pipe-message>urlscan<enter>'
+
+# show home directory alphabetically sorted when adding attachment
+macro compose a '<attach-file>~/<tab><tab><sort>a'
+
+# add keybindings to change order
+bind index O sort-mailbox
+bind browser O sort

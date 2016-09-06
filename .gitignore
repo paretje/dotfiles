@@ -19,6 +19,7 @@
 /.ghc
 /.gksu.lock
 /.gnome2/keyrings
+/.local/share/keyrings
 /.gnupg/private-keys-v1.d
 /.gnupg/pubring.gpg
 /.gnupg/random_seed
@@ -42,8 +43,8 @@
 /.viminfo
 /.xmonad/xmonad-x86_64-linux
 /.xmonad/xmonad.errors
-/.xmonad/xmonad.hi
-/.xmonad/xmonad.o
+/.xmonad/**/*.hi
+/.xmonad/**/*.o
 /.xsession-errors
 /.xsession-errors.old
 /downloads
@@ -154,7 +155,6 @@ tags
 /.pip/zsh-cache
 /.mutt/postponed
 /.*_history
-/.config/pulse
 /.aspell.nl.prepl
 /.aspell.nl.pws
 /.vim/spell
@@ -169,3 +169,13 @@ tags
 /.tox/distshare
 /.zplug
 /.vimperator
+/.config/dvbcut.sf.net/dvbcut.conf
+/.config/pulse/*-runtime
+/.config/pulse/*.tdb
+/.config/pulse/*-default-*
+/.rnd
+/.config/inkscape
+/documents
+/.eteks/sweethome3d
+/.bundle/cache
+/.newsbeuter/filter

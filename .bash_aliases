@@ -28,3 +28,6 @@ fi
 
 # transform symlinks when using sshfs
 alias sshfs='sshfs -o transform_symlinks'
+
+# alias for weather forecasts
+alias weather='curl --cacert ~/.local/share/ca-certificates/wttr.crt "https://wttr.in/Gent"'

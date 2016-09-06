@@ -1,0 +1,1 @@
+set index_format=" {name:30} {email:40} {phone:20|workphone|mobile}"

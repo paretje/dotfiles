@@ -1,0 +1,2 @@
+#!/bin/sh
+exec wget -q -O - http://api.buienradar.nl/data/forecast/1.1/all/2797656 | grep '"date"\|"hour"\|          "temperature"' | sed 's/^ *"date": "\([0-9-]*\)T[0-9:]*",/\1/;/"hour"/{N;s/^\s*"hour": \([0-9]*\),\s*"temperature": \([0-9.-]*\),/     \1  \2/;s/^\(\s*\)\([0-9]\)\(\s\+\)/\10\2\3/;s/^\(\s*\)\([0-9]\{2\}\)\(\s\+\)/\1\2:00\3/}' | head -26
