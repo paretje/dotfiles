@@ -21,6 +21,7 @@ zplug "plugins/pip", from:oh-my-zsh, hook-build:'compinit -d "$ZPLUG_HOME/zcompd
 # Abuse zplug to keep track of weechat plugins
 zplug "rawdigits/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
+zplug "paretje/urlview-weechat", at:urlscan, use:
 
 zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
