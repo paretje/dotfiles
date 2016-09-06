@@ -54,6 +54,11 @@ if [ -d "$HOME/.local/share/man" ]; then
     MANPATH="$HOME/.local/share/man:$MANPATH"
 fi
 
+# set MANPATH so it includes user's zplug man's if it exists
+if [ -d "$HOME/.zplug/doc/man" ]; then
+    MANPATH="$HOME/.zplug/doc/man:$MANPATH"
+fi
+
 # set MANPATH so it includes user's rubygems man's if it exists
 if [ -d "$GEM_HOME/gems" ] ; then
     if [ -n "$(find $GEM_HOME/gems -maxdepth 2 -path $GEM_HOME/gems'/*/man' -print -quit)" ]; then
