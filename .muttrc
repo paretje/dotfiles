@@ -147,6 +147,7 @@ macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sy
 
 # add binding to reply to send reply to all recipients
 bind index,pager r group-reply
+bind index,pager R reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
