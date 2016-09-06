@@ -1,1 +1,1 @@
-/usr/share/weechat/python/vimode.py
+../../.zplug/repos/paretje/weechat-vimode/vimode.py
