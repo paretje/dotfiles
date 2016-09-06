@@ -92,7 +92,7 @@ export HOST=$(hostname)
 export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # if this is tty1, start X server
-if [ "$TTY" = "/dev/tty1" ]; then
+if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then
     exec startx
 fi
 
