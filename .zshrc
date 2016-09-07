@@ -27,7 +27,7 @@ zplug "paretje/weechat-vimode", at:paretje, use:
 zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
-zplug "paretje/dwm", as:command, use:dwm, hook-build:"make clean && rm -f config.h && make && ln -sr dwm.1 '$ZPLUG_HOME/doc/man/man1'"
+zplug "paretje/dwm", as:command, use:dwm, hook-build:"make clean && rm -f config.h && make && ln -srf dwm.1 '$ZPLUG_HOME/doc/man/man1'"
 
 zplug load
 PATH="$my_path"
