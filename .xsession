@@ -72,6 +72,4 @@ test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
 getmails --daemon &
 ! pgrep unisister > /dev/null && unisister --no-gui &
 
-conky | while read line ; do xsetroot -name "$line" ; done &
-
-exec dwm
+conky | exec dwm
