@@ -3,7 +3,7 @@ USAGE=$(3gusage -v)
 echo $USAGE
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] ; then
 	ORDER=$(echo $USAGE | cut -d ' ' -f2)
-	SIZE=$(echo $USAGE | cut -d '.' -f1)
+	SIZE=$(echo $USAGE | cut -d ' ' -f1 | cut -d '.' -f1)
 	if [ "$ORDER" = "MiB" -a $SIZE -gt 50 ]; then
 		notify-send 'Bandwidth used!'
 	fi
