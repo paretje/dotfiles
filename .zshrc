@@ -5,7 +5,7 @@ fi
 
 # Clone zplug if unavailable
 if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
-    git clone --branch v2 https://github.com/b4b4r07/zplug.git "$ZPLUG_HOME"
+    git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME"
 fi
 
 # Load zplug and plugins
