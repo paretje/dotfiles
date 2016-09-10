@@ -1,2 +1,2 @@
 #!/bin/sh
-curl -s http://www.meteo.be/meteo/view/nl/123386-Waarnemingen.html | sed -n '/"6434">Melle/{N;N;s/^.*\n\s*<td>\(.*\)<\/td>\r/\1C/;p}'
+curl -s 'http://www.buienradar.be/resources/actual/6260' | sed '/temperature/!d;s/^\s*"temperature":\s*"\([0-9.]*\)",\s*$/\1/'
