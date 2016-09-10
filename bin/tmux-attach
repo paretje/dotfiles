@@ -1,7 +1,7 @@
 #!/bin/sh
-session=$(tmux ls | grep -v -m 1 "(attached)$" | sed "s/^\\([0-9]*\\):.*$/\\1/")
+session=$(tmux lsc -F '#{session_name}' | head -1)
 if [ "$session" = "" ]; then
 	exec tmux new-session
 else
-	exec tmux attach-session -t $session
+	exec tmux attach-session -t "$session"
 fi
