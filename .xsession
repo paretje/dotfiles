@@ -72,4 +72,9 @@ test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
 getmails --daemon &
 ! pgrep unisister > /dev/null && unisister --no-gui &
 
-conky | exec dwm
+# Start daemon with conky
+status=$(mktemp -u)
+mkfifo "$status"
+sh -c "exec > '$status' ; while true; do conky; sleep 5s ; done" &
+
+exec dwm < "$status"
