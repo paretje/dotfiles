@@ -1,0 +1,4 @@
+#!/bin/sh
+while true ; do
+	xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+done
