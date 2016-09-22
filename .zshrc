@@ -12,6 +12,8 @@ fi
 local my_path="$PATH"
 source "$ZPLUG_HOME/init.zsh"
 
+zplug 'zplug/zplug', hook-build:"zplug update --self"
+
 zplug "olivierverdier/zsh-git-prompt", use:zshrc.sh, hook-build:"zplug clear"
 zplug "zsh-users/zsh-completions"
 
