@@ -126,7 +126,7 @@ hwdec-codecs=all
 ao=pulse
 
 [vaapi]
-vo=vaapi
+vo=xv
 hwdec=vaapi
 hwdec-codecs=all
 ao=pulse
