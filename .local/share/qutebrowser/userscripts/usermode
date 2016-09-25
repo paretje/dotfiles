@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "open file://$QUTE_TEXT" >> "$QUTE_FIFO"

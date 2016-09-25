@@ -5,15 +5,18 @@ fi
 
 # Clone zplug if unavailable
 if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
-    git clone --branch v2 https://github.com/b4b4r07/zplug.git "$ZPLUG_HOME"
+    git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME"
 fi
 
 # Load zplug and plugins
 local my_path="$PATH"
 source "$ZPLUG_HOME/init.zsh"
 
-zplug "b4b4r07/zplug", hook-build:"zplug update --self"
+zplug 'zplug/zplug', hook-build:"zplug update --self"
 
+zplug "zsh-users/zsh-completions"
+
+zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
 zplug load
@@ -62,6 +65,11 @@ bashcompinit
 
 # autocompletion for pandoc
 eval "$(pandoc --bash-completion)"
+
+# autocompletion for youtube-dl
+if [ -e "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion" ]; then
+    . "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion"
+fi
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then

@@ -1,0 +1,2 @@
+#!/bin/sh
+kodi-send $(rofi -dmenu < "$HOME/.upnprc") "$(youtube-dl -g "$QUTE_URL" | head -n 1)"

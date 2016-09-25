@@ -6,18 +6,7 @@ set nm_default_uri=notmuch://$HOME/.mail
 virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "todo"           "notmuch://?query=tag:todo" \
-                  "admin"          "notmuch://?query=tag:admin" \
-                  "thesis"         "notmuch://?query=tag:thesis" \
-                  "oci"            "notmuch://?query=tag:oci" \
-                  "fsf"            "notmuch://?query=tag:fsfe OR tag:fsf" \
-                  "announcements"  "notmuch://?query=tag:ann" \
-                  "signature"      "notmuch://?query=tag:signature" \
-                  "ccb"            "notmuch://?query=tag:ccb" \
-                  "hersch"         "notmuch://?query=tag:hersch" \
-                  "discalg"        "notmuch://?query=tag:discalg" \
-                  "kwaninf"        "notmuch://?query=tag:kwaninf" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
-                  "sent"           "notmuch://?query=tag:sent"
 
 # open first virtual mailbox when starting
 set virtual_spoolfile=yes
@@ -55,9 +44,16 @@ set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
 # set order of index
 set sort_aux=last-date-received
 
+# enable sidebar
+set sidebar_visible=yes
+set sidebar_width=20
+set sidebar_divider_char=│
+set sidebar_format="%B%?F? [%F]?%* %S%?N?(%N)?"
+set mail_check_stats=yes
+
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
-set nm_record_tags="-inbox sent"
+set nm_record_tags="-inbox -todo sent"
 send2-hook '~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/ugent/Sent"'
 send2-hook !'~f ^kevin.velghe@ugent.be$' 'set record="~/.mail/prive/Sent"'
 
@@ -87,6 +83,9 @@ set header_cache=~/.cache/mutt
 
 # postpone messages in mutt folder
 set postponed="~/.mutt/postponed"
+
+# automatically apply action to all tagged messages
+set auto_tag=yes
 
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
@@ -148,6 +147,7 @@ macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sy
 
 # add binding to reply to send reply to all recipients
 bind index,pager r group-reply
+bind index,pager R reply
 
 # add macro to fetch new mails
 macro index \CF '<shell-escape>getmails --now &<enter>'
@@ -161,3 +161,12 @@ macro compose a '<attach-file>~/<tab><tab><sort>a'
 # add keybindings to change order
 bind index O sort-mailbox
 bind browser O sort
+
+# add binding to select all mails
+macro index \CA '<tag-pattern>~A<return>'
+
+# hacky way to repeat previous labeling
+macro index . '<modify-labels><up><return>'
+
+# remove all tags
+macro index \CT '<untag-pattern>~A<return>'

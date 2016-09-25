@@ -145,7 +145,7 @@ let g:airline_symbols.maxlinenr = ''
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -g \"\""'
+let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
@@ -177,6 +177,7 @@ let g:dotoo_todo_keyword_faces = [
 
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
+au VimEnter * SpeedDatingFormat %Y/%m/%d
 
 " rubycomplete options
 let g:rubycomplete_buffer_loading = 1
@@ -279,6 +280,9 @@ let g:wordmotion_prefix = "\<Leader>"
 " jedi-vim options
 let g:jedi#completions_enabled = 0
 
+" vim-grammarous options
+let g:grammarous#use_vim_spelllang = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
@@ -302,6 +306,7 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
+au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -376,6 +381,7 @@ endif
 
 " It's All Text options
 au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
+au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
 au VimLeave *      if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
@@ -431,6 +437,8 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 cnoremap <Up> <C-P>
 cnoremap <Down> <C-N>
+nmap [g <Plug>(grammarous-move-to-previous-error)
+nmap ]g <Plug>(grammarous-move-to-next-error)
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -526,12 +534,27 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if getline('.') =~? '\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
+  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
     let l:isfname = &isfname
     set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
     execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &'
     let &isfname = l:isfname
   else
     normal! gf
+  endif
+endfun
+
+fun! GitRoot()
+  if exists('g:orig_root')
+    return
+  endif
+  let g:orig_root = getcwd()
+  execute 'cd ' . fnameescape(system('git -C ' . expand('%:p:h:S') . ' rev-parse --show-toplevel 2> /dev/null || pwd')[:-2])
+endfun
+
+fun! ResetRoot()
+  if exists('g:orig_root')
+    execute 'cd ' . fnameescape(g:orig_root)
+    unlet g:orig_root
   endif
 endfun
