@@ -317,6 +317,7 @@ let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
 let g:jedi#completions_enabled = 0
+let g:jedi#force_py_version = 3
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
