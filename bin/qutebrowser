@@ -4,7 +4,6 @@ qutebrowser() {
 }
 
 clean_history() {
-	rm "$HOME/.local/share/qutebrowser/history"
 	rm -rf "$HOME/.local/share/qutebrowser/offline-storage"
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
@@ -13,10 +12,10 @@ if [ "$(pgrep -c qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
 	qutebrowser "$@"
 elif 3gusage; then
 	clean_history
-	qutebrowser "$@"
+	qutebrowser :history-clear "$@"
 else
 	clean_history
-	qutebrowser :adblock-update "$@"
+	qutebrowser :history-clear :adblock-update "$@"
 fi
 
 exit

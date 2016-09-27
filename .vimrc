@@ -279,6 +279,7 @@ let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
 let g:jedi#completions_enabled = 0
+let g:jedi#force_py_version = 3
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
@@ -537,7 +538,7 @@ fun! OpenFile()
   if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
     let l:isfname = &isfname
     set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
-    execute '!cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &'
+    call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &')
     let &isfname = l:isfname
   else
     normal! gf
