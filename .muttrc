@@ -173,3 +173,7 @@ macro index \CT '<untag-pattern>~A<return>'
 # add bindings to cycle trough history
 bind editor \CP history-up
 bind editor \CN history-down
+
+# add tab to select completion
+bind query <tab> next-entry
+bind query <backtab> previous-entry
