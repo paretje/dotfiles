@@ -1,5 +1,5 @@
 text/html; w3m -dump -o display_link_number -T text/html -cols 70; copiousoutput
-application/pdf; zathura '%s'
-application/octet-stream; zathura '%s'
-image/pdf; zathura '%s'
-application/postscript; zathura '%s'
+application/pdf; zathura --mutt '%s'
+application/octet-stream; zathura --mutt'%s'
+image/pdf; zathura --mutt '%s'
+application/postscript; zathura --mutt '%s'

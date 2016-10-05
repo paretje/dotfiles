@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ "$1" = "--mutt" ]; then
+	file="$(mktemp)"
+	cp "$2" "$file"
+	{
+		/usr/bin/zathura "$file"
+		rm "$file"
+	} &
+else
+	exec /usr/bin/zathura "$@"
+fi
