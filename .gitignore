@@ -182,3 +182,4 @@ tags
 /.local/share/qutebrowser/offline-storage
 /.upnprc
 /.xmonad/history
+/.gnupg/reader_0.status
