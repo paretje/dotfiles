@@ -1,11 +1,11 @@
 #!/bin/sh
 vint="$HOME/.local/bin/vint"
 
-for arg; do
+for arg in "$@"; do
 	if [ -f "$arg" ];then
 		file="$arg"
 	else
-		args="$args $arg"
+		args="$args '$arg'"
 	fi
 done
 
@@ -14,9 +14,9 @@ if [ "$file" != "" ]; then
 	sed_file=$(echo "$arg" |  sed 's/\//\\\//g' | sed 's/'\''/'\'\\\\\'\''/g')
 	sed 's/!$//' "$file" > "$tmp"
 
-	"$vint" $args "$tmp" | sed 's/^\/tmp\/tmp\..\{10\}/'"$sed_file"'/'
+	echo "$args" "$tmp" | xargs "$vint" | sed 's/^\/tmp\/tmp\..\{10\}/'"$sed_file"'/' 
 
 	rm "$tmp"
 else
-	exec "$vint"
+	exec "$vint" "$@"
 fi
