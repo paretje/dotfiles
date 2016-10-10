@@ -1,0 +1,3 @@
+#!/bin/sh
+pip-compile --upgrade -o "$HOME/.pip/requirements.txt" "$HOME/.pip/requirements.in"
+pip-sync "$HOME/.pip/requirements.txt"
