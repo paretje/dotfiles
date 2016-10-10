@@ -398,9 +398,9 @@ au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
 au BufRead ~/.xsession set filetype=sh
 
 " help ft options
-au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
-au FileType help nnoremap <silent> <nowait> <buffer> u <C-U>
-au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
 
 " C ft options
 au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
