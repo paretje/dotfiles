@@ -326,7 +326,7 @@ let g:grammarous#use_vim_spelllang = 1
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
 au FileType vim-plug,git                setlocal nospell
-au FileType dotoo*,tex,mail,markdown    setlocal spelllang=nl
+au FileType dotoo*,tex,mail             setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
