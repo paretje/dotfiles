@@ -431,7 +431,7 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
-au VimLeave *      if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au VimLeave *      if exists('g:sync_notes') | call GitAutocommit('notes') | endif
 au FileType dotoo* let g:sync_notes = 1
 
 " Custom key mappings
@@ -458,7 +458,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
@@ -619,4 +619,12 @@ fun! LedgerEntry()
   call ledger#entry()
   call search('EUR ', 'We')
   execute "normal! lv$h\<C-G>"
+endfun
+
+fun! GitAutocommit(...)
+  if a:0 == 0 && &filetype ==# 'ledger'
+    Git autocommit
+  else
+    execute '!git -C ~/vcs/personal/notes autocommit'
+  endif
 endfun
