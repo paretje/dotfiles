@@ -240,7 +240,8 @@ let g:xml_syntax_folding = 1
 let g:calendar_monday = 1
 
 " ledger-vim options
-let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
+let g:ledger_fold_blanks = 1
+let g:ledger_maxwidth = 120
 
 " neomake options
 au BufWritePost,BufReadPost * Neomake
@@ -267,8 +268,12 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
+let g:deoplete#ignore_sources.ledger = ['tag']
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
+let g:deoplete#member#prefix_patterns['ledger'] = ':'
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.ledger = "[a-zA-Z][a-zA-Z.' ]*[a-zA-Z.']"
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -383,7 +388,10 @@ au FileType markdown setlocal concealcursor=n
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
-au FileType ledger              normal! zn
+au FileType ledger              setlocal foldenable
+au FileType ledger              compiler ledger
+au FileType ledger              au BufWritePost <buffer> Neomake!
+au FileType ledger              inoremap <buffer> <C-J> <C-O>:call LedgerEntry()<CR>
 
 " aptconf ft options
 au FileType aptconf setlocal commentstring=//%s
@@ -602,4 +610,13 @@ fun! ResetRoot()
     execute 'cd ' . fnameescape(g:orig_root)
     unlet g:orig_root
   endif
+endfun
+
+fun! LedgerEntry()
+  if getline('.') !~? ':'
+    call setline('.', shellescape(getline('.')))
+  endif
+  call ledger#entry()
+  call search('EUR ', 'We')
+  execute "normal! lv$h\<C-G>"
 endfun
