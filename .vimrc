@@ -229,8 +229,7 @@ let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', '']
-let g:indentLine_faster = 1
+let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
 let g:indentLine_showFirstIndentLevel = 1
 
 " xml options
