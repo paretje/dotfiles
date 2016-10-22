@@ -185,3 +185,4 @@ tags
 /.gnupg/reader_0.status
 /.local/share/qutebrowser/netrc
 /.pip/requirements.txt
+/.pylint.d
