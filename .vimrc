@@ -58,7 +58,7 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Rip-Rip/clang_complete', {'for': 'c'}
+Plug 'zchee/deoplete-clang', {'for': 'c'}
 Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -304,10 +304,8 @@ let g:table_mode_toggle_map = 't'
 let g:delimitMate_expand_cr = 1
 
 " clang_complete options
-let g:clang_library_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
-let g:clang_complete_auto = 0
-let g:clang_make_default_keymappings = 0
-let g:clang_hl_errors = 0
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " gitgutter options
 let g:gitgutter_sign_column_always = 1
@@ -410,7 +408,6 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> |
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
 
 " C ft options
-au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
 au FileType c setlocal commentstring=//%s
 
 " gradle ft options
