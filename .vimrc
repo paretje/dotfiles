@@ -67,6 +67,7 @@ Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
+Plug 'yssl/QFEnter', {'for': 'qf'}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -324,6 +325,11 @@ let g:jedi#force_py_version = 3
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
 
+" QFEnter options
+let g:qfenter_vopen_map = ['<C-v>']
+let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_topen_map = ['<C-t>']
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
@@ -415,6 +421,9 @@ au BufRead,BufNewFile *.gradle setfiletype groovy
 
 " crontab ft options
 au BufRead,BufNewFile ~/.crontab setfiletype crontab
+
+" qf ft options
+au FileType qf nnoremap <silent> <nowait> <buffer> q <C-W>c
 
 " terminal options
 if has('nvim')
