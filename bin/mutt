@@ -1,5 +1,9 @@
 #!/bin/sh
 printf "\033k%s\033\\" 'mutt'
-/usr/bin/mutt
+
+/usr/bin/mutt "$@"
 notmuch-backup
-printf "\033k%s\033\\" "$(basename "$SHELL")"
+
+if [ -n "$TMUX" ]; then
+	tmux set automatic-rename on
+fi
