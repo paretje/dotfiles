@@ -58,11 +58,10 @@ Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'zchee/deoplete-clang', {'for': 'c'}
 Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'nelstrom/vim-markdown-folding'
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
+Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown.pandoc'}
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -80,7 +79,8 @@ if has('nvim')
   Plug 'paretje/nvim-man'
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
-  Plug 'fishbullet/deoplete-ruby'
+  Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
+  Plug 'zchee/deoplete-clang', {'for': 'c'}
 else
   Plug 'congma/vim-fakeclip'
 endif
