@@ -580,11 +580,11 @@ fun! OpenFile()
   if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\)\(\s\|$\)'
     let l:isfname = &isfname
     if getline('.') =~? '^\s*- \[ \] '
-      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,(,)
+      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
     elseif getline('.') =~? '^\s*- '
-      set isfname=@,48-57,/,.,_,+,,,#,$,%,~,=,32,',&,:,!,(,)
+      set isfname=@,48-57,/,.,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
     else
-      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,(,),[,]
+      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,),[,]
     endif
     call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &')
     let &isfname = l:isfname
