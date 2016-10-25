@@ -1,0 +1,6 @@
+#!/bin/sh
+/usr/bin/ranger "$@"
+
+if [ -n "$TMUX" ]; then
+	tmux set automatic-rename on
+fi
