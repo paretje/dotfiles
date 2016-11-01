@@ -213,6 +213,8 @@ let g:dotoo_todo_keyword_faces = [
   \ ['MAIL',      [':foreground 25',  ':weight bold']]
 \ ]
 
+au WinLeave *.org if &filetype ==# 'dotoo' | wincmd P | if &filetype !=# 'dotooagenda' | wincmd p | endif | endif
+
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 au VimEnter * SpeedDatingFormat %Y/%m/%d
