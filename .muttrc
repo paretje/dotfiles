@@ -16,7 +16,7 @@ set pgp_autosign=yes
 set pgp_replyencrypt=yes
 set pgp_replysignencrypted=yes
 set pgp_verify_sig=yes
-set pgp_use_gpg_agent = yes
+set pgp_use_gpg_agent=yes
 
 # my addresses
 alternates "kevin@paretje.be"
@@ -38,7 +38,7 @@ set edit_headers=yes
 set nm_exclude_tags="spam,deleted,new"
 
 # set index format
-set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
+set index_format="%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
 
 # set order of index
 set sort_aux=last-date-received
