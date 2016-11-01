@@ -45,4 +45,12 @@ function! s:notes_view.content(dotoos, ...) dict
   return s:build_notes(a:dotoos, force)
 endfunction
 
+function! s:notes_view.setup()
+  " dirty hack to avoid always loading library
+  if index(g:dotoo#agenda#files, '~/vcs/personal/library/**/.metadata.org') == -1
+    call add(g:dotoo#agenda#files, '~/vcs/personal/library/**/.metadata.org')
+    normal r
+  endif
+endfunction
+
 call dotoo#agenda#register_view(s:view_name, s:notes_view)
