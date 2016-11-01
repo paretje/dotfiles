@@ -86,6 +86,9 @@ set postponed="~/.mutt/postponed"
 # automatically apply action to all tagged messages
 set auto_tag=yes
 
+# use format=flowed
+set text_flowed=yes
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line

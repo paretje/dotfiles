@@ -380,7 +380,7 @@ au BufRead *.atl setlocal nospell
 au BufRead *.atl setlocal commentstring=--%s
 
 " mail ft options
-au FileType mail      setlocal formatoptions+=na
+au FileType mail      setlocal formatoptions+=naw
 au FileType mail      setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
 au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
 
