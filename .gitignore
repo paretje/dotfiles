@@ -186,3 +186,4 @@ tags
 /.local/share/qutebrowser/netrc
 /.pip/requirements.txt
 /.pylint.d
+/.w3m/history
