@@ -171,6 +171,9 @@ set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 set expandtab
 " Disable folding by default
 set nofoldenable
+" Return to previous window when closing
+au VimEnter,TabEnter * let t:win = winnr()
+au WinEnter * if winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -212,8 +215,6 @@ let g:dotoo_todo_keyword_faces = [
   \ ['PHONE',     [':foreground 22',  ':weight bold']],
   \ ['MAIL',      [':foreground 25',  ':weight bold']]
 \ ]
-
-au WinLeave *.org if &filetype ==# 'dotoo' | wincmd P | if &filetype !=# 'dotooagenda' | wincmd p | endif | endif
 
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
