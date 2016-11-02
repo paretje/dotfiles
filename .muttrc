@@ -48,6 +48,8 @@ set sidebar_visible=yes
 set sidebar_width=20
 set sidebar_divider_char=│
 set sidebar_format="%B%?F? [%F]?%* %S%?N?(%N)?"
+
+# periodically update number of new messages for sidebar
 set mail_check_stats=yes
 
 # set sent folder in mutt, and index for notmuch
