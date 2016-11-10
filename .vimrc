@@ -81,6 +81,7 @@ if has('nvim')
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
   Plug 'zchee/deoplete-clang', {'for': 'c'}
+  Plug 'Shougo/neco-vim', {'for': 'vim'}
 else
   Plug 'congma/vim-fakeclip'
 endif
