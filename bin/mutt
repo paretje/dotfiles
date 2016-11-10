@@ -5,5 +5,5 @@ printf "\033k%s\033\\" 'mutt'
 notmuch-backup
 
 if [ -n "$TMUX" ]; then
-	tmux set automatic-rename on
+	tmux set-window-option -u automatic-rename
 fi
