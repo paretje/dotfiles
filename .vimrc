@@ -173,8 +173,7 @@ set expandtab
 " Disable folding by default
 set nofoldenable
 " Return to previous window when closing
-au VimEnter,TabEnter * let t:win = winnr()
-au WinEnter * if winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
+au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 
 " Airline options
 let g:airline_powerline_fonts = 1
