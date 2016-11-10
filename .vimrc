@@ -21,7 +21,7 @@ Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline', {'commit': '02ecb8631d4c4252e11fff2ed9fc8d48d91577a1'}
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
