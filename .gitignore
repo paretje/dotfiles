@@ -187,3 +187,4 @@ tags
 /.pip/requirements.txt
 /.pylint.d
 /.w3m/history
+/.dvdcss/CACHEDIR.TAG
