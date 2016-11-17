@@ -67,6 +67,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
+Plug 'junegunn/vader.vim'
+Plug 'dhruvasagar/vim-testify'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
