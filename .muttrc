@@ -16,7 +16,7 @@ set pgp_autosign=yes
 set pgp_replyencrypt=yes
 set pgp_replysignencrypted=yes
 set pgp_verify_sig=yes
-set pgp_use_gpg_agent = yes
+set pgp_use_gpg_agent=yes
 
 # my addresses
 alternates "kevin@paretje.be"
@@ -26,8 +26,7 @@ alternates ".*@noreply.github.com"
 
 # set from header
 set realname="Kevin Velghe"
-send-hook '~t ugent.be$' 'set from="Kevin.Velghe@UGent.be"'
-send-hook !'~t ugent.be$' 'set from="kevin@paretje.be"'
+set from="kevin@paretje.be"
 
 # reply using identity sent to
 set reverse_name=yes
@@ -39,7 +38,7 @@ set edit_headers=yes
 set nm_exclude_tags="spam,deleted,new"
 
 # set index format
-set index_format = "%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
+set index_format="%Z %[%R %b %d]  %-15.15L  %s %> (%g)"
 
 # set order of index
 set sort_aux=last-date-received
@@ -49,6 +48,8 @@ set sidebar_visible=yes
 set sidebar_width=20
 set sidebar_divider_char=│
 set sidebar_format="%B%?F? [%F]?%* %S%?N?(%N)?"
+
+# periodically update number of new messages for sidebar
 set mail_check_stats=yes
 
 # set sent folder in mutt, and index for notmuch
@@ -86,6 +87,9 @@ set postponed="~/.mutt/postponed"
 
 # automatically apply action to all tagged messages
 set auto_tag=yes
+
+# use format=flowed
+set text_flowed=yes
 
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
@@ -170,3 +174,11 @@ macro index . '<modify-labels><up><return>'
 
 # remove all tags
 macro index \CT '<untag-pattern>~A<return>'
+
+# add bindings to cycle trough history
+bind editor \CP history-up
+bind editor \CN history-down
+
+# add tab to select completion
+bind query <tab> next-entry
+bind query <backtab> previous-entry

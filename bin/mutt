@@ -1,0 +1,9 @@
+#!/bin/sh
+printf "\033k%s\033\\" 'mutt'
+
+/usr/bin/mutt "$@"
+notmuch-backup
+
+if [ -n "$TMUX" ]; then
+	tmux set-window-option -u automatic-rename
+fi

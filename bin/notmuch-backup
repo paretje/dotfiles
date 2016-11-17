@@ -1,0 +1,3 @@
+#!/bin/sh -e
+notmuch dump --output="$HOME/vcs/personal/mail/tags"
+git -C "$HOME/vcs/personal/mail" autocommit

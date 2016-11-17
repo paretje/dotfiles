@@ -1,2 +1,4 @@
-#!/bin/sh
-echo "open file://$QUTE_TEXT" >> "$QUTE_FIFO"
+#!/bin/sh -e
+file="$(mktemp --tmpdir 'XXXXXXXXXX.html')"
+breadability "$QUTE_URL" > "$file"
+echo "open file://$file" >> "$QUTE_FIFO"

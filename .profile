@@ -100,6 +100,9 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 export NAME="Kevin Velghe"
 export EMAIL="kevin@paretje.be"
 
+# set key to use to sign packages
+export DEB_SIGN_KEYID="64AD7E10"
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then
     exec startx

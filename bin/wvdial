@@ -1,0 +1,4 @@
+#!/bin/sh
+connmanctl disable wifi
+/usr/bin/wvdial
+connmanctl enable wifi

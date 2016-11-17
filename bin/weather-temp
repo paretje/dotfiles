@@ -1,2 +1,2 @@
 #!/bin/sh
-curl -s 'http://www.buienradar.be/resources/actual/6260' | sed '/temperature/!d;s/^\s*"temperature":\s*"\([0-9.]*\)",\s*$/\1/'
+curl -s 'http://www.buienradar.be/resources/actual/6260' | sed '/temperature/!d;s/^\s*"temperature":\s*"\(-\?[0-9.]*\)",\s*$/\1/'

@@ -182,3 +182,9 @@ tags
 /.local/share/qutebrowser/offline-storage
 /.upnprc
 /.xmonad/history
+/.gnupg/reader_0.status
+/.local/share/qutebrowser/netrc
+/.pip/requirements.txt
+/.pylint.d
+/.w3m/history
+/.dvdcss/CACHEDIR.TAG

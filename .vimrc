@@ -19,13 +19,11 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline', {'commit': '02ecb8631d4c4252e11fff2ed9fc8d48d91577a1'}
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-endwise'
-Plug 'Raimondi/delimitMate'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'ciaranm/securemodelines'
@@ -39,6 +37,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
+Plug 'yssl/QFEnter', {'for': 'qf'}
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -133,6 +132,8 @@ set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 set expandtab
 " Disable folding by default
 set nofoldenable
+" Return to previous window when closing
+au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -160,7 +161,7 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/personal/library/**/.metadata.org']
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
 let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
@@ -192,8 +193,7 @@ let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', '']
-let g:indentLine_faster = 1
+let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
 let g:indentLine_showFirstIndentLevel = 1
 
 " xml options
@@ -203,7 +203,8 @@ let g:xml_syntax_folding = 1
 let g:calendar_monday = 1
 
 " ledger-vim options
-let g:ledger_bin = 'echo' " disable use of ledger command, as I'm using hledger
+let g:ledger_fold_blanks = 1
+let g:ledger_maxwidth = 120
 
 " neomake options
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
@@ -229,8 +230,12 @@ let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
+let g:deoplete#ignore_sources.ledger = ['tag']
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
+let g:deoplete#member#prefix_patterns['ledger'] = ':'
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.ledger = "[a-zA-Z][a-zA-Z.' ]*[a-zA-Z.']"
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -262,10 +267,8 @@ let g:table_mode_toggle_map = 't'
 let g:delimitMate_expand_cr = 1
 
 " clang_complete options
-let g:clang_library_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
-let g:clang_complete_auto = 0
-let g:clang_make_default_keymappings = 0
-let g:clang_hl_errors = 0
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " gitgutter options
 let g:gitgutter_sign_column_always = 1
@@ -284,11 +287,16 @@ let g:jedi#force_py_version = 3
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
 
+" QFEnter options
+let g:qfenter_vopen_map = ['<C-v>']
+let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_topen_map = ['<C-t>']
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
 au FileType vim-plug,git                setlocal nospell
-au FileType dotoo*,tex,mail,markdown    setlocal spelllang=nl
+au FileType dotoo*,tex,mail             setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -334,7 +342,7 @@ au BufRead *.atl setlocal nospell
 au BufRead *.atl setlocal commentstring=--%s
 
 " mail ft options
-au FileType mail      setlocal formatoptions+=na
+au FileType mail      setlocal formatoptions+=naw
 au FileType mail      setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
 au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
 
@@ -345,7 +353,10 @@ au FileType markdown setlocal concealcursor=n
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
-au FileType ledger              normal! zn
+au FileType ledger              setlocal foldenable
+au FileType ledger              compiler ledger
+au FileType ledger              au BufWritePost <buffer> Neomake!
+au FileType ledger              inoremap <buffer> <C-J> <C-O>:call LedgerEntry()<CR>
 
 " aptconf ft options
 au FileType aptconf setlocal commentstring=//%s
@@ -360,12 +371,11 @@ au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
 au BufRead ~/.xsession set filetype=sh
 
 " help ft options
-au FileType help nnoremap <silent> <nowait> <buffer> d <C-D>
-au FileType help nnoremap <silent> <nowait> <buffer> u <C-U>
-au FileType help nnoremap <silent> <nowait> <buffer> q <C-W>c
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
+au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
 
 " C ft options
-au FileType c setlocal completeopt-=preview " doesn't work for clang in neovim
 au FileType c setlocal commentstring=//%s
 
 " gradle ft options
@@ -373,6 +383,9 @@ au BufRead,BufNewFile *.gradle setfiletype groovy
 
 " crontab ft options
 au BufRead,BufNewFile ~/.crontab setfiletype crontab
+
+" qf ft options
+au FileType qf nnoremap <silent> <nowait> <buffer> q <C-W>c
 
 " terminal options
 if has('nvim')
@@ -385,7 +398,7 @@ au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
-au VimLeave *      if exists('g:sync_notes') | exec '!git -C ~/vcs/personal/notes autocommit' | endif
+au VimLeave *      if exists('g:sync_notes') | call GitAutocommit('notes') | endif
 au FileType dotoo* let g:sync_notes = 1
 
 " Custom key mappings
@@ -412,7 +425,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-nnoremap <Leader>s :exec '!git -C ~/vcs/personal/notes autocommit'<CR><CR>
+nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
 nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
@@ -535,10 +548,16 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\)\(\s\|$\)'
+  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\)\(\s\|$\)'
     let l:isfname = &isfname
-    set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,(,),[,]
-    call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null &')
+    if getline('.') =~? '^\s*- \[ \] '
+      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
+    elseif getline('.') =~? '^\s*- '
+      set isfname=@,48-57,/,.,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
+    else
+      set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,),[,]
+    endif
+    call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null 2> /dev/null &')
     let &isfname = l:isfname
   else
     normal! gf
@@ -557,5 +576,22 @@ fun! ResetRoot()
   if exists('g:orig_root')
     execute 'cd ' . fnameescape(g:orig_root)
     unlet g:orig_root
+  endif
+endfun
+
+fun! LedgerEntry()
+  if getline('.') !~? ':'
+    call setline('.', shellescape(getline('.')))
+  endif
+  call ledger#entry()
+  call search('EUR ', 'We')
+  execute "normal! lv$h\<C-G>"
+endfun
+
+fun! GitAutocommit(...)
+  if a:0 == 0 && &filetype ==# 'ledger'
+    Git autocommit
+  else
+    execute '!git -C ~/vcs/personal/notes autocommit'
   endif
 endfun
