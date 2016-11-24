@@ -561,7 +561,7 @@ call airline#add_statusline_func('AirlineTableMode')
 fun! CloseTag()
   call feedkeys('/', 'n')
   if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
-    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>", 'n')
+    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>\<BS>>", 'n')
   endif
 endfun
 
