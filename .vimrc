@@ -278,7 +278,7 @@ let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
 let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.ledger = "[a-zA-Z][a-zA-Z.' ]*[a-zA-Z.']"
+let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
