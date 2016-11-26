@@ -359,6 +359,9 @@ au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
+au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
+au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
+au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -639,4 +642,12 @@ fun! GitAutocommit(...)
   else
     execute '!git -C ~/vcs/personal/notes autocommit'
   endif
+endfun
+
+fun! VimDotoo(func)
+  let l:pos = getcurpos()
+  call search('^\*', 'b')
+  exe 'call dotoo#' . a:func . '()'
+  call setpos('.', l:pos)
+  normal! zO
 endfun
