@@ -1,0 +1,4 @@
+#!/bin/sh -e
+export GHN_ACCESS_TOKEN
+GHN_ACCESS_TOKEN=$(secret-tool lookup domain github.com type token)
+exec "$GEM_HOME/bin/ghn" "$@"

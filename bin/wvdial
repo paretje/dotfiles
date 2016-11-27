@@ -1,4 +1,5 @@
 #!/bin/sh
 connmanctl disable wifi
+trap ' ' INT
 /usr/bin/wvdial
 connmanctl enable wifi

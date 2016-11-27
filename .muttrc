@@ -182,3 +182,6 @@ bind editor \CN history-down
 # add tab to select completion
 bind query <tab> next-entry
 bind query <backtab> previous-entry
+
+# add key to copy sender email address
+macro index,pager yy '<pipe-message>fgrep -m 1 From: | sed "s/^\s*From:\s*[^<]*\s*<\([^>]*\)>\s*$/\1/" | xsel -i --clipboard<enter>'

@@ -19,7 +19,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline', {'commit': '02ecb8631d4c4252e11fff2ed9fc8d48d91577a1'}
+Plug 'vim-airline/vim-airline'
 Plug 'Keithbsmiley/tmux.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
@@ -235,7 +235,7 @@ let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
 let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.ledger = "[a-zA-Z][a-zA-Z.' ]*[a-zA-Z.']"
+let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -316,6 +316,9 @@ au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
 au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
+au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
+au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
+au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -335,6 +338,7 @@ au FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " HTML ft options
 au FileType html inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
+au FileType html setlocal keywordprg=:HtmlDoc
 
 " ATL ft options
 au BufRead *.atl setlocal syntax=haskell " Haskell syntax seems to be close to ATL
@@ -474,6 +478,7 @@ endif
 com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
+com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 
 " Custom functions
@@ -518,7 +523,7 @@ call airline#add_statusline_func('AirlineTableMode')
 fun! CloseTag()
   call feedkeys('/', 'n')
   if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
-    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>", 'n')
+    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>\<BS>>", 'n')
   endif
 endfun
 
@@ -594,4 +599,12 @@ fun! GitAutocommit(...)
   else
     execute '!git -C ~/vcs/personal/notes autocommit'
   endif
+endfun
+
+fun! VimDotoo(func)
+  let l:pos = getcurpos()
+  call search('^\*', 'b')
+  exe 'call dotoo#' . a:func . '()'
+  call setpos('.', l:pos)
+  normal! zO
 endfun
