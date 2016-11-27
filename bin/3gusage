@@ -1,16 +1,12 @@
 #!/bin/sh
 if [ -f /sys/class/net/ppp0/statistics/rx_bytes ] ; then
-	usage=$(vnstat --oneline | sed 's/1;.*;\([^;]*\);[^;]*;[^;]*;[^;]*;[^;]*$/\1/')
+	if [ "$1" = "-v" ]; then
+		vnstat --oneline | awk 'BEGIN {FS=";" } {print $11}'
+	fi
 elif /sbin/iwgetid | fgrep -q 'paretjesphonenetwork'; then
-	# echo differ between bash and dash: both require and support the option -n,
-	# but bash requires the option -e as well, to support the \n, while dash
-	# doesn't need it, and will simply output it. printf seems to be a more
-	# universal solution to print without newline
-	usage=$(printf '+\np' | cat /sys/class/net/wlan0/statistics/rx_bytes /sys/class/net/wlan0/statistics/tx_bytes - | dc | bytes2human | quiet "$1")
+	if [ "$1" = "-v" ]; then
+		printf '+\np' | cat /sys/class/net/wlan0/statistics/rx_bytes /sys/class/net/wlan0/statistics/tx_bytes - | dc | bytes2human
+	fi
 else
 	exit 1
-fi
-
-if [ "$1" = "-v" ]; then
-	echo "$usage"
 fi
