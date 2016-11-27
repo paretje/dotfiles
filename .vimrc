@@ -61,7 +61,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/gv.vim'
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
-Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown.pandoc'}
+Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
