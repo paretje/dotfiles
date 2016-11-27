@@ -188,3 +188,4 @@ tags
 /.pylint.d
 /.w3m/history
 /.dvdcss/CACHEDIR.TAG
+/repo
