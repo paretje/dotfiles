@@ -15,7 +15,7 @@ alias l='ls -CF'
 # some conveniences
 alias su='su -l'
 alias cal='ncal -b'
-alias less='less -R -i'
+alias less='less -R -i -c'
 alias info='info --vi-keys'
 
 # use gpg2
