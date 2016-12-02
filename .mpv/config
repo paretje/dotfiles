@@ -99,9 +99,7 @@ deinterlace=auto
 save-position-on-quit
 heartbeat-cmd="xscreensaver-command -deactivate"
 
-ass-line-spacing=-10
-sub-text-font="Liberation Sans Narrow:style=Bold"
-sub-text-font-size=44
+sub-text-font-size=40
 sub-text-shadow-color="#000000"
 sub-text-shadow-offset=1
 
