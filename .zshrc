@@ -76,12 +76,8 @@ autoload bashcompinit
 bashcompinit
 
 # autocompletion for pandoc
+# TODO: use a file to cache output?
 eval "$(pandoc --bash-completion)"
-
-# autocompletion for youtube-dl
-if [ -e "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion" ]; then
-    . "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion"
-fi
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
