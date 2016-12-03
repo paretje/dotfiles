@@ -646,7 +646,9 @@ endfun
 
 fun! VimDotoo(func)
   let l:pos = getcurpos()
-  call search('^\*', 'b')
+  if getline('.') !~? '^\*'
+    call search('^\*', 'b')
+  endif
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
   normal! zO
