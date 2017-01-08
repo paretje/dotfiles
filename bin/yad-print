@@ -1,5 +1,5 @@
 #!/bin/sh
-tmp=$(mktemp)
-cp "$1" "${tmp}.ps"
-yad --print --type=RAW --filename="${tmp}.ps"
+tmp=$(mktemp --tmpdir tmp.XXXXXXXXXX)
+cp "$1" "${tmp}"
+yad --print --type=RAW --filename="${tmp}"
 rm "${tmp}"
