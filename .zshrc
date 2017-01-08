@@ -79,8 +79,10 @@ autoload bashcompinit
 bashcompinit
 
 # autocompletion for pandoc
-# TODO: use a file to cache output?
-eval "$(pandoc --bash-completion)"
+_pandoc() {
+    eval "$(pandoc --bash-completion)"
+}
+compdef _pandoc pandoc
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
