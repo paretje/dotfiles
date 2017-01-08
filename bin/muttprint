@@ -1,0 +1,5 @@
+#!/bin/sh
+temp=$(mktemp --tmpdir "tmp_XXXXXXXXXX.ps")
+/usr/bin/muttprint -p TO_FILE:"$temp" "$@"
+yad --print --type=RAW --filename="$temp"
+rm "$temp"
