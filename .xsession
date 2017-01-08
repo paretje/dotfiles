@@ -21,8 +21,8 @@ if [ "$(hostname)" = "kevin-desktop" ]; then
 fi
 
 # Use GTK style in Qt5 applications
-export QT_STYLE_OVERRIDE=cleanlooks
-export QT_QPA_PLATFORMTHEME=gtk3
+export QT_STYLE_OVERRIDE=gtk2
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Disable overlay scrollbar in GTK 3
 export GTK_OVERLAY_SCROLLING=0
