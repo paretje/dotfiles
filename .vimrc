@@ -652,6 +652,9 @@ fun! VimDotoo(func)
   if getline('.') !~? '^\*'
     call search('^\*', 'b')
   endif
+  if &modified
+    write
+  endif
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
   normal! zO
