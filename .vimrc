@@ -176,6 +176,8 @@ set expandtab
 set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
+" Close tab when quickfix is only window
+au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -232,7 +234,7 @@ let g:rubycomplete_use_bundler = 1
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 let g:NERDTreeIgnore = ['\.class$']
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
