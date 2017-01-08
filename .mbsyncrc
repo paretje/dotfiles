@@ -43,3 +43,24 @@ Slave :notes-local:
 Create Slave
 Patterns "*"
 SyncState "*"
+
+IMAPAccount senso2me
+Host imap.mailprotect.be
+User kevin.velghe@senso2.me
+PassCmd "secret-tool lookup email kevin.velghe@senso2.me"
+AuthMechs LOGIN
+
+IMAPStore senso2me-remote
+Account senso2me
+
+MaildirStore senso2me-local
+Path ~/.mail/senso2me/
+Inbox ~/.mail/senso2me/INBOX
+Flatten .
+
+Channel senso2me
+Master :senso2me-remote:
+Slave :senso2me-local:
+Create Slave
+Patterns "*"
+SyncState "*"
