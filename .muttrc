@@ -138,7 +138,7 @@ macro index o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
 
 # basic tagging of mails
 macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo -spamy<return><sync-mailbox>' "archive mail"
-macro index,pager I '<modify-labels-then-hide>-inbox -unread<return><sync-mailbox>' "remove from inbox"
+macro index,pager I '<modify-labels-then-hide>-inbox -unread -spamy<return><sync-mailbox>' "remove from inbox"
 macro index,pager S '<modify-labels-then-hide>-inbox -unread -spamy +spam<return><sync-mailbox>' "mark as spam"
 
 # go to next mailbox with unread mails
