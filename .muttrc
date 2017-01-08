@@ -107,8 +107,8 @@ timeout-hook . 'exec sync-mailbox'
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
-bind attach,index,pager \CD next-page
-bind attach,index,pager \CU previous-page
+bind attach,index,pager \CD half-down
+bind attach,index,pager \CU half-up
 bind pager g top
 bind pager G bottom
 bind attach,index,browser g first-entry
@@ -152,8 +152,8 @@ macro index <return> '<display-message><sync-mailbox>' "display message and sync
 macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
-bind pager d next-page
-bind pager u previous-page
+bind pager d half-down
+bind pager u half-up
 
 # disable mutt's delete, and just tag with notmuch
 macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
