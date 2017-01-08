@@ -95,6 +95,9 @@ set text_flowed=yes
 alternative_order text/plain text/enriched text/html
 auto_view text/html
 
+# don't open the next message when the end is reached
+set pager_stop=yes
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
