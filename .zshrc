@@ -66,6 +66,9 @@ zstyle ':completion:*:(ssh|scp):*:hosts' hosts
 # autocompletion for tsocks
 compdef tsocks=exec
 
+# autocompletion for rranger
+compdef rranger=ssh
+
 # just use url completion for mpc
 _mpc_helper_files() {
     _urls

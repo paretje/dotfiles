@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+	echo "rranger: give hostname" >&2
+	exit 1;
+fi
+
+ssh -t "$1" '$SHELL' -l -c ranger
+
+if [ -n "$TMUX" ]; then
+	tmux set automatic-rename on
+fi
