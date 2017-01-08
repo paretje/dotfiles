@@ -274,11 +274,14 @@ let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
 let g:deoplete#ignore_sources.ledger = ['tag']
+let g:deoplete#ignore_sources.dotoo = ['tag']
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
+let g:deoplete#member#prefix_patterns['dotoo'] = ':'
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
+let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
