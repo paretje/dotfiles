@@ -125,13 +125,13 @@ bind editor <tab> complete-query
 
 # better bindings for basic notmuch actions
 bind index <tab> entire-thread
-bind index s vfolder-from-query
+bind index,pager s vfolder-from-query
 
 # some muttator-like keybindings
 bind index,pager c mail
 bind index,pager l modify-labels
 macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
-macro index o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
+macro index,pager o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
 
 # basic tagging of mails
 macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo -spamy<return><sync-mailbox>' "archive mail"
