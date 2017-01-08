@@ -91,6 +91,10 @@ set auto_tag=yes
 # use format=flowed
 set text_flowed=yes
 
+# only use html mails if nothing else
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
@@ -122,10 +126,6 @@ bind index,pager c mail
 bind index,pager l modify-labels
 macro browser o '<current-bottom><last-entry><search>^ <Backspace>'
 macro index o '<change-vfolder>?<sort>n<exit><change-vfolder>?o'
-
-# only use html mails if nothing else
-alternative_order text/plain text/enriched text/html
-auto_view text/html
 
 # basic tagging of mails
 macro index,pager A '<modify-labels-then-hide>+archive -inbox -unread -todo -spamy<return><sync-mailbox>' "archive mail"
