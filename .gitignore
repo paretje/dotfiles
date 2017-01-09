@@ -190,3 +190,4 @@ tags
 /.dvdcss/CACHEDIR.TAG
 /repo
 /.texlive2016
+/.local/share/xorg/*.log.old
