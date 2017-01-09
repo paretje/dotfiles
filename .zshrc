@@ -61,13 +61,18 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # disable user completion for ssh
 zstyle ':completion:*:(ssh|scp):*:users' users
-zstyle ':completion:*:(ssh|scp):*:hosts' hosts
+zstyle ':completion:*:(ssh|scp|rranger):*:hosts' hosts
 
 # autocompletion for tsocks
 compdef tsocks=exec
 
 # autocompletion for rranger
-compdef rranger=ssh
+_rranger() {
+    local service
+    service= _ssh
+    _ssh_hosts
+}
+compdef _rranger rranger
 
 # just use url completion for mpc
 _mpc_helper_files() {
