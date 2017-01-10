@@ -205,7 +205,7 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/*.org']
 let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
