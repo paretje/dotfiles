@@ -38,10 +38,13 @@ if [ "$HOST" = "kevin-laptop" ]; then
 	xmodmap -e 'keysym Super_L = Escape'
 fi
 
+xmodmap -e 'keysym Menu = Hyper_L'
 xmodmap -e 'remove control = Control_R'
 xmodmap -e 'remove mod4 = Super_R'
+xmodmap -e 'remove mod4 = Hyper_L'
 xmodmap -e 'add mod3 = Control_R'
 xmodmap -e 'add mod3 = Super_R'
+xmodmap -e 'add mod3 = Hyper_L'
 
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
