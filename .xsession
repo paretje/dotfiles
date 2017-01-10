@@ -32,8 +32,11 @@ setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
 xmodmap -e 'clear lock'
-xmodmap -e 'keysym Super_L = Escape'
 xmodmap -e 'keysym Caps_Lock = Escape'
+
+if [ "$HOST" = "kevin-laptop" ]; then
+	xmodmap -e 'keysym Super_L = Escape'
+fi
 
 xmodmap -e 'remove control = Control_R'
 xmodmap -e 'remove mod4 = Super_R'
