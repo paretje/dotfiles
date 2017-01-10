@@ -34,6 +34,9 @@ nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', '
 nnoremap <Leader>v :execute ":!mpv '" + content.location.href + "' &"<CR><Esc>
 nnoremap <Leader>qb :execute ":!qutebrowser '" + content.location.href + "' &"<CR><Esc>
 
+nnoremap M :bmark<CR>
+nnoremap D :delbmarks<CR>
+
 command! q winclose
 
 autocmd PageLoad https://github.com/search.* normal <Esc>
