@@ -53,6 +53,8 @@ xmodmap -e 'add mod3 = Hyper_L'
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
 	xbacklight -set 30
+elif [ "$HOST" = "parsley" ]; then
+	xbacklight -set 70
 fi
 
 # Some settings for laptop when working on desk
