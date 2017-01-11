@@ -192,3 +192,5 @@ tags
 /.texlive2016
 /.local/share/xorg/*.log.old
 /.sudo_as_admin_successful
+/.gnupg/pubring.kbx
+/.ccache
