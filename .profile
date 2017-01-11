@@ -103,6 +103,13 @@ export EMAIL="kevin@paretje.be"
 # set key to use to sign packages
 export DEB_SIGN_KEYID="64AD7E10"
 
+# set default org refile file
+if [ "$HOST" = "parsley" ]; then
+    export ORG_REFILE="$HOME/vcs/senso2me/notes/s2m-refile.org"
+else
+    export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
+fi
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx

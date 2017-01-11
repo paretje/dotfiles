@@ -30,7 +30,7 @@ nnoremap <Leader>; ;<Esc>
 nmap af <Leader>;F
 nmap yf <Leader>;y
 
-nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> /home/kevin/vcs/personal/notes/refile.org'<CR><Esc>
+nnoremap <Leader>org :execute ":!echo \"* TODO " + document.title.replace(':', ' -') + "\\n  " + content.location.href + '" \>\> "$ORG_REFILE"'<CR><Esc>
 nnoremap <Leader>v :execute ":!mpv '" + content.location.href + "' &"<CR><Esc>
 nnoremap <Leader>qb :execute ":!qutebrowser '" + content.location.href + "' &"<CR><Esc>
 
