@@ -27,9 +27,7 @@ alternates "kevin.velghe@senso2.me"
 
 # set from header
 set realname="Kevin Velghe"
-set from="kevin@paretje.be"
-send-hook '~t senso2.me$' 'set from="kevin.velghe@senso2.me"'
-send-hook !'~t senso2.me$' 'set from="kevin@paretje.be"'
+set from=$EMAIL
 
 # reply using identity sent to
 set reverse_name=yes

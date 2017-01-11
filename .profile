@@ -98,7 +98,11 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # set name and email address
 export NAME="Kevin Velghe"
-export EMAIL="kevin@paretje.be"
+if [ "$HOST" = "parsley" ]; then
+    export EMAIL="kevin.velghe@senso2.me"
+else
+    export EMAIL="kevin@paretje.be"
+fi
 
 # set key to use to sign packages
 export DEB_SIGN_KEYID="64AD7E10"
