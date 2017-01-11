@@ -4,8 +4,20 @@ if ! hash notmuch || ! hash mbsync || ! hash chronic; then
 	exit 1
 fi 2> /dev/null
 
+if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
+	echo "getmails: host not supported" 2>&1
+	exit 2
+fi
+
 fetch_mails() {
-	chronic mbsync -a
+	case $HOST in
+		"kevin-laptop")
+			chronic mbsync prive notes
+			;;
+		"parsley")
+			chronic mbsync senso2me
+			;;
+	esac
 	chronic notmuch new
 
 	count=$(notmuch count tag:unread)
