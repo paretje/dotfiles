@@ -1,8 +1,8 @@
 # this isn't really used, but to keep mutt shut up
-set folder=$HOME/.mail
+set folder=$MAILDIR
 
 # define virtual folders
-set nm_default_uri=notmuch://$HOME/.mail
+set nm_default_uri=notmuch://$MAILDIR
 virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "todo"           "notmuch://?query=tag:todo" \
@@ -56,8 +56,8 @@ set mail_check_stats=yes
 # set sent folder in mutt, and index for notmuch
 set nm_record=yes
 set nm_record_tags="-inbox -todo sent"
-send2-hook '~f ^kevin.velghe@senso2.me$' 'set record="~/.mail/senso2me/Sent"'
-send2-hook !'~f ^kevin.velghe@senso2.me$' 'set record="~/.mail/prive/Sent"'
+send2-hook '~f ^kevin.velghe@senso2.me$' 'set record="$MAILDIR/senso2me/Sent"'
+send2-hook !'~f ^kevin.velghe@senso2.me$' 'set record="$MAILDIR/prive/Sent"'
 
 # set send command
 send2-hook '~f ^kevin.velghe@senso2.me$' 'set sendmail="/usr/bin/msmtp -a senso2me"'

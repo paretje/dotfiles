@@ -114,6 +114,8 @@ else
     export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
 fi
 
+export MAILDIR="$HOME/.mail"
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx
