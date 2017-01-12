@@ -82,7 +82,7 @@ dunst &
 xclipman &
 test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
 getmails --daemon &
-! pgrep unisister > /dev/null && unisister --no-gui &
+test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
 
 # Start daemon with conky
 status=$(mktemp -u)
