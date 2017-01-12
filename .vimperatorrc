@@ -37,6 +37,8 @@ nnoremap <Leader>qb :execute ":!qutebrowser '" + content.location.href + "' &"<C
 nnoremap M :bmark<CR>
 nnoremap D :delbmarks<CR>
 
+nnoremap go O
+
 command! q winclose
 
 autocmd PageLoad https://github.com/search.* normal <Esc>
