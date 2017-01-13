@@ -194,3 +194,4 @@ tags
 /.sudo_as_admin_successful
 /.gnupg/pubring.kbx
 /.ccache
+/.local/share/qutebrowser/webengine
