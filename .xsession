@@ -85,6 +85,9 @@ else [ "$HOST" = "parsley" ]
 	synclient MaxTapTime 100
 fi
 
+# Substitute variables in user-dirs.dirs file
+user-dirs-make
+
 # Start some daemons
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
