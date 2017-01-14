@@ -80,7 +80,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
 dunst &
 xclipman &
-test "$HOST" = "kevin-laptop" && syndaemon -d -t -R
+syndaemon -d -t -R
 getmails --daemon &
 test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
 
