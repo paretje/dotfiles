@@ -645,7 +645,11 @@ fun! GitAutocommit(...)
   if a:0 == 0 && &filetype ==# 'ledger'
     Git autocommit
   else
-    execute '!git -C ~/vcs/personal/notes autocommit'
+    for l:dir in ['personal', 'senso2me']
+      if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
+        execute '!git -C ~/vcs/' . l:dir . '/notes autocommit'
+      endif
+    endfor
   endif
 endfun
 
