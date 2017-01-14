@@ -196,3 +196,8 @@ tags
 /.ccache
 /.local/share/qutebrowser/webengine
 /.config/user-dirs.dirs
+/.config/configstore
+/.config/gedit
+/.config/qutebrowser/qsettings
+/.v8flags.*.json
+/.node-gyp
