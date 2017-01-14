@@ -80,6 +80,9 @@ if [ "$HOST" = "kevin-laptop" ]; then
 	# TODO: are all the options really necessary?
 	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 TapButton1=1 TapButton1=3 TapButton1=2 SingleTapTimeout=140 MaxTapTime=140 MaxTapMove=20 ClickTime=5 LockedDrags=true LockedDragsTimeout=100
 	# TODO: options for intel?
+else [ "$HOST" = "parsley" ]
+	# TODO: would it make sense to use the same value for parsley and kevin-laptop?
+	synclient MaxTapTime 100
 fi
 
 # Start some daemons
