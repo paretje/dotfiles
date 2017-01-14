@@ -57,7 +57,7 @@ elif [ "$HOST" = "parsley" ]; then
 	xbacklight -set 70
 fi
 
-# Some settings for laptop when working on desk
+# Some settings for laptop when working at desk
 if [ "$HOST" = "kevin-laptop" ] && ifconfig eth0 | fgrep -q 'inet'; then
 	if xrandr | fgrep -q 'HDMI1 connected'; then
 		xrandr --output HDMI1 --auto && xrandr --output eDP1 --off
@@ -74,6 +74,13 @@ xloadimage -onroot /usr/share/wallpapers/joy_inksplat/contents/images/1920x1080.
 
 # Load Xresources
 xrdb ~/.Xresources
+
+# Touchpad configuration
+if [ "$HOST" = "kevin-laptop" ]; then
+	# TODO: are all the options really necessary?
+	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 TapButton1=1 TapButton1=3 TapButton1=2 SingleTapTimeout=140 MaxTapTime=140 MaxTapMove=20 ClickTime=5 LockedDrags=true LockedDragsTimeout=100
+	# TODO: options for intel?
+fi
 
 # Start some daemons
 eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
