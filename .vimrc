@@ -231,7 +231,7 @@ let g:rubycomplete_rails = 1
 let g:rubycomplete_use_bundler = 1
 
 " NERDTree options
-let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapActivateNode = 'za'
 let g:NERDTreeMapJumpParent = 'h'
 let g:NERDTreeIgnore = ['\.class$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
@@ -438,6 +438,9 @@ au BufRead,BufNewFile ~/.crontab setfiletype crontab
 
 " qf ft options
 au FileType qf nnoremap <silent> <nowait> <buffer> q <C-W>c
+
+" nerdtree ft options
+au FileType nerdtree nmap <buffer> l za
 
 " terminal options
 if has('nvim')
