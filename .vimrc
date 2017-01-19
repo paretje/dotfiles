@@ -178,6 +178,8 @@ set nofoldenable
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 " Close tab when quickfix is only window
 au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
+" Set window title
+set title
 
 " Airline options
 let g:airline_powerline_fonts = 1
