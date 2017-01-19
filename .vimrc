@@ -533,6 +533,7 @@ com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/sh
 com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
+com! PyDoc PythonJedi vim.command('split | terminal pydoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
 
 " Custom functions
 fun! ToggleSpellLang()
