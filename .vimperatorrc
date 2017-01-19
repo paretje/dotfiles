@@ -43,4 +43,7 @@ command! q winclose
 
 autocmd PageLoad https://github.com/search.* normal <Esc>
 
+highlight HintElem ;;
+highlight Hint font-family: monospace; font-size: 13px; font-weight: bold; text-transform: uppercase; color: black; background-color: #FFF785; border-color: #E3BE23; border-width: 1px; border-style: solid; padding: 1px; line-height: 1;
+
 " vim: set ft=vimperator:
