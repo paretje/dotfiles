@@ -329,8 +329,9 @@ let g:neoterm_shell = 'busybox sh'
 let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
-let g:jedi#completions_enabled = 0
-let g:jedi#force_py_version = 3
+if has('python3') && $HOST != "parsley"
+  let g:jedi#force_py_version = 3
+endif
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
