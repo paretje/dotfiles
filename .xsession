@@ -78,12 +78,10 @@ xrdb ~/.Xresources
 # Touchpad configuration
 synclient TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 if [ "$HOST" = "kevin-laptop" ]; then
-	# TODO: are all the options really necessary?
 	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
 	# TODO: options for intel?
 else [ "$HOST" = "parsley" ]
-	# TODO: would it make sense to use the same value for parsley and kevin-laptop?
-	synclient MaxTapTime 100
+	synclient FingerHigh=10 MaxTapMove=20 
 fi
 
 # Substitute variables in user-dirs.dirs file
