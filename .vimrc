@@ -532,6 +532,7 @@ com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
+com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 
 " Custom functions
 fun! ToggleSpellLang()
