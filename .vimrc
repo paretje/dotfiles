@@ -38,7 +38,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
-Plug 'briceburg/vimperator-labs', {'rtp': 'vimperator/contrib/vim'}
+Plug 'vimperator/vimperator.vim'
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
