@@ -76,7 +76,7 @@ xloadimage -onroot /usr/share/wallpapers/joy_inksplat/contents/images/1920x1080.
 xrdb ~/.Xresources
 
 # Touchpad configuration
-synclient TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
+synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 if [ "$HOST" = "kevin-laptop" ]; then
 	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
 	# TODO: options for intel?
