@@ -343,6 +343,11 @@ let g:qfenter_vopen_map = ['<C-v>']
 let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
 let g:qfenter_topen_map = ['<C-t>']
 
+" mundo options
+if has('python3')
+  let g:mundo_prefer_python3 = 1
+endif
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
