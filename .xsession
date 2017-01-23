@@ -95,7 +95,10 @@ xclipman &
 syndaemon -d -t -R
 getmails --daemon &
 test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
-sh -c 'while true; do batmonitor ; sleep 2m ; done' &
+
+if acpi -b | fgrep -vq 'No support'; then
+	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
+fi
 
 # Start daemon with conky
 status=$(mktemp -u)
