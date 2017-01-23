@@ -331,9 +331,10 @@ let g:neoterm_shell = 'busybox sh'
 let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
-if has('python3') && $HOST != "parsley"
+if has('python3') && $HOST !=# 'parsley'
   let g:jedi#force_py_version = 3
 endif
+let g:jedi#goto_command = '<C-]>'
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
