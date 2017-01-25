@@ -15,7 +15,7 @@ alias l='ls -CF'
 # some conveniences
 alias su='su -l'
 alias cal='ncal -b'
-alias less='less -R -i -c'
+alias less='less -icR'
 alias info='info --vi-keys'
 
 # use gpg2
@@ -32,5 +32,6 @@ alias sshfs='sshfs -o transform_symlinks'
 # alias for weather forecasts
 alias weather='curl --cacert ~/.local/share/ca-certificates/wttr.crt "https://wttr.in/Gent"'
 
-# use pager for output of ag
-alias ag='ag --pager "less -R -i -X -F"'
+# use pager for output
+alias ag='ag --pager "less -iRFX"'
+alias mysql='mysql --pager="less -iSFX"'
