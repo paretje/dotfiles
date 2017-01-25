@@ -70,7 +70,7 @@ fi
 xsetroot -cursor_name left_ptr
 
 # Set wallpaper
-xloadimage -onroot /usr/share/wallpapers/joy_inksplat/contents/images/1920x1080.png
+display -window root /usr/share/images/desktop-base/desktop-background &
 
 # Load Xresources
 xrdb ~/.Xresources
