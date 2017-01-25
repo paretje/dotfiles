@@ -1,2 +1,2 @@
 MAILTO=kevin@paretje.be
-*/15 * * * * which newsbeuter 2>&1 && ! $HOME/bin/3gusage && chronic newsbeuter -x reload
+*/15 * * * * which newsbeuter > /dev/null 2>&1 && ! $HOME/bin/3gusage && chronic newsbeuter -x reload
