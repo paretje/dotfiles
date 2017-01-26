@@ -353,7 +353,7 @@ endif
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
 au FileType vim-plug,git                setlocal nospell
-au FileType dotoo*,tex,mail             setlocal spelllang=nl
+au FileType tex,mail                    setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -376,6 +376,7 @@ au BufEnter *.org              call GitRoot() | au BufLeave <buffer> call ResetR
 au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
+au FileType dotoo*             setlocal spelllang=nl,en
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
