@@ -35,3 +35,6 @@ alias weather='curl --cacert ~/.local/share/ca-certificates/wttr.crt "https://wt
 # use pager for output
 alias ag='ag --pager "less -iRFX"'
 alias mysql='mysql --pager="less -iSFX"'
+
+# give diff some color
+alias diff='colordiff'
