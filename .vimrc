@@ -372,7 +372,7 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
-au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
+au BufEnter *.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
