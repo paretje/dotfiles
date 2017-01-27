@@ -101,6 +101,9 @@ set print_command="muttprint"
 # automatically sync mailbox on timeout
 timeout-hook . 'exec sync-mailbox'
 
+# no need to press key after executing shell command
+set wait_key=no
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
