@@ -201,3 +201,6 @@ tags
 /.config/qutebrowser/qsettings
 /.v8flags.*.json
 /.node-gyp
+/.ipython/profile_default/history.sqlite
+/.ipython/README
+/.ipython/profile_default/startup/README
