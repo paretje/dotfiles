@@ -335,6 +335,7 @@ if has('python3') && $HOST !=# 'parsley'
   let g:jedi#force_py_version = 3
 endif
 let g:jedi#goto_command = '<C-]>'
+let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
