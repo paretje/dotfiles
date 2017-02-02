@@ -47,6 +47,7 @@ set! privacy.clearOnShutdown.offlineApps=true
 set! privacy.clearOnShutdown.siteSettings=true
 set! privacy.donottrackheader.enabled=true
 set! privacy.sanitize.sanitizeOnShutdown=true
+set! security.mixed_content.block_display_content=true
 set! xpinstall.signatures.required=false
 
 set! extensions.greasemonkey.fileIsGreaseable=true
