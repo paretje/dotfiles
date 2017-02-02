@@ -12,24 +12,51 @@ set newtab=addons,help
 set scrollbars=false
 
 set! accessibility.typeaheadfind.autostart=false
+set! beacon.enabled=false
+set! browser.fixup.alternate.enabled=false
 set! browser.formfill.enable=false
+set! browser.fullscreen.animate=false
 set! browser.link.open_newwindow.restriction=0
 set! browser.newtabpage.enabled=false
 set! browser.newtabpage.enhanced=false
+set! browser.search.defaultenginename='DuckDuckGo'
 set! browser.startup.homepage='https://duckduckgo.com/html/?kl=be-nl&kp=-1'
 set! browser.startup.page=1
+set! browser.tabs.animate=false
 set! browser.tabs.closeWindowWithLastTab=false
+set! browser.urlbar.trimURLs=false
+set! extensions.itsalltext.editor=/home/kevin/bin/nvim-gui
+set! extensions.pocket.enabled=false
+set! font.size.variable.x-western=15
+set! full-screen-api.ignore-widgets=true
+set! full-screen-api.transition-duration.enter='0 0'
+set! full-screen-api.transition-duration.leave='0 0'
 set! general.autoScroll=true
 set! general.smoothScroll=false
+set! general.warnOnAboutConfig=false
 set! intl.accept_languages='en-gb,en,nl-be,nl'
+set! media.autoplay.enabled=false
+set! media.peerconnection.enabled=false
 set! network.cookie.cookieBehavior=1
 set! network.cookie.lifetimePolicy=2
+set! network.http.speculative-parallel-limit=0
 set! network.security.ports.banned.override='6666,'
 set! pdfjs.disabled=true
+set! privacy.clearOnShutdown.cache=false
+set! privacy.clearOnShutdown.offlineApps=true
+set! privacy.clearOnShutdown.siteSettings=true
 set! privacy.donottrackheader.enabled=true
 set! privacy.sanitize.sanitizeOnShutdown=true
 set! xpinstall.signatures.required=false
-set! general.warnOnAboutConfig=false
+
+" TODO: extensions.greasemonkey.*
+" TODO: noscript.*
+
+" if uBlock is loaded before this is executed, changes will only take effect
+" after another restart
+set! extensions.ublock0.adminSettings='{ "userSettings": { "webrtcIPAddressHidden": true }, "filterLists": { "assets/ublock/badware.txt": { "off": true }, "https://easylist-downloads.adblockplus.org/easylistdutch.txt": { "off": false }, "https://easylist-downloads.adblockplus.org/fanboy-annoyance.txt": { "off": false }, "https://easylist-downloads.adblockplus.org/fanboy-social.txt": { "off": false }, "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt": { "off": false }, "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt": { "off": false }, "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt": { "off": false }, "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt": { "off": false }, "http://malwaredomains.lehigh.edu/files/immortal_domains.txt": { "off": false }, "https://www.fanboy.co.nz/fanboy-antifacebook.txt": { "off": false } } }' 
+
+" TODO: install extensions
 
 nnoremap d <C-D>
 nnoremap u <C-U>
