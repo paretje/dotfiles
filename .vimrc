@@ -344,6 +344,7 @@ let g:grammarous#use_vim_spelllang = 1
 let g:qfenter_vopen_map = ['<C-v>']
 let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
 let g:qfenter_topen_map = ['<C-t>']
+let g:qfenter_enable_autoquickfix = 0
 
 " mundo options
 if has('python3')
