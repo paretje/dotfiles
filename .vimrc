@@ -453,6 +453,9 @@ au FileType qf nnoremap <silent> <nowait> <buffer> q <C-W>c
 " nerdtree ft options
 au FileType nerdtree nmap <buffer> za l
 
+" vimperator ft options
+au FileType vimperator setlocal commentstring=\"%s
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
