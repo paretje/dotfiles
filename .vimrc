@@ -522,6 +522,7 @@ cnoremap <Up> <C-P>
 cnoremap <Down> <C-N>
 nmap [g <Plug>(grammarous-move-to-previous-error)
 nmap ]g <Plug>(grammarous-move-to-next-error)
+imap <C-L> <Plug>delimitMateS-Tab
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
