@@ -32,7 +32,11 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'} " used by neco-ghc
 Plug 'vim-ruby/vim-ruby'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
-" Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
+if has('python')
+  Plug 'jaxbot/browserlink.vim', {'for': ['html', 'javascript', 'css']}
+else
+  Plug 'juanwolf/browserlink.vim', {'for': ['html', 'javascript', 'css']}
+endif
 Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
