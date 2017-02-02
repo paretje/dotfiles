@@ -506,8 +506,8 @@ nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
 nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
-nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
-nnoremap <Leader>ut :MundoToggle<CR>
+nnoremap <silent> <Leader>tfo :call OrgRecalculateTable(@%)<CR>
+nnoremap <silent> <Leader>ut :MundoToggle<CR>
 nnoremap , ;
 nnoremap \ ,
 vnoremap , ;
