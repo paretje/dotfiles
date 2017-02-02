@@ -362,7 +362,7 @@ au FileType help,dotoo*                 setlocal nolist " disable indentation li
 au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufRead,BufNewFile *.org    setfiletype dotoo
+au BufEnter *.org              setfiletype dotoo
 au FileType dotoo*             setlocal textwidth=77
 au FileType dotoo              setlocal foldenable
 au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
