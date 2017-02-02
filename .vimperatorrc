@@ -29,6 +29,7 @@ set! pdfjs.disabled=true
 set! privacy.donottrackheader.enabled=true
 set! privacy.sanitize.sanitizeOnShutdown=true
 set! xpinstall.signatures.required=false
+set! general.warnOnAboutConfig=false
 
 nnoremap d <C-D>
 nnoremap u <C-U>
@@ -61,6 +62,8 @@ nnoremap go O
 command! q winclose
 
 command! inspector emenu Tools.Web Developer.Inspector
+
+command! config tabopen about:config
 
 autocmd PageLoad https://github.com/search.* normal <Esc>
 
