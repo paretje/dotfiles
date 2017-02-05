@@ -10,6 +10,7 @@ let mapleader = ";"
 set status=input,location,bookmark,ssl,position,tabcount
 set newtab=addons,help
 set scrollbars=false
+set messagetimeout=2000
 
 set! accessibility.typeaheadfind.autostart=false
 set! beacon.enabled=false
