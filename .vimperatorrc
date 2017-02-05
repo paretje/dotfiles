@@ -104,6 +104,8 @@ nnoremap D :delbmarks<CR>
 
 nnoremap go O
 
+noremap ;js :javascript noscriptToggle()<CR>:echomsg 'javascript toggled'<CR>
+
 command! q winclose
 
 command! inspector emenu Tools.Web Developer.Inspector
@@ -114,5 +116,20 @@ autocmd PageLoad https://github.com/search.* normal <Esc>
 
 highlight HintElem ;;
 highlight Hint font-family: monospace; font-size: 13px; font-weight: bold; text-transform: uppercase; color: black; background-color: #FFF785; border-color: #E3BE23; border-width: 1px; border-style: solid; padding: 1px; line-height: 1;
+
+highlight StatusLine\ * padding-left: 0.2em
+
+javascript <<EOF
+function noscriptDomain() {
+        return noscriptOverlay.ns.getQuickSite(content.document.documentURI, /*level*/ 2);
+}
+function noscriptEnabled(url) {
+        return noscriptOverlay.ns.isJSEnabled(url);
+}
+function noscriptToggle() {
+        const url = noscriptDomain();
+        noscriptOverlay.safeAllow(url, !noscriptEnabled(url), false);
+}
+EOF
 
 " vim: set ft=vimperator:
