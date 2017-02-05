@@ -53,17 +53,21 @@ set! xpinstall.signatures.required=false
 
 set! extensions.greasemonkey.fileIsGreaseable=true
 
+set! noscript.autoReload=false
+set! noscript.cascadePermissions=true
 set! noscript.confirmUnblock=false
 set! noscript.contentBlocker=true
 set! noscript.firstRunRedirection=false
 set! noscript.forbidFonts=false
 set! noscript.forbidMedia=false
-set! noscript.forbidMetaRefresh=true
+set! noscript.forbidMetaRefresh=false
 set! noscript.forbidWebGL=true
 set! noscript.notify.hide=true
 set! noscript.notify.hideDelay=3
 set! noscript.showAbout=false
 set! noscript.showAllowPage=false
+set! noscript.showBaseDomain=false
+set! noscript.showDomain=true
 set! noscript.showTempToPerm=false
 
 " if uBlock is loaded before this is executed, changes will only take effect
