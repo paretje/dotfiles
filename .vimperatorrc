@@ -113,6 +113,7 @@ command! inspector emenu Tools.Web Developer.Inspector
 command! config tabopen about:config
 
 autocmd PageLoad https://github.com/search.* normal <Esc>
+autocmd PageLoad .* javascript noscriptStatusUpdate()
 
 highlight HintElem ;;
 highlight Hint font-family: monospace; font-size: 13px; font-weight: bold; text-transform: uppercase; color: black; background-color: #FFF785; border-color: #E3BE23; border-width: 1px; border-style: solid; padding: 1px; line-height: 1;
@@ -130,6 +131,16 @@ function noscriptToggle() {
         const url = noscriptDomain();
         noscriptOverlay.safeAllow(url, !noscriptEnabled(url), false);
 }
+function noscriptStatusUpdate() {
+        var enabled = noscriptEnabled(noscriptDomain());
+        var label = document.getElementById('liberator-noscript-status');
+        label.setAttribute("value", enabled ? "[S]" : "[]");
+}
+(function(){
+    var label = document.createElement("label");
+    label.setAttribute("id", "liberator-noscript-status");
+    document.getElementById("liberator-status").insertBefore(label, document.getElementById("liberator-status-position"));
+})();
 EOF
 
 " vim: set ft=vimperator:
