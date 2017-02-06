@@ -62,6 +62,7 @@ set! noscript.forbidFonts=false
 set! noscript.forbidMedia=false
 set! noscript.forbidMetaRefresh=false
 set! noscript.forbidWebGL=true
+set! noscript.notify=false
 set! noscript.notify.hide=true
 set! noscript.notify.hideDelay=3
 set! noscript.showAbout=false
