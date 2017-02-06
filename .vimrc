@@ -599,7 +599,9 @@ fun! CloseTag()
   if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
     call feedkeys("\<C-X>\<C-O>", 'n')
     if matchstr(getline('.'), '\%' . (col('.')) . 'c.') ==# '>'
-      call feedkeys("\<BS>", 'n')
+      call feedkeys("\<BS>\<Delete>>", 'n')
+    else
+      call feedkeys("\<BS>>", 'n')
     endif
   endif
 endfun
