@@ -31,6 +31,8 @@ zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje
 
 zplug "paretje/dwm", as:command, use:dwm, hook-build:"make clean && rm -f config.h && make && ln -srf dwm.1 '$ZPLUG_HOME/doc/man/man1' && xdotool key Control_R+q"
 
+zplug "ervandew/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
+
 zplug load
 PATH="$my_path"
 
