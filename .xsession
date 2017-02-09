@@ -75,6 +75,11 @@ fi
 # Substitute variables in user-dirs.dirs file
 user-dirs-make
 
+if [ "$HOST" = "kevin-eeepc" ]; then
+	xinput --disable "AT Translated Set 2 keyboard"
+	exec kodi
+fi
+
 # Start some daemons
 xclipman &
 syndaemon -d -t -R
