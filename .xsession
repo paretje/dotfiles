@@ -21,8 +21,12 @@ if [ "$(hostname)" = "kevin-desktop" ]; then
 fi
 
 # Use GTK style in Qt5 applications
-export QT_STYLE_OVERRIDE=cleanlooks
-export QT_QPA_PLATFORMTHEME=gtk3
+if [ -e "/usr/lib/x86_64-linux-gnu/qt5/plugins/styles/libqgtk2style.so" ]; then
+	export QT_STYLE_OVERRIDE=gtk2
+else
+	export QT_STYLE_OVERRIDE=gtk
+fi
+export QT_QPA_PLATFORMTHEME=gtk2
 
 # Disable overlay scrollbar in GTK 3
 export GTK_OVERLAY_SCROLLING=0
@@ -32,15 +36,47 @@ setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
 xmodmap -e 'clear lock'
-xmodmap -e 'keysym Super_L = Escape'
 xmodmap -e 'keysym Caps_Lock = Escape'
 
+if [ "$HOST" = "kevin-laptop" ]; then
+	xmodmap -e 'keysym Super_L = Escape'
+fi
+
+xmodmap -e 'keysym Menu = Hyper_L'
 xmodmap -e 'remove control = Control_R'
 xmodmap -e 'remove mod4 = Super_R'
+xmodmap -e 'remove mod4 = Hyper_L'
 xmodmap -e 'add mod3 = Control_R'
 xmodmap -e 'add mod3 = Super_R'
+xmodmap -e 'add mod3 = Hyper_L'
+
+# Set brightness of laptop
+if [ "$HOST" = "kevin-laptop" ]; then
+	xbacklight -set 30
+elif [ "$HOST" = "parsley" ]; then
+	xbacklight -set 70
+fi
+
+# Set default mouse pointer
+xsetroot -cursor_name left_ptr
 
 # Load Xresources
 xrdb ~/.Xresources
+
+# Touchpad configuration
+synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
+if [ "$HOST" = "kevin-laptop" ]; then
+	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
+	# TODO: options for intel?
+else [ "$HOST" = "parsley" ]
+	synclient FingerHigh=10 MaxTapMove=20 
+fi
+
+# Substitute variables in user-dirs.dirs file
+user-dirs-make
+
+# Start some daemons
+xclipman &
+syndaemon -d -t -R
 
 exec urxvt -e sh -c 'xwit -resize 800 480;exec tmux'

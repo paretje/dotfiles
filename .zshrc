@@ -12,12 +12,14 @@ fi
 local my_path="$PATH"
 source "$ZPLUG_HOME/init.zsh"
 
-zplug 'zplug/zplug', hook-build:"zplug update --self"
+zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "zsh-users/zsh-completions"
 
 zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
+
+zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
 zplug load
 PATH="$my_path"
@@ -49,10 +51,18 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # disable user completion for ssh
 zstyle ':completion:*:(ssh|scp):*:users' users
-zstyle ':completion:*:(ssh|scp):*:hosts' hosts
+zstyle ':completion:*:(ssh|scp|rranger):*:hosts' hosts
 
 # autocompletion for tsocks
 compdef tsocks=exec
+
+# autocompletion for rranger
+_rranger() {
+    local service
+    service= _ssh
+    _ssh_hosts
+}
+compdef _rranger rranger
 
 # just use url completion for mpc
 _mpc_helper_files() {
@@ -64,12 +74,10 @@ autoload bashcompinit
 bashcompinit
 
 # autocompletion for pandoc
-eval "$(pandoc --bash-completion)"
-
-# autocompletion for youtube-dl
-if [ -e "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion" ]; then
-    . "$HOME/.local/etc/bash_completion.d/youtube-dl.bash-completion"
-fi
+_pandoc() {
+    eval "$(pandoc --bash-completion)"
+}
+compdef _pandoc pandoc
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then

@@ -1,10 +1,27 @@
 #!/bin/sh
+if ! hash notmuch || ! hash mbsync || ! hash chronic; then
+	echo "getmails: this daemon needs notmuch, mbsync and chronic." 2>&1
+	exit 1
+fi 2> /dev/null
+
+if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
+	echo "getmails: host not supported" 2>&1
+	exit 2
+fi
+
 fetch_mails() {
-	chronic mbsync -a
+	case $HOST in
+		"kevin-laptop")
+			chronic mbsync prive notes
+			;;
+		"parsley")
+			chronic mbsync senso2me
+			;;
+	esac
 	chronic notmuch new
 
 	count=$(notmuch count tag:unread)
-	if [ $count -ne 0 ]; then
+	if [ "$count" -ne 0 ]; then
 		notify-send "You've got mail" "$count unread mail(s)"
 		beep-mail
 	fi

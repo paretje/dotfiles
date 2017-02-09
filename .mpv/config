@@ -50,7 +50,7 @@ autofit-larger=90%x90%
 ##################
 
 # Specify default audio driver (see --ao=help for a list).
-ao=alsa
+ao=pulse
 
 # Disable softvol usage, and always use the system mixer if available.
 #softvol=no
@@ -99,9 +99,7 @@ deinterlace=auto
 save-position-on-quit
 heartbeat-cmd="xscreensaver-command -deactivate"
 
-ass-line-spacing=-10
-sub-text-font="Liberation Sans Narrow:style=Bold"
-sub-text-font-size=44
+sub-text-font-size=40
 sub-text-shadow-color="#000000"
 sub-text-shadow-offset=1
 
@@ -122,14 +120,11 @@ hwdec=vdpau
 hwdec-codecs=all
 # Most video filters do not work with vdpau.
 # vf-clr=yes vf-clr=yes
-# Use pulse audio
-ao=pulse
 
 [vaapi]
 vo=xv
 hwdec=vaapi
 hwdec-codecs=all
-ao=pulse
 
 # You can also include other configuration files.
 #include = /path/to/the/file/you/want/to/include

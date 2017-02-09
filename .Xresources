@@ -80,7 +80,6 @@ URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10.5
 ! URxvt*title:                          string
 ! URxvt*iconName:                       string
 ! URxvt*saveLines:                      number
-URxvt.saveLines: 0
 ! URxvt*buffered:                       boolean
 ! URxvt*depth:                          number
 ! URxvt*visual:                         number
@@ -105,6 +104,7 @@ URxvt.letterSpace: -1
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
 ! URxvt*perl-ext-common:                string
+URxvt.perl-ext-common: vim-scrollback,matcher
 ! URxvt*perl-ext:                       string
 ! URxvt*iso14755:                       boolean
 URxvt.iso14755: false
@@ -132,3 +132,5 @@ URxvt.iso14755: false
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
+URxvt.vim-scrollback: M-s
+URxvt.vim-scrollback-paste: C-V

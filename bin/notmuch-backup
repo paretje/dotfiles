@@ -1,3 +1,8 @@
 #!/bin/sh -e
-notmuch dump --output="$HOME/vcs/personal/mail/tags"
-git -C "$HOME/vcs/personal/mail" autocommit
+if [ "$HOST" = "parsley" ]; then
+	folder="$HOME/vcs/senso2me/mail"
+else
+	folder="$HOME/vcs/personal/mail"
+fi
+notmuch dump --output="$folder/tags"
+git -C "$folder" autocommit

@@ -98,10 +98,23 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # set name and email address
 export NAME="Kevin Velghe"
-export EMAIL="kevin@paretje.be"
+if [ "$HOST" = "parsley" ]; then
+    export EMAIL="kevin.velghe@senso2.me"
+else
+    export EMAIL="kevin@paretje.be"
+fi
 
 # set key to use to sign packages
 export DEB_SIGN_KEYID="64AD7E10"
+
+# set default org refile file
+if [ "$HOST" = "parsley" ]; then
+    export ORG_REFILE="$HOME/vcs/senso2me/notes/s2m-refile.org"
+else
+    export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
+fi
+
+export MAILDIR="$HOME/.mail"
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then

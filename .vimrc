@@ -134,6 +134,10 @@ set expandtab
 set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
+" Close tab when quickfix is only window
+au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
+" Set window title
+set title
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -161,8 +165,8 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org']
-let g:dotoo#capture#refile = '~/vcs/personal/notes/refile.org'
+let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/*.org']
+let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
   \ ['TODO',      [':foreground 160', ':weight bold']],
@@ -190,7 +194,7 @@ let g:rubycomplete_use_bundler = 1
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 let g:NERDTreeIgnore = ['\.class$']
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
@@ -231,11 +235,14 @@ let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
 let g:deoplete#ignore_sources.ledger = ['tag']
+let g:deoplete#ignore_sources.dotoo = ['tag']
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
+let g:deoplete#member#prefix_patterns['dotoo'] = ':'
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
+let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -281,8 +288,12 @@ let g:neoterm_shell = 'busybox sh'
 let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
+if has('python3') && $HOST !=# 'parsley'
+  let g:jedi#force_py_version = 3
+endif
 let g:jedi#completions_enabled = 0
-let g:jedi#force_py_version = 3
+let g:jedi#goto_command = '<C-]>'
+let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
@@ -291,12 +302,18 @@ let g:grammarous#use_vim_spelllang = 1
 let g:qfenter_vopen_map = ['<C-v>']
 let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
 let g:qfenter_topen_map = ['<C-t>']
+let g:qfenter_enable_autoquickfix = 0
+
+" mundo options
+if has('python3')
+  let g:mundo_prefer_python3 = 1
+endif
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
 au FileType vim-plug,git                setlocal nospell
-au FileType dotoo*,tex,mail             setlocal spelllang=nl
+au FileType tex,mail                    setlocal spelllang=nl
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -304,7 +321,7 @@ au FileType help,dotoo*                 setlocal nolist " disable indentation li
 au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufRead,BufNewFile *.org    setfiletype dotoo
+au BufEnter *.org              setfiletype dotoo
 au FileType dotoo*             setlocal textwidth=77
 au FileType dotoo              setlocal foldenable
 au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
@@ -315,10 +332,11 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
-au BufEnter ~/vcs/personal/notes/*.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
+au BufEnter *.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
+au FileType dotoo*             setlocal spelllang=nl,en
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -391,6 +409,12 @@ au BufRead,BufNewFile ~/.crontab setfiletype crontab
 " qf ft options
 au FileType qf nnoremap <silent> <nowait> <buffer> q <C-W>c
 
+" nerdtree ft options
+au FileType nerdtree nmap <buffer> za l
+
+" vimperator ft options
+au FileType vimperator setlocal commentstring=\"%s
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
@@ -436,8 +460,8 @@ nnoremap <silent> <Leader>tm :call TableModeToggle()<CR>
 nmap <Leader>cal <Plug>CalendarV
 inoremap <expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
-nnoremap <Leader>tfo :call OrgRecalculateTable(@%)<CR>
-nnoremap <Leader>ut :MundoToggle<CR>
+nnoremap <silent> <Leader>tfo :call OrgRecalculateTable(@%)<CR>
+nnoremap <silent> <Leader>ut :MundoToggle<CR>
 nnoremap , ;
 nnoremap \ ,
 vnoremap , ;
@@ -457,6 +481,7 @@ cnoremap <Up> <C-P>
 cnoremap <Down> <C-N>
 nmap [g <Plug>(grammarous-move-to-previous-error)
 nmap ]g <Plug>(grammarous-move-to-next-error)
+imap <C-L> <Plug>delimitMateS-Tab
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -475,11 +500,13 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag Grepper -tool ag -open -switch -highlight -query <args>
+com! -narg=* Ag if &filetype == 'nerdtree' | wincmd p | endif | Grepper -tool ag -open -switch -highlight -query <args>
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
+com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
+com! PyDoc PythonJedi vim.command('split | terminal pydoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
 
 " Custom functions
 fun! ToggleSpellLang()
@@ -523,7 +550,12 @@ call airline#add_statusline_func('AirlineTableMode')
 fun! CloseTag()
   call feedkeys('/', 'n')
   if matchstr(getline('.'), '\%' . (col('.') - 1) . 'c.') ==# '<'
-    call feedkeys("\<C-X>\<C-O>\<C-N>\<BS>\<Right>\<BS>>", 'n')
+    call feedkeys("\<C-X>\<C-O>", 'n')
+    if matchstr(getline('.'), '\%' . (col('.')) . 'c.') ==# '>'
+      call feedkeys("\<BS>\<Delete>>", 'n')
+    else
+      call feedkeys("\<BS>>", 'n')
+    endif
   endif
 endfun
 
@@ -562,7 +594,7 @@ fun! OpenFile()
     else
       set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,),[,]
     endif
-    call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:S') . ' > /dev/null 2> /dev/null &')
+    call system('cd ' . expand('%:p:h') . ' ; xdg-open ' . expand('<cfile>:s?^\s*\(.\{-}\)\s*$?\1?:s?.*\s\+\([a-z]\+\)://?\1://?:S') . ' > /dev/null 2> /dev/null &')
     let &isfname = l:isfname
   else
     normal! gf
@@ -597,13 +629,22 @@ fun! GitAutocommit(...)
   if a:0 == 0 && &filetype ==# 'ledger'
     Git autocommit
   else
-    execute '!git -C ~/vcs/personal/notes autocommit'
+    for l:dir in ['personal', 'senso2me']
+      if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
+        execute '!git -C ~/vcs/' . l:dir . '/notes autocommit'
+      endif
+    endfor
   endif
 endfun
 
 fun! VimDotoo(func)
   let l:pos = getcurpos()
-  call search('^\*', 'b')
+  if getline('.') !~? '^\*'
+    call search('^\*', 'b')
+  endif
+  if &modified
+    write
+  endif
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
   normal! zO

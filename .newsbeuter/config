@@ -40,3 +40,5 @@ goto-next-feed no
 prepopulate-query-feeds yes
 
 include "~/.newsbeuter/filter"
+
+macro , set browser "readability -p article -u %u | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg| less -i -c" ; open-in-browser ; set browser "qutebrowser"

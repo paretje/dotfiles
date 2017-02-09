@@ -3,7 +3,7 @@ if [ "$1" = "--mutt" ]; then
 	file="$(mktemp)"
 	cp "$2" "$file"
 	{
-		/usr/bin/zathura "$file"
+		/usr/bin/zathura "$file" > /dev/null 2>&1
 		rm "$file"
 	} &
 else

@@ -1,0 +1,2 @@
+#!/bin/sh
+cat "$HOME/.config/user-dirs.dirs.env" | envsubst > "$HOME/.config/user-dirs.dirs"

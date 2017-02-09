@@ -1,3 +1,2 @@
 MAILTO=kevin@paretje.be
-*/2 * * * * DISPLAY=:0 $HOME/bin/batmonitor
-*/15 * * * * ! $HOME/bin/3gusage && chronic newsbeuter -x reload
+*/15 * * * * which newsbeuter > /dev/null 2>&1 && ! $HOME/bin/3gusage && chronic newsbeuter -x reload

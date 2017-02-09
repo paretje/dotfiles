@@ -3,3 +3,4 @@ youtube-dl
 vim-vint
 pip-tools
 pyPEG2
+readability-lxml
