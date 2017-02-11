@@ -356,6 +356,11 @@ if has('python3')
   let g:mundo_prefer_python3 = 1
 endif
 
+" vim-grepper options
+let g:grepper = {}
+let g:grepper.dir='repo,cwd'
+au User Grepper call GrepperReset()
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
@@ -379,7 +384,6 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
-au BufEnter *.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
@@ -547,7 +551,7 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag if &filetype == 'nerdtree' | wincmd p | endif | Grepper -tool ag -open -switch -highlight -query <args>
+com! -narg=* Ag call Grepper(<f-args>)
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
 com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
@@ -695,4 +699,42 @@ fun! VimDotoo(func)
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
   normal! zO
+endfun
+
+fun! Grepper(...)
+  if &filetype ==# 'nerdtree'
+    wincmd p
+  endif
+
+  let g:grepper_dir = haslocaldir() ? getcwd() : ''
+
+  execute 'Grepper -tool ag -open -switch -highlight -query ' . join(map(copy(a:000), 'shellescape(v:val)'), ' ')
+endfun
+
+fun! GrepperReset()
+  if !exists('g:grepper_dir')
+    return
+  endif
+
+  " TODO: wincmd p should be replaced with an actual test on the origin window
+  " and the qf window
+  call GrepperResetDir()
+  wincmd p
+  call GrepperResetDir()
+  wincmd p
+  unlet g:grepper_dir
+endfun
+
+fun! GrepperResetDir()
+  if g:grepper_dir ==# ''
+    let l:tab = getcwd(-1)
+    let l:global = getcwd(-1, -1)
+    if l:tab != l:global
+      execute 'tcd ' . fnameescape(l:tab)
+    else
+      execute 'cd ' . fnameescape(l:global)
+    endif
+  else
+    execute 'lcd ' . fnameescape(g:grepper_dir)
+  endif
 endfun
