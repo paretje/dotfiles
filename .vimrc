@@ -68,7 +68,11 @@ Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" TODO: 8cf616b0887276e026aefdf68bc0311b83eec381 works, but takes us too far
+" sometimes, and immediately goes to the type definition of the object,
+" instead of the definition of the object. Somewhere between these two
+" commits, this was broken. The update of jedi gives me exceptions
+Plug 'davidhalter/jedi-vim', {'for': 'python', 'commit': 'f99d86073b6e93ba379a4a72485148c31b623aca'}
 Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim'
