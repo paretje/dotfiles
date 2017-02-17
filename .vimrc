@@ -361,7 +361,7 @@ endif
 
 " vim-grepper options
 let g:grepper = {}
-let g:grepper.dir='repo,cwd'
+let g:grepper.dir = 'repo,cwd'
 au User Grepper call GrepperReset()
 
 " cscope.vim options
@@ -713,7 +713,9 @@ fun! Grepper(...)
     wincmd p
   endif
 
-  let g:grepper_dir = haslocaldir() ? getcwd() : ''
+  if !exists('g:grepper_dir')
+    let g:grepper_dir = haslocaldir() ? getcwd() : ''
+  endif
 
   execute 'Grepper -tool ag -open -switch -highlight -query ' . join(map(copy(a:000), 'shellescape(v:val)'), ' ')
 endfun
