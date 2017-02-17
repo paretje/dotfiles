@@ -86,7 +86,7 @@ if has('nvim')
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
-  Plug 'zchee/deoplete-clang', {'for': 'c'}
+  Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
   Plug 'Shougo/neco-vim', {'for': 'vim'}
 else
   Plug 'congma/vim-fakeclip'
@@ -280,6 +280,7 @@ let g:deoplete#omni_patterns.markdown = []
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni', 'around']
+let g:deoplete#ignore_sources.cpp = ['tag', 'buffer', 'omni', 'around']
 let g:deoplete#ignore_sources.python = ['tag', 'buffer', 'omni', 'around']
 let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
 let g:deoplete#ignore_sources.ledger = ['tag']
