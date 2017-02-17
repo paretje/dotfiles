@@ -73,6 +73,7 @@ Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim'
 Plug 'dhruvasagar/vim-testify'
+Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -363,6 +364,9 @@ let g:grepper = {}
 let g:grepper.dir='repo,cwd'
 au User Grepper call GrepperReset()
 
+" cscope.vim options
+let g:cscope_silent = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
@@ -452,6 +456,7 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 
 " C ft options
 au FileType c setlocal commentstring=//%s
+au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
