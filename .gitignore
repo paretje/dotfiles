@@ -209,3 +209,6 @@ tags
 /.cscope.vim
 /.config/pgcli/history
 /.config/pgcli/log
+/.config/mps-youtube/cache_py_*
+/.config/mps-youtube/input_history
+/.config/mps-youtube/playlist_v2
