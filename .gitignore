@@ -212,3 +212,4 @@ tags
 /.config/mps-youtube/cache_py_*
 /.config/mps-youtube/input_history
 /.config/mps-youtube/playlist_v2
+/.config/mps-youtube/play_history
