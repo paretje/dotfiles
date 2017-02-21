@@ -78,6 +78,7 @@ Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim'
 Plug 'dhruvasagar/vim-testify'
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
+Plug 'FelikZ/ctrlp-py-matcher'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -205,6 +206,7 @@ let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
