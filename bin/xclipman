@@ -1,4 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+exec &> /dev/null
+
+xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+
 while true ; do
-	xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+	content=$(xclip -out -selection clipboard)
+	if [ "$?" -eq 0 ]; then
+		xclip -quiet -in -selection clipboard <<< "$content"
+	else
+		sleep 0.5s
+	fi
 done
