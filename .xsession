@@ -78,10 +78,12 @@ xrdb ~/.Xresources
 # Touchpad configuration
 synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 if [ "$HOST" = "kevin-laptop" ]; then
+	# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
+	#       maybe ClickPad, RightButtonArea*, ...?
 	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
 	# TODO: options for intel?
 else [ "$HOST" = "parsley" ]
-	synclient FingerHigh=10 MaxTapMove=20 
+	synclient FingerHigh=10 MaxTapMove=20 ClickPad=1
 fi
 
 # Substitute variables in user-dirs.dirs file
