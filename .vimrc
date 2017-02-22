@@ -79,6 +79,7 @@ Plug 'junegunn/vader.vim'
 Plug 'dhruvasagar/vim-testify'
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
 Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'Konfekt/FastFold'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -711,6 +712,7 @@ fun! VimDotoo(func)
   endif
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
+  normal zuz
   normal! zO
 endfun
 
