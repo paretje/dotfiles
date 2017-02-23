@@ -4,6 +4,7 @@ qutebrowser() {
 }
 
 clean_history() {
+	rm -rf "$HOME/.local/share/qutebrowser/local-storage"
 	rm -rf "$HOME/.local/share/qutebrowser/offline-storage"
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
