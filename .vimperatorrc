@@ -90,7 +90,7 @@ nnoremap P :tabopen <C-V><CR>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-inoremap <C-O> <C-I> " binding to open external editor
+inoremap <C-O> <C-I>
 
 nnoremap <Leader>; ;<Esc>
 nmap af <Leader>;F
