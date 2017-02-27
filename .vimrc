@@ -280,6 +280,11 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
+let g:neomake_cpp_args = ['-std=c++11', '-I', '.']
+let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
+let g:neomake_cpp_clangcheck_args = ['%:p', '--']
+let g:neomake_cpp_clangtidy_args = ['%:p', '--']
+
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
@@ -461,9 +466,12 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> |
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
 
-" C ft options
-au FileType c setlocal commentstring=//%s
+" C and C++ ft options
+au FileType c     setlocal commentstring=//%s
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
+au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
+au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
