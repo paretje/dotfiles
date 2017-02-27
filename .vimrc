@@ -22,14 +22,14 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
 Plug 'vim-airline/vim-airline'
-Plug 'Keithbsmiley/tmux.vim'
+Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
-Plug 'Shougo/vimproc.vim', {'do': 'make'} " used by neco-ghc
-Plug 'vim-ruby/vim-ruby'
+Plug 'Shougo/vimproc.vim', {'do': 'make'} " used by vim-grammarous
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
 if has('python')
@@ -41,8 +41,8 @@ Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
-Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim'}
-Plug 'vimperator/vimperator.vim'
+Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim', 'for': 'muttator'}
+Plug 'vimperator/vimperator.vim', {'for': 'vimperator'}
 Plug 'ciaranm/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
@@ -75,8 +75,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'davidhalter/jedi-vim', {'for': 'python', 'commit': 'f99d86073b6e93ba379a4a72485148c31b623aca'}
 Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
-Plug 'junegunn/vader.vim'
-Plug 'dhruvasagar/vim-testify'
+Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
+Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
