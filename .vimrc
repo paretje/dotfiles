@@ -494,8 +494,8 @@ if has('nvim')
   au TermOpen * setlocal nobuflisted
 endif
 
-" It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
+" browser editor options
+au BufRead /tmp/vimperator-*                       setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
