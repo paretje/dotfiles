@@ -56,13 +56,13 @@ Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
-Plug 'mhinz/vim-grepper'
+Plug 'mhinz/vim-grepper', {'on': 'Grepper'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
@@ -89,7 +89,7 @@ endif
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'radenling/vim-dispatch-neovim'
-  Plug 'paretje/nvim-man'
+  Plug 'paretje/nvim-man', {'on': 'Man'}
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
