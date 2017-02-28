@@ -134,3 +134,4 @@ URxvt.iso14755: false
 ! URxvt*url-launcher:                   string
 URxvt.vim-scrollback: M-s
 URxvt.vim-scrollback-paste: C-V
+urxvt.matcher.rend.0: -Uline
