@@ -440,6 +440,7 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
 au FileType markdown setlocal concealcursor=n
+au FileType markdown setlocal keywordprg=:Dictionary
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
@@ -579,6 +580,7 @@ com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! PyDoc PythonJedi vim.command('split | terminal pydoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+com! -narg=1 Dictionary call Dictionary(<f-args>)
 
 " Custom functions
 fun! ToggleSpellLang()
@@ -760,5 +762,11 @@ fun! GrepperResetDir()
     endif
   else
     execute 'lcd ' . fnameescape(g:grepper_dir)
+  endif
+endfun
+
+fun! Dictionary(word)
+  if &spelllang =~# 'nl'
+    call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
   endif
 endfun
