@@ -34,6 +34,12 @@ export GTK_OVERLAY_SCROLLING=0
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
+# Just start kodi on EeePC
+if [ "$HOST" = "kevin-eeepc" ]; then
+	xinput --disable "AT Translated Set 2 keyboard"
+	exec kodi
+fi
+
 # Remap some keys
 xmodmap -e 'clear lock'
 xmodmap -e 'keysym Caps_Lock = Escape'
@@ -74,11 +80,6 @@ fi
 
 # Substitute variables in user-dirs.dirs file
 user-dirs-make
-
-if [ "$HOST" = "kevin-eeepc" ]; then
-	xinput --disable "AT Translated Set 2 keyboard"
-	exec kodi
-fi
 
 # Start some daemons
 xclipman &
