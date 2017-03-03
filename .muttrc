@@ -203,5 +203,10 @@ bind query <backtab> previous-entry
 macro index,pager yy '<pipe-message>fgrep -m 1 From: | sed "s/^\s*From:\s*[^<]*\s*<\([^>]*\)>\s*$/\1/" | xsel -i --clipboard<enter>'
 
 # advanced labeling of mails
-macro index,pager md '<modify-labels-then-hide>-todo -inbox<return><sync-mailbox>'
-macro index,pager mti '\CT<tag-thread><tag-prefix><modify-labels-then-hide>-inbox<return><sync-mailbox>'
+macro index,pager md '<modify-labels>-todo<return>'
+macro index,pager mt '<modify-labels>todo<return>'
+macro index,pager mh '<modify-labels>-spamy<return>'
+macro index,pager mr '<modify-labels>-unread<return>'
+
+bind generic z noop
+macro index,pager zI '^T<tag-thread><tag-prefix><modify-labels-then-hide>-inbox<return><sync-mailbox>'
