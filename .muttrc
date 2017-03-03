@@ -158,11 +158,11 @@ macro index <return> '<display-message><sync-mailbox>' "display message and sync
 macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
-bind pager d half-down
-bind pager u half-up
+bind index,pager d half-down
+bind index,pager u half-up
 
 # disable mutt's delete, and just tag with notmuch
-macro index d '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
+macro index D '<modify-labels-then-hide>+deleted -inbox -todo -unread<return><sync-mailbox>' "delete mail"
 
 # add binding to reply to send reply to all recipients
 bind index,pager r group-reply
