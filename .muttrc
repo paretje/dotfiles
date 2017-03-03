@@ -173,6 +173,7 @@ macro index \CF '<shell-escape>getmails --now &<enter>'
 
 # follow links in mail using urlscan
 macro pager f '<pipe-message>urlscan<enter>'
+macro pager F '<pipe-message>urlview<enter>'
 
 # show home directory alphabetically sorted when adding attachment
 macro compose a '<attach-file>~/<tab><tab><sort>a'
