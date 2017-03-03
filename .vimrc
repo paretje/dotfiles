@@ -286,21 +286,22 @@ let g:neomake_cpp_clangtidy_args = ['%:p', '--']
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
+
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
+
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
-let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni', 'around']
-let g:deoplete#ignore_sources.cpp = ['tag', 'buffer', 'omni', 'around']
-let g:deoplete#ignore_sources.python = ['tag', 'buffer', 'omni', 'around']
-let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
-let g:deoplete#ignore_sources.ledger = ['tag']
-let g:deoplete#ignore_sources.dotoo = ['tag']
+for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
+  let g:deoplete#ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
+endfor
+
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
 let g:deoplete#member#prefix_patterns['dotoo'] = ':'
+
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
