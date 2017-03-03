@@ -21,7 +21,7 @@ Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline', {'commit': 'fbd791e7f0431e18b987a2a8937a4c3d34dd2125'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
@@ -143,7 +143,8 @@ set mouse=a
 " Don't do full autocompletion in command mode
 set wildmenu
 set wildmode=longest,list,full
-" Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and between leaving insert mode and update of airline
+" Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and
+" between leaving insert mode and update of airline
 set ttimeoutlen=0
 " Set default comments format
 set commentstring=#%s
@@ -198,7 +199,7 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
-let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.linenr = ''
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
