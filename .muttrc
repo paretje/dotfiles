@@ -209,4 +209,5 @@ macro index,pager mh '<modify-labels>-spamy<return>'
 macro index,pager mr '<modify-labels>-unread<return>'
 
 bind generic z noop
-macro index,pager zI '^T<tag-thread><tag-prefix><modify-labels-then-hide>-inbox<return><sync-mailbox>'
+macro index,pager zI '^T<tag-thread><tag-prefix>I'
+macro index,pager zA '^T<tag-thread><tag-prefix>A'
