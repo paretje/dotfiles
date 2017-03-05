@@ -200,6 +200,14 @@ let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
 let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.whitespace = ''
+let g:airline_symbols.notexists = ''
+let g:airline#extensions#branch#notexists = ''
+let g:airline#extensions#whitespace#trailing_format = "\u2219trailing[%s]"
+let g:airline#extensions#whitespace#long_format = "\u2219long[%s]"
+let g:airline#extensions#whitespace#mixed_indent_format = "\u2219mixed-indent[%s]"
+let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219mix-indent-file[%s]"
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
