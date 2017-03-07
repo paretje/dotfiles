@@ -214,3 +214,5 @@ tags
 /.config/mps-youtube/playlist_v2
 /.config/mps-youtube/play_history
 /.local/share/qutebrowser/local-storage
+/.subversion/auth
+/.subversion/README.txt
