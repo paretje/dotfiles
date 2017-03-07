@@ -88,7 +88,7 @@ endif
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'radenling/vim-dispatch-neovim'
-  Plug 'paretje/nvim-man', {'on': 'Man'}
+  Plug 'paretje/nvim-man'
   Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
