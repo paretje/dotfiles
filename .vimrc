@@ -603,7 +603,7 @@ fun! ToggleSpellLang()
 endfun
 
 fun! ToggleFolding()
-  if &l:foldmethod ==# 'manual'
+  if &l:foldmethod ==# 'manual' && !exists('b:lastfdm') && !exists('w:lastfdm')
     setlocal foldmethod=syntax foldenable
     return
   endif
