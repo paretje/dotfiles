@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/make "$@" 2>&1 | GREP_COLORS='mt=33' egrep --color=always '(^|^make: |^.+:[0-9]+: )'

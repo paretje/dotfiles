@@ -112,3 +112,18 @@ WORDCHARS="_-."
 autoload -Uz promptinit
 promptinit
 prompt adam1
+
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+    print -n '\e]2;zsh\a'
+}
+
+function xterm_title_preexec () {
+    print -n "\e]2;$1\a"
+}
+
+if [[ "$TERM" == (xterm*|rxvt*) ]]; then
+    add-zsh-hook -Uz precmd xterm_title_precmd
+    add-zsh-hook -Uz preexec xterm_title_preexec
+fi

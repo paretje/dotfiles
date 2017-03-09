@@ -205,3 +205,14 @@ tags
 /.ipython/README
 /.ipython/profile_default/startup/README
 /.lesshsQ
+/.mycli-history
+/.cscope.vim
+/.config/pgcli/history
+/.config/pgcli/log
+/.config/mps-youtube/cache_py_*
+/.config/mps-youtube/input_history
+/.config/mps-youtube/playlist_v2
+/.config/mps-youtube/play_history
+/.local/share/qutebrowser/local-storage
+/.subversion/auth
+/.subversion/README.txt

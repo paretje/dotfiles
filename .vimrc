@@ -19,8 +19,8 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'Keithbsmiley/tmux.vim'
+Plug 'vim-airline/vim-airline', {'commit': 'fbd791e7f0431e18b987a2a8937a4c3d34dd2125'}
+Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
@@ -38,6 +38,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'yssl/QFEnter', {'for': 'qf'}
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'Konfekt/FastFold'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -91,7 +93,8 @@ set mouse=a
 " Don't do full autocompletion in command mode
 set wildmenu
 set wildmode=longest,list,full
-" Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and between leaving insert mode and update of airline
+" Set keycode timeout to 0 ms. Reduces lag when pressing Alt-O on terminal and
+" between leaving insert mode and update of airline
 set ttimeoutlen=0
 " Set default comments format
 set commentstring=#%s
@@ -146,7 +149,15 @@ let g:airline#extensions#tagbar#enabled = 0
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
+let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.whitespace = ''
+let g:airline_symbols.notexists = ''
+let g:airline#extensions#branch#notexists = ''
+let g:airline#extensions#whitespace#trailing_format = "\u2219trailing[%s]"
+let g:airline#extensions#whitespace#long_format = "\u2219long[%s]"
+let g:airline#extensions#whitespace#mixed_indent_format = "\u2219mixed-indent[%s]"
+let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219mix-indent-file[%s]"
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -154,6 +165,7 @@ let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -225,21 +237,29 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
+let g:neomake_cpp_args = ['-std=c++11', '-I', '.']
+let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
+let g:neomake_cpp_clangcheck_args = ['%:p', '--']
+let g:neomake_cpp_clangtidy_args = ['%:p', '--']
+
 " deoplete options
 let g:deoplete#enable_at_startup = 1
+
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
+
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
-let g:deoplete#ignore_sources.c = ['tag', 'buffer', 'omni']
-let g:deoplete#ignore_sources.java = ['tag', 'buffer', 'member']
-let g:deoplete#ignore_sources.ledger = ['tag']
-let g:deoplete#ignore_sources.dotoo = ['tag']
+for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
+  let g:deoplete#ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
+endfor
+
 let g:deoplete#member#prefix_patterns = {}
 let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
 let g:deoplete#member#prefix_patterns['ledger'] = ':'
 let g:deoplete#member#prefix_patterns['dotoo'] = ':'
+
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
@@ -292,7 +312,7 @@ if has('python3') && $HOST !=# 'parsley'
   let g:jedi#force_py_version = 3
 endif
 let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = '<C-]>'
+let g:jedi#goto_assignments_command = '<C-]>'
 let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
@@ -309,11 +329,20 @@ if has('python3')
   let g:mundo_prefer_python3 = 1
 endif
 
+" vim-grepper options
+let g:grepper = {}
+let g:grepper.dir = 'repo,cwd'
+au User Grepper call GrepperReset()
+
+" cscope.vim options
+let g:cscope_silent = 1
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
 au FileType vim-plug,git                setlocal nospell
 au FileType tex,mail                    setlocal spelllang=nl
+au FileType dotoo*,ledger               setlocal spelllang=nl,en
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -321,7 +350,7 @@ au FileType help,dotoo*                 setlocal nolist " disable indentation li
 au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufEnter *.org              setfiletype dotoo
+au BufEnter *.org              if empty(&filetype) | setfiletype dotoo | endif
 au FileType dotoo*             setlocal textwidth=77
 au FileType dotoo              setlocal foldenable
 au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
@@ -332,11 +361,9 @@ au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
-au BufEnter *.org              call GitRoot() | au BufLeave <buffer> call ResetRoot()
 au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
 au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
-au FileType dotoo*             setlocal spelllang=nl,en
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -372,6 +399,7 @@ au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus
 au FileType markdown call AutoMake()
 au FileType markdown setlocal filetype=markdown.pandoc
 au FileType markdown setlocal concealcursor=n
+au FileType markdown setlocal keywordprg=:Dictionary
 
 " ledger ft options
 au BufRead,BufNewFile *.journal setfiletype ledger
@@ -397,8 +425,12 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> |
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
 
-" C ft options
-au FileType c setlocal commentstring=//%s
+" C and C++ ft options
+au FileType c,cpp setlocal commentstring=//%s
+au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
+au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
+au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -421,8 +453,8 @@ if has('nvim')
   au TermOpen * setlocal nobuflisted
 endif
 
-" It's All Text options
-au BufRead ~/.mozilla/firefox/*/itsalltext/github* setlocal ft=markdown
+" browser editor options
+au BufRead /tmp/vimperator-*                       setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
@@ -500,13 +532,14 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag if &filetype == 'nerdtree' | wincmd p | endif | Grepper -tool ag -open -switch -highlight -query <args>
+com! -narg=* Ag call Grepper(<f-args>)
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
-com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs qutebrowser')
-com! -narg=1 HtmlDoc call system('qutebrowser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
+com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
+com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! PyDoc PythonJedi vim.command('split | terminal pydoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+com! -narg=1 Dictionary call Dictionary(<f-args>)
 
 " Custom functions
 fun! ToggleSpellLang()
@@ -519,7 +552,7 @@ fun! ToggleSpellLang()
 endfun
 
 fun! ToggleFolding()
-  if &l:foldmethod ==# 'manual'
+  if &l:foldmethod ==# 'manual' && !exists('b:lastfdm') && !exists('w:lastfdm')
     setlocal foldmethod=syntax foldenable
     return
   endif
@@ -647,5 +680,52 @@ fun! VimDotoo(func)
   endif
   exe 'call dotoo#' . a:func . '()'
   call setpos('.', l:pos)
+  normal zuz
   normal! zO
+endfun
+
+fun! Grepper(...)
+  if &filetype ==# 'nerdtree'
+    wincmd p
+  endif
+
+  if !exists('g:grepper_dir')
+    let g:grepper_dir = haslocaldir() ? getcwd() : ''
+  endif
+
+  execute 'Grepper -tool ag -open -switch -highlight -query ' . join(map(copy(a:000), 'shellescape(v:val)'), ' ')
+endfun
+
+fun! GrepperReset()
+  if !exists('g:grepper_dir')
+    return
+  endif
+
+  " TODO: wincmd p should be replaced with an actual test on the origin window
+  " and the qf window
+  call GrepperResetDir()
+  wincmd p
+  call GrepperResetDir()
+  wincmd p
+  unlet g:grepper_dir
+endfun
+
+fun! GrepperResetDir()
+  if g:grepper_dir ==# ''
+    let l:tab = getcwd(-1)
+    let l:global = getcwd(-1, -1)
+    if l:tab != l:global
+      execute 'tcd ' . fnameescape(l:tab)
+    else
+      execute 'cd ' . fnameescape(l:global)
+    endif
+  else
+    execute 'lcd ' . fnameescape(g:grepper_dir)
+  endif
+endfun
+
+fun! Dictionary(word)
+  if &spelllang =~# 'nl'
+    call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
+  endif
 endfun

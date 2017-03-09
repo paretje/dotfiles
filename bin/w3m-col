@@ -1,0 +1,9 @@
+#!/bin/bash -i
+cols=$COLUMNS
+
+trap ' ' INT
+stty -F /dev/tty cols 72
+
+w3m "$@"
+
+stty -F /dev/tty cols $cols

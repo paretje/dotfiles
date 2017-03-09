@@ -68,7 +68,7 @@ URxvt.cursorColor: green
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 ! URxvt*iconFile:                       file
-URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10.5
+URxvt.font: xft:Ubuntu Mono:size=11,xft:DejaVu Sans Mono for Powerline:size=10,xft:DejaVu Sans:size=8.5
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
@@ -90,7 +90,7 @@ URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10.5
 ! URxvt*internalBorder:                 number
 ! URxvt*borderLess:                     boolean
 ! URxvt*lineSpace:                      number
-URxvt.letterSpace: -1
+URxvt.letterSpace: 0
 ! URxvt*skipBuiltinGlyphs:              boolean
 ! URxvt*pointerBlankDelay:              number
 ! URxvt*backspacekey:                   string
@@ -134,3 +134,4 @@ URxvt.iso14755: false
 ! URxvt*url-launcher:                   string
 URxvt.vim-scrollback: M-s
 URxvt.vim-scrollback-paste: C-V
+urxvt.matcher.rend.0: -Uline

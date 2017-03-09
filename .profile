@@ -9,7 +9,7 @@
 # umask 027
 
 # set GEM_HOME according to detected location
-if hash ruby ; then
+if hash ruby > /dev/null 2>&1 ; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 fi
 
@@ -69,7 +69,7 @@ if [ -d "$GEM_HOME/gems" ] ; then
 fi
 
 # Start gpg-agent if not yet running
-if hash gpg-agent; then
+if hash gpg-agent > /dev/null 2>&1; then
     if gpg2 --version | fgrep -q 'gpg (GnuPG) 2.0'; then
         export GPG_ENV_FILE="$HOME/.gpg-agent-info"
         . "$GPG_ENV_FILE"

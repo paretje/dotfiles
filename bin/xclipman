@@ -1,4 +1,12 @@
 #!/bin/sh
+exec > /dev/null 2>&1
+
+xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+
 while true ; do
-	xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+	if xclip -out -selection clipboard; then
+		xclip -out -selection clipboard | xclip -quiet -in -selection clipboard
+	else
+		sleep 1
+	fi
 done
