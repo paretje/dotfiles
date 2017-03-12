@@ -39,6 +39,8 @@ goto-next-feed no
 
 prepopulate-query-feeds yes
 
+text-width 72
+
 include "~/.newsbeuter/filter"
 
 macro , set browser "curl --compressed --silent %u | readability -p article /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic" ; open-in-browser ; set browser "sensible-browser"
