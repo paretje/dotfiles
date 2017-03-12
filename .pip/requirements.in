@@ -1,4 +1,4 @@
--e git+git://finestructure.net/notspam#egg=notspam
+-e git+git://github.com/paretje/notspam.git#egg=notspam
 youtube-dl
 vim-vint
 pip-tools
