@@ -1,3 +1,4 @@
 [Default Applications]
+application/pdf=zathura.desktop
 application/epub+zip=zathura.desktop
 video/x-m4v=mpv.desktop
