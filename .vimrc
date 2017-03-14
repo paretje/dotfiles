@@ -576,7 +576,9 @@ if has('nvim')
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
 else
   source $VIMRUNTIME/ftplugin/man.vim
-  au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+  au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c
+  au FileType man nnoremap <silent> <nowait> <buffer> d <C-D>
+  au FileType man nnoremap <silent> <nowait> <buffer> u <C-U>
   au FileType man wincmd L
   nmap K :Man <cword><CR>
 endif
