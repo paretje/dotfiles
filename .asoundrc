@@ -1,2 +1,3 @@
-pcm.!default "pulse"
-ctl.!default "pulse"
+ctl.!default {
+    type pulse
+}
