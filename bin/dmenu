@@ -1,2 +1,2 @@
 #!/bin/sh
-exec rofi -dmenu "$@"
+exec rofi -sync -dmenu "$@"

@@ -21,6 +21,8 @@ zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
+zplug "esr/sshexport", from:gitlab, as:command, use:sshexport, hook-build:"sed -i '1s/python/python3/' sshexport && make sshexport.1 && ln -srf sshexport.1 '$ZPLUG_HOME/doc/man/man1/'"
+
 zplug load
 PATH="$my_path"
 

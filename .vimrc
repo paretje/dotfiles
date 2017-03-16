@@ -141,6 +141,8 @@ au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincm
 au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
 " Set window title
 set title
+" Always use utf-8 in vim
+set encoding=utf-8
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -308,7 +310,9 @@ let g:neoterm_shell = 'busybox sh'
 let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
-if has('python3') && $HOST !=# 'parsley'
+if !has('python3') || $HOST ==# 'parsley'
+  let g:jedi#force_py_version = 2
+else
   let g:jedi#force_py_version = 3
 endif
 let g:jedi#completions_enabled = 0
@@ -413,6 +417,7 @@ au FileType aptconf setlocal commentstring=//%s
 
 " python ft options
 au FileType python setlocal omnifunc=
+au FileType python nnoremap <silent> <buffer> <Leader>K :PyDoc<CR>
 
 " xmobarrc ft options
 au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
@@ -526,7 +531,9 @@ if has('nvim')
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
 else
   source $VIMRUNTIME/ftplugin/man.vim
-  au FileType man nnoremap <silent> <nowait><buffer> q <C-W>c
+  au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c
+  au FileType man nnoremap <silent> <nowait> <buffer> d <C-D>
+  au FileType man nnoremap <silent> <nowait> <buffer> u <C-U>
   au FileType man wincmd L
   nmap K :Man <cword><CR>
 endif
@@ -538,7 +545,7 @@ com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/sh
 com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! PyDoc PythonJedi vim.command('split | terminal pydoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+com! -narg=* PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 
 " Custom functions
@@ -728,4 +735,24 @@ fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
   endif
+endfun
+
+fun! PyDoc(...)
+  if a:0 > 1
+    echoerr 'Too many arguments'
+    return
+  elseif a:0 == 1
+    if g:jedi#force_py_version == 2
+      let l:pydoc = 'pydoc2.7'
+    else
+      let l:pydoc = 'pydoc3'
+    endif
+    execute 'split | terminal ' . l:pydoc . ' ' . shellescape(a:1)
+  else
+    " TODO: handle multiple definitions
+    PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+  endif
+
+  au BufEnter <buffer> startinsert
+  doau User ManOpen
 endfun
