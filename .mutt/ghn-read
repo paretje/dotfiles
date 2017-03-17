@@ -1,0 +1,7 @@
+#!/bin/sh
+temp=$(mktemp --dir)
+munpack -t -C "$temp"
+(
+  grep 'https://github.com/notifications/beacon' "$temp/part2" | sed 's/.*<img[^>]\+src="\(https:\/\/github.com\/notifications\/beacon\/[^"]\+\.gif\)".*/\1/' | xargs curl --silent > /dev/null
+  rm -rf "$temp"
+) &
