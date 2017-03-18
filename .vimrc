@@ -408,7 +408,7 @@ au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <C-O>:call DotooNewItem()<CR>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
@@ -802,4 +802,21 @@ fun! PyDoc(...)
 
   au BufEnter <buffer> startinsert
   doau User ManOpen
+endfun
+
+fun! DotooNewItem()
+  call feedkeys("\<C-O>cc ", 'n')
+
+  let l:pos = getcurpos()
+  if getline('.') !~? '^[[:space:]]*-'
+    call search('^[[:space:]]*-', 'b')
+  endif
+  let l:prev = getline('.')
+  call setpos('.', l:pos)
+
+  if dotoo#checkbox#is_checkbox(l:prev)
+    call feedkeys("\<C-O>c6h- [ ]\<C-O>A", 'n')
+  else
+    call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
+  endif
 endfun
