@@ -253,7 +253,7 @@ let g:rubycomplete_use_bundler = 1
 " NERDTree options
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
-let g:NERDTreeIgnore = ['\.class$']
+let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
 
 " indentLine options
