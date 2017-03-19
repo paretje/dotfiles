@@ -209,7 +209,9 @@ let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219mixed[%s]"
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
+if executable('ag')
+  let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
+endif
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
