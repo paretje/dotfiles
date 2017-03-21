@@ -1,3 +1,4 @@
+set encoding=utf-8
 scriptencoding utf-8
 
 " vint: -ProhibitAutocmdWithNoGroup
@@ -187,8 +188,6 @@ au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincm
 au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
 " Set window title
 set title
-" Always use utf-8 in vim
-set encoding=utf-8
 
 " Airline options
 let g:airline_powerline_fonts = 1
