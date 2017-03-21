@@ -188,6 +188,8 @@ au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincm
 au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
 " Set window title
 set title
+" Automatically close preview window
+au InsertLeave * if pumvisible() == 0 | pclose | AirlineRefresh | endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
