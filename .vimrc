@@ -91,6 +91,7 @@ if has('nvim')
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
   Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
   Plug 'Shougo/neco-vim', {'for': 'vim'}
+  Plug 'frbor/deoplete-abook', {'for': 'mail'}
 else
   Plug 'congma/vim-fakeclip'
 endif
