@@ -274,7 +274,7 @@ let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
 
 " neomake options
-au BufWritePost,BufReadPost * Neomake
+au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
 let g:neomake_verbose = 0
