@@ -277,6 +277,10 @@ let g:ledger_maxwidth = 120
 au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
+
+hi NeomakeWarning cterm=underline ctermfg=3 gui=undercurl guisp=Blue
+hi NeomakeError cterm=underline ctermfg=1 gui=undercurl guisp=Red
+
 let g:neomake_verbose = 0
 
 let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
