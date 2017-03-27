@@ -216,3 +216,5 @@ tags
 /.local/share/qutebrowser/local-storage
 /.subversion/auth
 /.subversion/README.txt
+/.pgadmin3
+/.pgpass
