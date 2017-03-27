@@ -203,10 +203,10 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.whitespace = ''
 let g:airline_symbols.notexists = ''
 let g:airline#extensions#branch#notexists = ''
-let g:airline#extensions#whitespace#trailing_format = "\u2219T:%s"
-let g:airline#extensions#whitespace#long_format = "\u2219L:%s"
-let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M:%s"
-let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M:%s"
+let g:airline#extensions#whitespace#trailing_format = "\u2219T[%s]"
+let g:airline#extensions#whitespace#long_format = "\u2219L[%s]"
+let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
+let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
