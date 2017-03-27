@@ -107,6 +107,9 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 
+# Don't quit zsh on C-d
+setopt ignoreeof
+
 # Set additional keybindings for vi-mode
 bindkey -M viins '^a' beginning-of-line
 bindkey -M viins '^e' end-of-line
