@@ -808,7 +808,6 @@ fun! PyDoc(...)
     PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
   endif
 
-  au BufEnter <buffer> startinsert
   doau User ManOpen
 endfun
 
