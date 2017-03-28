@@ -83,7 +83,7 @@ if [ "$HOST" = "kevin-laptop" ]; then
 	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
 	# TODO: options for intel?
 else [ "$HOST" = "parsley" ]
-	synclient FingerHigh=10 MaxTapMove=20 ClickPad=1
+	synclient FingerHigh=20 MaxTapMove=20 ClickPad=1
 fi
 
 # Substitute variables in user-dirs.dirs file
