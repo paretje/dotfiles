@@ -508,6 +508,9 @@ au FileType nerdtree nmap <buffer> za l
 " vimperator ft options
 au FileType vimperator setlocal commentstring=\"%s
 
+" sql ft options
+au FileType sql setlocal commentstring=--%s
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
