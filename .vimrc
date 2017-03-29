@@ -103,9 +103,7 @@ call plug#end()
 " on xterm, although default is dark.
 if has('gui_running')
   " Fix airline in GVim
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
+  let g:airline_symbols = get(g:, 'airline_symbols', {})
   let g:airline_symbols.space = "\u3000"
 elseif $TERM !=# ''
   set background=dark
@@ -379,9 +377,10 @@ let g:jedi#usages_command = ';]'
 let g:grammarous#use_vim_spelllang = 1
 
 " QFEnter options
-let g:qfenter_vopen_map = ['<C-v>']
-let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
-let g:qfenter_topen_map = ['<C-t>']
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
 let g:qfenter_enable_autoquickfix = 0
 
 " mundo options
