@@ -607,6 +607,8 @@ com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearC
 com! -narg=* PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 
+" TODO: documentation
+" TODO: abort?
 " Custom functions
 fun! ToggleSpellLang()
   if &spelllang ==# 'en'
@@ -796,7 +798,7 @@ fun! Dictionary(word)
   endif
 endfun
 
-fun! PyDoc(...)
+fun! PyDoc(...) abort
   if a:0 > 1
     echoerr 'Too many arguments'
     return
