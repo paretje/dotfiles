@@ -64,8 +64,8 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # disable user completion for ssh
-zstyle ':completion:*:(ssh|scp):*:users' users
-zstyle ':completion:*:(ssh|scp|rranger):*:hosts' hosts
+zstyle ':completion:*:(ssh|scp|rtmux):*:users' users
+zstyle ':completion:*:(ssh|scp|rranger|rtmux):*:hosts' hosts
 
 # autocompletion for tsocks
 compdef tsocks=exec
@@ -92,6 +92,9 @@ _pandoc() {
     eval "$(pandoc --bash-completion)"
 }
 compdef _pandoc pandoc
+
+# autocompletion for rtmux
+compdef rtmux=ssh
 
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
