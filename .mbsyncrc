@@ -1,7 +1,6 @@
 IMAPAccount prive
-Host rpi.online-urbanus.be
+Host vps.paretje.be
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/rpi.online-urbanus.be
 User kevin@paretje.be
 PassCmd "secret-tool lookup email kevin@paretje.be"
 AuthMechs LOGIN
@@ -22,9 +21,8 @@ Patterns "*"
 SyncState "*"
 
 IMAPAccount notes
-Host rpi.online-urbanus.be
+Host vps.paretje.be
 SSLType IMAPS
-CertificateFile /etc/ssl/certs/rpi.online-urbanus.be
 User notes@online-urbanus.be
 PassCmd "secret-tool lookup email notes@online-urbanus.be"
 AuthMechs LOGIN
