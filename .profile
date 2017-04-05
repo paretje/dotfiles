@@ -16,6 +16,10 @@ fi
 # set ZPLUG_HOME
 export ZPLUG_HOME="$HOME/.zplug"
 
+# set GOPATH
+export GOPATH="$HOME/.go"
+
+# TODO: what happens if a directory in PATH doesn't exist?
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
     PATH="$GEM_HOME/bin:$PATH"
@@ -32,8 +36,13 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # set PATH so it includes user's zplug bin if it exists
-if [ -d "$HOME/bin" ] ; then
+if [ -d "$ZPLUG_HOME/bin" ] ; then
     PATH="$ZPLUG_HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's go bin if it exists
+if [ -d "$GOPATH/bin" ] ; then
+    PATH="$GOPATH/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
