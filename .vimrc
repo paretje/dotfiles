@@ -189,6 +189,8 @@ au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
 set title
 " Automatically close preview window
 au InsertLeave * if pumvisible() == 0 | pclose | AirlineRefresh | endif
+" Disable blinking cursor
+set guicursor+=a:blinkon0
 
 " Airline options
 let g:airline_powerline_fonts = 1
