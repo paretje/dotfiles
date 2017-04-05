@@ -1,3 +1,26 @@
-#!/bin/sh -e
-pip-compile --upgrade -o "$HOME/.pip/requirements.txt" "$HOME/.pip/requirements.in"
-pip-sync "$HOME/.pip/requirements.txt"
+#!/bin/bash -e
+for pyver in 3 2; do
+	hash pip$pyver 2>&- || continue
+
+	requirements=()
+	for file in "$HOME/.pip/requirements.py$pyver.in" "$HOME/.pip/requirements.py$pyver.$HOST.in"; do
+		if [ -f "$file" ]; then
+			requirements+=("$file")
+		fi
+	done
+
+	if [ ${#requirements[@]} -ne 0 ]; then
+		pip="$HOME/.local/bin/pip"
+		pip_compile="$HOME/.local/bin/pip-compile"
+		pip_sync="$HOME/.local/bin/pip-sync"
+
+		test -f "$pip" && mv "$pip" "$pip.bckp"
+		ln -s "$(which pip$pyver)" "$pip"
+
+		python$pyver "$pip_compile" -o "$HOME/.pip/requirements.py$pyver.txt" "${requirements[@]}"
+		python$pyver "$pip_sync" "$HOME/.pip/requirements.py$pyver.txt"
+
+		rm "$pip"
+		mv "$pip.bckp" "$pip"
+	fi
+done

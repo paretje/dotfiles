@@ -184,7 +184,7 @@ tags
 /.xmonad/history
 /.gnupg/reader_0.status
 /.local/share/qutebrowser/netrc
-/.pip/requirements.txt
+/.pip/requirements*.txt
 /.pylint.d
 /.w3m/history
 /.dvdcss/CACHEDIR.TAG
