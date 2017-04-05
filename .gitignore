@@ -219,3 +219,6 @@ tags
 /.pgadmin3
 /.pgpass
 /.go
+/.mmauthcookies
+/.mmauthtoken
+/.config/cef_user_data/Dictionaries
