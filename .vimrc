@@ -581,6 +581,9 @@ cnoremap <Down> <C-N>
 nmap [g <Plug>(grammarous-move-to-previous-error)
 nmap ]g <Plug>(grammarous-move-to-next-error)
 imap <C-L> <Plug>delimitMateS-Tab
+nnoremap <Leader>cc :cclose<CR>
+nnoremap <Leader>cl :lclose<CR>
+nnoremap <Leader>cp :pclose<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
