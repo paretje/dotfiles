@@ -153,7 +153,8 @@ let g:mapleader = ';'
 " Start searching while typing pattern
 set incsearch
 " Use smartcase matching in autocompletion
-set infercase
+" TODO: re-enable when neovim gets fixed
+" set infercase
 " Show tab indentation levels
 set list
 set listchars=tab:¦\ 
@@ -306,6 +307,7 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
 
+" TODO: use sources instead of ignore_sources
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
