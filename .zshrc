@@ -96,6 +96,13 @@ compdef _pandoc pandoc
 # autocompletion for rtmux
 compdef rtmux=ssh
 
+# autocompletion for git flow on old Ubuntu and Debian versions
+if (( ! $+functions[_git-flow])); then
+    if [ -f /usr/share/git-flow/git-flow-completion.zsh ]; then
+        . /usr/share/git-flow/git-flow-completion.zsh
+    fi
+fi
+
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
