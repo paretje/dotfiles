@@ -21,7 +21,7 @@ zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
 
 # Abuse zplug to keep track of weechat plugins
-zplug "rawdigits/wee-slack", use:
+test "$HOST" = "kevin-laptop" && zplug "rawdigits/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
 zplug "paretje/weechat-vimode", at:paretje, use:
