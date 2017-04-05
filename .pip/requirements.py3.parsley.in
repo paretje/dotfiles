@@ -1,0 +1,4 @@
+neovim
+mps-youtube
+cefpython3
+-e git+git://github.com/paretje/mattermost-auth.git#egg=mattermost-auth
