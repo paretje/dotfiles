@@ -218,3 +218,4 @@ tags
 /.subversion/README.txt
 /.pgadmin3
 /.pgpass
+/.go
