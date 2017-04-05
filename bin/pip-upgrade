@@ -9,6 +9,11 @@ for pyver in 3 2; do
 		fi
 	done
 
+	requirements_txt=("$HOME/.pip/requirements.py$pyver.txt")
+	if [ -f "$HOME/.pip/requirements.py$pyver.$HOST.txt" ]; then
+		requirements_txt+=("$HOME/.pip/requirements.py$pyver.$HOST.txt")
+	fi
+
 	if [ ${#requirements[@]} -ne 0 ]; then
 		pip="$HOME/.local/bin/pip"
 		pip_compile="$HOME/.local/bin/pip-compile"
@@ -17,8 +22,8 @@ for pyver in 3 2; do
 		test -f "$pip" && mv "$pip" "$pip.bckp"
 		ln -s "$(which pip$pyver)" "$pip"
 
-		python$pyver "$pip_compile" -o "$HOME/.pip/requirements.py$pyver.txt" "${requirements[@]}"
-		python$pyver "$pip_sync" "$HOME/.pip/requirements.py$pyver.txt"
+		python$pyver "$pip_compile" -o "${requirements_txt[0]}" "${requirements[@]}"
+		python$pyver "$pip_sync" "${requirements_txt[@]}"
 
 		rm "$pip"
 		mv "$pip.bckp" "$pip"
