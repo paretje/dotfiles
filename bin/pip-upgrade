@@ -23,7 +23,7 @@ for pyver in 3 2; do
 		ln -s "$(which pip$pyver)" "$pip"
 
 		python$pyver "$pip_compile" -o "${requirements_txt[0]}" "${requirements[@]}"
-		python$pyver "$pip_sync" "${requirements_txt[@]}"
+		python$pyver "$pip_sync" "$@" "${requirements_txt[@]}"
 
 		rm "$pip"
 		mv "$pip.bckp" "$pip"
