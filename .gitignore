@@ -222,3 +222,4 @@ tags
 /.mmauthcookies
 /.mmauthtoken
 /.config/cef_user_data/Dictionaries
+/.docker/config.json
