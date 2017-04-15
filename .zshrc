@@ -29,11 +29,11 @@ zplug "paretje/weechat-vimode", at:paretje, use:
 zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
 
-zplug "paretje/dwm", as:command, use:dwm, hook-build:"make clean && rm -f config.h && make && ln -srf dwm.1 '$ZPLUG_HOME/doc/man/man1' && xdotool key Control_R+q"
+zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key Control_R+q"
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
-zplug "esr/sshexport", from:gitlab, as:command, use:sshexport, hook-build:"sed -i '1s/python/python3/' sshexport && make sshexport.1 && ln -srf sshexport.1 '$ZPLUG_HOME/doc/man/man1/'"
+zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man'"
 
 zplug load
 PATH="$my_path"
