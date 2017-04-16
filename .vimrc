@@ -191,7 +191,10 @@ set title
 " Automatically close preview window
 au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | AirlineRefresh | endif
 " Disable blinking cursor
-set guicursor+=a:blinkon0
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
