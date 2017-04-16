@@ -21,7 +21,7 @@ zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
-zplug "esr/sshexport", from:gitlab, as:command, use:sshexport, hook-build:"sed -i '1s/python/python3/' sshexport && make sshexport.1 && ln -srf sshexport.1 '$ZPLUG_HOME/doc/man/man1/'"
+zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man'"
 
 zplug load
 PATH="$my_path"
@@ -52,8 +52,8 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # disable user completion for ssh
-zstyle ':completion:*:(ssh|scp):*:users' users
-zstyle ':completion:*:(ssh|scp|rranger):*:hosts' hosts
+zstyle ':completion:*:(ssh|scp|rtmux):*:users' users
+zstyle ':completion:*:(ssh|scp|rranger|rtmux):*:hosts' hosts
 
 # autocompletion for tsocks
 compdef tsocks=exec
@@ -81,6 +81,16 @@ _pandoc() {
 }
 compdef _pandoc pandoc
 
+# autocompletion for rtmux
+compdef rtmux=ssh
+
+# autocompletion for git flow on old Ubuntu and Debian versions
+if (( ! $+functions[_git-flow])); then
+    if [ -f /usr/share/git-flow/git-flow-completion.zsh ]; then
+        . /usr/share/git-flow/git-flow-completion.zsh
+    fi
+fi
+
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -95,9 +105,8 @@ if [ -f "$GPG_ENV_FILE" ]; then
     export SSH_AGENT_PID
 fi
 
-# Basic alternative to oh-my-zsh vi-mode
-bindkey '^p' up-history
-bindkey '^n' down-history
+# Don't quit zsh on C-d
+setopt ignoreeof
 
 # Set additional keybindings for vi-mode
 bindkey -M viins '^a' beginning-of-line

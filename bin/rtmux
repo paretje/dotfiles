@@ -1,2 +1,2 @@
 #!/bin/sh
-exec autossh -X -t "$@" "bash -l -c 'tmux a || tmux new'"
+exec autossh -X -t "$@" "bash -l -c tmux"

@@ -1,2 +1,6 @@
 #!/bin/sh
-for file in "$1"/*.dvbcut ; do dvbcut -batch "$file" ; done
+for dir in "$@"; do
+	for file in "$dir"/*.dvbcut; do
+		dvbcut -batch "$file"
+	done
+done

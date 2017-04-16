@@ -5,6 +5,7 @@ set folder=$MAILDIR
 set nm_default_uri=notmuch://$MAILDIR
 virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
+                  "backlog"        "notmuch://?query=tag:backlog" \
                   "todo"           "notmuch://?query=tag:todo" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
 
@@ -110,6 +111,10 @@ set ts_enabled=yes
 # try to decode attachment filenames using the deprecated rfc2047 format
 set rfc2047_parameters=yes
 
+# mark github notifications as read
+message-hook '~U ~f ^notifications@github.com$' 'push <Esc>mgr'
+macro pager <Esc>mgr '<pipe-entry>$HOME/.mutt/ghn-read<Enter>'
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
@@ -154,7 +159,7 @@ macro index <space> '<change-vfolder><enter>'
 bind index T tag-thread
 
 # sync new mail status immediately when opening message
-macro index <return> '<display-message><sync-mailbox>' "display message and sync flags to mailbox"
+macro index <return> '<display-message><modify-labels>-backlog<enter><sync-mailbox>' "display message and sync flags to mailbox"
 macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings
@@ -207,7 +212,9 @@ macro index,pager md '<modify-labels-then-hide>-todo -inbox<return><sync-mailbox
 macro index,pager mt '<modify-labels>todo -unread<return>'
 macro index,pager mh '<modify-labels>-spamy<return>'
 macro index,pager mr '<modify-labels>-unread<return>'
+macro index,pager mb '<modify-labels>backlog -unread<return>'
 
 bind generic z noop
 macro index,pager zI '^T<tag-thread><tag-prefix>I'
 macro index,pager zA '^T<tag-thread><tag-prefix>A'
+macro index,pager zb '^T<tag-thread><tag-prefix>mb'

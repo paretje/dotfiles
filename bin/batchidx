@@ -1,2 +1,6 @@
 #!/bin/sh
-for file in "$1"/*.ts ; do dvbcut -generateidx "$file" ; done
+for dir in "$@"; do
+	for file in "$dir"/*.ts; do
+		dvbcut -generateidx "$file"
+	done
+done

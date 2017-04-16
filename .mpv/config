@@ -97,11 +97,12 @@ af=drc
 deinterlace=auto
 
 save-position-on-quit
+# TODO: deprecated
 heartbeat-cmd="xscreensaver-command -deactivate"
 
-sub-text-font-size=40
-sub-text-shadow-color="#000000"
-sub-text-shadow-offset=1
+sub-font-size=40
+sub-shadow-color="#000000"
+sub-shadow-offset=1
 
 ############
 # Profiles #

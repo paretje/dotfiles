@@ -184,7 +184,7 @@ tags
 /.xmonad/history
 /.gnupg/reader_0.status
 /.local/share/qutebrowser/netrc
-/.pip/requirements.txt
+/.pip/requirements*.txt
 /.pylint.d
 /.w3m/history
 /.dvdcss/CACHEDIR.TAG
@@ -216,3 +216,10 @@ tags
 /.local/share/qutebrowser/local-storage
 /.subversion/auth
 /.subversion/README.txt
+/.pgadmin3
+/.pgpass
+/.go
+/.mmauthcookies
+/.mmauthtoken
+/.config/cef_user_data/Dictionaries
+/.docker/config.json

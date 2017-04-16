@@ -1,3 +1,4 @@
+set encoding=utf-8
 scriptencoding utf-8
 
 " vint: -ProhibitAutocmdWithNoGroup
@@ -55,9 +56,7 @@ call plug#end()
 " on xterm, although default is dark.
 if has('gui_running')
   " Fix airline in GVim
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
+  let g:airline_symbols = get(g:, 'airline_symbols', {})
   let g:airline_symbols.space = "\u3000"
 elseif $TERM !=# ''
   set background=dark
@@ -107,7 +106,8 @@ let g:mapleader = ';'
 " Start searching while typing pattern
 set incsearch
 " Use smartcase matching in autocompletion
-set infercase
+" TODO: re-enable when neovim gets fixed
+" set infercase
 " Show tab indentation levels
 set list
 set listchars=tab:¦\ 
@@ -138,11 +138,16 @@ set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 " Close tab when quickfix is only window
-au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
+au BufEnter * if (winnr("$") == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
-" Always use utf-8 in vim
-set encoding=utf-8
+" Automatically close preview window
+au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | AirlineRefresh | endif
+" Disable blinking cursor
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -156,14 +161,16 @@ let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.whitespace = ''
 let g:airline_symbols.notexists = ''
 let g:airline#extensions#branch#notexists = ''
-let g:airline#extensions#whitespace#trailing_format = "\u2219trailing[%s]"
-let g:airline#extensions#whitespace#long_format = "\u2219long[%s]"
-let g:airline#extensions#whitespace#mixed_indent_format = "\u2219mixed-indent[%s]"
-let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219mix-indent-file[%s]"
+let g:airline#extensions#whitespace#trailing_format = "\u2219T[%s]"
+let g:airline#extensions#whitespace#long_format = "\u2219L[%s]"
+let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
+let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
+if executable('ag')
+  let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
+endif
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
@@ -207,7 +214,7 @@ let g:rubycomplete_use_bundler = 1
 " NERDTree options
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
-let g:NERDTreeIgnore = ['\.class$']
+let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
 
 " indentLine options
@@ -227,6 +234,10 @@ let g:ledger_maxwidth = 120
 " neomake options
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
+
+hi NeomakeWarning cterm=underline ctermfg=3 gui=undercurl guisp=Blue
+hi NeomakeError cterm=underline ctermfg=1 gui=undercurl guisp=Red
+
 let g:neomake_verbose = 0
 
 let g:neomake_java_enabled_makers = ['javac', 'checkstyle']
@@ -251,6 +262,7 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.html = []
 let g:deoplete#omni_patterns.markdown = []
 
+" TODO: use sources instead of ignore_sources
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['tag', 'buffer']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
@@ -305,6 +317,7 @@ let g:gitgutter_sign_column_always = 1
 " neoterm options
 let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
+let g:neoterm_autoscroll = 1
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
@@ -323,9 +336,10 @@ let g:jedi#usages_command = ';]'
 let g:grammarous#use_vim_spelllang = 1
 
 " QFEnter options
-let g:qfenter_vopen_map = ['<C-v>']
-let g:qfenter_hopen_map = ['<C-CR>', '<C-s>', '<C-x>']
-let g:qfenter_topen_map = ['<C-t>']
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
 let g:qfenter_enable_autoquickfix = 0
 
 " mundo options
@@ -361,7 +375,7 @@ au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
 au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
 au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <Space><C-O>c6h- [ ]<C-O>A
+au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <C-O>:call DotooNewItem()<CR>
 au FileType dotooagenda        setlocal nowrap
 au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
 au BufHidden nmbs.org          setlocal nobuflisted
@@ -452,6 +466,9 @@ au FileType nerdtree nmap <buffer> za l
 " vimperator ft options
 au FileType vimperator setlocal commentstring=\"%s
 
+" sql ft options
+au FileType sql setlocal commentstring=--%s
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
@@ -519,6 +536,9 @@ cnoremap <Down> <C-N>
 nmap [g <Plug>(grammarous-move-to-previous-error)
 nmap ]g <Plug>(grammarous-move-to-next-error)
 imap <C-L> <Plug>delimitMateS-Tab
+nnoremap <Leader>cc :cclose<CR>
+nnoremap <Leader>cl :lclose<CR>
+nnoremap <Leader>cp :pclose<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -544,10 +564,12 @@ com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
 com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
-com! -narg=1 JediPyhonVersion call jedi#force_py_version(<q-args>) | JediClearCache
+com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! -narg=* PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 
+" TODO: documentation
+" TODO: abort?
 " Custom functions
 fun! ToggleSpellLang()
   if &spelllang ==# 'en'
@@ -737,7 +759,7 @@ fun! Dictionary(word)
   endif
 endfun
 
-fun! PyDoc(...)
+fun! PyDoc(...) abort
   if a:0 > 1
     echoerr 'Too many arguments'
     return
@@ -753,6 +775,22 @@ fun! PyDoc(...)
     PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
   endif
 
-  au BufEnter <buffer> startinsert
   doau User ManOpen
+endfun
+
+fun! DotooNewItem()
+  call feedkeys("\<C-O>cc ", 'n')
+
+  let l:pos = getcurpos()
+  if getline('.') !~? '^[[:space:]]*-'
+    call search('^[[:space:]]*-', 'b')
+  endif
+  let l:prev = getline('.')
+  call setpos('.', l:pos)
+
+  if dotoo#checkbox#is_checkbox(l:prev)
+    call feedkeys("\<C-O>c6h- [ ]\<C-O>A", 'n')
+  else
+    call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
+  endif
 endfun
