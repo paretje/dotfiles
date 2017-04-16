@@ -38,3 +38,6 @@ alias mysql='mysql --pager="less -iSFX"'
 
 # give diff some color
 alias diff='colordiff'
+
+# batchvtest
+alias batchvtest='find -iname "*.mpg" -exec vtest "{}" ";"'
