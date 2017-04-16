@@ -185,11 +185,11 @@ set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 " Close tab when quickfix is only window
-au BufEnter * if (winnr("$") == 1 && &filetype == "qf") | quit | endif
+au BufEnter * if (winnr("$") == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
 " Automatically close preview window
-au InsertLeave * if pumvisible() == 0 | pclose | AirlineRefresh | endif
+au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | AirlineRefresh | endif
 " Disable blinking cursor
 set guicursor+=a:blinkon0
 
