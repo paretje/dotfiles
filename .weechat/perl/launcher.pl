@@ -1,1 +1,0 @@
-/usr/share/weechat/perl/launcher.pl
