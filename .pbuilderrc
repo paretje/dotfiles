@@ -1,0 +1,32 @@
+DEBIAN_SUITES=("unstable" "jessie")
+UBUNTU_SUITES=("zesty" "xenial")
+
+DEBIAN_MIRROR="ftp.be.debian.org"
+UBUNTU_MIRROR="be.archive.ubuntu.com"
+
+: ${DIST:="unstable"}
+
+NAME="$DIST"
+DISTRIBUTION="$DIST"
+BACKPORTS_SUITE="$DIST-bacports"
+BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
+BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
+APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
+BUILDPLACE="/var/cache/pbuilder/build/"
+
+if echo "${DEBIAN_SUITES[@]}" | fgrep -q "$DIST"; then
+  MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
+  COMPONENTS="main"
+  if [ "$DIST" != "unstable" ]; then
+    OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.paretje.be $BACKPORTS_SUITE $COMPONENTS"
+  else
+    OTHERMIRROR="$OTHERMIRROR | deb http://repo.paretje.be $DIST $COMPONENTS"
+  fi
+elif echo "${UBUNTU_SUITES[@]}" | fgrep -q "$DIST"; then
+  MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
+  COMPONENTS="main restricted universe multiverse"
+  OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.paretje.be $BACKPORTS_SUITE $COMPONENTS"
+fi
+
+DEB_BUILD_OPTIONS="parallel=4 $DEB_BUILD_OPTIONS"
+export DEB_BUILD_OPTIONS

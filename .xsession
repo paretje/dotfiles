@@ -86,5 +86,8 @@ user-dirs-make
 # Start some daemons
 xclipman &
 syndaemon -d -t -R
+if acpi -b | fgrep -vq 'No support'; then
+	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
+fi
 
 exec urxvt -e sh -c 'xwit -resize 800 480;exec tmux'
