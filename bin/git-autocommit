@@ -2,7 +2,7 @@
 if ! git diff-index --quiet HEAD && ! git diff-index HEAD | awk '{print $5}' | fgrep -q U; then
 	git commit -a -m '' --allow-empty-message
 fi
-if ! 3gusage ; then
+if test "$1" = "--force" || ! 3gusage; then
 	git pull
 	git push
 fi

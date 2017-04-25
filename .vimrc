@@ -404,6 +404,9 @@ au User Grepper call GrepperReset()
 " cscope.vim options
 let g:cscope_silent = 1
 
+" gitautocommit options
+let g:gitautocommit_filetypes = ['dotoo', 'ledger']
+
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
 au FileType dotooagenda,calendar,qf,man setlocal nospell
@@ -737,8 +740,8 @@ fun! LedgerEntry()
 endfun
 
 fun! GitAutocommit(...)
-  if a:0 == 0 && &filetype ==# 'ledger'
-    Git autocommit
+  if a:0 == 0 && index(g:gitautocommit_filetypes, &filetype) != -1
+    Git autocommit --force
   else
     for l:dir in ['personal', 'senso2me']
       if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
