@@ -1,0 +1,4 @@
+#!/bin/sh
+pkill -f -9 "$HOME/.local/bin/mattermost-auth"
+rm -rf "$HOME/.mmauthcookies" "$HOME/.mmauthtoken"
+exec "$HOME/.local/bin/mattermost-auth" "$@"
