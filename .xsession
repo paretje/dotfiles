@@ -97,7 +97,7 @@ xclipman &
 syndaemon -d -t -R
 getmails --daemon &
 test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
-matterircd &
+matterircd -bind "127.0.0.1:6666" &
 
 if acpi -b | fgrep -vq 'No support'; then
 	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
