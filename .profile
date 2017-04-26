@@ -8,6 +8,9 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 027
 
+# set UID variable
+export UID=$(id -u)
+
 # set GEM_HOME according to detected location
 if hash ruby > /dev/null 2>&1 ; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
@@ -88,7 +91,11 @@ if hash gpg-agent > /dev/null 2>&1; then
         fi
     else
         gpgconf --launch gpg-agent
-        export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+        if [ -x /bin/systemctl ]; then
+            export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
+        else
+            export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+        fi
     fi
 fi
 
