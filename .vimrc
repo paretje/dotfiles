@@ -366,6 +366,7 @@ let g:gitgutter_sign_column_always = 1
 let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
 let g:neoterm_autoscroll = 1
+let g:noeterm_fixedsize = 1
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
