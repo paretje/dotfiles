@@ -9,7 +9,9 @@
 # umask 027
 
 # set UID variable
-export UID=$(id -u)
+if [ -z "$UID" ]; then
+    export UID=$(id -u)
+fi
 
 # set GEM_HOME according to detected location
 if hash ruby > /dev/null 2>&1 ; then
