@@ -521,6 +521,9 @@ au FileType vimperator setlocal commentstring=\"%s
 " sql ft options
 au FileType sql setlocal commentstring=--%s
 
+" proto ft options
+au FileType proto setlocal commentstring=//%s
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
