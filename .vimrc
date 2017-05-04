@@ -617,7 +617,7 @@ com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/sh
 com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -narg=* PyDoc call PyDoc(<f-args>)
+com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 
 " TODO: documentation
@@ -822,12 +822,11 @@ fun! PyDoc(...) abort
       let l:pydoc = 'pydoc3'
     endif
     execute 'split | terminal ' . l:pydoc . ' ' . shellescape(a:1)
+    doau User ManOpen
   else
     " TODO: handle multiple definitions
-    PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+    silent! PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name + ' | doau User ManOpen')
   endif
-
-  doau User ManOpen
 endfun
 
 fun! DotooNewItem()
