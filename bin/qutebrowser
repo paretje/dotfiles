@@ -1,6 +1,10 @@
 #!/bin/sh
 qutebrowser() {
-	"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+	if [ "$HOST" = "parsley" ]; then
+		"$HOME/.zplug/bin/qutebrowser" --backend webengine ':set --temp content allow-javascript true'  "$@" > /dev/null 2>&1 &
+	else
+		"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+	fi
 }
 
 clean_history() {
