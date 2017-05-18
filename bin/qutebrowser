@@ -14,7 +14,7 @@ clean_history() {
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
-if [ "$(pgrep -c qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
+if [ "$(pgrep -fc qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
 	qutebrowser "$@"
 elif 3gusage; then
 	clean_history
