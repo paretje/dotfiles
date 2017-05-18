@@ -382,7 +382,7 @@ else
   let g:jedi#force_py_version = 3
 endif
 let g:jedi#completions_enabled = 0
-let g:jedi#goto_assignments_command = '<C-]>'
+let g:jedi#goto_command = '<C-]>'
 let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
