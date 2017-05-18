@@ -100,7 +100,7 @@ set pager_stop=yes
 set print_command="muttprint"
 
 # automatically sync mailbox on timeout
-timeout-hook . 'exec sync-mailbox'
+# timeout-hook 'exec sync-mailbox'
 
 # no need to press key after executing shell command
 set wait_key=no
