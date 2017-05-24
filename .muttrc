@@ -115,6 +115,10 @@ set rfc2047_parameters=yes
 message-hook '~U ~f ^notifications@github.com$' 'push <Esc>mgr'
 macro pager <Esc>mgr '<pipe-entry>$HOME/.mutt/ghn-read<Enter>'
 
+# show tags
+ignore *
+unignore from: subject to cc bcc date x-mailer x-url user-agent tags
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
