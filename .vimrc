@@ -376,7 +376,7 @@ let g:noeterm_fixedsize = 1
 let g:wordmotion_prefix = "\<Leader>"
 
 " jedi-vim options
-if !has('python3') || $HOST ==# 'parsley'
+if !has('python3')
   let g:jedi#force_py_version = 2
 else
   let g:jedi#force_py_version = 3
