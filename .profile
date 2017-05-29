@@ -137,7 +137,7 @@ export MAILDIR="$HOME/.mail"
 
 # less options
 # TODO: what about other options of alias?
-LESS="-i"
+export LESS="-i"
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
