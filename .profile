@@ -139,6 +139,9 @@ export MAILDIR="$HOME/.mail"
 # TODO: what about other options of alias?
 export LESS="-i"
 
+# default prefix in Authorize header using httpie + httpie-jwt-aut
+export JWT_AUTH_PREFIX='JWT'
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx
