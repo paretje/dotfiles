@@ -195,6 +195,11 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 endif
+" Preview substitutions
+if has('nvim')
+  " split shows a preview window when doing a substitution on multiple lines
+  set inccommand=split
+endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
