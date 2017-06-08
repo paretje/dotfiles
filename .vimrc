@@ -567,10 +567,6 @@ nnoremap <C-L> <C-W>l
 nnoremap <silent> <Leader>r :redraw!<CR>
 nnoremap <silent> <C-N> :CtrlPBuffer<CR>
 nnoremap <silent> <C-G> :NERDTreeToggle<CR>
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
 nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
