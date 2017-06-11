@@ -491,7 +491,7 @@ au FileType ledger              inoremap <buffer> <C-J> <C-O>:call LedgerEntry()
 au FileType aptconf setlocal commentstring=//%s
 
 " python ft options
-au FileType python setlocal omnifunc= formatprg=yapf
+au FileType python setlocal omnifunc=
 au FileType python nnoremap <silent> <buffer> <Leader>K :PyDoc<CR>
 
 " xmobarrc ft options
