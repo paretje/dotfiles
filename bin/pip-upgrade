@@ -31,7 +31,7 @@ for pyver in 3 2; do
 		echo 'fi' >> "$pip"
 		chmod +x "$pip"
 
-		python$pyver "$pip_compile" -o "${requirements_txt[0]}" "${requirements[@]}"
+		python$pyver "$pip_compile" --upgrade -o "${requirements_txt[0]}" "${requirements[@]}"
 		python$pyver "$pip_sync" "$@" "${requirements_txt[@]}"
 
 		rm "$pip"
