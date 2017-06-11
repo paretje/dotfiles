@@ -312,6 +312,9 @@ let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
 let g:neomake_cpp_clangcheck_args = ['%:p', '--']
 let g:neomake_cpp_clangtidy_args = ['%:p', '--']
 
+let g:neomake_python_python_exe = 'python3'
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
