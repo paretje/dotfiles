@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 qutebrowser() {
 	"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
 }
@@ -10,19 +10,19 @@ clean_history() {
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
-if [ "$(pgrep -fc qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
-	qutebrowser "$@"
-elif 3gusage; then
-	clean_history
-	qutebrowser "$@"
-else
+qutebrowser_args=()
+if [ "$(pgrep -fc qutebrowser)" -eq 0 ] && echo "$1" | grep -vq '^-'; then
 	clean_history
 
 	if [ "$HOST" = "parsley" ]; then
-		qutebrowser --backend webengine ':set --temp content allow-javascript true' :adblock-update "$@"
-	else
-		qutebrowser :adblock-update "$@"
+		qutebrowser_args+=(--backend webengine ':set --temp content allow-javascript true')
+	fi
+
+	if ! 3gusage; then
+		qutebrowser_args+=(:adblock-update)
 	fi
 fi
+qutebrowser_args+=("$@")
 
+qutebrowser "${qutebrowser_args[@]}"
 exit
