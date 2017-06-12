@@ -1,6 +1,6 @@
 #!/bin/bash -e
 qutebrowser() {
-	"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+	"$HOME/.zplug/bin/qutebrowser" "$@"
 }
 
 clean_history() {
@@ -10,8 +10,13 @@ clean_history() {
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
+if echo "$1" | grep -q '^--help'; then
+	qutebrowser "$@"
+	exit
+fi
+
 qutebrowser_args=()
-if [ "$(pgrep -fc qutebrowser)" -eq 0 ] && echo "$1" | grep -vq '^-'; then
+if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	clean_history
 
 	if [ "$HOST" = "parsley" ]; then
@@ -24,5 +29,4 @@ if [ "$(pgrep -fc qutebrowser)" -eq 0 ] && echo "$1" | grep -vq '^-'; then
 fi
 qutebrowser_args+=("$@")
 
-qutebrowser "${qutebrowser_args[@]}"
-exit
+qutebrowser "${qutebrowser_args[@]}" "$@" > /dev/null 2>&1 &
