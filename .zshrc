@@ -138,7 +138,7 @@ WORDCHARS="_-."
 autoload -Uz promptinit
 promptinit
 
-PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~ %b$(git_super_status)
+PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~%b%F{white} $(git_super_status)
 %}%F{white} %# %b%f%k'
 
 autoload -Uz add-zsh-hook
