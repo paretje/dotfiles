@@ -836,7 +836,8 @@ fun! PyDoc(...) abort
     doau User ManOpen
   else
     " TODO: handle multiple definitions
-    silent! PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name + ' | doau User ManOpen')
+    " TODO: handle no definitions without silent
+    silent! PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
   endif
 endfun
 
