@@ -287,6 +287,16 @@ let g:calendar_monday = 1
 let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
 
+" jedi-vim options
+if !has('python3')
+  let g:jedi#force_py_version = 2
+else
+  let g:jedi#force_py_version = 3
+endif
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = '<C-]>'
+let g:jedi#usages_command = ';]'
+
 " neomake options
 au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
@@ -338,6 +348,8 @@ let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
+let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
+
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
 
@@ -382,16 +394,6 @@ let g:noeterm_fixedsize = 1
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
-
-" jedi-vim options
-if !has('python3')
-  let g:jedi#force_py_version = 2
-else
-  let g:jedi#force_py_version = 3
-endif
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = '<C-]>'
-let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
