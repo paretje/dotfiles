@@ -76,6 +76,7 @@ Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
+Plug 'tpope/vim-obsession'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
