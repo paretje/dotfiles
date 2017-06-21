@@ -112,9 +112,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Load gpg-agent variables
+export GPG_TTY=$(tty)
 if [ -f "$GPG_ENV_FILE" ]; then
     . "$GPG_ENV_FILE"
-    export GPG_TTY=$(tty)
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
     export SSH_AGENT_PID
