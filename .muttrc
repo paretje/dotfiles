@@ -209,9 +209,11 @@ bind query <tab> next-entry
 bind query <backtab> previous-entry
 
 # add key to copy sender email address
+bind index,pager y noop
 macro index,pager yy '<pipe-message>fgrep -m 1 From: | sed "s/^\s*From:\s*[^<]*\s*<\([^>]*\)>\s*$/\1/" | xsel -i --clipboard<enter>'
 
 # advanced labeling of mails
+bind index,pager m noop
 macro index,pager md '<modify-labels-then-hide>-todo -inbox<return><sync-mailbox>'
 macro index,pager mt '<modify-labels>todo -unread<return>'
 macro index,pager mh '<modify-labels>-spamy<return>'
