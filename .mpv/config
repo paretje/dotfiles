@@ -36,7 +36,7 @@
 #geometry=50%:50%
 
 # don't allow a new window to have a size larger than 90% of the screen size
-autofit-larger=90%x90%
+# autofit-larger=90%x90%
 
 # Disable the On Screen Controller (OSC).
 #osc=no
@@ -56,7 +56,7 @@ ao=pulse
 #softvol=no
 
 # Enable dynamic range compression
-af=drc
+# af=drc
 
 
 ##################
@@ -97,8 +97,6 @@ af=drc
 deinterlace=auto
 
 save-position-on-quit
-# TODO: deprecated
-heartbeat-cmd="xscreensaver-command -deactivate"
 
 sub-font-size=40
 sub-shadow-color="#000000"
