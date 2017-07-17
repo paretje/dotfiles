@@ -214,7 +214,7 @@ macro index,pager yy '<pipe-message>fgrep -m 1 From: | sed "s/^\s*From:\s*[^<]*\
 
 # advanced labeling of mails
 bind index,pager m noop
-macro index,pager md '<modify-labels-then-hide>-todo -inbox<return><sync-mailbox>'
+macro index,pager md '<modify-labels-then-hide>-todo -inbox -unread<return><sync-mailbox>'
 macro index,pager mt '<modify-labels>todo -unread<return>'
 macro index,pager mh '<modify-labels>-spamy<return>'
 macro index,pager mr '<modify-labels>-unread<return>'
