@@ -119,6 +119,9 @@ macro pager <Esc>mgr '<pipe-entry>$HOME/.mutt/ghn-read<Enter>'
 ignore *
 unignore from: subject to cc bcc date x-mailer x-url user-agent tags
 
+# do not jump to next message after command
+set resolve=no
+
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
 bind pager k previous-line
