@@ -4,7 +4,7 @@ qutebrowser() {
 }
 
 clean_history() {
-	for location in history local-storage offiline-storage webengine; do
+	for location in history.sqlite local-storage offiline-storage webengine; do
 		rm -rf "$HOME/.local/share/qutebrowser/$location"
 	done
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
