@@ -137,7 +137,7 @@ export MAILDIR="$HOME/.mail"
 
 # less options
 # TODO: what about other options of alias?
-# export LESS="-i"
+export LESS="-FRXi"
 
 # default prefix in Authorize header using httpie + httpie-jwt-aut
 export JWT_AUTH_PREFIX='JWT'
