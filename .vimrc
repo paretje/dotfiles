@@ -77,6 +77,7 @@ Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -93,6 +94,7 @@ if has('nvim')
   Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
   Plug 'Shougo/neco-vim', {'for': 'vim'}
   Plug 'frbor/deoplete-abook', {'for': 'mail'}
+  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins', 'for': 'typescript'}
 else
   Plug 'congma/vim-fakeclip'
 endif
@@ -538,6 +540,10 @@ au FileType sql setlocal commentstring=--%s
 
 " proto ft options
 au FileType proto setlocal commentstring=//%s
+
+" typescript ft options
+au FileType typescript nnoremap <silent> <buffer> <C-]> :TSDef<CR>
+au FileType typescript setlocal keywordprg=:TSDoc
 
 " terminal options
 if has('nvim')
