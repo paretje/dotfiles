@@ -227,3 +227,6 @@ bind generic z noop
 macro index,pager zI '^T<tag-thread><tag-prefix>I'
 macro index,pager zA '^T<tag-thread><tag-prefix>A'
 macro index,pager zb '^T<tag-thread><tag-prefix>mb'
+
+# jump to next message after tagging
+macro index t '<tag-entry><next-undeleted>'
