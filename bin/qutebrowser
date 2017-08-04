@@ -20,7 +20,7 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	clean_history
 
 	if [ "$HOST" = "parsley" ]; then
-		qutebrowser_args+=(--backend webengine ':set --temp content allow-javascript true')
+		qutebrowser_args+=(--backend webengine --enable-webengine-inspector ':set --temp content allow-javascript true')
 	fi
 
 	if ! 3gusage; then
@@ -29,4 +29,4 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 fi
 qutebrowser_args+=("$@")
 
-qutebrowser "${qutebrowser_args[@]}" > /dev/null 2>&1 &
+qutebrowser "${qutebrowser_args[@]}" # > /dev/null 2>&1 &
