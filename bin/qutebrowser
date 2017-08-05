@@ -7,6 +7,7 @@ clean_history() {
 	for location in history.sqlite local-storage offiline-storage webengine; do
 		rm -rf "$HOME/.local/share/qutebrowser/$location"
 	done
+	touch "$HOME/.local/share/qutebrowser/cmd-history"
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
@@ -17,6 +18,9 @@ fi
 
 qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
+	mkdir "$HOME/downloads"
+	touch "$HOME/.local/share/qutebrowser/netrc"
+
 	clean_history
 
 	if [ "$HOST" = "parsley" ]; then
