@@ -18,7 +18,7 @@ fi
 
 qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
-	mkdir "$HOME/downloads"
+	mkdir -p "$HOME/downloads"
 	touch "$HOME/.local/share/qutebrowser/netrc"
 
 	clean_history
