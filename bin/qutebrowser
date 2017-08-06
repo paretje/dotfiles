@@ -33,4 +33,4 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 fi
 qutebrowser_args+=("$@")
 
-qutebrowser "${qutebrowser_args[@]}" # > /dev/null 2>&1 &
+qutebrowser "${qutebrowser_args[@]}" > /dev/null 2>&1 &
