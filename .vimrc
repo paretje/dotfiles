@@ -639,6 +639,7 @@ com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
+com! Gmdiff Gsdiff :1 | Gvdiff
 
 " TODO: documentation
 " TODO: abort?
