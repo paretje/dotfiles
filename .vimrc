@@ -179,7 +179,7 @@ set nostartofline
 " Skip intro
 set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
-set pastetoggle=<Leader>p
+set pastetoggle=<Leader>pp
 " Show print dialog instead of using the default printer
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 " Don't use tabs unless sleuth detects them
@@ -620,6 +620,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
+nnoremap <Leader>pt :CtrlPTag<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
