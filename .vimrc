@@ -241,7 +241,7 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-if $HOST == 'parsley'
+if $HOST ==# 'parsley'
   let g:dotoo#agenda#files = ['~/vcs/senso2me/notes/*.org']
 else
   let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/s2m-refile.org']
@@ -583,7 +583,7 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
-nnoremap <silent> <Leader>r :redraw!<CR>
+nnoremap <silent> <Leader><C-L> :redraw!<CR>
 nnoremap <silent> <C-N> :CtrlPBuffer<CR>
 nnoremap <silent> <C-G> :NERDTreeToggle<CR>
 nnoremap <Leader>s :call GitAutocommit()<CR><CR>
