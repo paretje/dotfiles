@@ -132,7 +132,7 @@ set smartcase
 " Highlight searches
 set hlsearch
 " Set ctags options
-set tags=./tags;$HOME
+set tags=tags,./tags
 " Max number of tabs
 set tabpagemax=32
 " Enable airline
