@@ -225,3 +225,6 @@ tags
 /.docker/config.json
 /.config/qalculate/qalc.history
 /.local/share/qalculate
+/.composer
+/.config/moserial.conf
+/.yarnrc
