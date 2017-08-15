@@ -18,7 +18,6 @@ endif
 " load plug and declare all plugins
 call plug#begin('~/.vim/bundle')
 
-Plug 'craigemery/vim-autotag'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
@@ -78,6 +77,7 @@ Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'ludovicchabant/vim-gutentags'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -423,6 +423,13 @@ let g:cscope_silent = 1
 
 " gitautocommit options
 let g:gitautocommit_filetypes = ['dotoo', 'ledger']
+
+" vim-gutentags options
+let g:gutentags_file_list_command = {
+  \ 'markers': {
+    \ '.git': 'git ls-files',
+  \ },
+\ }
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
