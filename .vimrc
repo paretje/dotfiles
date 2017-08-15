@@ -523,6 +523,7 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
 au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
