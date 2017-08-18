@@ -11,10 +11,17 @@ clean_history() {
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
-if echo "$1" | grep -q '^--help'; then
-	qutebrowser "$@"
-	exit
-fi
+verbose=false
+case "$1" in
+	--help )
+		qutebrowser "$@"
+		exit
+		;;
+	--verbose )
+		verbose=true
+		shift
+		;;
+esac
 
 qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
@@ -24,10 +31,11 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	clean_history
 
 	if [ "$HOST" != "kevin-laptop" ]; then
-		qutebrowser_args+=(--backend webengine ':set --temp content allow-javascript true')
+		qutebrowser_args+=(--backend webengine)
 		if [ "$HOST" = "parsley" ]; then
 			qutebrowser_args+=(--enable-webengine-inspector)
 		fi
+		qutebrowser_args+=(':set --temp content allow-javascript true')
 	fi
 
 	if ! 3gusage; then
@@ -36,4 +44,7 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 fi
 qutebrowser_args+=("$@")
 
-qutebrowser "${qutebrowser_args[@]}" > /dev/null 2>&1 &
+if ! $verbose; then
+	exec > /dev/null 2>&1
+fi
+qutebrowser "${qutebrowser_args[@]}"
