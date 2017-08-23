@@ -228,3 +228,4 @@ tags
 /.composer
 /.config/moserial.conf
 /.yarnrc
+/.mypy_cache
