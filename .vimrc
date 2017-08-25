@@ -428,6 +428,8 @@ au User Grepper call GrepperReset()
 
 " cscope.vim options
 let g:cscope_silent = 1
+let g:cscope_open_location = 0
+au FileType c,cpp set cscopequickfix-=g-
 
 " gitautocommit options
 let g:gitautocommit_filetypes = ['dotoo', 'ledger']
@@ -531,7 +533,9 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
-au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
+if !has('nvim')
+  au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
+endif
 au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
