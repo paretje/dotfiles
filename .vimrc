@@ -328,7 +328,7 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
-let g:neomake_cpp_args = ['-std=c++11', '-I', '.']
+let g:neomake_cpp_args = ['-std=c++11', '-I', '.', '-I', 'src']
 let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
 let g:neomake_cpp_clangcheck_args = ['%:p', '--']
 let g:neomake_cpp_clangtidy_args = ['%:p', '--']
