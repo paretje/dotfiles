@@ -6,6 +6,7 @@ scriptencoding utf-8
 autocmd!
 
 " download vim-plug if needed
+let s:plug_install = 0
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
   if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -13,6 +14,7 @@ if !filereadable($HOME . '/.vim/autoload/plug.vim')
     execute '!mkdir -P ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
+  let s:plug_install = 1
 endif
 
 " load plug and declare all plugins
@@ -101,6 +103,11 @@ else
 endif
 
 call plug#end()
+
+" run PlugInstall when this is the first time to use vim
+if s:plug_install
+  PlugInstall
+endif
 
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
