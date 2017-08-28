@@ -211,6 +211,11 @@ if has('nvim')
   " split shows a preview window when doing a substitution on multiple lines
   set inccommand=split
 endif
+if exists('+signcolumn')
+  set signcolumn=yes
+else
+  let g:gitgutter_sign_column_always = 1
+endif
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -393,9 +398,6 @@ let g:delimitMate_expand_cr = 1
 " clang_complete options
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-
-" gitgutter options
-let g:gitgutter_sign_column_always = 1
 
 " neoterm options
 let g:neoterm_size = 15
