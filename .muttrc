@@ -100,7 +100,7 @@ set pager_stop=yes
 set print_command="muttprint"
 
 # automatically sync mailbox on timeout
-timeout-hook . 'exec sync-mailbox'
+# timeout-hook 'exec sync-mailbox'
 
 # no need to press key after executing shell command
 set wait_key=no
@@ -114,6 +114,13 @@ set rfc2047_parameters=yes
 # mark github notifications as read
 message-hook '~U ~f ^notifications@github.com$' 'push <Esc>mgr'
 macro pager <Esc>mgr '<pipe-entry>$HOME/.mutt/ghn-read<Enter>'
+
+# show tags
+ignore *
+unignore from: subject to cc bcc date x-mailer x-url user-agent tags
+
+# do not jump to next message after command
+set resolve=no
 
 # vi keybindings (thanks to Arch wiki)
 bind pager j next-line
@@ -205,10 +212,12 @@ bind query <tab> next-entry
 bind query <backtab> previous-entry
 
 # add key to copy sender email address
+bind index,pager y noop
 macro index,pager yy '<pipe-message>fgrep -m 1 From: | sed "s/^\s*From:\s*[^<]*\s*<\([^>]*\)>\s*$/\1/" | xsel -i --clipboard<enter>'
 
 # advanced labeling of mails
-macro index,pager md '<modify-labels-then-hide>-todo -inbox<return><sync-mailbox>'
+bind index,pager m noop
+macro index,pager md '<modify-labels-then-hide>-todo -inbox -unread<return><sync-mailbox>'
 macro index,pager mt '<modify-labels>todo -unread<return>'
 macro index,pager mh '<modify-labels>-spamy<return>'
 macro index,pager mr '<modify-labels>-unread<return>'
@@ -218,3 +227,6 @@ bind generic z noop
 macro index,pager zI '^T<tag-thread><tag-prefix>I'
 macro index,pager zA '^T<tag-thread><tag-prefix>A'
 macro index,pager zb '^T<tag-thread><tag-prefix>mb'
+
+# jump to next message after tagging
+macro index t '<tag-entry><next-undeleted>'

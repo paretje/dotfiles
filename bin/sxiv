@@ -7,9 +7,12 @@ if [ $# -eq 1 ]; then
 		dir="$(dirname "$1")"
 	fi
 	cd "$dir"
-	ls -1v | grep '.jpg\|png$' > $tmp
+	ls -1v | grep -i '.jpe\?g\|png$' > $tmp
 	if [ -f "$1" ]; then
-		file="-n $(fgrep -n -m 1 -x "$(basename "$1")" $tmp | cut -d: -f1)"
+		number=$(fgrep -n -m 1 -x "$(basename "$1")" $tmp | cut -d: -f1)
+		if [ "$number" != "" ]; then
+			file="-n $number"
+		fi
 	fi
 	cat $tmp | /usr/bin/sxiv -i $file
 	rm $tmp

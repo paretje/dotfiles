@@ -19,6 +19,7 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+PROMPT_COMMAND="history -a; history -r"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -30,7 +31,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -98,9 +99,9 @@ if ! shopt -oq posix; then
 fi
 
 # Load gpg-agent variables
+export GPG_TTY=$(tty)
 if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
     . "$GPG_ENV_FILE"
-    export GPG_TTY=$(tty)
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
     export SSH_AGENT_PID

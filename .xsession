@@ -60,7 +60,7 @@ xmodmap -e 'add mod3 = Hyper_L'
 if [ "$HOST" = "kevin-laptop" ]; then
 	xbacklight -set 30
 elif [ "$HOST" = "parsley" ]; then
-	xbacklight -set 70
+	xbacklight -set 40
 fi
 
 # Set default mouse pointer

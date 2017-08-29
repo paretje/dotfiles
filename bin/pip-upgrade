@@ -20,9 +20,18 @@ for pyver in 3 2; do
 		pip_sync="$HOME/.local/bin/pip-sync"
 
 		test -f "$pip" && mv "$pip" "$pip.bckp"
-		ln -s "$(which pip$pyver)" "$pip"
+		pipver="$(which pip$pyver)"
 
-		python$pyver "$pip_compile" -o "${requirements_txt[0]}" "${requirements[@]}"
+		echo '#!/bin/sh' > "$pip"
+		echo 'if [ "$1" = "install" ]; then' >> "$pip"
+		echo 'shift' >> "$pip"
+		echo 'exec '"$pipver"' install --only-binary cefpython3 "$@"' >> "$pip"
+		echo 'else' >> "$pip"
+		echo 'exec '"$pipver"' "$@"' >> "$pip"
+		echo 'fi' >> "$pip"
+		chmod +x "$pip"
+
+		python$pyver "$pip_compile" --upgrade -o "${requirements_txt[0]}" "${requirements[@]}"
 		python$pyver "$pip_sync" "$@" "${requirements_txt[@]}"
 
 		rm "$pip"

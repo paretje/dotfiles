@@ -8,11 +8,12 @@ UBUNTU_MIRROR="be.archive.ubuntu.com"
 
 NAME="$DIST"
 DISTRIBUTION="$DIST"
-BACKPORTS_SUITE="$DIST-bacports"
+BACKPORTS_SUITE="$DIST-backports"
 BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
 BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
+HOOKDIR="$HOME/.pbuilder/hooks"
 
 if echo "${DEBIAN_SUITES[@]}" | fgrep -q "$DIST"; then
   MIRRORSITE="http://$DEBIAN_MIRROR/debian/"

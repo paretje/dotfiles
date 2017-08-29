@@ -6,6 +6,7 @@ scriptencoding utf-8
 autocmd!
 
 " download vim-plug if needed
+let s:plug_install = 0
 if !filereadable($HOME . '/.vim/autoload/plug.vim')
   if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -13,6 +14,7 @@ if !filereadable($HOME . '/.vim/autoload/plug.vim')
     execute '!mkdir -P ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
+  let s:plug_install = 1
 endif
 
 " load plug and declare all plugins
@@ -41,6 +43,10 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
+Plug 'tpope/vim-obsession'
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -50,6 +56,11 @@ else
 endif
 
 call plug#end()
+
+" run PlugInstall when this is the first time to use vim
+if s:plug_install
+  PlugInstall
+endif
 
 " Vim coloring as default on virtual terminals
 " Apparently, Vim uses a white background as basis of the color scheme
@@ -82,7 +93,7 @@ set smartcase
 " Highlight searches
 set hlsearch
 " Set ctags options
-set tags=./tags;$HOME
+set tags=tags,./tags
 " Max number of tabs
 set tabpagemax=32
 " Enable airline
@@ -128,7 +139,7 @@ set nostartofline
 " Skip intro
 set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
-set pastetoggle=<Leader>p
+set pastetoggle=<Leader>pp
 " Show print dialog instead of using the default printer
 set printexpr=system(['yad-print',v:fname_in])+v:shell_error
 " Don't use tabs unless sleuth detects them
@@ -147,6 +158,16 @@ au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | Airlin
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+endif
+" Preview substitutions
+if has('nvim')
+  " split shows a preview window when doing a substitution on multiple lines
+  set inccommand=split
+endif
+if exists('+signcolumn')
+  set signcolumn=yes
+else
+  let g:gitgutter_sign_column_always = 1
 endif
 
 " Airline options
@@ -186,7 +207,11 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/*.org']
+if $HOST ==# 'parsley'
+  let g:dotoo#agenda#files = ['~/vcs/senso2me/notes/*.org']
+else
+  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/s2m-refile.org']
+endif
 let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
 let g:dotoo_todo_keyword_faces = [
@@ -231,6 +256,16 @@ let g:calendar_monday = 1
 let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
 
+" jedi-vim options
+if !has('python3')
+  let g:jedi#force_py_version = 2
+else
+  let g:jedi#force_py_version = 3
+endif
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_assignments_command = '<C-]>'
+let g:jedi#usages_command = ';]'
+
 " neomake options
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
 let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
@@ -250,10 +285,13 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
-let g:neomake_cpp_args = ['-std=c++11', '-I', '.']
+let g:neomake_cpp_args = ['-std=c++11', '-I', '.', '-I', 'src']
 let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
 let g:neomake_cpp_clangcheck_args = ['%:p', '--']
 let g:neomake_cpp_clangtidy_args = ['%:p', '--']
+
+let g:neomake_python_python_exe = 'python3'
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
@@ -277,6 +315,8 @@ let g:deoplete#member#prefix_patterns['dotoo'] = ':'
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
+
+let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -311,26 +351,14 @@ let g:delimitMate_expand_cr = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
-" gitgutter options
-let g:gitgutter_sign_column_always = 1
-
 " neoterm options
 let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
 let g:neoterm_autoscroll = 1
+let g:noeterm_fixedsize = 1
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
-
-" jedi-vim options
-if !has('python3') || $HOST ==# 'parsley'
-  let g:jedi#force_py_version = 2
-else
-  let g:jedi#force_py_version = 3
-endif
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_assignments_command = '<C-]>'
-let g:jedi#usages_command = ';]'
 
 " vim-grammarous options
 let g:grammarous#use_vim_spelllang = 1
@@ -354,6 +382,18 @@ au User Grepper call GrepperReset()
 
 " cscope.vim options
 let g:cscope_silent = 1
+let g:cscope_open_location = 0
+au FileType c,cpp set cscopequickfix-=g-
+
+" gitautocommit options
+let g:gitautocommit_filetypes = ['dotoo', 'ledger']
+
+" vim-gutentags options
+let g:gutentags_file_list_command = {
+  \ 'markers': {
+    \ '.git': 'git ls-files',
+  \ },
+\ }
 
 " Bulk options
 au FileType haskell,prolog,matlab,tmux  setlocal nospell
@@ -447,6 +487,9 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+if !has('nvim')
+  au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
+endif
 au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
 au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
@@ -468,6 +511,13 @@ au FileType vimperator setlocal commentstring=\"%s
 
 " sql ft options
 au FileType sql setlocal commentstring=--%s
+
+" proto ft options
+au FileType proto setlocal commentstring=//%s
+
+" typescript ft options
+au FileType typescript nnoremap <silent> <buffer> <C-]> :TSDef<CR>
+au FileType typescript setlocal keywordprg=:TSDoc
 
 " terminal options
 if has('nvim')
@@ -500,13 +550,9 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
-nnoremap <silent> <Leader>r :redraw!<CR>
+nnoremap <silent> <Leader><C-L> :redraw!<CR>
 nnoremap <silent> <C-N> :CtrlPBuffer<CR>
 nnoremap <silent> <C-G> :NERDTreeToggle<CR>
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
 nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
 nnoremap <silent> zi :call ToggleFolding()<CR>
@@ -539,6 +585,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
+nnoremap <Leader>pt :CtrlPTag<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -565,8 +612,9 @@ com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/sh
 com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -narg=* PyDoc call PyDoc(<f-args>)
+com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
+com! Gmdiff Gsdiff :1 | Gvdiff
 
 " TODO: documentation
 " TODO: abort?
@@ -688,8 +736,8 @@ fun! LedgerEntry()
 endfun
 
 fun! GitAutocommit(...)
-  if a:0 == 0 && &filetype ==# 'ledger'
-    Git autocommit
+  if a:0 == 0 && index(g:gitautocommit_filetypes, &filetype) != -1
+    Git autocommit --force
   else
     for l:dir in ['personal', 'senso2me']
       if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
@@ -770,12 +818,12 @@ fun! PyDoc(...) abort
       let l:pydoc = 'pydoc3'
     endif
     execute 'split | terminal ' . l:pydoc . ' ' . shellescape(a:1)
+    doau User ManOpen
   else
     " TODO: handle multiple definitions
-    PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+    " TODO: handle no definitions without silent
+    silent! PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
   endif
-
-  doau User ManOpen
 endfun
 
 fun! DotooNewItem()

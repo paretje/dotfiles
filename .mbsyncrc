@@ -1,6 +1,7 @@
 IMAPAccount prive
 Host vps.paretje.be
 SSLType IMAPS
+SSLVersions TLSv1.2
 User kevin@paretje.be
 PassCmd "secret-tool lookup email kevin@paretje.be"
 AuthMechs LOGIN
@@ -23,6 +24,7 @@ SyncState "*"
 IMAPAccount notes
 Host vps.paretje.be
 SSLType IMAPS
+SSLVersions TLSv1.2
 User notes@online-urbanus.be
 PassCmd "secret-tool lookup email notes@online-urbanus.be"
 AuthMechs LOGIN
@@ -44,6 +46,7 @@ SyncState "*"
 
 IMAPAccount senso2me
 Host imap.mailprotect.be
+SSLVersions TLSv1.2
 User kevin.velghe@senso2.me
 PassCmd "secret-tool lookup email kevin.velghe@senso2.me"
 AuthMechs LOGIN

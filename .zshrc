@@ -17,11 +17,13 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 zplug "zsh-users/zsh-completions"
 
 zplug "paretje/unisister", as:command, use:unisister
-zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py"
+zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
-zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man'"
+# TODO: nothing installed without xmlto
+# TODO: replace with own scripts, as it doesn't support appending
+zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man/man1'"
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
 
 zplug load
@@ -98,9 +100,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Load gpg-agent variables
+export GPG_TTY=$(tty)
 if [ -f "$GPG_ENV_FILE" ]; then
     . "$GPG_ENV_FILE"
-    export GPG_TTY=$(tty)
     export GPG_AGENT_INFO
     export SSH_AUTH_SOCK
     export SSH_AGENT_PID

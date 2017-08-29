@@ -129,7 +129,7 @@ tags
 /.local/share/qutebrowser/cmd-history
 /.local/share/qutebrowser/cookies
 /.local/share/qutebrowser/state
-/.local/share/qutebrowser/history
+/.local/share/qutebrowser/history.sqlite
 /.local/share/qutebrowser/blocked-hosts
 /.local/share/qutebrowser/domains.yml
 /.config/qutebrowser/bookmarks
@@ -223,3 +223,9 @@ tags
 /.mmauthtoken
 /.config/cef_user_data/Dictionaries
 /.docker/config.json
+/.config/qalculate/qalc.history
+/.local/share/qalculate
+/.composer
+/.config/moserial.conf
+/.yarnrc
+/.mypy_cache

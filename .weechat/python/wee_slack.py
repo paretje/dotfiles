@@ -1,1 +1,1 @@
-../../.zplug/repos/rawdigits/wee-slack/wee_slack.py
+../../.zplug/repos/wee-slack/wee-slack/wee_slack.py

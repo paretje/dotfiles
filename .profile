@@ -8,6 +8,11 @@
 # for ssh logins, install and configure the libpam-umask package.
 # umask 027
 
+# set UID variable
+if [ -z "$UID" ]; then
+    export UID=$(id -u)
+fi
+
 # set GEM_HOME according to detected location
 if hash ruby > /dev/null 2>&1 ; then
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
@@ -88,7 +93,11 @@ if hash gpg-agent > /dev/null 2>&1; then
         fi
     else
         gpgconf --launch gpg-agent
-        export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+        if [ -x /bin/systemctl ]; then
+            export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
+        else
+            export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+        fi
     fi
 fi
 
@@ -107,7 +116,7 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # set name and email address
 export NAME="Kevin Velghe"
-if [ "$HOST" = "parsley" ]; then
+if [ "$HOST" = "parsley" -o "$HOST" = "fennel" ]; then
     export EMAIL="kevin.velghe@senso2.me"
 else
     export EMAIL="kevin@paretje.be"
@@ -128,7 +137,10 @@ export MAILDIR="$HOME/.mail"
 
 # less options
 # TODO: what about other options of alias?
-LESS="-i"
+export LESS="-FRXi"
+
+# default prefix in Authorize header using httpie + httpie-jwt-aut
+export JWT_AUTH_PREFIX='JWT'
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then

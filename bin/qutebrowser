@@ -1,23 +1,50 @@
-#!/bin/sh
+#!/bin/bash -e
 qutebrowser() {
-	"$HOME/.zplug/bin/qutebrowser" "$@" > /dev/null 2>&1 &
+	"$HOME/.zplug/bin/qutebrowser" "$@"
 }
 
 clean_history() {
-	for location in history local-storage offiline-storage webengine; do
+	for location in history.sqlite local-storage offiline-storage webengine; do
 		rm -rf "$HOME/.local/share/qutebrowser/$location"
 	done
+	touch "$HOME/.local/share/qutebrowser/cmd-history"
 	sed -i '/^:open/d' "$HOME/.local/share/qutebrowser/cmd-history"
 }
 
-if [ "$(pgrep -c qutebrowser)" -gt 1 ] || echo "$1" | grep -q '^-'; then
-	qutebrowser "$@"
-elif 3gusage; then
-	clean_history
-	qutebrowser "$@"
-else
-	clean_history
-	qutebrowser :adblock-update "$@"
-fi
+verbose=false
+case "$1" in
+	--help )
+		qutebrowser "$@"
+		exit
+		;;
+	--verbose )
+		verbose=true
+		shift
+		;;
+esac
 
-exit
+qutebrowser_args=()
+if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
+	mkdir -p "$HOME/downloads"
+	touch "$HOME/.local/share/qutebrowser/netrc"
+
+	clean_history
+
+	if [ "$HOST" != "kevin-laptop" ]; then
+		qutebrowser_args+=(--backend webengine)
+		if [ "$HOST" = "parsley" ]; then
+			qutebrowser_args+=(--enable-webengine-inspector)
+		fi
+		qutebrowser_args+=(':set --temp content allow-javascript true')
+	fi
+
+	if ! 3gusage; then
+		qutebrowser_args+=(:adblock-update)
+	fi
+fi
+qutebrowser_args+=("$@")
+
+if ! $verbose; then
+	exec > /dev/null 2>&1
+fi
+qutebrowser "${qutebrowser_args[@]}"
