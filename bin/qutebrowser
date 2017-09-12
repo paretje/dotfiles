@@ -1,4 +1,7 @@
 #!/bin/bash -e
+set -o pipefail
+shopt -s nullglob
+
 qutebrowser() {
 	"$HOME/.zplug/bin/qutebrowser" "$@"
 }
@@ -25,10 +28,13 @@ esac
 
 qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
-	mkdir -p "$HOME/downloads"
-	touch "$HOME/.local/share/qutebrowser/netrc"
+	ipc_files=(/tmp/runtime-kevin/qutebrowser/*)
+	if [ ${#ipc_files[@]} -eq 0 ]; then
+		mkdir -p "$HOME/downloads"
+		touch "$HOME/.local/share/qutebrowser/netrc"
 
-	clean_history
+		clean_history
+	fi
 
 	if [ "$HOST" != "kevin-laptop" ]; then
 		qutebrowser_args+=(--backend webengine)
@@ -44,7 +50,8 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 fi
 qutebrowser_args+=("$@")
 
-if ! $verbose; then
-	exec > /dev/null 2>&1
+if $verbose; then
+	qutebrowser "${qutebrowser_args[@]}"
+else
+	qutebrowser "${qutebrowser_args[@]}" > /dev/null 2>&1 &
 fi
-qutebrowser "${qutebrowser_args[@]}"
