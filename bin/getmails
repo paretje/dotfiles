@@ -9,13 +9,17 @@ if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
 	exit 2
 fi
 
+sync() {
+	chronic timeout 30s mbsync "$@"
+}
+
 fetch_mails() {
 	case $HOST in
 		"kevin-laptop")
-			chronic mbsync prive notes
+			sync prive notes
 			;;
 		"parsley")
-			chronic mbsync senso2me
+			sync senso2me
 			;;
 	esac
 	chronic notmuch new
