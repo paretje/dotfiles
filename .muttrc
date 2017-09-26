@@ -7,6 +7,7 @@ virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "backlog"        "notmuch://?query=tag:backlog" \
                   "todo"           "notmuch://?query=tag:todo" \
+                  "syslog"         "notmuch://?query=tag:syslog" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
 
 # open first virtual mailbox when starting
