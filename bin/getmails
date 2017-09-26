@@ -24,7 +24,7 @@ fetch_mails() {
 	esac
 	chronic notmuch new
 
-	count=$(notmuch count tag:unread)
+	count=$(notmuch count tag:unread and tag:inbox)
 	if [ "$count" -ne 0 ]; then
 		notify-send "You've got mail" "$count unread mail(s)"
 		beep-mail
