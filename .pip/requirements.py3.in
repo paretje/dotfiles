@@ -4,4 +4,4 @@ vim-vint
 pip-tools
 pyPEG2
 readability-lxml
-git+git://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
+-e git+git://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
