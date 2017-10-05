@@ -1,4 +1,9 @@
-c.backend = "webkit"
+import os
+
+if os.environ['HOST'] == 'kevin-laptop':
+    c.backend = "webkit"
+else:
+    c.backend = "webengine"
 
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
 c.url.default_page = "about:blank"
@@ -20,20 +25,19 @@ c.tabs.last_close = 'blank'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.appcache = False
 c.content.cache.size = 52428800
-c.content.javascript.enabled = False
+c.content.javascript.enabled = c.backend != 'webkit'
 c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.store = False
 c.content.host_blocking.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
 c.content.host_blocking.whitelist = []
 c.hints.uppercase = True
-# TODO:
-# +next-regexes = \bnext\b,\bmore\b,\bnewer\b,\b[>→≫]\b,\b(>>|»)\b,\bcontinue\b,\bvolgende\b
-# +prev-regexes = \bprev(ious)?\b,\bback\b,\bolder\b,\b[<←≪]\b,\b(<<|«)\b,\bvorige\b
+c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b', r'\b(>>|»)\b', r'\bcontinue\b', r'\bvolgende\b']
+c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
 c.hints.find_implementation = 'javascript'
 c.fonts.web.size.default = 15
-# TODO: searchengines
 
+c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['gh'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
@@ -62,6 +66,7 @@ config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('gh', 'home')
 config.bind('s', 'stop')
+config.unbind(';i')
 config.bind(';iw', 'spawn --detach iceweasel {url}')
 config.bind(';js', 'domain javascript!')
 config.bind(';p', 'spawn --userscript password_fill')
@@ -69,6 +74,7 @@ config.bind(';v', 'spawn mpv {url}')
 config.bind(';a', 'spawn --userscript play_mpc')
 config.bind('gs', 'spawn --userscript qutebrowser_viewsource')
 config.bind('gf', 'spawn --userscript openfeeds')
+config.unbind(';o')
 config.bind(';org', 'spawn --verbose --userscript org_add')
 config.bind('D', 'bookmark-del ;; message-info "Bookmark {url} deleted!"')
 config.bind(';sp', 'spawn --userscript password_store')
