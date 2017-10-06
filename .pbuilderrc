@@ -1,4 +1,4 @@
-DEBIAN_SUITES=("unstable" "jessie")
+DEBIAN_SUITES=("unstable" "jessie" "stretch")
 UBUNTU_SUITES=("zesty" "xenial")
 
 DEBIAN_MIRROR="ftp.be.debian.org"
