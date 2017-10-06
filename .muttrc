@@ -7,6 +7,7 @@ virtual-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "backlog"        "notmuch://?query=tag:backlog" \
                   "todo"           "notmuch://?query=tag:todo" \
+                  "syslog"         "notmuch://?query=tag:syslog" \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
 
 # open first virtual mailbox when starting
@@ -166,7 +167,7 @@ macro index <space> '<change-vfolder><enter>'
 bind index T tag-thread
 
 # sync new mail status immediately when opening message
-macro index <return> '<display-message><modify-labels>-backlog<enter><sync-mailbox>' "display message and sync flags to mailbox"
+macro index <return> '^T<display-message><modify-labels>-backlog<enter><sync-mailbox>' "display message and sync flags to mailbox"
 macro pager J '<next-entry><sync-mailbox>' "move to the next entry"
 
 # pager keybindings

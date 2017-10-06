@@ -18,10 +18,14 @@ HOOKDIR="$HOME/.pbuilder/hooks"
 if echo "${DEBIAN_SUITES[@]}" | fgrep -q "$DIST"; then
   MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
   COMPONENTS="main"
-  if [ "$DIST" != "unstable" ]; then
-    OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.paretje.be $BACKPORTS_SUITE $COMPONENTS"
-  else
+  if [ "$DIST" = "unstable" ]; then
     OTHERMIRROR="$OTHERMIRROR | deb http://repo.paretje.be $DIST $COMPONENTS"
+  elif [ "$DIST" = "jessie" ]; then
+    OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.online-urbanus.be $BACKPORTS_SUITE $COMPONENTS"
+    APTKEYRINGS=("$HOME/.pbuilder/keyring.gpg")
+  else
+    OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.paretje.be $BACKPORTS_SUITE $COMPONENTS"
+    APTKEYRINGS=("$HOME/.pbuilder/keyring.gpg")
   fi
 elif echo "${UBUNTU_SUITES[@]}" | fgrep -q "$DIST"; then
   MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"

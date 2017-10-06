@@ -9,18 +9,22 @@ if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
 	exit 2
 fi
 
+sync() {
+	chronic timeout 30s mbsync "$@"
+}
+
 fetch_mails() {
 	case $HOST in
 		"kevin-laptop")
-			chronic mbsync prive notes
+			sync prive notes
 			;;
 		"parsley")
-			chronic mbsync senso2me
+			sync senso2me
 			;;
 	esac
 	chronic notmuch new
 
-	count=$(notmuch count tag:unread)
+	count=$(notmuch count tag:unread and tag:inbox)
 	if [ "$count" -ne 0 ]; then
 		notify-send "You've got mail" "$count unread mail(s)"
 		beep-mail
