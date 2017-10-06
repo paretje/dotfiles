@@ -14,6 +14,7 @@ BUILDRESULT="/var/cache/pbuilder/$NAME/result/"
 APTCACHE="/var/cache/pbuilder/$NAME/aptcache/"
 BUILDPLACE="/var/cache/pbuilder/build/"
 HOOKDIR="$HOME/.pbuilder/hooks"
+APTKEYRINGS=("$HOME/.pbuilder/keyring.gpg")
 
 if echo "${DEBIAN_SUITES[@]}" | fgrep -q "$DIST"; then
   MIRRORSITE="http://$DEBIAN_MIRROR/debian/"
@@ -22,10 +23,8 @@ if echo "${DEBIAN_SUITES[@]}" | fgrep -q "$DIST"; then
     OTHERMIRROR="$OTHERMIRROR | deb http://repo.paretje.be $DIST $COMPONENTS"
   elif [ "$DIST" = "jessie" ]; then
     OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.online-urbanus.be $BACKPORTS_SUITE $COMPONENTS"
-    APTKEYRINGS=("$HOME/.pbuilder/keyring.gpg")
   else
     OTHERMIRROR="$OTHERMIRROR | deb $MIRRORSITE $BACKPORTS_SUITE $COMPONENTS | deb http://repo.paretje.be $BACKPORTS_SUITE $COMPONENTS"
-    APTKEYRINGS=("$HOME/.pbuilder/keyring.gpg")
   fi
 elif echo "${UBUNTU_SUITES[@]}" | fgrep -q "$DIST"; then
   MIRRORSITE="http://$UBUNTU_MIRROR/ubuntu/"
