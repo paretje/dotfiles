@@ -1,9 +1,14 @@
 import os
+import sys
 
-if os.environ['HOST'] == 'kevin-laptop':
+if '--backend' in sys.argv:
+    c.backend = sys.argv[sys.argv.index('--backend')+1]
+elif os.environ['HOST'] == 'kevin-laptop':
     c.backend = "webkit"
 else:
     c.backend = "webengine"
+
+# c.args.enable_webengine_inspector = True
 
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
 c.url.default_page = "about:blank"
