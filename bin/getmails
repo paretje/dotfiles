@@ -10,7 +10,7 @@ if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
 fi
 
 sync() {
-	chronic timeout 30s mbsync "$@"
+	chronic timeout 30s mbsync "$@" || notify-send "Failed to fetch mail"
 }
 
 fetch_mails() {
