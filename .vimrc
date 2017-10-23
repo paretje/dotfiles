@@ -82,6 +82,7 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
+Plug 'vim-scripts/a.vim'
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
