@@ -13,7 +13,7 @@ else:
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
-c.editor.command = ["urxvt", "-e", "nvim -b -c 'set noeol' '{}'"]
+c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
 c.content.developer_extras = True
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
