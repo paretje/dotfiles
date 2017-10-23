@@ -98,7 +98,7 @@ if has('nvim')
   Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
   Plug 'Shougo/neco-vim', {'for': 'vim'}
   Plug 'frbor/deoplete-abook', {'for': 'mail'}
-  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins', 'for': 'typescript'}
+  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}
 else
   Plug 'congma/vim-fakeclip'
 endif
