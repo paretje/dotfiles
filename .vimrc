@@ -244,6 +244,7 @@ let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_match_current_file = 0
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
