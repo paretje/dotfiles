@@ -97,7 +97,7 @@ xclipman &
 syndaemon -d -t -R
 getmails --daemon &
 test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
-test -x "$GOPATH/bin/matterircd" && matterircd -bind "127.0.0.1:6666" &
+test -x "$GOPATH/bin/matterircd" && sh -c 'while true; do matterircd -bind "127.0.0.1:6666"; sleep 5s; done' &
 
 if acpi -b | fgrep -vq 'No support'; then
 	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
