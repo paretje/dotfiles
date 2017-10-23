@@ -635,7 +635,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
-nnoremap <Leader>pt :CtrlPTag<CR>
+nnoremap <Leader>pt :CtrlPBufTag<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
