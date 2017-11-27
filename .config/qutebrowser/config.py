@@ -41,6 +41,17 @@ c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b'
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
 c.hints.find_implementation = 'javascript'
 c.fonts.web.size.default = 15
+c.fonts.completion.entry = '8pt monospace'
+c.fonts.completion.category = 'bold 8pt monospace'
+c.fonts.debug_console = '8pt monospace'
+c.fonts.downloads = '8pt monospace'
+c.fonts.keyhint = '8pt monospace'  # TODO: larger?
+c.fonts.messages.error = '8pt monospace'
+c.fonts.messages.info = '8pt monospace'
+c.fonts.messages.warning = '8pt monospace'
+c.fonts.prompts = '8pt sans-serif'
+c.fonts.statusbar = '8pt monospace'
+c.fonts.tabs = '8pt monospace'
 
 c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
