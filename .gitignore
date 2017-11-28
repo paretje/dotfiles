@@ -229,3 +229,4 @@ tags
 /.config/moserial.conf
 /.yarnrc
 /.mypy_cache
+/.pip/src
