@@ -30,9 +30,7 @@ qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	ipc_files=(/tmp/runtime-kevin/qutebrowser/*)
 	if [ ${#ipc_files[@]} -eq 0 ]; then
-		mkdir -p "$HOME/downloads"
 		touch "$HOME/.local/share/qutebrowser/netrc"
-
 		clean_history
 	fi
 
