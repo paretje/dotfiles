@@ -27,6 +27,7 @@ fetch_mails() {
 	count=$(notmuch count tag:unread and tag:inbox)
 	if [ "$count" -ne 0 ]; then
 		notify-send "You've got mail" "$count unread mail(s)"
+		pkill -u "$USER" -USR1 alot
 		beep-mail
 	fi
 }
