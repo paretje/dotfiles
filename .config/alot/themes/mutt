@@ -50,12 +50,11 @@
     [[threadline]]
         normal = '','','light gray','black','light gray','black'
         focus = 'standout','','black','dark cyan','black','dark cyan'
-        parts = date,authors,mailcount,subject,tags
+        parts = mailcount,date,authors,subject,tags
         [[[date]]]
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
-            width = 'fit',10,10
-            alignment = right
+            width = 'fit',13,13
         [[[mailcount]]]
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
@@ -75,3 +74,13 @@
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
             width = 'weight', 1
+    [[threadline-unread]]
+        tagged_with = unread
+        [[[date]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[mailcount]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[authors]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[subject]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
