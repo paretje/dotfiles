@@ -1,0 +1,8 @@
+#!/bin/sh -e
+if [ "$HOST" = "parsley" ]; then
+	folder="$HOME/vcs/senso2me/mail"
+else
+	folder="$HOME/vcs/personal/mail"
+fi
+git -C "$folder" autocommit
+notmuch restore --input="$folder/tags"
