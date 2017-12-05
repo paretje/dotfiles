@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+import os
+import sys
+import configobj
+
+ALOT_CONFIG = os.path.expanduser('~/.config/alot/config')
+ALOT_CONFIG_IN = os.path.expanduser('~/.config/alot/config.in')
+
+if __name__ == "__main__":
+    config = configobj.ConfigObj(infile=ALOT_CONFIG_IN, file_error=True, encoding='UTF8')
+
+    for account, options in config['accounts'].items():
+        if account not in os.environ['MAIL_ACCOUNTS'].split(' '):
+            del config['accounts'][account]
+        else:
+            for path_option in ('sent_box', 'draft_box'):
+                if path_option not in options:
+                    continue
+                options[path_option] = os.path.expandvars(options[path_option])
+
+    with open(ALOT_CONFIG, 'wb') as config_file:
+        config.write(config_file)
+
+    os.execv('/usr/bin/alot', [sys.argv[0], '--mailindex-path', os.environ['MAILDIR']] + sys.argv[1:])

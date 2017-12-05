@@ -42,7 +42,7 @@ timestamp_format = "%I:%M %b %d"
     realname = Kevin Velghe
     address = kevin.velghe@senso2.me
     sendmail_command = /usr/bin/msmtp -a senso2me -t
-    sent_box = maildir:///home/kvelghe/.mail/senso2me/Sent
+    sent_box = maildir:////home/kevin/.mail/senso2me/Sent
     # sign_by_default = True
     # encrypt_by_default = all
 

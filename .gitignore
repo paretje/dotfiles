@@ -230,3 +230,4 @@ tags
 /.yarnrc
 /.mypy_cache
 /.pip/src
+/.config/alot/config

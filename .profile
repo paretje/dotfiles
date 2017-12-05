@@ -142,8 +142,11 @@ export LESS="-FRXi"
 # default prefix in Authorize header using httpie + httpie-jwt-aut
 export JWT_AUTH_PREFIX='JWT'
 
-# temporal fix until bug is fixed in Ubuntu
-export LD_LIBRARY_PATH='/usr/lib/chromium-browser'
+if [ "$HOST" = "parsley" ]; then
+    export MAIL_ACCOUNTS="senso2me"
+elif [ "$HOST" = "kevin-laptop" ]; then
+    export MAIL_ACCOUNTS="prive notes"
+fi
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
