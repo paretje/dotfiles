@@ -89,6 +89,7 @@ if has('python') || has('python3')
   Plug 'honza/vim-snippets'
 endif
 
+" TODO: add vim8 support
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'radenling/vim-dispatch-neovim'
@@ -97,6 +98,7 @@ if has('nvim')
   Plug 'kassio/neoterm'
   Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
   Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+  Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}  " the completions of this plugin don't work properly (they aren't triggered correctly)
   Plug 'Shougo/neco-vim', {'for': 'vim'}
   Plug 'frbor/deoplete-abook', {'for': 'mail'}
   Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}
@@ -336,11 +338,6 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
-let g:neomake_cpp_args = ['-std=c++11', '-I', '.', '-I', 'src']
-let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
-let g:neomake_cpp_clangcheck_args = ['%:p', '--']
-let g:neomake_cpp_clangtidy_args = ['%:p', '--']
-
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 
@@ -368,6 +365,8 @@ let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
+
+let g:deoplete#sources#clang#autofill_neomake = 1
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -541,9 +540,6 @@ au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cwo
 if !has('nvim')
   au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
 endif
-au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
-au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
-au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
