@@ -1,6 +1,7 @@
 import alot
 import re
 import urllib2
+import subprocess
 
 
 def pre_buffer_focus(ui, dbm, buf):
@@ -23,11 +24,47 @@ def post_buffer_focus(ui, dbm, buf, success):
                 break
 
 
-def github_mark_read(ui):
-    msg = ui.current_buffer.get_selected_message()
-    msgtext = str(msg.get_email())
-    r = r"img src='(https://github.com/notifications/beacon/.*.gif)'"
+def github_mark_read(ui, msg=None):
+    if msg is None:
+        msg = ui.current_buffer.get_selected_message()
+    msg = msg.get_email()
+
+    if msg.is_multipart():
+        msgtext = ""
+        for msgpart in msg.get_payload():
+            msgtext += msgpart.get_payload(decode=True)
+    else:
+        msgtext = msg.get_payload(decode=True)
+
+    r = r'src="(https://github.com/notifications/beacon/.*.gif)"'
     beacons = re.findall(r, msgtext)
+
     if beacons:
         urllib2.urlopen(beacons[0])
         ui.notify('removed from github notifications:\n %s' % beacons[0])
+    else:
+        ui.notify('no beacon found')
+
+
+# def post_thread_move(ui, cmd, dbm):
+#     msg = ui.current_buffer.get_selected_message()
+#     if 'unread' in msg.get_tags() and msg.get_author()[1] == 'notifications@github.com':
+#         github_mark_read(ui, msg)
+
+#         # make sure we don't do this twice
+#         msg.remove_tags(['unread'])
+#         dbm.flush()
+
+
+def post_search_select(ui, cmd, dbm):
+    current_msg = ui.current_buffer.get_selected_message()
+    if current_msg.get_author()[1] == 'notifications@github.com':
+        last_msg = list(ui.current_buffer.messagetrees())[-1]._message
+        if 'unread' in last_msg.get_tags():
+            github_mark_read(ui, list(ui.current_buffer.messagetrees())[-1]._message)
+
+
+def getmails(ui):
+    ui.notify("fetchinig email..")
+    subprocess.call(['getmails', '--now'])
+    ui.notify("done!")

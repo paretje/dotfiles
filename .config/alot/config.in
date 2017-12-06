@@ -86,18 +86,19 @@ timestamp_format = "%I:%M %b %d"
     enter = open
   
   [[search]]
-    enter = select ; untag unread
+    enter = select ; move next tag:unread ; untag unread,spamy
     I = untag inbox,spamy,unread
     S = tag spam; untag inbox,spamy 
     # & = toggletags killed
     # ! = toggletags flagged
-    'm r' = untag unread
+    'm r' = untag unread,spamy
     s = prompt 'search '
     l = retagprompt
     O = refineprompt
     | = refineprompt
     'm d' = untag inbox,todo
-    'm t' = tag todo; untag unread
+    'm t' = tag todo; untag unread,spamy
+    'ctrl f' = call hooks.getmails(ui)
   
   [[envelope]]
     a = prompt 'attach ~/'
@@ -125,7 +126,7 @@ timestamp_format = "%I:%M %b %d"
     > = unfold
     [ = indent -
     ] = indent +
-    'g f' = togglesource
+    # 'g f' = togglesource
     h = toggleheaders
     P = print --all --separately --add_tags
     S = save --all
@@ -143,4 +144,5 @@ timestamp_format = "%I:%M %b %d"
     'g h' = move parent
     'g l' = move first reply
     ' ' = move next
-    I = untag,inbox,unread,spamy
+    I = untag inbox
+    'g f' = pipeto urlscan 2>/dev/null
