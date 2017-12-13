@@ -22,7 +22,7 @@ quit_on_last_bclose = True
 # thread_focus_linewise = False
 # thread_indent_replies = 1
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
-timestamp_format = "%I:%M %b %d"
+timestamp_format = "%b %d %H:%M"
 
 
 [accounts]
@@ -31,7 +31,7 @@ timestamp_format = "%I:%M %b %d"
     address = kevin@paretje.be
     aliases = kevindeprey@online-urbanus.be, info@online-urbanus.be, vraagje@online-urbanus.be
     sendmail_command = /usr/bin/msmtp -a prive -t
-    sent_box = maildir:///home/kevin/.mail/prive/Sent
+    sent_box = maildir://$MAILDIR/prive/Sent
     sign_by_default = True
     encrypt_by_default = all
 
@@ -42,7 +42,7 @@ timestamp_format = "%I:%M %b %d"
     realname = Kevin Velghe
     address = kevin.velghe@senso2.me
     sendmail_command = /usr/bin/msmtp -a senso2me -t
-    sent_box = maildir:////home/kevin/.mail/senso2me/Sent
+    sent_box = maildir://$MAILDIR/senso2me/Sent
     # sign_by_default = True
     # encrypt_by_default = all
 
