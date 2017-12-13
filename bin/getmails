@@ -14,14 +14,7 @@ sync() {
 }
 
 fetch_mails() {
-	case $HOST in
-		"kevin-laptop")
-			sync prive notes
-			;;
-		"parsley")
-			sync senso2me
-			;;
-	esac
+	sync $MAIL_ACCOUNTS
 	chronic notmuch new
 
 	count=$(notmuch count tag:unread and tag:inbox)

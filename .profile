@@ -142,6 +142,7 @@ export LESS="-FRXi"
 # default prefix in Authorize header using httpie + httpie-jwt-aut
 export JWT_AUTH_PREFIX='JWT'
 
+# define mail accounts used on different devices
 if [ "$HOST" = "parsley" ]; then
     export MAIL_ACCOUNTS="senso2me"
 elif [ "$HOST" = "kevin-laptop" ]; then
