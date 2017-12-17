@@ -101,3 +101,5 @@ video/x-theora=mpv.desktop;
 x-scheme-handler/http=qutebrowser.desktop;
 x-scheme-handler/https=qutebrowser.desktop;
 x-scheme-handler/magnet=transmission-remote-add.desktop;
+x-scheme-handler/mailto=alot.desktop;
+x-scheme-handler/qute=qutebrowser.desktop;

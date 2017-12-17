@@ -101,9 +101,10 @@ if hash gpg-agent > /dev/null 2>&1; then
     fi
 fi
 
-# set default editor and pager
+# set default editor, pager, ...
 export EDITOR=vi
 export PAGER=less
+export BROWSER=qutebrowser
 
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"

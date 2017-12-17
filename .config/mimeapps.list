@@ -2,3 +2,4 @@
 application/pdf=zathura.desktop
 application/epub+zip=zathura.desktop
 video/x-m4v=mpv.desktop
+x-scheme-handler/mailto=alot.desktop
