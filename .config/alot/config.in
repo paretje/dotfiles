@@ -13,7 +13,7 @@ handle_mouse = True
 # honor_followup_to = True
 # input_timeout = 2.0
 mailinglists = support@senso2.me
-periodic_hook_frequency = 60
+# periodic_hook_frequency = 60
 prefer_plaintext = True
 # print_cmd = 
 quit_on_last_bclose = True
@@ -32,6 +32,8 @@ timestamp_format = "%b %d %H:%M"
     aliases = kevindeprey@online-urbanus.be, info@online-urbanus.be, vraagje@online-urbanus.be
     sendmail_command = /usr/bin/msmtp -a prive -t
     sent_box = maildir://$MAILDIR/prive/Sent
+    draft_box = maildir://$MAILDIR/prive/Drafts
+    gpg_key = A00FD8ECD1BC0694C8ED1C835473109364AD7E10
     sign_by_default = True
     encrypt_by_default = all
 
@@ -43,6 +45,7 @@ timestamp_format = "%b %d %H:%M"
     address = kevin.velghe@senso2.me
     sendmail_command = /usr/bin/msmtp -a senso2me -t
     sent_box = maildir://$MAILDIR/senso2me/Sent
+    draft_box = maildir://$MAILDIR/senso2me/Drafts
     # sign_by_default = True
     # encrypt_by_default = all
 
