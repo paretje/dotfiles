@@ -231,3 +231,4 @@ tags
 /.mypy_cache
 /.pip/src
 /.config/alot/config
+/.newsbeuter/queue
