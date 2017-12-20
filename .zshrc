@@ -134,6 +134,9 @@ bindkey -M vicmd '?' history-incremental-search-forward
 # Use similar word definition as vim
 WORDCHARS="_-."
 
+# Enable report time
+REPORTTIME=5
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
