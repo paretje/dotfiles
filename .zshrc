@@ -24,7 +24,7 @@ zplug "plugins/pip", from:oh-my-zsh
 test "$HOST" = "kevin-laptop" && zplug "wee-slack/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
-zplug "paretje/weechat-vimode", at:paretje, use:
+zplug "GermainZ/weechat-vimode", at:paretje, use:
 
 zplug "paretje/unisister", as:command, use:unisister
 zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
