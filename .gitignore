@@ -232,3 +232,4 @@ tags
 /.pip/src
 /.config/alot/config
 /.newsbeuter/queue
+/.gnupg/tofu.db
