@@ -570,6 +570,9 @@ au FileType typescript setlocal keywordprg=:TSDoc
 if has('nvim')
   au TermOpen * setlocal nospell
   au TermOpen * setlocal nobuflisted
+  au TermOpen * setlocal nonumber
+
+  au TermOpen *:git* startinsert
 endif
 
 " browser editor options
@@ -643,6 +646,9 @@ if has('nvim')
   au User ManOpen tmap <buffer> <C-K> <C-W>k
   au User ManOpen tmap <buffer> <C-L> <C-W>l
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
+  " TODO: move this to nvim-man
+  " TODO: use terminal to render formatting, but use nvim as pager
+  au User ManOpen startinsert
 else
   source $VIMRUNTIME/ftplugin/man.vim
   au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c
