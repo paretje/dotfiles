@@ -64,3 +64,35 @@ def getmails(ui):
     ui.notify("fetchinig email..")
     subprocess.call(['getmails', '--now'])
     ui.notify("done!")
+
+
+from alot.commands import Command, registerCommand
+
+
+@registerCommand('search', 'tagging',
+                 arguments=[
+                     (['tags'], {'help': 'space separated list of tags'})
+                     ],
+                 help='Reload all configuration files')
+class TaggingCommand(Command):
+
+    """Reload configuration."""
+
+    def __init__(self, tags=u''):
+        self.tagstring = tags
+
+    def apply(self, ui):
+        tagginglist = [t for t in self.tagstring.split(' ') if t]
+        tags = []
+        untags = []
+
+        for tag in tagginglist:
+            if tag[0] == '-':
+                untags.append(tag[1:])
+            else:
+                tags.append(tag[1:] if tag[0] == '+' else tag)
+
+        if tags:
+            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(tags), action='add', flush=True))
+        if untags:
+            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(untags), action='remove', flush=True))
