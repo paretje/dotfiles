@@ -29,7 +29,7 @@ timestamp_format = "%b %d %H:%M"
   [[prive]]
     realname = Kevin Velghe
     address = kevin@paretje.be
-    aliases = kevindeprey@online-urbanus.be, info@online-urbanus.be, vraagje@online-urbanus.be
+    aliases = kevindeprey@online-urbanus.be, info@online-urbanus.be, vraagje@online-urbanus.be, kevindeprey@Online-Urbanus.be
     sendmail_command = /usr/bin/msmtp -a prive -t
     sent_box = maildir://$MAILDIR/prive/Sent
     draft_box = maildir://$MAILDIR/prive/Drafts
