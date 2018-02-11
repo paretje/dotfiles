@@ -3,7 +3,7 @@ Host vps.paretje.be
 SSLType IMAPS
 SSLVersions TLSv1.2
 User kevin@paretje.be
-PassCmd "secret-tool lookup email kevin@paretje.be"
+PassCmd "pass show email/kevin@paretje.be"
 AuthMechs LOGIN
 
 IMAPStore prive-remote
@@ -26,7 +26,7 @@ Host vps.paretje.be
 SSLType IMAPS
 SSLVersions TLSv1.2
 User notes@online-urbanus.be
-PassCmd "secret-tool lookup email notes@online-urbanus.be"
+PassCmd "pass show email/notes@online-urbanus.be"
 AuthMechs LOGIN
 
 IMAPStore notes-remote
@@ -48,7 +48,7 @@ IMAPAccount senso2me
 Host imap.mailprotect.be
 SSLVersions TLSv1.2
 User kevin.velghe@senso2.me
-PassCmd "secret-tool lookup email kevin.velghe@senso2.me"
+PassCmd "pass show email/kevin.velghe@senso2.me"
 AuthMechs LOGIN
 
 IMAPStore senso2me-remote

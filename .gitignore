@@ -233,3 +233,4 @@ tags
 /.config/alot/config
 /.newsboat/queue
 /.gnupg/tofu.db
+/.password-store
