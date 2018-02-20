@@ -90,7 +90,6 @@ fi
 user-dirs-make
 
 # Start some daemons
-eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
 xscreensaver -no-splash &
 dunst &
 xclipman &
