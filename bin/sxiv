@@ -1,5 +1,6 @@
-#!/bin/sh
-if [ $# -eq 1 ]; then
+#!/bin/bash -e
+echo "$@" >> $HOME/sxiv.log
+if [[ $# -eq 1 && "$1" =~ .jpe?g|png$ ]]; then
 	tmp=$(mktemp)
 	dir="$1"
 	file=""
