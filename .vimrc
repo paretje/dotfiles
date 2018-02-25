@@ -625,6 +625,9 @@ nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+nmap gxx <Plug>(neoterm-repl-send-line)
 nnoremap <silent> gf :call OpenFile()<CR>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
