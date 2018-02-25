@@ -66,6 +66,10 @@ def getmails(ui):
     ui.notify("done!")
 
 
+def exit():
+    subprocess.call(['notmuch-backup'])
+
+
 from alot.commands import Command, registerCommand
 
 
