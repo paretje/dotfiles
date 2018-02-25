@@ -5,3 +5,4 @@ tags
 *.pyc
 *.log
 /.vim/spell
+*.mdb
