@@ -131,7 +131,7 @@ syntax on
 " Line numbers
 set number
 " Spelling checker
-set spell spelllang=en
+set spelllang=en
 " Auto indent
 set autoindent
 filetype indent on
@@ -446,9 +446,9 @@ let g:gutentags_file_list_command = {
 \ }
 
 " Bulk options
-au FileType haskell,prolog,matlab,tmux  setlocal nospell
-au FileType dotooagenda,calendar,qf,man setlocal nospell
-au FileType vim-plug,git                setlocal nospell
+au FileType text,mail,dotoo*,markdown   setlocal spell
+au FileType ledger,dotoo*,bbcode,vim    setlocal spell
+au FileType python,c,cpp,gitcommit      setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
 au FileType dotoo*,ledger               setlocal spelllang=nl,en
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
