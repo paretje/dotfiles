@@ -446,9 +446,9 @@ let g:gutentags_file_list_command = {
 \ }
 
 " Bulk options
-au FileType text,mail,dotoo*,markdown   setlocal spell
-au FileType ledger,dotoo*,bbcode,vim    setlocal spell
-au FileType python,c,cpp,gitcommit      setlocal spell
+au FileType text,mail,dotoo,markdown    setlocal spell
+au FileType ledger,bbcode,vim,python    setlocal spell
+au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
 au FileType dotoo*,ledger               setlocal spelllang=nl,en
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
@@ -534,6 +534,7 @@ au BufRead ~/.xsession set filetype=sh
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
+au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
