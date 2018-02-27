@@ -44,7 +44,7 @@ Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim', 'for': 'muttator'}
 Plug 'vimperator/vimperator.vim', {'for': 'vimperator'}
-Plug 'ciaranm/securemodelines'
+Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
 Plug 'airblade/vim-gitgutter'
