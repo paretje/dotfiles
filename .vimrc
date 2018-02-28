@@ -47,7 +47,7 @@ Plug 'vimperator/vimperator.vim', {'for': 'vimperator'}
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192e08'}
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'neomake/neomake'
