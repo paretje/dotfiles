@@ -1,10 +1,14 @@
-import os
+#!/usr/bin.env python3
 import sys
+
+# pylint: disable=C0111
+c = c  # noqa: F821 pylint: disable=E0602,C0103
+config = config  # noqa: F821 pylint: disable=E0602,C0103
+
+config.load_autoconfig()
 
 if '--backend' in sys.argv:
     c.backend = sys.argv[sys.argv.index('--backend')+1]
-elif os.environ['HOST'] == 'kevin-laptop':
-    c.backend = "webkit"
 else:
     c.backend = "webengine"
 
@@ -30,7 +34,7 @@ c.tabs.last_close = 'blank'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.appcache = False
 c.content.cache.size = 52428800
-c.content.javascript.enabled = c.backend != 'webkit'
+c.content.javascript.enabled = False
 c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.store = False
@@ -84,7 +88,7 @@ config.bind('gh', 'home')
 config.bind('s', 'stop')
 config.unbind(';i')
 config.bind(';iw', 'spawn --detach iceweasel {url}')
-config.bind(';js', 'domain javascript!')
+config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabled')
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv {url}')
 config.bind(';a', 'spawn --userscript play_mpc')

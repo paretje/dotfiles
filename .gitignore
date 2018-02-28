@@ -131,7 +131,7 @@ tags
 /.local/share/qutebrowser/state
 /.local/share/qutebrowser/history.sqlite*
 /.local/share/qutebrowser/blocked-hosts
-/.local/share/qutebrowser/domains.yml
+/.config/qutebrowser/autoconfig.yml
 /.config/qutebrowser/bookmarks
 /.config/qutebrowser/quickmarks
 /.caff/keys
