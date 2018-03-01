@@ -1,7 +1,13 @@
 #!/bin/sh
-printf "\033k%s\033\\" 'mutt'
+if [ -n "$TMUX" ]; then
+	printf "\033k%s\033\\" 'mutt'
+fi
 
-/usr/bin/mutt "$@"
+if [ -x /usr/bin/neomutt ]; then
+	/usr/bin/neomutt "$@"
+else
+	/usr/bin/mutt "$@"
+fi
 
 if [ -n "$TMUX" ]; then
 	tmux set-window-option -u automatic-rename

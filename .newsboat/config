@@ -41,7 +41,7 @@ prepopulate-query-feeds yes
 
 text-width 72
 
-include "~/.newsbeuter/filter"
+include "~/.newsboat/filter"
 
 macro , set browser "curl --compressed --location --silent %u | readability -p article /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F" ; open-in-browser ; set browser "sensible-browser"
 macro o set browser "curl --compressed --location --silent %u | readability -p article /dev/stdin | w3m-col -T text/html" ; open-in-browser ; set browser "sensible-browser"

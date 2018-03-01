@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Alot
+Comment=Compose a mail using alot
+Exec=urxvtcd -e alot compose --spawn False %u
+# Terminal=true
+Type=Application
+Categories=Office;Network;Email
+MimeType=x-scheme-handler/mailto;

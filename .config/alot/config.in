@@ -1,0 +1,152 @@
+theme = mutt
+
+attachment_prefix = ~/downloads
+# auto_replyto_mailinglist = True
+# bounce_force_address = True
+# bounce_force_realname = True
+editor_in_thread = True
+editor_spawn = True
+# followup_to = True
+# forward_force_address = True
+# forward_force_realname = True
+handle_mouse = True
+# honor_followup_to = True
+# input_timeout = 2.0
+mailinglists = support@senso2.me
+# periodic_hook_frequency = 60
+prefer_plaintext = True
+# print_cmd = 
+quit_on_last_bclose = True
+# reply_force_address = True
+# reply_force_realname = True
+# thread_focus_linewise = False
+# thread_indent_replies = 1
+thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
+timestamp_format = "%b %d %H:%M"
+
+
+[accounts]
+  [[prive]]
+    realname = Kevin Velghe
+    address = kevin@paretje.be
+    aliases = kevindeprey@online-urbanus.be, info@online-urbanus.be, vraagje@online-urbanus.be, kevindeprey@Online-Urbanus.be
+    sendmail_command = /usr/bin/msmtp -a prive -t
+    sent_box = maildir://$MAILDIR/prive/Sent
+    draft_box = maildir://$MAILDIR/prive/Drafts
+    gpg_key = A00FD8ECD1BC0694C8ED1C835473109364AD7E10
+    sign_by_default = True
+    encrypt_by_default = all
+
+    [[[abook]]]
+        type = abook
+
+  [[senso2me]]
+    realname = Kevin Velghe
+    address = kevin.velghe@senso2.me
+    sendmail_command = /usr/bin/msmtp -a senso2me -t
+    sent_box = maildir://$MAILDIR/senso2me/Sent
+    draft_box = maildir://$MAILDIR/senso2me/Drafts
+    # sign_by_default = True
+    # encrypt_by_default = all
+
+    [[[abook]]]
+        type = abook
+
+
+[bindings]
+  up = move up
+  down = move down
+  page up = move page up
+  page down = move page down
+  mouse press 4 = move up
+  mouse press 5 = move down
+  j = move down
+  k = move up
+  'g g' = move first
+  G = move last
+  ' ' = move page down
+  'ctrl d' = move halfpage down
+  'ctrl u' = move halfpage up
+  d = move halfpage down
+  u = move halfpage up
+  @ = refresh
+  ? = help bindings
+  o = search tag:inbox AND NOT tag:killed
+  'g T' = bprevious
+  U = search tag:unread
+  'g t' = bnext
+  \ = prompt 'search '
+  q = bclose
+  $ = flush
+  c = compose
+  s = prompt 'search '
+  'ctrl n' = bufferlist
+  ':' = prompt
+  . = repeat
+  
+  [[bufferlist]]
+    x = close
+    enter = open
+  
+  [[search]]
+    enter = select ; move next tag:unread ; untag unread,spamy
+    I = untag inbox,spamy,unread
+    S = tag spam; untag inbox,spamy 
+    # & = toggletags killed
+    # ! = toggletags flagged
+    'm r' = untag unread,spamy
+    s = prompt 'search '
+    l = retagprompt
+    O = refineprompt
+    | = refineprompt
+    'm d' = untag inbox,todo
+    'm t' = tag todo; untag unread,spamy
+    'ctrl f' = call hooks.getmails(ui)
+  
+  [[envelope]]
+    a = prompt 'attach ~/'
+    y = send
+    P = save
+    s = 'refine Subject'
+    f = prompt 'set From '
+    t = 'refine To'
+    b = 'refine Bcc'
+    c = 'refine Cc'
+    S = togglesign
+    enter = edit
+    'g f' = togglesource
+  
+  [[taglist]]
+    enter = select
+  
+  [[thread]]
+    enter = select
+    C = fold *
+    E = unfold *
+    c = fold
+    e = unfold
+    < = fold
+    > = unfold
+    [ = indent -
+    ] = indent +
+    # 'g f' = togglesource
+    h = toggleheaders
+    P = print --all --separately --add_tags
+    S = save --all
+    r = reply --all
+    f = forward
+    p = print --add_tags
+    n = editnew
+    b = bounce
+    s = save
+    R = reply
+    | = prompt 'pipeto '
+    'g j' = move next sibling
+    'g k' = move previous sibling
+    'g h' = move parent
+    'g l' = move first reply
+    ' ' = move next
+    I = untag inbox
+    'g f' = pipeto urlscan 2>/dev/null
+    L = reply --list True
+    tab = select

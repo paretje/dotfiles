@@ -29,9 +29,9 @@ Plug 'paretje/vim-dotoo', {'branch': 'merged'}
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
-Plug 'ciaranm/securemodelines'
+Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192e08'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -48,6 +48,7 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
+Plug 'vim-scripts/a.vim'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -81,7 +82,7 @@ syntax on
 " Line numbers
 set number
 " Spelling checker
-set spell spelllang=en
+set spelllang=en
 " Auto indent
 set autoindent
 filetype indent on
@@ -286,11 +287,6 @@ let g:neomake_sh_bashate_maker = {
 \ }
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
-let g:neomake_cpp_args = ['-std=c++11', '-I', '.', '-I', 'src']
-let g:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra']
-let g:neomake_cpp_clangcheck_args = ['%:p', '--']
-let g:neomake_cpp_clangtidy_args = ['%:p', '--']
-
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 
@@ -318,6 +314,8 @@ let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']
 let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
+
+let g:deoplete#sources#clang#autofill_neomake = 1
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -357,6 +355,7 @@ let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
 let g:neoterm_autoscroll = 1
 let g:noeterm_fixedsize = 1
+let g:neoterm_repl_python = 'ipython3'
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
@@ -397,9 +396,9 @@ let g:gutentags_file_list_command = {
 \ }
 
 " Bulk options
-au FileType haskell,prolog,matlab,tmux  setlocal nospell
-au FileType dotooagenda,calendar,qf,man setlocal nospell
-au FileType vim-plug,git                setlocal nospell
+au FileType text,mail,dotoo,markdown    setlocal spell
+au FileType ledger,bbcode,vim,python    setlocal spell
+au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
 au FileType dotoo*,ledger               setlocal spelllang=nl,en
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
@@ -452,7 +451,8 @@ au BufRead *.atl setlocal commentstring=--%s
 " mail ft options
 au FileType mail      setlocal formatoptions+=naw
 au FileType mail      setlocal formatlistpat=^\s*\d\+[\]:.)}\t\ ]\s*\\\|^[A-Z][a-zA-Z-]*:\s*
-au BufRead /tmp/mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
+au BufRead /tmp/*mutt* 1substitute/<\(kevindeprey\|info\|vraagje\)@online-urbanus.be>$/<kevin@paretje.be>/ei
+au BufRead /tmp/neomutt* setfiletype mail
 
 " markdown ft options
 au FileType markdown call AutoMake()
@@ -484,6 +484,7 @@ au BufRead ~/.xsession set filetype=sh
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> u <C-U> | endif
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c | endif
+au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
@@ -491,9 +492,6 @@ au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cwo
 if !has('nvim')
   au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
 endif
-au FileType cpp   let b:neomake_cpp_clang_args = g:neomake_cpp_clang_args + g:neomake_cpp_args
-au FileType cpp   let b:neomake_cpp_clangcheck_args = g:neomake_cpp_clangcheck_args + g:neomake_cpp_args
-au FileType cpp   let b:neomake_cpp_clangtidy_args = g:neomake_cpp_clangtidy_args + g:neomake_cpp_args
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -524,6 +522,9 @@ au FileType typescript setlocal keywordprg=:TSDoc
 if has('nvim')
   au TermOpen * setlocal nospell
   au TermOpen * setlocal nobuflisted
+  au TermOpen * setlocal nonumber
+
+  au TermOpen *:git* startinsert
 endif
 
 " browser editor options
@@ -575,6 +576,9 @@ nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+nmap gxx <Plug>(neoterm-repl-send-line)
 nnoremap <silent> gf :call OpenFile()<CR>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
@@ -586,7 +590,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
-nnoremap <Leader>pt :CtrlPTag<CR>
+nnoremap <Leader>pt :CtrlPBufTag<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -597,6 +601,9 @@ if has('nvim')
   au User ManOpen tmap <buffer> <C-K> <C-W>k
   au User ManOpen tmap <buffer> <C-L> <C-W>l
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
+  " TODO: move this to nvim-man
+  " TODO: use terminal to render formatting, but use nvim as pager
+  au User ManOpen startinsert
 else
   source $VIMRUNTIME/ftplugin/man.vim
   au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c

@@ -10,23 +10,17 @@ if [ "$HOST" != "kevin-laptop" ] && [ "$HOST" != "parsley" ]; then
 fi
 
 sync() {
-	chronic timeout 30s mbsync "$@"
+	chronic timeout 30s mbsync "$@" || notify-send "Failed to fetch mail"
 }
 
 fetch_mails() {
-	case $HOST in
-		"kevin-laptop")
-			sync prive notes
-			;;
-		"parsley")
-			sync senso2me
-			;;
-	esac
+	sync $MAIL_ACCOUNTS
 	chronic notmuch new
 
 	count=$(notmuch count tag:unread and tag:inbox)
 	if [ "$count" -ne 0 ]; then
 		notify-send "You've got mail" "$count unread mail(s)"
+		pkill -u "$USER" -USR1 alot
 		beep-mail
 	fi
 }

@@ -30,18 +30,12 @@ qutebrowser_args=()
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	ipc_files=(/tmp/runtime-kevin/qutebrowser/*)
 	if [ ${#ipc_files[@]} -eq 0 ]; then
-		mkdir -p "$HOME/downloads"
 		touch "$HOME/.local/share/qutebrowser/netrc"
-
 		clean_history
 	fi
 
-	if [ "$HOST" != "kevin-laptop" ]; then
-		qutebrowser_args+=(--backend webengine)
-		if [ "$HOST" = "parsley" ]; then
-			qutebrowser_args+=(--enable-webengine-inspector)
-		fi
-		qutebrowser_args+=(':set --temp content allow-javascript true')
+	if [ "$HOST" = "parsley" ]; then
+		qutebrowser_args+=(--enable-webengine-inspector)
 	fi
 
 	if ! 3gusage; then

@@ -17,7 +17,7 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 zplug "zsh-users/zsh-completions"
 
 zplug "paretje/unisister", as:command, use:unisister
-zplug "paretje/qutebrowser", as:command, use:".venv/bin/qutebrowser", at:paretje, hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
+zplug "qutebrowser/qutebrowser", as:command, use:".venv/bin/qutebrowser", hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
@@ -121,6 +121,9 @@ bindkey -M vicmd '?' history-incremental-search-forward
 
 # Use similar word definition as vim
 WORDCHARS="_-."
+
+# Enable report time
+REPORTTIME=5
 
 # Set up the prompt
 autoload -Uz promptinit

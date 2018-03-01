@@ -1,14 +1,23 @@
-import os
+#!/usr/bin.env python3
+import sys
 
-if os.environ['HOST'] == 'kevin-laptop':
-    c.backend = "webkit"
+# pylint: disable=C0111
+c = c  # noqa: F821 pylint: disable=E0602,C0103
+config = config  # noqa: F821 pylint: disable=E0602,C0103
+
+config.load_autoconfig()
+
+if '--backend' in sys.argv:
+    c.backend = sys.argv[sys.argv.index('--backend')+1]
 else:
     c.backend = "webengine"
+
+# c.args.enable_webengine_inspector = True
 
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
-c.editor.command = ["urxvt", "-e", "nvim -b -c 'set noeol' '{}'"]
+c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
 c.content.developer_extras = True
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
@@ -25,7 +34,7 @@ c.tabs.last_close = 'blank'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.appcache = False
 c.content.cache.size = 52428800
-c.content.javascript.enabled = c.backend != 'webkit'
+c.content.javascript.enabled = False
 c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.store = False
@@ -36,6 +45,17 @@ c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b'
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
 c.hints.find_implementation = 'javascript'
 c.fonts.web.size.default = 15
+c.fonts.completion.entry = '8pt monospace'
+c.fonts.completion.category = 'bold 8pt monospace'
+c.fonts.debug_console = '8pt monospace'
+c.fonts.downloads = '8pt monospace'
+c.fonts.keyhint = '8pt monospace'  # TODO: larger?
+c.fonts.messages.error = '8pt monospace'
+c.fonts.messages.info = '8pt monospace'
+c.fonts.messages.warning = '8pt monospace'
+c.fonts.prompts = '8pt sans-serif'
+c.fonts.statusbar = '8pt monospace'
+c.fonts.tabs = '8pt monospace'
 
 c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
@@ -68,7 +88,7 @@ config.bind('gh', 'home')
 config.bind('s', 'stop')
 config.unbind(';i')
 config.bind(';iw', 'spawn --detach iceweasel {url}')
-config.bind(';js', 'domain javascript!')
+config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabled')
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv {url}')
 config.bind(';a', 'spawn --userscript play_mpc')
@@ -83,6 +103,7 @@ config.bind('gi', 'hint inputs ;; fake-key -g a')
 config.bind(';ip', 'spawn --userscript password_fill_insert')
 config.bind('<Ctrl-N>', 'set-cmd-text -s :buffer')
 config.bind(',,', 'spawn --userscript usermode')
+config.unbind('<Ctrl-W>')
 config.bind('<Ctrl-Shift-O>', 'open-editor', mode='insert')
 config.bind('<Ctrl-Shift-A>', 'fake-key <Ctrl-A>', mode='insert')
 config.bind('<Ctrl-A>', 'fake-key <Home>', mode='insert')

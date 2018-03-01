@@ -56,7 +56,7 @@ ao=pulse
 #softvol=no
 
 # Enable dynamic range compression
-# af=drc
+af=acompressor
 
 
 ##################
@@ -94,7 +94,7 @@ ao=pulse
 # video output, otherwise no hardware decoding will be used.
 #hwdec = auto
 
-deinterlace=auto
+deinterlace=yes
 
 save-position-on-quit
 

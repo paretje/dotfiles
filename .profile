@@ -101,9 +101,10 @@ if hash gpg-agent > /dev/null 2>&1; then
     fi
 fi
 
-# set default editor and pager
+# set default editor, pager, ...
 export EDITOR=vi
 export PAGER=less
+export BROWSER=qutebrowser
 
 # set default ledger file
 export LEDGER_FILE="$HOME/vcs/personal/accounting/balance.journal"
@@ -141,6 +142,13 @@ export LESS="-FRXi"
 
 # default prefix in Authorize header using httpie + httpie-jwt-aut
 export JWT_AUTH_PREFIX='JWT'
+
+# define mail accounts used on different devices
+if [ "$HOST" = "parsley" ]; then
+    export MAIL_ACCOUNTS="senso2me"
+elif [ "$HOST" = "kevin-laptop" ]; then
+    export MAIL_ACCOUNTS="prive notes"
+fi
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then

@@ -1,1 +1,1 @@
-../../.zplug/repos/paretje/weechat-vimode/vimode.py
+../../.zplug/repos/GermainZ/weechat-vimode/vimode.py

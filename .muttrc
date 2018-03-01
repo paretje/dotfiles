@@ -231,3 +231,9 @@ macro index,pager zb '^T<tag-thread><tag-prefix>mb'
 
 # jump to next message after tagging
 macro index t '<tag-entry><next-undeleted>'
+
+macro index \CR '<tag-pattern>~N<return>mr^T'
+
+# some hack for support mails
+subscribe support@senso2.me
+set ignore_list_reply_to=yes

@@ -129,9 +129,9 @@ tags
 /.local/share/qutebrowser/cmd-history
 /.local/share/qutebrowser/cookies
 /.local/share/qutebrowser/state
-/.local/share/qutebrowser/history.sqlite
+/.local/share/qutebrowser/history.sqlite*
 /.local/share/qutebrowser/blocked-hosts
-/.local/share/qutebrowser/domains.yml
+/.config/qutebrowser/autoconfig.yml
 /.config/qutebrowser/bookmarks
 /.config/qutebrowser/quickmarks
 /.caff/keys
@@ -158,11 +158,11 @@ tags
 /.aspell.nl.prepl
 /.aspell.nl.pws
 /.vim/spell
-/.newsbeuter/cache.db
-/.newsbeuter/history.cmdline
-/.newsbeuter/history.search
-/.newsbeuter/urls
-/.newsbeuter/cache.db.lock
+/.newsboat/cache.db
+/.newsboat/history.cmdline
+/.newsboat/history.search
+/.newsboat/urls
+/.newsboat/cache.db.lock
 /.config/qutebrowser/qsettings/QtProject.conf
 /.weechat/slack.cache
 /.unipeptrc
@@ -178,7 +178,7 @@ tags
 /documents
 /.eteks/sweethome3d
 /.bundle/cache
-/.newsbeuter/filter
+/.newsboat/filter
 /.local/share/qutebrowser/offline-storage
 /.upnprc
 /.xmonad/history
@@ -229,3 +229,8 @@ tags
 /.config/moserial.conf
 /.yarnrc
 /.mypy_cache
+/.pip/src
+/.config/alot/config
+/.newsboat/queue
+/.gnupg/tofu.db
+/.password-store

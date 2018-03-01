@@ -28,13 +28,8 @@ else
 		shift
 	done
 
-	volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
-	chronic amixer set Master 40%
-
 	for i in $(seq $rep); do
 		play -n synth 0.$mili tri $freq 2>&-
 		sleep 0.$delay
 	done
-
-	chronic amixer set Master $volume
 fi
