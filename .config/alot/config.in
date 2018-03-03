@@ -89,7 +89,7 @@ timestamp_format = "%b %d %H:%M"
     enter = open
   
   [[search]]
-    enter = select ; move next tag:unread ; untag unread,spamy
+    enter = select ; move down
     I = untag inbox,spamy,unread
     S = tag spam; untag inbox,spamy 
     # & = toggletags killed
