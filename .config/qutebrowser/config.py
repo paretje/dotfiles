@@ -56,6 +56,7 @@ c.fonts.messages.warning = '8pt monospace'
 c.fonts.prompts = '8pt sans-serif'
 c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
+c.spellcheck.languages = ['en-GB']
 
 c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
