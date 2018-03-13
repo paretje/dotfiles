@@ -26,13 +26,11 @@ zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
 zplug "GermainZ/weechat-vimode", at:paretje, use:
 
-zplug "paretje/unisister", as:command, use:unisister
-zplug "qutebrowser/qutebrowser", as:command, use:".venv/bin/qutebrowser", hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
+zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
 zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key Control_R+shift+q"
 
-zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
-
+zplug "paretje/unisister", as:command, use:unisister
 # TODO: nothing installed without xmlto
 # TODO: replace with own scripts, as it doesn't support appending
 zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man/man1'"
