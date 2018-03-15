@@ -24,7 +24,7 @@ zplug "plugins/pip", from:oh-my-zsh
 test "$HOST" = "kevin-laptop" && zplug "wee-slack/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
-zplug "GermainZ/weechat-vimode", at:paretje, use:
+zplug "paretje/weechat-vimode", at:paretje, use:
 
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
 
