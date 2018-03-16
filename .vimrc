@@ -89,22 +89,25 @@ if has('python') || has('python3')
   Plug 'honza/vim-snippets'
 endif
 
-" TODO: add vim8 support
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'radenling/vim-dispatch-neovim'
   Plug 'paretje/nvim-man'
-  Plug 'zchee/deoplete-jedi', {'for': 'python'}
   Plug 'kassio/neoterm'
-  Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
-  Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-  Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}  " the completions of this plugin don't work properly (they aren't triggered correctly)
-  Plug 'Shougo/neco-vim', {'for': 'vim'}
-  Plug 'frbor/deoplete-abook', {'for': 'mail'}
-  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}
+  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
 else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'congma/vim-fakeclip'
 endif
+
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
+Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}  " the completions of this plugin don't work properly (they aren't triggered correctly)
+Plug 'Shougo/neco-vim', {'for': 'vim'}
+Plug 'frbor/deoplete-abook', {'for': 'mail'}
 
 call plug#end()
 
