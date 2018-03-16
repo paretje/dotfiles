@@ -93,7 +93,7 @@ config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabl
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv {url}')
 config.bind(';a', 'spawn --userscript play_mpc')
-config.bind('gs', 'spawn --userscript qutebrowser_viewsource')
+config.bind('gs', 'view-source --edit')
 config.bind('gf', 'spawn --userscript openfeeds')
 config.unbind(';o')
 config.bind(';org', 'spawn --verbose --userscript org_add')
