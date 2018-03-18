@@ -94,7 +94,7 @@ xscreensaver -no-splash &
 dunst &
 xclipman &
 syndaemon -d -t -R
-getmails --daemon &
+maildaemon &
 test "$HOST" = "kevin-laptop" && ! pgrep unisister > /dev/null && unisister --no-gui &
 test -x "$GOPATH/bin/matterircd" && sh -c 'while true; do matterircd -bind "127.0.0.1:6666"; sleep 5s; done' &
 

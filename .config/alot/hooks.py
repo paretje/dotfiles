@@ -1,4 +1,5 @@
 import alot
+import os
 import re
 import urllib2
 import subprocess
@@ -86,8 +87,7 @@ def post_search_select(ui, cmd, dbm):
 # command to manually fetch mails
 def getmails(ui):
     ui.notify("fetchinig email..")
-    subprocess.call(['getmails', '--now'])
-    ui.notify("done!")
+    subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1', 'maildaemon'])
 
 
 def exit():

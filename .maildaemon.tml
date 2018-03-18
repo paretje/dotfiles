@@ -1,0 +1,19 @@
+[accounts]
+    [accounts.prive]
+        host =  "vps.paretje.be"
+        username =  "kevin@paretje.be"
+        password_cmd = "pass show email/kevin@paretje.be"
+        sync_interval = 300
+
+    [accounts.notes]
+        host = "vps.paretje.be"
+        username = "notes@online-urbanus.be"
+        password_cmd = "pass show email/notes@online-urbanus.be"
+        sync_interval = 900
+        imap_idle = false
+
+    [accounts.senso2me]
+        host =  "imap.mailprotect.be"
+        username =  "kevin.velghe@senso2.me"
+        password_cmd = "pass show email/kevin.velghe@senso2.me"
+        sync_interval = 300
