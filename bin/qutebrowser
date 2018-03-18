@@ -27,7 +27,7 @@ case "$1" in
 esac
 
 qutebrowser_args=()
-ipc_files=(/tmp/runtime-kevin/qutebrowser/*)
+ipc_files=(/tmp/runtime-$USER/qutebrowser/*)
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	if [ ${#ipc_files[@]} -eq 0 ]; then
 		touch "$HOME/.local/share/qutebrowser/netrc"
