@@ -16,11 +16,12 @@ from imapclient import IMAPClient
 from email.utils import parseaddr
 
 
-SYNCED_EVENT = threading.Event()
+NOTIFICATION_EVENT = threading.Event()
 
 
 class IMAPAccount():
-    def __init__(self, account_name, username, password_cmd, host, port=None, folder='INBOX', sync_interval=5*60, imap_idle=True):
+    def __init__(self, account_name, username, password_cmd, host, port=None,
+                 folder='INBOX', sync_interval=5*60, imap_idle=True):
         self.name = account_name
         self.username = username
         self.password_cmd = password_cmd
@@ -34,15 +35,19 @@ class IMAPAccount():
 
     @property
     def password(self):
-        return subprocess.check_output(self.password_cmd, shell=True).decode('utf8').strip()
+        return subprocess.check_output(self.password_cmd, shell=True) \
+                         .decode('utf8').strip()
 
     def _sync(self):
+        logging.info('start syncing %s', account.name)
         subprocess.check_call(['mbsync', self.name])
         subprocess.check_call(['notmuch', "new"])
-        SYNCED_EVENT.set()
+        logging.debug('finished syncing %s', account.name)
+        NOTIFICATION_EVENT.set()
 
     def sync(self):
         if self.timer and not self.timer.ident:
+            logging.debug('cancel timer')
             self.timer.cancel()
 
         try:
@@ -56,7 +61,8 @@ class IMAPAccount():
     def idle_client(self):
         while True:
             try:
-                client = IMAPClient(self.host, self.port, use_uid=True, ssl=True)
+                client = IMAPClient(self.host, self.port, use_uid=True,
+                                    ssl=True)
                 client.login(self.username, self.password)
                 try:
                     client.select_folder(self.folder)
@@ -119,6 +125,7 @@ class NewMailNotification(threading.Thread):
                         yield message
 
     def show_notification(self):
+        logging.debug("prepare notification")
         summary = '\n'.join('{tags}{subject} ({sender}, {date})'.format(
                     subject=message.get_header('subject'),
                     sender=pretty_sender(message.get_header('from')),
@@ -127,14 +134,18 @@ class NewMailNotification(threading.Thread):
                 for message in self.get_new_messages())
 
         if summary:
+            logging.debug("show notification and refresh alot")
             notify2.Notification("You've got mail", summary).show()
-            subprocess.check_call(['pkill', '-u', os.environ['USER'], '-USR1', 'alot'])
+            subprocess.check_call(['pkill', '-u', os.environ['USER'], '-USR1',
+                                   'alot'])
 
     def run(self):
+        notify2.init('maildaemon')
         while True:
-            SYNCED_EVENT.wait()
+            NOTIFICATION_EVENT.wait()
+            logging.debug("notification event")
             self.show_notification()
-            SYNCED_EVENT.clear()
+            NOTIFICATION_EVENT.clear()
 
 
 if __name__ == "__main__":
