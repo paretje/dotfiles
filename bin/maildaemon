@@ -136,15 +136,18 @@ class NewMailNotification(threading.Thread):
         if summary:
             logging.debug("show notification and refresh alot")
             notify2.Notification("You've got mail", summary).show()
-            subprocess.check_call(['pkill', '-u', os.environ['USER'], '-USR1',
-                                   'alot'])
+            subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
+                             'alot'])
 
     def run(self):
         notify2.init('maildaemon')
         while True:
             NOTIFICATION_EVENT.wait()
             logging.debug("notification event")
-            self.show_notification()
+            try:
+                self.show_notification()
+            except Exception:
+                logging.error("couldn't show notification")
             NOTIFICATION_EVENT.clear()
 
 
