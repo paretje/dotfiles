@@ -39,10 +39,10 @@ class IMAPAccount():
                          .decode('utf8').strip()
 
     def _sync(self):
-        logging.info('start syncing %s', account.name)
+        logging.info('start syncing %s', self.name)
         subprocess.check_call(['mbsync', self.name])
         subprocess.check_call(['notmuch', "new"])
-        logging.debug('finished syncing %s', account.name)
+        logging.debug('finished syncing %s', self.name)
         NOTIFICATION_EVENT.set()
 
     def sync(self):
@@ -53,7 +53,7 @@ class IMAPAccount():
         try:
             self._sync()
         except subprocess.CalledProcessError:
-            logging.error("couldn't sync %s", account.name)
+            logging.error("couldn't sync %s", self.name)
 
         self.timer = threading.Timer(self.sync_interval, self.sync)
         self.timer.start()
@@ -84,10 +84,10 @@ class IMAPAccount():
 
     def start(self):
         if self.imap_idle:
-            idle_thread = threading.Thread(target=account.idle_client)
+            idle_thread = threading.Thread(target=self.idle_client)
             idle_thread.start()
 
-        timer_thread = threading.Thread(target=account.sync)
+        timer_thread = threading.Thread(target=self.sync)
         timer_thread.start()
 
 
