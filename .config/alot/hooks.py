@@ -17,7 +17,9 @@ def _get_threadlines(threadlist):
 
 
 def _save_focus(buf):
-    buf.focused_thread = buf.get_selected_thread().get_thread_id()  # save focus
+    buf.focused_thread = buf.get_selected_thread()
+    if buf.focused_thread:
+        buf.focused_thread = buf.focused_thread.get_thread_id()
 
 
 def _restore_focus(buf):
