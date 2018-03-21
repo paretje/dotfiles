@@ -83,6 +83,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'vim-scripts/a.vim'
+Plug 'cespare/vim-toml', {'for': 'toml'}
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
