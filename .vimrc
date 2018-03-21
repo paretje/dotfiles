@@ -107,7 +107,8 @@ Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
 Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}  " the completions of this plugin don't work properly (they aren't triggered correctly)
 Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'frbor/deoplete-abook', {'for': 'mail'}
+Plug 'fszymanski/deoplete-abook', {'for': 'mail'}
+Plug 'paretje/deoplete-notmuch', {'for': 'mail'}
 
 call plug#end()
 
