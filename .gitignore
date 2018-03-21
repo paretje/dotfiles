@@ -234,3 +234,6 @@ tags
 /.newsboat/queue
 /.gnupg/tofu.db
 /.password-store
+/.caff/gnupghome/S.*
+/.caff/gnupghome/.gpg-v21-migrated
+/.caff/gnupghome/tofu.db
