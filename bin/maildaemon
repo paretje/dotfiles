@@ -152,8 +152,10 @@ class NewMailNotification(threading.Thread):
 
 
 if __name__ == "__main__":
-    config = toml.load(os.path.expanduser('~/.maildaemon.tml'))
+    config = toml.load(os.path.expanduser('~/.maildaemon.toml'))
     enabled_accounts = os.environ.get('MAIL_ACCOUNTS', '').split(' ')
+    import sys
+    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
     notification_thread = NewMailNotification()
     notification_thread.start()
