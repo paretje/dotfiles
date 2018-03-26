@@ -1,2 +1,0 @@
-#!/bin/sh
-exec script --flush --quiet --return --command "/usr/bin/make $*" /dev/null 2>&1 | GREP_COLORS='mt=33' egrep --color=always '(^|^make: |^[[:print:]]+:[0-9]+: )'
