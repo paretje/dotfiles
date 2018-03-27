@@ -9,8 +9,9 @@ from selenium.common.exceptions import TimeoutException
 
 
 def get_auth_cookie(domain, login, password):
-    # TODO: try phantomjs
-    driver = webdriver.Chrome()
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.set_headless()
+    driver = webdriver.Chrome(chrome_options=chrome_options)
 
     driver.get("https://{}/login".format(domain))
     WebDriverWait(driver, 10).until(EC.title_contains("GitLab"))
