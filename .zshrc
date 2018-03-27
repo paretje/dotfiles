@@ -30,7 +30,6 @@ zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext &&
 
 zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key Control_R+shift+q"
 
-zplug "paretje/unisister", as:command, use:unisister
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
 
 zplug load
