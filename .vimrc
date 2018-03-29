@@ -84,6 +84,9 @@ Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'vim-scripts/a.vim'
 Plug 'cespare/vim-toml', {'for': 'toml'}
+if executable('cmake')
+  Plug 'nixprime/cpsm', {'do': './install.sh'}
+endif
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -251,7 +254,11 @@ endif
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
+  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
