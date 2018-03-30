@@ -82,7 +82,6 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
-Plug 'vim-scripts/a.vim'
 Plug 'cespare/vim-toml', {'for': 'toml'}
 
 if executable('cmake')
