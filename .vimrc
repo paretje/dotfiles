@@ -84,6 +84,7 @@ Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'vim-scripts/a.vim'
 Plug 'cespare/vim-toml', {'for': 'toml'}
+
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
 endif
@@ -170,7 +171,7 @@ set commentstring=#%s
 " Disable unloading buffer when abandoned, as needed by vim-dotoo
 set hidden
 " Return to previous position in file when when opening
-au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line('$') | exe "normal! g'\"" | endif
 " Set mapleader
 let g:mapleader = ';'
 " Start searching while typing pattern
@@ -208,7 +209,7 @@ set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 " Close tab when quickfix is only window
-au BufEnter * if (winnr("$") == 1 && &filetype ==# 'qf') | quit | endif
+au BufEnter * if (winnr('$') == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
 " Automatically close preview window
@@ -303,7 +304,7 @@ let g:rubycomplete_use_bundler = 1
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
+au BufEnter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | quit | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
@@ -488,7 +489,7 @@ au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('ch
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test:lib/*"
+au FileType java let $CLASSPATH='/usr/share/java/junit4.jar:src:test:lib/*'
 au FileType java setlocal keywordprg=:JavaDoc
 au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
 au BufRead *Test.java let b:tagbar_ignore = 1
