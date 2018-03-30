@@ -139,7 +139,7 @@ syntax on
 " Line numbers
 set number
 " Spelling checker
-set spelllang=en
+set spelllang=en_gb
 " Auto indent
 set autoindent
 filetype indent on
@@ -462,7 +462,7 @@ au FileType text,mail,dotoo,markdown    setlocal spell
 au FileType ledger,bbcode,vim,python    setlocal spell
 au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
-au FileType dotoo*,ledger               setlocal spelllang=nl,en
+au FileType dotoo*,ledger               setlocal spelllang=nl,en_gb
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -690,12 +690,15 @@ com! Gmdiff Gsdiff :1 | Gvdiff
 " TODO: abort?
 " Custom functions
 fun! ToggleSpellLang()
-  if &spelllang ==# 'en'
+  if !&spell
+    setlocal spell
+  elseif &spelllang ==# 'en_gb'
     setlocal spelllang=nl
-  else
-    setlocal spelllang=en
+  elseif &spelllang ==# 'nl'
+    setlocal nospell
+    setlocal spelllang=en_gb
   endif
-  setlocal spelllang?
+  setlocal spell? spelllang?
 endfun
 
 fun! ToggleFolding()
