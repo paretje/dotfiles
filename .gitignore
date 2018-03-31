@@ -223,7 +223,6 @@ tags
 /.mmauthtoken
 /.config/cef_user_data/Dictionaries
 /.docker/config.json
-/.config/qalculate/qalc.history
 /.local/share/qalculate
 /.composer
 /.config/moserial.conf
