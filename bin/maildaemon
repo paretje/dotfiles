@@ -19,6 +19,69 @@ from email.utils import parseaddr
 NOTIFICATION_EVENT = threading.Event()
 
 
+def pretty_sender(fromline):
+    name, addr = parseaddr(fromline)
+    return name or addr
+
+
+class PeriodicIMAPSync(threading.Thread):
+    def __init__(self, account):
+        super().__init__()
+        self.account = account
+        self.sync_event = threading.Event()
+
+    def _sync(self):
+        logging.info('start syncing %s', self.account.name)
+        try:
+            subprocess.check_call(['chronic', 'mbsync', self.account.name])
+            # TODO: notmuch new should be synchronised
+            # TODO: notmuch should be configurable
+            subprocess.check_call(['chronic', 'notmuch', 'new'])
+            logging.info('finished syncing %s', self.account.name)
+            NOTIFICATION_EVENT.set()
+        except subprocess.CalledProcessError:
+            logging.error("couldn't sync %s", self.account.name)
+
+    def sync_now(self):
+        self.sync_event.set()
+
+    def run(self):
+        while True:
+            self.sync_event.wait(timeout=self.account.sync_interval)
+            self._sync()
+            self.sync_event.clear()
+
+
+class IDDLEIMAPClient(threading.Thread):
+    def __init__(self, account):
+        super().__init__()
+        self.account = account
+
+    def run(self):
+        while True:
+            try:
+                client = IMAPClient(self.account.host, self.account.port, use_uid=True,
+                                    ssl=True)
+                client.login(self.account.username, self.account.password)
+                try:
+                    client.select_folder(self.account.folder)
+                except Exception:
+                    logging.error("unable to select folder %s", self.account.folder)
+                    return
+
+                logging.info("connected to %s", self.account.name)
+                while True:
+                    client.idle()
+                    for m in client.idle_check(timeout=30):
+                        if m[1] == b'RECENT':
+                            account.sync_now()
+                    time.sleep(1)
+                    client.idle_done()
+                client.logout()
+            except Exception:
+                logging.warn("lost connection")
+
+
 class IMAPAccount():
     def __init__(self, account_name, username, password_cmd, host, port=None,
                  folder='INBOX', sync_interval=5*60, imap_idle=True):
@@ -31,72 +94,25 @@ class IMAPAccount():
         self.sync_interval = sync_interval
         self.imap_idle = imap_idle
 
-        self.timer = None
+        self.sync_thread = None
+        self.idle_thread = None
 
     @property
     def password(self):
         return subprocess.check_output(self.password_cmd, shell=True) \
                          .decode('utf8').strip()
 
-    def _sync(self):
-        logging.info('start syncing %s', self.name)
-        subprocess.check_call(['mbsync', self.name])
-        subprocess.check_call(['notmuch', "new"])
-        logging.debug('finished syncing %s', self.name)
-        NOTIFICATION_EVENT.set()
+    def sync_now(self):
+        self.sync_thread.sync_now()
 
-    def sync(self):
-        if self.timer and not self.timer.ident:
-            logging.debug('cancel timer')
-            self.timer.cancel()
-
-        try:
-            self._sync()
-        except subprocess.CalledProcessError:
-            logging.error("couldn't sync %s", self.name)
-
-        self.timer = threading.Timer(self.sync_interval, self.sync)
-        self.timer.start()
-
-    def idle_client(self):
-        while True:
-            try:
-                client = IMAPClient(self.host, self.port, use_uid=True,
-                                    ssl=True)
-                client.login(self.username, self.password)
-                try:
-                    client.select_folder(self.folder)
-                except Exception:
-                    logging.error("unable to select folder %s", self.folder)
-                    return
-
-                logging.info("connected to %s", self.name)
-                while True:
-                    client.idle()
-                    for m in client.idle_check(timeout=30):
-                        if m[1] == b'RECENT':
-                            self.sync()
-                    time.sleep(1)
-                    client.idle_done()
-                client.logout()
-            except Exception:
-                logging.warn("lost connection")
-
-    def start(self):
+    def spawn_threads(self):
         if self.imap_idle:
-            idle_thread = threading.Thread(target=self.idle_client)
-            idle_thread.start()
-
-        timer_thread = threading.Thread(target=self.sync)
-        timer_thread.start()
-
-
-def pretty_sender(fromline):
-    name, addr = parseaddr(fromline)
-    return name or addr
+            self.idle_thread = IDDLEIMAPClient(self)
+            self.idle_thread.start()
+        self.sync_thread = PeriodicIMAPSync(self)
+        self.sync_thread.start()
 
 
-# TODO: isn't a separate thread unnecessary overhead?
 class NewMailNotification(threading.Thread):
     def __init__(self):
         super().__init__()
@@ -116,6 +132,7 @@ class NewMailNotification(threading.Thread):
                     del last_seen[k]
 
             with notmuch.Database(path=self.path) as db:
+                # TODO: make query configurable
                 query = notmuch.Query(db, 'tag:inbox and tag:unread')
                 query.set_sort(notmuch.Query.SORT.OLDEST_FIRST)
                 for message in query.search_messages():
@@ -136,6 +153,7 @@ class NewMailNotification(threading.Thread):
         if summary:
             logging.debug("show notification and refresh alot")
             notify2.Notification("You've got mail", summary).show()
+            # TODO: maybe move to dunst?
             subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
                              'alot'])
 
@@ -155,7 +173,7 @@ if __name__ == "__main__":
     config = toml.load(os.path.expanduser('~/.maildaemon.toml'))
     enabled_accounts = os.environ.get('MAIL_ACCOUNTS', '').split(' ')
     import sys
-    logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+    logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s', stream=sys.stdout, level=logging.INFO)
 
     notification_thread = NewMailNotification()
     notification_thread.start()
@@ -166,10 +184,11 @@ if __name__ == "__main__":
             continue
 
         account = IMAPAccount(account_name, **account_config)
-        account.start()
+        account.spawn_threads()
+        account.sync_now()
         accounts.append(account)
 
     def force_sync(sig, frame):
         for account in accounts:
-            account.sync()
+            account.sync_now()
     signal.signal(signal.SIGUSR1, force_sync)
