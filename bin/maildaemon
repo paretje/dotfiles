@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # coding: utf-8
 import os
+import sys
 import time
 import logging
 import subprocess
@@ -52,7 +53,7 @@ class PeriodicIMAPSync(threading.Thread):
             self.sync_event.clear()
 
 
-class IDDLEIMAPClient(threading.Thread):
+class IDLEIMAPClient(threading.Thread):
     def __init__(self, account):
         super().__init__()
         self.account = account
@@ -107,7 +108,7 @@ class IMAPAccount():
 
     def spawn_threads(self):
         if self.imap_idle:
-            self.idle_thread = IDDLEIMAPClient(self)
+            self.idle_thread = IDLEIMAPClient(self)
             self.idle_thread.start()
         self.sync_thread = PeriodicIMAPSync(self)
         self.sync_thread.start()
@@ -169,11 +170,11 @@ class NewMailNotification(threading.Thread):
             NOTIFICATION_EVENT.clear()
 
 
-if __name__ == "__main__":
+def main():
     config = toml.load(os.path.expanduser('~/.maildaemon.toml'))
     enabled_accounts = os.environ.get('MAIL_ACCOUNTS', '').split(' ')
-    import sys
-    logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s', stream=sys.stdout, level=logging.INFO)
+
+    logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s', stream=sys.stderr, level=logging.INFO)
 
     notification_thread = NewMailNotification()
     notification_thread.start()
@@ -192,3 +193,7 @@ if __name__ == "__main__":
         for account in accounts:
             account.sync_now()
     signal.signal(signal.SIGUSR1, force_sync)
+
+
+if __name__ == "__main__":
+    main()
