@@ -356,6 +356,8 @@ let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 let g:neomake_cpp_clangcheck_args = ['%:p', '-p', 'src/build']
 let g:neomake_cpp_clangtidy_args = ['%:p', '-p', 'src/build']
 let g:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=src/build/compile_commands.json']
+" TODO: | .[] |select(test("^-[ID]|-std")) without join and using systemlist
+au FileType cpp let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + split(system("jq -r 'first(.[] | select(.file == \"" . expand('%:p') . "\")).command | split(\" \") | map(select(test(\"^-[ID]|-std\"))) | join(\" \")' src/build/compile_commands.json"), " ")
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
