@@ -83,6 +83,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -456,6 +457,9 @@ let g:gutentags_file_list_command = {
     \ '.git': 'git ls-files',
   \ },
 \ }
+
+" vim-cmake options
+let g:cmake_export_compile_commands = 1
 
 " Bulk options
 au FileType text,mail,dotoo,markdown    setlocal spell
