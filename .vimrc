@@ -110,7 +110,6 @@ endif
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
-Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}  " the completions of this plugin don't work properly (they aren't triggered correctly)
 Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'fszymanski/deoplete-abook', {'for': 'mail'}
 Plug 'paretje/deoplete-notmuch', {'for': 'mail'}
@@ -353,6 +352,11 @@ let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 
+" TODO: autocmd
+let g:neomake_cpp_clangcheck_args = ['%:p', '-p', 'src/build']
+let g:neomake_cpp_clangtidy_args = ['%:p', '-p', 'src/build']
+let g:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=src/build/compile_commands.json']
+
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
@@ -378,7 +382,10 @@ let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 
-let g:deoplete#sources#clang#autofill_neomake = 1
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+" TODO: autocmd
+let g:deoplete#sources#clang#clang_complete_database = 'src/build/compile_commands.json'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -408,10 +415,6 @@ let g:table_mode_toggle_map = 't'
 
 " delimitMate options
 let g:delimitMate_expand_cr = 1
-
-" clang_complete options
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " neoterm options
 let g:neoterm_size = 15
