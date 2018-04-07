@@ -56,7 +56,6 @@ Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch' " used by vim-rails and vim-fugitive
 Plug 'mhinz/vim-grepper', {'on': 'Grepper'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
@@ -84,6 +83,7 @@ Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
+Plug 'skywind3000/asyncrun.vim'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -96,7 +96,6 @@ endif
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-  Plug 'radenling/vim-dispatch-neovim'
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'
   Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
@@ -694,6 +693,7 @@ com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearC
 com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiff Gsdiff :1 | Gvdiff
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " TODO: documentation
 " TODO: abort?
