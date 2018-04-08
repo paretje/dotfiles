@@ -108,7 +108,7 @@ endif
 
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
-Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp']}
+Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cmake']}
 Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'fszymanski/deoplete-abook', {'for': 'mail'}
 Plug 'paretje/deoplete-notmuch', {'for': 'mail'}
@@ -351,13 +351,6 @@ let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 
-" TODO: autocmd
-let g:neomake_cpp_clangcheck_args = ['%:p', '-p', 'src/build']
-let g:neomake_cpp_clangtidy_args = ['%:p', '-p', 'src/build']
-let g:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=src/build/compile_commands.json']
-" TODO: | .[] |select(test("^-[ID]|-std")) without join and using systemlist
-au FileType cpp let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + split(system("jq -r 'first(.[] | select(.file == \"" . expand('%:p') . "\")).command | split(\" \") | map(select(test(\"^-[ID]|-std\"))) | join(\" \")' src/build/compile_commands.json"), " ")
-
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
@@ -385,8 +378,6 @@ let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-" TODO: autocmd
-let g:deoplete#sources#clang#clang_complete_database = 'src/build/compile_commands.json'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -558,6 +549,7 @@ au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
+au FileType c,cpp call ExtractCMakeBuildArgs()
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
 if !has('nvim')
   au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
@@ -923,4 +915,31 @@ fun! DotooNewItem()
   else
     call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
   endif
+endfun
+
+fun! ExtractCMakeBuildArgs()
+  silent CMakeFindBuildDir
+  if !exists('b:build_dir') || b:build_dir ==# ''
+    return
+  endif
+
+  let b:cmake_compile_db = b:build_dir . '/compile_commands.json'
+  " TODO: it might be interesting to do this using json_decode
+  if executable('jq')
+    let b:cmake_compile_args = systemlist("jq -r 'first(.[] | select(.file == \"" . expand('%:p:s?"?\"?:S') . "\")).command | split(\" \") | .[] | select(test(\"^-[ID]|-std\"))' " . b:cmake_compile_db)
+  else
+    let b:cmake_compile_args = []
+  endif
+
+  if !empty(b:cmake_compile_args)
+    call setbufvar('%', '&path', join(map(filter(copy(b:cmake_compile_args), 'v:val =~# "^-I"'), 'v:val[2:]'), ','))
+  endif
+
+  " TODO: C
+  let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
+  let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
+  let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
+  let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
+
+  let g:deoplete#sources#clang#clang_complete_database = b:cmake_compile_db
 endfun
