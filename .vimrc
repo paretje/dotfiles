@@ -925,15 +925,17 @@ fun! ExtractCMakeBuildArgs()
   endif
 
   let b:cmake_compile_db = b:build_dir . '/compile_commands.json'
-  " TODO: it might be interesting to do this using json_decode
-  if executable('jq')
-    let b:cmake_compile_args = systemlist("jq -r 'first(.[] | select(.file == \"" . expand('%:p:s?"?\"?:S') . "\")).command | split(\" \") | .[] | select(test(\"^-[ID]|-std\"))' " . b:cmake_compile_db)
+
+  if has('nvim')
+    let l:json_db = json_decode(readfile(b:cmake_compile_db))
   else
-    let b:cmake_compile_args = []
+    let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
   endif
+  let l:current_file = expand('%:p')
+  let b:cmake_compile_args = filter(split(filter(l:json_db, "v:val['file'] == l:current_file")[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
 
   if !empty(b:cmake_compile_args)
-    call setbufvar('%', '&path', join(map(filter(copy(b:cmake_compile_args), 'v:val =~# "^-I"'), 'v:val[2:]'), ','))
+    call setbufvar('%', '&path', join(map(filter(copy(b:cmake_compile_args), "v:val =~# '^-I'"), 'v:val[2:]'), ','))
   endif
 
   " TODO: C
