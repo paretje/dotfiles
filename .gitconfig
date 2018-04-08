@@ -8,6 +8,7 @@
 [gcrypt]
 	participants = 64AD7E10
 	signingkey = 64AD7E10
-
 [alias]
 	graph = log --graph --decorate --oneline --all
+[commit]
+	gpgsign = true
