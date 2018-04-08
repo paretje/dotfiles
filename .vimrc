@@ -112,6 +112,7 @@ Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cmake']}
 Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'fszymanski/deoplete-abook', {'for': 'mail'}
 Plug 'paretje/deoplete-notmuch', {'for': 'mail'}
+Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
 
 call plug#end()
 
