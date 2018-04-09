@@ -84,6 +84,7 @@ Plug 'joonty/vdebug'
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim'
+Plug 'ivalkeen/vim-ctrlp-tjump'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -259,6 +260,7 @@ if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
 else
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
+let g:ctrlp_tjump_only_silent = 1
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -552,9 +554,6 @@ au FileType help if !&modifiable | setlocal nospell | endif
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp call ExtractCMakeBuildArgs()
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
-if !has('nvim')
-  au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
-endif
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -654,6 +653,8 @@ nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
 nnoremap <Leader>pt :CtrlPBufTag<CR>
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
