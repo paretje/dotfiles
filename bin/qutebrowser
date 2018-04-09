@@ -41,7 +41,7 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	if ! 3gusage; then
 		qutebrowser_args+=(:adblock-update)
 	fi
-elif [[ ${#ipc_files[@]} -ge 1 && $# -eq 1 && "$1" =~ ^https?:// ]]; then
+elif [[ ${#ipc_files[@]} -ge 1 && $# -eq 1 && "$1" =~ ^[^-] ]]; then
 	echo "{\"args\":[\"$1\"], \"target_arg\":\"\", \"protocol_version\":1}" | socat - UNIX-CONNECT:"${ipc_files[0]}"
 	exit
 fi
