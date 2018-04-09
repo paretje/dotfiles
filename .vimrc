@@ -932,7 +932,10 @@ fun! ExtractCMakeBuildArgs()
     let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
   endif
   let l:current_file = expand('%:p')
-  let b:cmake_compile_args = filter(split(filter(l:json_db, "v:val['file'] == l:current_file")[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+  let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
+  if !empty(b:cmake_compile_args)
+    let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+  endif
 
   if !empty(b:cmake_compile_args)
     call setbufvar('%', '&path', join(map(filter(copy(b:cmake_compile_args), "v:val =~# '^-I'"), 'v:val[2:]'), ','))
