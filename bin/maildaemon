@@ -75,7 +75,8 @@ class IDLEIMAPClient(threading.Thread):
                     client.idle()
                     for m in client.idle_check(timeout=30):
                         if m[1] == b'RECENT':
-                            account.sync_now()
+                            logging.info("new mail in folder (%s/%s), start sync", self.account.name, self.account.folder)
+                            self.account.sync_now()
                     time.sleep(1)
                     client.idle_done()
                 client.logout()
