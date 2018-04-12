@@ -948,5 +948,5 @@ fun! ExtractCMakeBuildArgs()
   let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
 
-  let g:deoplete#sources#clang#clang_complete_database = b:cmake_compile_db
+  let g:deoplete#sources#clang#clang_complete_database = b:build_dir
 endfun
