@@ -36,7 +36,7 @@ zplug load
 PATH="$my_path"
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-setopt histignorealldups sharehistory histignorespace
+setopt histignorealldups sharehistory histignorespace incappendhistory
 
 HISTSIZE=1000
 SAVEHIST=1000
