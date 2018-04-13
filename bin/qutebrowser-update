@@ -1,7 +1,0 @@
-#!/bin/sh -e
-cd "$HOME/vcs/once/qutebrowser"
-git checkout paretje
-git fetch upstream
-git merge upstream/master
-git push
-echo "Please run $(tput bold)zplug update$(tput sgr0)"

@@ -223,7 +223,6 @@ tags
 /.mmauthtoken
 /.config/cef_user_data/Dictionaries
 /.docker/config.json
-/.config/qalculate/qalc.history
 /.local/share/qalculate
 /.composer
 /.config/moserial.conf
@@ -234,3 +233,6 @@ tags
 /.newsboat/queue
 /.gnupg/tofu.db
 /.password-store
+/.caff/gnupghome/S.*
+/.caff/gnupghome/.gpg-v21-migrated
+/.caff/gnupghome/tofu.db

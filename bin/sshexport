@@ -1,0 +1,15 @@
+#!/bin/sh -e
+if [ $# -gt 2 ]; then
+  echo "sshexport: too many arguments" >&2
+  exit 1
+fi
+
+host="$1"
+
+if [ $# -eq 2 ]; then
+  local_key="$2"
+else
+  local_key="$HOME/.ssh/id_rsa.pub"
+fi
+
+ssh "$host" 'mkdir -p .ssh ; cat - >> .ssh/authorized_keys' < "$local_key"

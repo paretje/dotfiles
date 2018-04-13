@@ -16,21 +16,13 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "zsh-users/zsh-completions"
 
-zplug "paretje/unisister", as:command, use:unisister
-zplug "qutebrowser/qutebrowser", as:command, use:".venv/bin/qutebrowser", hook-build:"tox -r -e mkvenv && scripts/asciidoc2html.py && a2x --doctype manpage --format manpage doc/qutebrowser.1.asciidoc && mv doc/qutebrowser.1 '$HOME/.local/share/man/man1'"
-
 zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
-
-# TODO: nothing installed without xmlto
-# TODO: replace with own scripts, as it doesn't support appending
-zplug "esr/sshexport", from:gitlab, use:, hook-build:"sed -i '1s/python/python3/' sshexport && make install BINDIR='$HOME/.local/bin' MANDIR='$HOME/.local/share/man/man1'"
-zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
 
 zplug load
 PATH="$my_path"
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-setopt histignorealldups sharehistory histignorespace
+setopt histignorealldups sharehistory histignorespace incappendhistory
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -130,6 +122,7 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
+# Set up terminal title
 autoload -Uz add-zsh-hook
 
 function xterm_title_precmd () {

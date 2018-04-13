@@ -1,0 +1,200 @@
+#!/usr/bin/python3
+# coding: utf-8
+import os
+import sys
+import time
+import logging
+import subprocess
+import threading
+import signal
+import toml
+import appdirs
+import shelve
+import notmuch
+import arrow
+import notify2
+from imapclient import IMAPClient
+from email.utils import parseaddr
+
+
+NOTIFICATION_EVENT = threading.Event()
+
+
+def pretty_sender(fromline):
+    name, addr = parseaddr(fromline)
+    return name or addr
+
+
+class PeriodicIMAPSync(threading.Thread):
+    def __init__(self, account):
+        super().__init__()
+        self.account = account
+        self.sync_event = threading.Event()
+
+    def _sync(self):
+        logging.info('start syncing %s', self.account.name)
+        try:
+            subprocess.check_call(['chronic', 'mbsync', self.account.name])
+            # TODO: notmuch new should be synchronised
+            # TODO: notmuch should be configurable
+            subprocess.check_call(['chronic', 'notmuch', 'new'])
+            logging.info('finished syncing %s', self.account.name)
+            NOTIFICATION_EVENT.set()
+        except subprocess.CalledProcessError:
+            logging.error("couldn't sync %s", self.account.name)
+
+    def sync_now(self):
+        self.sync_event.set()
+
+    def run(self):
+        while True:
+            self.sync_event.wait(timeout=self.account.sync_interval)
+            self._sync()
+            self.sync_event.clear()
+
+
+class IDLEIMAPClient(threading.Thread):
+    def __init__(self, account):
+        super().__init__()
+        self.account = account
+
+    def run(self):
+        while True:
+            try:
+                client = IMAPClient(self.account.host, self.account.port, use_uid=True,
+                                    ssl=True)
+                client.login(self.account.username, self.account.password)
+                try:
+                    client.select_folder(self.account.folder)
+                except Exception:
+                    logging.error("unable to select folder %s", self.account.folder)
+                    return
+
+                logging.info("connected to %s", self.account.name)
+                while True:
+                    client.idle()
+                    for m in client.idle_check(timeout=30):
+                        if m[1] == b'RECENT':
+                            logging.info("new mail in folder (%s/%s), start sync", self.account.name, self.account.folder)
+                            self.account.sync_now()
+                    time.sleep(1)
+                    client.idle_done()
+                client.logout()
+            except Exception:
+                logging.warn("lost connection")
+
+
+class IMAPAccount():
+    def __init__(self, account_name, username, password_cmd, host, port=None,
+                 folder='INBOX', sync_interval=5*60, imap_idle=True):
+        self.name = account_name
+        self.username = username
+        self.password_cmd = password_cmd
+        self.host = host
+        self.port = port
+        self.folder = folder
+        self.sync_interval = sync_interval
+        self.imap_idle = imap_idle
+
+        self.sync_thread = None
+        self.idle_thread = None
+
+    @property
+    def password(self):
+        return subprocess.check_output(self.password_cmd, shell=True) \
+                         .decode('utf8').strip()
+
+    def sync_now(self):
+        self.sync_thread.sync_now()
+
+    def spawn_threads(self):
+        if self.imap_idle:
+            self.idle_thread = IDLEIMAPClient(self)
+            self.idle_thread.start()
+        self.sync_thread = PeriodicIMAPSync(self)
+        self.sync_thread.start()
+
+
+class NewMailNotification(threading.Thread):
+    def __init__(self):
+        super().__init__()
+        cache_dir = appdirs.user_cache_dir(appname='maildaemon')
+        os.makedirs(cache_dir, exist_ok=True)
+
+        self.path = os.environ.get('MAILDIR', None)
+        self.last_seen_file = os.path.join(cache_dir, 'last_seen')
+        self.recency_interval = 60 * 60
+
+    def get_new_messages(self):
+        with shelve.open(self.last_seen_file) as last_seen:
+            now = time.time()
+
+            for k, v in last_seen.items():
+                if now - v > self.recency_interval:
+                    del last_seen[k]
+
+            with notmuch.Database(path=self.path) as db:
+                # TODO: make query configurable
+                query = notmuch.Query(db, 'tag:inbox and tag:unread')
+                query.set_sort(notmuch.Query.SORT.OLDEST_FIRST)
+                for message in query.search_messages():
+                    m_id = message.get_message_id()
+                    if m_id not in last_seen:
+                        last_seen[m_id] = now
+                        yield message
+
+    def show_notification(self):
+        logging.debug("prepare notification")
+        summary = '\n'.join('{tags}{subject} ({sender}, {date})'.format(
+                    subject=message.get_header('subject'),
+                    sender=pretty_sender(message.get_header('from')),
+                    date=arrow.get(message.get_date()).humanize(),
+                    tags='')
+                for message in self.get_new_messages())
+
+        if summary:
+            logging.debug("show notification and refresh alot")
+            notify2.Notification("You've got mail", summary).show()
+            # TODO: maybe move to dunst?
+            subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
+                             'alot'])
+
+    def run(self):
+        notify2.init('maildaemon')
+        while True:
+            NOTIFICATION_EVENT.wait()
+            logging.debug("notification event")
+            try:
+                self.show_notification()
+            except Exception:
+                logging.error("couldn't show notification")
+            NOTIFICATION_EVENT.clear()
+
+
+def main():
+    config = toml.load(os.path.expanduser('~/.maildaemon.toml'))
+    enabled_accounts = os.environ.get('MAIL_ACCOUNTS', '').split(' ')
+
+    logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s', stream=sys.stderr, level=logging.INFO)
+
+    notification_thread = NewMailNotification()
+    notification_thread.start()
+
+    accounts = []
+    for account_name, account_config in config['accounts'].items():
+        if account_name not in enabled_accounts:
+            continue
+
+        account = IMAPAccount(account_name, **account_config)
+        account.spawn_threads()
+        account.sync_now()
+        accounts.append(account)
+
+    def force_sync(sig, frame):
+        for account in accounts:
+            account.sync_now()
+    signal.signal(signal.SIGUSR1, force_sync)
+
+
+if __name__ == "__main__":
+    main()

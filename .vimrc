@@ -22,7 +22,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline', {'commit': 'fbd791e7f0431e18b987a2a8937a4c3d34dd2125'}
+Plug 'vim-airline/vim-airline', {'commit': '55a9721c22370a47e076e85449897ded6f45386d'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
@@ -45,10 +45,10 @@ Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'joonty/vdebug'
-Plug 'vim-scripts/a.vim'
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'skywind3000/asyncrun.vim'
+Plug 'ivalkeen/vim-ctrlp-tjump'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -82,7 +82,7 @@ syntax on
 " Line numbers
 set number
 " Spelling checker
-set spelllang=en
+set spelllang=en_gb
 " Auto indent
 set autoindent
 filetype indent on
@@ -113,7 +113,7 @@ set commentstring=#%s
 " Disable unloading buffer when abandoned, as needed by vim-dotoo
 set hidden
 " Return to previous position in file when when opening
-au BufReadPost * if &ft != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+au BufReadPost * if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line('$') | exe "normal! g'\"" | endif
 " Set mapleader
 let g:mapleader = ';'
 " Start searching while typing pattern
@@ -151,7 +151,7 @@ set nofoldenable
 " Return to previous window when closing
 au WinEnter * if winnr('$') > 1 && exists('t:win') && winnr('$') < t:win | wincmd p | endif | let t:win = winnr('$')
 " Close tab when quickfix is only window
-au BufEnter * if (winnr("$") == 1 && &filetype ==# 'qf') | quit | endif
+au BufEnter * if (winnr('$') == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
 " Automatically close preview window
@@ -197,7 +197,12 @@ endif
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
+  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+let g:ctrlp_tjump_only_silent = 1
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -242,7 +247,7 @@ let g:rubycomplete_use_bundler = 1
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
-au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | quit | endif
+au BufEnter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | quit | endif
 
 " indentLine options
 let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
@@ -315,7 +320,8 @@ let g:deoplete#keyword_patterns.dotoo = ':\w+'
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 
-let g:deoplete#sources#clang#autofill_neomake = 1
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -345,10 +351,6 @@ let g:table_mode_toggle_map = 't'
 
 " delimitMate options
 let g:delimitMate_expand_cr = 1
-
-" clang_complete options
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 " neoterm options
 let g:neoterm_size = 15
@@ -395,12 +397,15 @@ let g:gutentags_file_list_command = {
   \ },
 \ }
 
+" vim-cmake options
+let g:cmake_export_compile_commands = 1
+
 " Bulk options
 au FileType text,mail,dotoo,markdown    setlocal spell
 au FileType ledger,bbcode,vim,python    setlocal spell
 au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
-au FileType dotoo*,ledger               setlocal spelllang=nl,en
+au FileType dotoo*,ledger               setlocal spelllang=nl,en_gb
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
 au FileType help,dotoo*                 setlocal nolist " disable indentation lines
 
@@ -426,7 +431,7 @@ au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('ch
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
 au FileType java compiler ant | setlocal makeprg=ant\ -e\ -s\ build.xml
-au FileType java let $CLASSPATH="/usr/share/java/junit4.jar:src:test:lib/*"
+au FileType java let $CLASSPATH='/usr/share/java/junit4.jar:src:test:lib/*'
 au FileType java setlocal keywordprg=:JavaDoc
 au FileType java nnoremap <buffer> <Leader>i :JCimportAdd<CR>
 au BufRead *Test.java let b:tagbar_ignore = 1
@@ -488,10 +493,8 @@ au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
 au FileType c,cpp setlocal commentstring=//%s
+au FileType c,cpp call ExtractCMakeBuildArgs()
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
-if !has('nvim')
-  au FileType c,cpp nnoremap <buffer> <C-]> :call CscopeFind('g', expand('<cword>'))<CR>
-endif
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -591,6 +594,8 @@ nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
 nnoremap <Leader>pt :CtrlPBufTag<CR>
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -623,17 +628,21 @@ com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearC
 com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiff Gsdiff :1 | Gvdiff
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 " TODO: documentation
 " TODO: abort?
 " Custom functions
 fun! ToggleSpellLang()
-  if &spelllang ==# 'en'
+  if !&spell
+    setlocal spell
+  elseif &spelllang ==# 'en_gb'
     setlocal spelllang=nl
-  else
-    setlocal spelllang=en
+  elseif &spelllang ==# 'nl'
+    setlocal nospell
+    setlocal spelllang=en_gb
   endif
-  setlocal spelllang?
+  setlocal spell? spelllang?
 endfun
 
 fun! ToggleFolding()
@@ -849,4 +858,36 @@ fun! DotooNewItem()
   else
     call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
   endif
+endfun
+
+fun! ExtractCMakeBuildArgs()
+  silent CMakeFindBuildDir
+  if !exists('b:build_dir') || b:build_dir ==# ''
+    return
+  endif
+
+  let b:cmake_compile_db = b:build_dir . '/compile_commands.json'
+
+  if has('nvim')
+    let l:json_db = json_decode(readfile(b:cmake_compile_db))
+  else
+    let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
+  endif
+  let l:current_file = expand('%:p')
+  let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
+  if !empty(b:cmake_compile_args)
+    let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+  endif
+
+  if !empty(b:cmake_compile_args)
+    call setbufvar('%', '&path', join(map(filter(copy(b:cmake_compile_args), "v:val =~# '^-I'"), 'v:val[2:]'), ','))
+  endif
+
+  " TODO: C
+  let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
+  let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
+  let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
+  let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
+
+  let g:deoplete#sources#clang#clang_complete_database = b:build_dir
 endfun

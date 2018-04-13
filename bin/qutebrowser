@@ -3,7 +3,7 @@ set -o pipefail
 shopt -s nullglob
 
 qutebrowser() {
-	"$HOME/.zplug/bin/qutebrowser" "$@"
+	"/usr/bin/qutebrowser" "$@"
 }
 
 clean_history() {
@@ -27,8 +27,8 @@ case "$1" in
 esac
 
 qutebrowser_args=()
+ipc_files=(/tmp/runtime-$USER/qutebrowser/*)
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
-	ipc_files=(/tmp/runtime-kevin/qutebrowser/*)
 	if [ ${#ipc_files[@]} -eq 0 ]; then
 		touch "$HOME/.local/share/qutebrowser/netrc"
 		clean_history
@@ -41,6 +41,9 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	if ! 3gusage; then
 		qutebrowser_args+=(:adblock-update)
 	fi
+elif [[ ${#ipc_files[@]} -ge 1 && $# -eq 1 && "$1" =~ ^[^-] ]]; then
+	echo "{\"args\":[\"$1\"], \"target_arg\":\"\", \"protocol_version\":1}" | socat - UNIX-CONNECT:"${ipc_files[0]}"
+	exit
 fi
 qutebrowser_args+=("$@")
 

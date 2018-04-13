@@ -46,8 +46,9 @@ timestamp_format = "%b %d %H:%M"
     sendmail_command = /usr/bin/msmtp -a senso2me -t
     sent_box = maildir://$MAILDIR/senso2me/Sent
     draft_box = maildir://$MAILDIR/senso2me/Drafts
-    # sign_by_default = True
-    # encrypt_by_default = all
+    gpg_key = E672C080A81F2D8CCDF0198C438CD95296C1A48A
+    sign_by_default = True
+    encrypt_by_default = all
 
     [[[abook]]]
         type = abook
@@ -89,7 +90,7 @@ timestamp_format = "%b %d %H:%M"
     enter = open
   
   [[search]]
-    enter = select ; move next tag:unread ; untag unread,spamy
+    enter = select ; move down
     I = untag inbox,spamy,unread
     S = tag spam; untag inbox,spamy 
     # & = toggletags killed

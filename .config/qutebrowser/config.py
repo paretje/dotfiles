@@ -56,6 +56,7 @@ c.fonts.messages.warning = '8pt monospace'
 c.fonts.prompts = '8pt sans-serif'
 c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
+c.spellcheck.languages = ['en-GB']
 
 c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
@@ -76,8 +77,8 @@ config.bind(';F', 'hint all tab-fg')
 config.bind('yf', 'hint links yank')
 config.bind('af', 'hint --rapid links tab-bg')
 config.bind('X', 'undo')
-config.bind('p', 'open -- {primary}')
-config.bind('P', 'open -t -- {primary}')
+config.bind('p', 'open -- {clipboard}')
+config.bind('P', 'open -t -- {clipboard}')
 config.bind('[', 'navigate prev')
 config.bind(']', 'navigate next')
 config.bind('{', 'navigate prev -t')
@@ -92,7 +93,7 @@ config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabl
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv {url}')
 config.bind(';a', 'spawn --userscript play_mpc')
-config.bind('gs', 'spawn --userscript qutebrowser_viewsource')
+config.bind('gs', 'view-source --edit')
 config.bind('gf', 'spawn --userscript openfeeds')
 config.unbind(';o')
 config.bind(';org', 'spawn --verbose --userscript org_add')
