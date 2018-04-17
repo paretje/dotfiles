@@ -236,3 +236,4 @@ tags
 /.caff/gnupghome/S.*
 /.caff/gnupghome/.gpg-v21-migrated
 /.caff/gnupghome/tofu.db
+/.config/gaupol/search
