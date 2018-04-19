@@ -554,6 +554,7 @@ au FileType help if !&modifiable | setlocal nospell | endif
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp call ExtractCMakeBuildArgs()
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType cpp   setlocal keywordprg=:CppMan
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -687,7 +688,8 @@ com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearC
 com! -narg=? PyDoc call PyDoc(<f-args>)
 com! -narg=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiff Gsdiff :1 | Gvdiff
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+com! -narg=1 CppMan call CppMan(<f-args>)
 
 " TODO: documentation
 " TODO: abort?
@@ -949,4 +951,9 @@ fun! ExtractCMakeBuildArgs()
   let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
 
   let g:deoplete#sources#clang#clang_complete_database = b:build_dir
+endfun
+
+fun! CppMan(page) abort
+  execute 'split | terminal cppman ' . shellescape(a:page)
+  doau User ManOpen
 endfun
