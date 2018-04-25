@@ -1,5 +1,5 @@
 #!/bin/sh
-tmp=$(mktemp --tmpdir tmp.XXXXXXXXXX)
+tmp=$(mktemp --tmpdir tmp.XXXXXXXXXX.pdf)
 cp "$1" "${tmp}"
 yad --print --type=RAW --filename="${tmp}"
 rm "${tmp}"
