@@ -931,15 +931,19 @@ fun! ExtractCMakeBuildArgs()
 
   let b:cmake_compile_db = b:build_dir . '/compile_commands.json'
 
-  if has('nvim')
-    let l:json_db = json_decode(readfile(b:cmake_compile_db))
+  if filereadable(b:cmake_compile_db)
+    if has('nvim')
+      let l:json_db = json_decode(readfile(b:cmake_compile_db))
+    else
+      let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
+    endif
+    let l:current_file = expand('%:p')
+    let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
+    if !empty(b:cmake_compile_args)
+      let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+    endif
   else
-    let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
-  endif
-  let l:current_file = expand('%:p')
-  let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
-  if !empty(b:cmake_compile_args)
-    let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+    let b:cmake_compile_args = []
   endif
 
   if !empty(b:cmake_compile_args)
