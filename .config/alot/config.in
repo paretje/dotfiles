@@ -137,6 +137,7 @@ timestamp_format = "%b %d %H:%M"
     h = toggleheaders
     P = print --all --separately --add_tags
     S = save --all
+    g =
     r = reply --all
     f = forward
     p = print --add_tags
