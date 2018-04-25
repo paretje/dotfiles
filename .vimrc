@@ -85,6 +85,8 @@ Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'idanarye/vim-vebugger'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
