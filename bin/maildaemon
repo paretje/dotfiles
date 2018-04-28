@@ -49,7 +49,8 @@ class PeriodicIMAPSync(threading.Thread):
     def run(self):
         while True:
             self.sync_event.wait(timeout=self.account.sync_interval)
-            self._sync()
+            if self.sync_event.is_set() or self.account.periodic_sync:
+                self._sync()
             self.sync_event.clear()
 
 
@@ -86,7 +87,8 @@ class IDLEIMAPClient(threading.Thread):
 
 class IMAPAccount():
     def __init__(self, account_name, username, password_cmd, host, port=None,
-                 folder='INBOX', sync_interval=5*60, imap_idle=True):
+                 folder='INBOX', sync_interval=5*60,
+                 periodic_sync_condition=None, imap_idle=True):
         self.name = account_name
         self.username = username
         self.password_cmd = password_cmd
@@ -94,6 +96,7 @@ class IMAPAccount():
         self.port = port
         self.folder = folder
         self.sync_interval = sync_interval
+        self.periodic_sync_condition = periodic_sync_condition
         self.imap_idle = imap_idle
 
         self.sync_thread = None
@@ -103,6 +106,12 @@ class IMAPAccount():
     def password(self):
         return subprocess.check_output(self.password_cmd, shell=True) \
                          .decode('utf8').strip()
+
+    @property
+    def periodic_sync(self):
+        if self.sync_interval is None:
+            return True
+        return subprocess.call(self.periodic_sync_condition, shell=True) == 0
 
     def sync_now(self):
         self.sync_thread.sync_now()
