@@ -1,6 +1,6 @@
 [Default Applications]
-application/pdf=zathura.desktop
-application/epub+zip=zathura.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/epub+zip=org.pwmt.zathura.desktop
 video/x-m4v=mpv.desktop
 x-scheme-handler/mailto=alot.desktop
 application/xhtml+xml=qutebrowser.desktop;
