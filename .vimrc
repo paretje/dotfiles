@@ -57,7 +57,7 @@ Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
 Plug 'paretje/async-grepper', {'on': 'Grepper'}
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
@@ -83,9 +83,9 @@ Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
-Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
 
 if executable('cmake')
@@ -236,7 +236,7 @@ endif
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
-let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
