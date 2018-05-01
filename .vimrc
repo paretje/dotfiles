@@ -56,7 +56,7 @@ Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
-Plug 'paretje/vim-grepper', {'on': 'Grepper'}
+Plug 'paretje/async-grepper', {'on': 'Grepper'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
