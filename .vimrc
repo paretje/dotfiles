@@ -56,7 +56,7 @@ Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
 Plug 'tpope/vim-surround'
-Plug 'mhinz/vim-grepper', {'on': 'Grepper'}
+Plug 'paretje/vim-grepper', {'on': 'Grepper'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
@@ -442,7 +442,9 @@ endif
 " vim-grepper options
 let g:grepper = {}
 let g:grepper.dir = 'repo,cwd'
-au User Grepper call GrepperReset()
+let g:grepper.open = 1
+let g:grepper.switch = 1
+let g:grepper.highlight = 1
 
 " cscope.vim options
 let g:cscope_silent = 1
@@ -584,6 +586,9 @@ au FileType proto setlocal commentstring=//%s
 au FileType typescript nnoremap <silent> <buffer> <C-]> :TSDef<CR>
 au FileType typescript setlocal keywordprg=:TSDoc
 
+" vim ft options
+au FileType vim setlocal iskeyword+=:
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
@@ -682,7 +687,7 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag call Grepper(<f-args>)
+command -nargs=+ -complete=file Ag Grepper -noprompt -tool ag -query <args>
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
 com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
@@ -840,46 +845,6 @@ fun! VimDotoo(func)
   call setpos('.', l:pos)
   normal zuz
   normal! zO
-endfun
-
-fun! Grepper(...)
-  if &filetype ==# 'nerdtree'
-    wincmd p
-  endif
-
-  if !exists('g:grepper_dir')
-    let g:grepper_dir = haslocaldir() ? getcwd() : ''
-  endif
-
-  execute 'Grepper -tool ag -open -switch -highlight -query ' . join(map(copy(a:000), 'shellescape(v:val)'), ' ')
-endfun
-
-fun! GrepperReset()
-  if !exists('g:grepper_dir')
-    return
-  endif
-
-  " TODO: wincmd p should be replaced with an actual test on the origin window
-  " and the qf window
-  call GrepperResetDir()
-  wincmd p
-  call GrepperResetDir()
-  wincmd p
-  unlet g:grepper_dir
-endfun
-
-fun! GrepperResetDir()
-  if g:grepper_dir ==# ''
-    let l:tab = getcwd(-1)
-    let l:global = getcwd(-1, -1)
-    if l:tab != l:global
-      execute 'tcd ' . fnameescape(l:tab)
-    else
-      execute 'cd ' . fnameescape(l:global)
-    endif
-  else
-    execute 'lcd ' . fnameescape(g:grepper_dir)
-  endif
 endfun
 
 fun! Dictionary(word)
