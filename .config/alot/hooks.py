@@ -71,7 +71,7 @@ def github_mark_read(ui, msg=None):
     beacons = re.findall(r, msgtext)
 
     if beacons:
-        urllib2.urlopen(beacons[0])
+        subprocess.Popen(['curl', '-s', beacons[0]], stdout=open(os.devnull, 'w'))
         ui.notify('removed from github notifications:\n %s' % beacons[0])
     else:
         ui.notify('no beacon found')
