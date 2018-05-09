@@ -548,6 +548,7 @@ au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
 
 " sh ft options
 au BufRead ~/.xsession set filetype=sh
+au FileType sh let &l:path = substitute($PATH, ':', ',', '')
 
 " help ft options
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
