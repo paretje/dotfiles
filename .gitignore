@@ -238,3 +238,4 @@ tags
 /.caff/gnupghome/tofu.db
 /.config/gaupol/search
 /.local/share/fonts/.uuid
+/.cargo
