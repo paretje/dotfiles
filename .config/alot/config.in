@@ -54,7 +54,10 @@ timestamp_format = "%b %d %H:%M"
     encrypt_by_default = all
 
     [[[abook]]]
-        type = abook
+      type = shellcommand
+      command = abook --mutt-query
+      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      ignorecase = True
 
 
 [bindings]
