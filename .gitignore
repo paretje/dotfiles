@@ -239,3 +239,4 @@ tags
 /.config/gaupol/search
 /.local/share/fonts/.uuid
 /.cargo
+/.readarticlerc

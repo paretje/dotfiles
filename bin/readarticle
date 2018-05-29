@@ -1,0 +1,23 @@
+#!/bin/bash -e
+url="$1"
+
+readable_less() {
+  curl --compressed --location --silent "$@" "$url" | readability -p article /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F
+}
+
+readable_w3m() {
+  curl --compressed --location --silent "$url" | readability -p article /dev/stdin | w3m-col -T text/html
+}
+
+raw_w3m() {
+  w3m-col -o display_image=0 "$url"
+}
+
+while read -r url_match method args; do
+  if [[ "$url" == "$url_match"* ]]; then
+    eval "$method" "$args"
+    exit
+  fi
+done < "$HOME/.readarticlerc"
+
+readable_less
