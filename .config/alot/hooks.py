@@ -126,3 +126,33 @@ class TaggingCommand(Command):
             ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(tags), action='add', flush=True))
         if untags:
             ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(untags), action='remove', flush=True))
+
+import notmuch
+from alot.db.thread import Thread
+from alot.db.message import Message
+def _get_messages(self):
+        """
+        returns all messages in this thread as dict mapping all contained
+        messages to their direct responses.
+        :rtype: dict mapping :class:`~alot.db.message.Message` to a list of
+                :class:`~alot.db.message.Message`.
+        """
+        if not self._messages:  # if not already cached
+            query = self._dbman.query('thread:' + self._id)
+            thread = next(query.search_threads())
+
+            def accumulate(acc, msg):
+                M = Message(self._dbman, msg, thread=self)
+                acc[M] = []
+                r = msg.get_replies()
+                if r is not None:
+                    for m in r:
+                        acc[M].append(accumulate(acc, m))
+                return M
+
+            self._messages = {}
+            for m in sorted(thread.get_toplevel_messages(), key=notmuch.message.Message.get_date):
+                self._toplevel_messages.append(accumulate(self._messages, m))
+        return self._messages
+
+Thread.get_messages = _get_messages
