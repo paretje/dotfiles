@@ -155,6 +155,9 @@ elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
 fi
 
+# disable system install from pip
+export PIP_USER="yes"
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec startx
