@@ -23,6 +23,7 @@ c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
 c.new_instance_open_target = 'tab-silent'
 c.auto_save.session = True
+c.content.autoplay = False
 c.content.headers.accept_language = "en-GB,en,nl-BE,nl"
 c.content.ssl_strict = True
 c.content.netrc_file = "~/.local/share/qutebrowser/netrc"
