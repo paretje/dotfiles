@@ -360,25 +360,29 @@ let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.html = []
-let g:deoplete#omni_patterns.markdown = []
-
 " TODO: use sources instead of ignore_sources
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['tag', 'buffer']
+let s:ignore_sources = {}
+let s:ignore_sources._ = ['tag', 'buffer']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
-  let g:deoplete#ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
+  let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
 endfor
+call deoplete#custom#option('ignore_sources', s:ignore_sources)
 
-let g:deoplete#member#prefix_patterns = {}
-let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
-let g:deoplete#member#prefix_patterns['ledger'] = ':'
-let g:deoplete#member#prefix_patterns['dotoo'] = ':'
+call deoplete#custom#option('keyword_patterns', {
+  \ 'html': [],
+  \ 'markdown': []
+\ })
 
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
-let g:deoplete#keyword_patterns.dotoo = ':\w+'
+call deoplete#custom#option('keyword_patterns', {
+  \ 'ledger': "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']",
+  \ 'dotoo': ':\w+'
+\ })
+
+call deoplete#custom#var('member', 'prefix_patterns', {
+  \ 'markdown.pandoc': ':',
+  \ 'ledger': ':',
+  \ 'dotoo': ':'
+\ })
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 
