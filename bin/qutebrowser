@@ -34,10 +34,6 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 		clean_history
 	fi
 
-	if [ "$HOST" = "parsley" ]; then
-		qutebrowser_args+=(--enable-webengine-inspector)
-	fi
-
 	if ! 3gusage; then
 		qutebrowser_args+=(:adblock-update)
 	fi
