@@ -1,7 +1,6 @@
 import alot
 import os
 import re
-import urllib2
 import subprocess
 
 
@@ -46,14 +45,15 @@ def post_buffer_focus(ui, dbm, buf, success):
         _restore_focus(buf)
 
 
-def pre_global_refresh(ui, dbm, cmd):
+async def pre_global_refresh(ui, dbm, cmd):
     _save_focus(ui.current_buffer)
 
 
-def post_global_refresh(ui, dbm, cmd):
+async def post_global_refresh(ui, dbm, cmd):
     _restore_focus(ui.current_buffer)
 
 
+# TODO: async
 # mark current message read at github
 def github_mark_read(ui, msg=None):
     if msg is None:
@@ -61,13 +61,13 @@ def github_mark_read(ui, msg=None):
     msg = msg.get_email()
 
     if msg.is_multipart():
-        msgtext = ""
+        msgtext = b""
         for msgpart in msg.get_payload():
             msgtext += msgpart.get_payload(decode=True)
     else:
         msgtext = msg.get_payload(decode=True)
 
-    r = r'src="(https://github.com/notifications/beacon/.*.gif)"'
+    r = b'src="(https://github.com/notifications/beacon/.*.gif)"'
     beacons = re.findall(r, msgtext)
 
     if beacons:
@@ -78,7 +78,7 @@ def github_mark_read(ui, msg=None):
 
 
 # automatically mark github notifications as read
-def post_search_select(ui, cmd, dbm):
+async def post_search_select(ui, cmd, dbm):
     current_msg = ui.current_buffer.get_selected_message()
     if current_msg.get_author()[1] == 'notifications@github.com':
         last_msg = list(ui.current_buffer.messagetrees())[-1]._message
@@ -96,63 +96,35 @@ def exit():
     subprocess.call(['notmuch-backup'])
 
 
-from alot.commands import Command, registerCommand
-
-
-@registerCommand('search', 'tagging',
-                 arguments=[
-                     (['tags'], {'help': 'space separated list of tags'})
-                     ],
-                 help='Reload all configuration files')
-class TaggingCommand(Command):
-
-    """Reload configuration."""
-
-    def __init__(self, tags=u''):
-        self.tagstring = tags
-
-    def apply(self, ui):
-        tagginglist = [t for t in self.tagstring.split(' ') if t]
-        tags = []
-        untags = []
-
-        for tag in tagginglist:
-            if tag[0] == '-':
-                untags.append(tag[1:])
-            else:
-                tags.append(tag[1:] if tag[0] == '+' else tag)
-
-        if tags:
-            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(tags), action='add', flush=True))
-        if untags:
-            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(untags), action='remove', flush=True))
-
 import notmuch
 from alot.db.thread import Thread
 from alot.db.message import Message
+
+
 def _get_messages(self):
-        """
-        returns all messages in this thread as dict mapping all contained
-        messages to their direct responses.
-        :rtype: dict mapping :class:`~alot.db.message.Message` to a list of
-                :class:`~alot.db.message.Message`.
-        """
-        if not self._messages:  # if not already cached
-            query = self._dbman.query('thread:' + self._id)
-            thread = next(query.search_threads())
+    """
+    returns all messages in this thread as dict mapping all contained
+    messages to their direct responses.
+    :rtype: dict mapping :class:`~alot.db.message.Message` to a list of
+            :class:`~alot.db.message.Message`.
+    """
+    if not self._messages:  # if not already cached
+        query = self._dbman.query('thread:' + self._id)
+        thread = next(query.search_threads())
 
-            def accumulate(acc, msg):
-                M = Message(self._dbman, msg, thread=self)
-                acc[M] = []
-                r = msg.get_replies()
-                if r is not None:
-                    for m in r:
-                        acc[M].append(accumulate(acc, m))
-                return M
+        def accumulate(acc, msg):
+            M = Message(self._dbman, msg, thread=self)
+            acc[M] = []
+            r = msg.get_replies()
+            if r is not None:
+                for m in r:
+                    acc[M].append(accumulate(acc, m))
+            return M
 
-            self._messages = {}
-            for m in sorted(thread.get_toplevel_messages(), key=notmuch.message.Message.get_date):
-                self._toplevel_messages.append(accumulate(self._messages, m))
-        return self._messages
+        self._messages = {}
+        for m in sorted(thread.get_toplevel_messages(), key=notmuch.message.Message.get_date):
+            self._toplevel_messages.append(accumulate(self._messages, m))
+    return self._messages
+
 
 Thread.get_messages = _get_messages
