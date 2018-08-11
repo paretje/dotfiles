@@ -78,3 +78,13 @@
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
             width = 'weight', 1
+    [[threadline-unread]]
+        tagged_with = unread
+        [[[date]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[mailcount]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[authors]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
+        [[[subject]]]
+            normal = '','','light gray,bold','black','light gray,bold','black'
