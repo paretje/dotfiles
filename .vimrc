@@ -42,8 +42,6 @@ Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
-Plug 'briceburg/vimperator-labs', {'rtp': 'muttator/contrib/vim', 'for': 'muttator'}
-Plug 'vimperator/vimperator.vim', {'for': 'vimperator'}
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
@@ -51,7 +49,7 @@ Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'neomake/neomake'
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim'  " TODO: use?
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
 Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'
@@ -73,7 +71,7 @@ Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
-Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}
+Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
@@ -100,7 +98,7 @@ endif
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'paretje/nvim-man'
-  Plug 'kassio/neoterm'
+  Plug 'kassio/neoterm'  " TODO: use?
   Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
 else
   Plug 'Shougo/deoplete.nvim'
