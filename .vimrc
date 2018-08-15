@@ -75,7 +75,7 @@ Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
-Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'joonty/vdebug'
@@ -99,6 +99,7 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
+  " TODO: install.sh
   Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
 else
   Plug 'Shougo/deoplete.nvim'
