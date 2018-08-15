@@ -249,6 +249,7 @@ let g:airline#extensions#whitespace#trailing_format = "\u2219T[%s]"
 let g:airline#extensions#whitespace#long_format = "\u2219L[%s]"
 let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
 let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
+let g:airline#extensions#csv#column_display = 'Name'
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
