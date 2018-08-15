@@ -83,6 +83,7 @@ class IDLEIMAPClient(threading.Thread):
                 client.logout()
             except Exception:
                 logging.warn("lost connection")
+                time.sleep(5)
 
 
 class IMAPAccount():
