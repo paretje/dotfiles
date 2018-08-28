@@ -1,0 +1,3 @@
+#!/bin/sh -e
+export PIP_USER="no"
+exec "$HOME/.local/bin/poetry" "$@"
