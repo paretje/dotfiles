@@ -116,7 +116,7 @@ URxvt.letterSpace: 0
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
 ! URxvt*perl-ext-common:                string
-URxvt.perl-ext-common: vim-scrollback,matcher
+URxvt.perl-ext-common: keyboard-select,clipboard,url-select
 ! URxvt*perl-ext:                       string
 ! URxvt*iso14755:                       boolean
 URxvt.iso14755: false
@@ -144,6 +144,18 @@ URxvt.iso14755: false
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
-URxvt.vim-scrollback: M-s
-URxvt.vim-scrollback-paste: C-V
-urxvt.matcher.rend.0: -Uline
+
+URxvt.url-select.launcher: sensible-browser
+
+URxvt.keyboard-select.clipboard: true
+
+URxvt.clipboard.autocopy: false
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+
+URxvt.keysym.M-s:           perl:keyboard-select:activate
+URxvt.keysym.M-/:           perl:keyboard-select:search
+URxvt.keysym.M-f:           perl:url-select:select_next
+URxvt.keysym.C-C:           perl:clipboard:copy
+URxvt.keysym.C-V:           perl:clipboard:paste
+URxvt.keysym.M-V:           perl:clipboard:paste_escaped
