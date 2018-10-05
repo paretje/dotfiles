@@ -1,4 +1,4 @@
-#!/usr/bin.env python3
+#!/usr/bin/env python3
 import sys
 
 # pylint: disable=C0111
@@ -7,6 +7,7 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 config.load_autoconfig()
 
+# keep backend setting after restart from GUI
 if '--backend' in sys.argv:
     c.backend = sys.argv[sys.argv.index('--backend')+1]
 else:
@@ -27,7 +28,7 @@ c.content.headers.accept_language = "en-GB,en,nl-BE,nl"
 c.content.ssl_strict = True
 c.content.netrc_file = "~/.local/share/qutebrowser/netrc"
 c.completion.cmd_history_max_items = 10000
-c.completion.web_history_max_items = 10000
+c.completion.web_history.max_items = 10000
 c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
