@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import psutil
 
 # pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
@@ -13,7 +14,10 @@ if '--backend' in sys.argv:
 else:
     c.backend = "webengine"
 
-# c.args.enable_webengine_inspector = True
+# reduce memory usage on low memory machines
+if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
+    c.qt.low_end_device_mode = 'always'
+    c.qt.process_model = 'process-per-site'
 
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
 c.url.default_page = "about:blank"
