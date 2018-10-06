@@ -26,7 +26,7 @@ zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
 zplug "paretje/weechat-vimode", at:paretje, use:
 
-zplug "muennich/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
+zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
 zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key Control_R+shift+q"
 
