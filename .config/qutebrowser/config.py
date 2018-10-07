@@ -16,7 +16,6 @@ else:
 
 # reduce memory usage on low memory machines
 if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
-    c.qt.low_end_device_mode = 'always'
     c.qt.process_model = 'process-per-site'
 
 c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
