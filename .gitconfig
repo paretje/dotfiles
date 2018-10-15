@@ -12,3 +12,6 @@
 	graph = log --graph --decorate --oneline --all
 [commit]
 	gpgsign = true
+[diff]
+	algorithm = histogram
+	colorMoved = true
