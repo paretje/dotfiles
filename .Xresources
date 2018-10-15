@@ -155,8 +155,8 @@ URxvt.clipboard.copycmd: xsel -ib
 URxvt.clipboard.pastecmd: xsel -ob
 
 URxvt.keysym.M-s:           perl:keyboard-select:activate
-URxvt.keysym.M-/:           perl:keyboard-select:search
-URxvt.keysym.M-f:           perl:url-select:select_next
+URxvt.keysym.M-f:           perl:keyboard-select:search
+URxvt.keysym.M-l:           perl:url-select:select_next
 URxvt.keysym.C-C:           perl:clipboard:copy
 URxvt.keysym.C-V:           perl:clipboard:paste
 URxvt.keysym.M-V:           perl:clipboard:paste_escaped
