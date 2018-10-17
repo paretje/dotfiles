@@ -1,6 +1,7 @@
 #!/bin/sh
-/usr/bin/ranger "$@"
-
 if [ -n "$TMUX" ]; then
+	/usr/bin/ranger "$@"
 	tmux set automatic-rename on
+else
+	exec /usr/bin/ranger "$@"
 fi
