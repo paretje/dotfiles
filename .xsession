@@ -80,14 +80,19 @@ display -window root /usr/share/images/desktop-base/desktop-background &
 xrdb ~/.Xresources
 
 # Touchpad configuration
-synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 if [ "$HOST" = "kevin-laptop" ]; then
-	# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
-	#       maybe ClickPad, RightButtonArea*, ...?
-	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
-	# TODO: options for intel?
-else [ "$HOST" = "parsley" ]
-	synclient FingerHigh=18 MaxTapMove=20 ClickPad=1
+	xinput set-prop 10 282 1
+else
+	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
+	if [ "$HOST" = "kevin-chromebook" ]; then
+		# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
+		#       maybe ClickPad, RightButtonArea*, ...?
+		synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
+		# TODO: options for intel?
+	else [ "$HOST" = "parsley" ]
+		synclient FingerHigh=18 MaxTapMove=20 ClickPad=1
+	fi
+	syndaemon -d -t -R
 fi
 
 # Substitute variables in user-dirs.dirs file
@@ -97,7 +102,6 @@ user-dirs-make
 xscreensaver -no-splash &
 dunst &
 xclipman &
-syndaemon -d -t -R
 maildaemon &
 test -x "$GOPATH/bin/matterircd" && sh -c 'while true; do matterircd -bind "127.0.0.1:6666"; sleep 5s; done' &
 
