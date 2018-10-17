@@ -113,7 +113,7 @@ sub-shadow-offset=1
 
 [vdpau]
 # The profile forces the vdpau VO.
-vo=vdpau
+vo=gpu
 # Use hardware decoding (this might break playback of some h264 files)
 hwdec=vdpau
 hwdec-codecs=all
@@ -121,7 +121,7 @@ hwdec-codecs=all
 # vf-clr=yes vf-clr=yes
 
 [vaapi]
-vo=xv
+vo=gpu
 hwdec=vaapi
 hwdec-codecs=all
 
