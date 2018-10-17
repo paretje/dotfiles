@@ -39,6 +39,10 @@ xmodmap -e 'clear lock'
 xmodmap -e 'keysym Caps_Lock = Escape'
 
 if [ "$HOST" = "kevin-laptop" ]; then
+	xmodmap -e 'keysym Print = Hyper_L'
+fi
+
+if [ "$HOST" = "kevin-chromebook" ]; then
 	xmodmap -e 'keysym Super_L = Escape'
 fi
 
