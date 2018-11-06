@@ -40,6 +40,8 @@ xmodmap -e 'keysym Caps_Lock = Escape'
 
 if [ "$HOST" = "kevin-laptop" ]; then
 	xmodmap -e 'keysym Print = Hyper_L'
+	xmodmap -e 'keysym Prior = Left'
+	xmodmap -e 'keysym Next = Right'
 fi
 
 if [ "$HOST" = "kevin-chromebook" ]; then
