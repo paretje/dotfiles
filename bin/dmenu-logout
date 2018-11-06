@@ -12,6 +12,8 @@ case "$choice" in
 		fi
 		if [ -x /bin/systemctl ]; then
 			systemctl poweroff &
+		elif [ -e /run/runit.stopit ]; then
+			sudo init 0
 		else
 			sudo -- shutdown -h now
 		fi
@@ -22,6 +24,8 @@ case "$choice" in
 		fi
 		if [ -x /bin/systemctl ]; then
 			systemctl reboot &
+		elif [ -e /run/runit.stopit ]; then
+			sudo init 6
 		else
 			sudo -- shutdown -r now
 		fi
