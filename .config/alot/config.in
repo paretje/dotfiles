@@ -13,6 +13,7 @@ handle_mouse = True
 # honor_followup_to = True
 # input_timeout = 2.0
 mailinglists = support@senso2.me
+# msg_summary_hides_threadwide_tags = False
 # periodic_hook_frequency = 60
 prefer_plaintext = True
 print_cmd = muttprint
@@ -158,3 +159,7 @@ timestamp_format = "%b %d %H:%M"
     'g f' = pipeto urlscan 2>/dev/null
     L = reply --list True
     tab = select
+
+[tags]
+  [[sent]]
+    translated = ''
