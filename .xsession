@@ -83,7 +83,7 @@ xrdb ~/.Xresources
 
 # Touchpad configuration
 if [ "$HOST" = "kevin-laptop" ]; then
-	xinput set-prop 10 282 1
+	xinput set-prop 10 281 1
 	xinput set-prop 11 311 0 1
 else
 	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
