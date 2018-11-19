@@ -62,10 +62,11 @@ c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
 
-c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['gh'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
+c.url.searchengines['DEFAULT'] = c.url.searchengines['ddg']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
