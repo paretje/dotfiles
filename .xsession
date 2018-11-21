@@ -38,7 +38,7 @@ setxkbmap -layout us -variant altgr-intl
 xmodmap -e 'clear lock'
 xmodmap -e 'keysym Caps_Lock = Escape'
 
-if [ "$HOST" = "kevin-laptop" ]; then
+if [ "$HOST" = "kevin-laptop" -o "$HOST" = "chervil" ]; then
 	xmodmap -e 'keysym Print = Hyper_L'
 	xmodmap -e 'keysym Prior = Left'
 	xmodmap -e 'keysym Next = Right'
