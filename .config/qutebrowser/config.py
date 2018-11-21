@@ -66,6 +66,7 @@ c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['gh'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
+c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['ddg']
 
 c.aliases['h'] = 'help'
