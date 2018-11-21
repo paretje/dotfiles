@@ -134,7 +134,11 @@ else
 fi
 
 # set key to use to sign packages
-export DEB_SIGN_KEYID="64AD7E10"
+if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
+    export DEB_SIGN_KEYID="E672C080A81F2D8CCDF0198C438CD95296C1A48A"
+else
+    export DEB_SIGN_KEYID="A00FD8ECD1BC0694C8ED1C835473109364AD7E10"
+fi
 
 # set default org refile file
 if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
