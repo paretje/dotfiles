@@ -2,10 +2,12 @@
 message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
 level=$(echo "$message" | sed 's/^Discharging, \([0-9]\+\)%,.*$/\1/')
 
-if [ "$HOST" = "parsley" ]; then
-	thresholds=(11 13 15)
-elif [ "$HOST" = "kevin-laptop" ]; then
+if [ "$HOST" = "kevin-laptop" ]; then
 	thresholds=(8 12 14)
+elif [ "$HOST" = "chervil" ]; then
+	thresholds=(2 3 4)
+elif [ "$HOST" = "parsley" ]; then
+	thresholds=(11 13 15)
 else
 	thresholds=(5 7 10)
 fi
