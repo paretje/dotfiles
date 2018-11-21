@@ -72,6 +72,11 @@ if [ "$HOST" = "kevin-laptop" ] && ifconfig eth0 | fgrep -q 'inet'; then
 	pactl set-default-sink kevin-desktop
 fi
 
+if [ "$HOST" = "chervil" ]; then
+	# xrandr --output eDP1 --mode 2560x1440 --dpi 120
+	xrandr --output eDP1 --mode 2048x1152
+fi
+
 # Set default mouse pointer
 xsetroot -cursor_name left_ptr
 
