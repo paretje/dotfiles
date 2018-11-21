@@ -85,6 +85,11 @@ xrdb ~/.Xresources
 if [ "$HOST" = "kevin-laptop" ]; then
 	xinput set-prop 10 281 1
 	xinput set-prop 11 311 0 1
+elif [ "$HOST" = "chervil" ]; then
+	xinput set-prop 11 278 1
+	# xinput set-prop 12 298 -0.4
+	xinput set-prop 12 307 0 1
+	xinput set-prop 12 298 1
 else
 	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 	if [ "$HOST" = "kevin-chromebook" ]; then
