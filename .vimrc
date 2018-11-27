@@ -72,6 +72,7 @@ Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
@@ -84,7 +85,10 @@ Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
-Plug 'raghur/fruzzy'
+
+if executable('cmake')
+  Plug 'nixprime/cpsm', {'do': './install.sh'}
+endif
 
 if has('python') || has('python3')
   Plug 'SirVer/ultisnips'
@@ -254,7 +258,11 @@ endif
 let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_mruf_exclude_nomod = 1
-let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
+if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
+  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+else
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
 let g:ctrlp_tjump_only_silent = 1
 
 " Fugitive options
