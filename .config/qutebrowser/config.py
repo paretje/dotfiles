@@ -18,7 +18,7 @@ else:
 if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
     c.qt.process_model = 'process-per-site'
 
-c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
+c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
 c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
@@ -64,10 +64,16 @@ c.spellcheck.languages = ['en-GB']
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
-c.url.searchengines['gh'] = "https://github.com/{}"
+c.url.searchengines['ghu'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
 c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
-c.url.searchengines['DEFAULT'] = c.url.searchengines['ddg']
+c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=connect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
+c.url.searchengines['wnl'] = "https://nl.wikipedia.org/w/index.php?search={}"
+c.url.searchengines['wen'] = "https://en.wikipedia.org/w/index.php?search={}"
+c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?q={}"
+c.url.searchengines['gh'] = "https://github.com/search?q={}"
+c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?q={}&l=en"
+c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
