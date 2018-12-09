@@ -43,4 +43,5 @@ text-width 72
 
 include "~/.newsboat/filter"
 
-macro , set browser "readarticle" ; open-in-browser ; set browser "sensible-browser"
+macro , edit-flags "" ; set browser "readarticle" ; open-in-browser ; set browser "sensible-browser"
+macro o edit-flags o
