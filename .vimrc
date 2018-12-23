@@ -100,7 +100,7 @@ if has('nvim')
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
   " TODO: install.sh
-  Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
+  " Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
