@@ -73,6 +73,9 @@ c.url.searchengines['wen'] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?q={}"
 c.url.searchengines['gh'] = "https://github.com/search?q={}"
 c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?q={}&l=en"
+c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublanguageid-dut/moviename-{}"
+c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
+c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
