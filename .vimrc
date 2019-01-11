@@ -356,8 +356,9 @@ let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_mypy_args = ['--check-untyped-defs', '--ignore-missing-imports']
-
 let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+
+let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', 'cppcheck']
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
@@ -926,6 +927,7 @@ fun! ExtractCMakeBuildArgs()
   endif
 
   " TODO: C
+  let b:neomake_cpp_gcc_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
