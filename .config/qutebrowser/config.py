@@ -77,6 +77,8 @@ c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublangu
 c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
+c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
+c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
