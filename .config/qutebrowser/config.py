@@ -76,6 +76,7 @@ c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?q={}&l=en"
 c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublanguageid-dut/moviename-{}"
 c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
+c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
