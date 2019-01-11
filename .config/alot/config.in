@@ -163,3 +163,6 @@ timestamp_format = "%b %d %H:%M"
 [tags]
   [[sent]]
     translated = ''
+
+  [[todo]]
+    normal = '','','light red','black','light red','black'
