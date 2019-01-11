@@ -108,6 +108,7 @@
 /.config/transmission-remote-gtk
 /.config/calibre
 /.gimp-2.8
+/.config/GIMP
 /.local/share/gegl-0.2
 /.config/gtk-3.0/bookmarks
 /.sane/xsane
@@ -189,7 +190,7 @@ tags
 /.w3m/history
 /.dvdcss/CACHEDIR.TAG
 /repo
-/.texlive2016
+/.texlive20*
 /.local/share/xorg/*.log.old
 /.sudo_as_admin_successful
 /.gnupg/pubring.kbx
