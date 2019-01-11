@@ -151,8 +151,8 @@ URxvt.url-select.launcher: sensible-browser
 URxvt.keyboard-select.clipboard: true
 
 URxvt.clipboard.autocopy: false
-URxvt.clipboard.copycmd: xsel -ib
-URxvt.clipboard.pastecmd: xsel -ob
+URxvt.clipboard.copycmd: xclip -selection clipboard -in
+URxvt.clipboard.pastecmd: xclip -selection clipboard -out
 
 URxvt.keysym.M-s:           perl:keyboard-select:activate
 URxvt.keysym.M-f:           perl:keyboard-select:search
