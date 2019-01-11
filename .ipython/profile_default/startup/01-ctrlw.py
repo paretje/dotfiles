@@ -6,5 +6,5 @@ from prompt_toolkit.filters import ViInsertMode, EmacsInsertMode
 insert_mode = ViInsertMode() | EmacsInsertMode()
 
 ip = get_ipython()
-registry = ip.pt_cli.application.key_bindings_registry
+registry = ip.pt_app.key_bindings if hasattr(ip, 'pt_app') else ip.pt_cli.application.key_bindings_registry
 registry.add_binding(Keys.ControlW, filter=insert_mode)(get_by_name('backward-kill-word'))
