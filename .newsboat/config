@@ -41,6 +41,8 @@ prepopulate-query-feeds yes
 
 text-width 72
 
+download-path "~/downloads"
+
 include "~/.newsboat/filter"
 
 macro , edit-flags "" ; set browser "readarticle" ; open-in-browser ; set browser "sensible-browser"
