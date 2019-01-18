@@ -2,15 +2,26 @@
 url="$1"
 
 readable_less() {
-  curl --compressed --location --silent "$@" "$url" | readability -p article /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F
+  readability_args=()
+  curl_args=()
+
+  for arg in "$@"; do
+    if [[ "$arg" == "--"*"-keywords="* ]]; then
+      readability_args+=("$arg")
+    else
+      curl_args+=("$arg")
+    fi
+  done
+
+  curl --compressed --location --silent "${curl_args[@]}" | iconv -t utf8 -c | readability "${readability_args[@]}" /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F
 }
 
 readable_w3m() {
-  curl --compressed --location --silent "$url" | readability -p article /dev/stdin | w3m-col -T text/html
+  curl --compressed --location --silent "$@" | iconv -t utf8 -c | readability /dev/stdin | w3m-col -T text/html
 }
 
 raw_w3m() {
-  w3m-col -o display_image=0 "$url"
+  w3m-col -o display_image=0 "$@"
 }
 
 while read -r url_match method args; do
@@ -20,4 +31,4 @@ while read -r url_match method args; do
   fi
 done < "$HOME/.readarticlerc"
 
-readable_less
+readable_less "$url"
