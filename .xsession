@@ -116,7 +116,7 @@ xscreensaver -no-splash &
 dunst &
 xclipman &
 maildaemon &
-test -x "$GOPATH/bin/matterircd" && sh -c 'while true; do matterircd -bind "127.0.0.1:6666"; sleep 5s; done' &
+test -x "$GOPATH/bin/matterircd" && sh -c 'while true; do matterircd -config "$HOME/.config/matterircd/matterircd.toml"; sleep 5s; done' &
 
 if acpi -b | fgrep -vq 'No support'; then
 	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
