@@ -1,7 +1,7 @@
 #!/bin/bash -e
 url="$1"
 
-readable_less() {
+_readable() {
   readability_args=()
   curl_args=()
 
@@ -13,11 +13,15 @@ readable_less() {
     fi
   done
 
-  curl --compressed --location --silent "${curl_args[@]}" | iconv -t utf8 -c | readability "${readability_args[@]}" /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F
+  curl --compressed --location --silent "${curl_args[@]}" | iconv -t utf8 -c | readability "${readability_args[@]}" /dev/stdin
+}
+
+readable_less() {
+  _readable "$@" | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F
 }
 
 readable_w3m() {
-  curl --compressed --location --silent "$@" | iconv -t utf8 -c | readability /dev/stdin | w3m-col -T text/html
+  _readable "$@" | w3m-col -T text/html
 }
 
 raw_w3m() {
