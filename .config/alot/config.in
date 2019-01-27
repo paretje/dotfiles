@@ -107,6 +107,7 @@ timestamp_format = "%b %d %H:%M"
     l = retagprompt
     O = refineprompt
     | = refineprompt
+    a =
     'm d' = untag inbox,todo
     'm t' = tag todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
