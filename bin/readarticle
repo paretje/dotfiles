@@ -1,4 +1,6 @@
 #!/bin/bash -e
+set -o pipefail
+
 url="$1"
 
 _readable() {
