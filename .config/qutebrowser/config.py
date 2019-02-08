@@ -67,7 +67,7 @@ c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={
 c.url.searchengines['ghu'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
 c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
-c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=connect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
+c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=enable_post_methodEEE0N1Nconnect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
 c.url.searchengines['wnl'] = "https://nl.wikipedia.org/w/index.php?search={}"
 c.url.searchengines['wen'] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?q={}"
