@@ -23,7 +23,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
-Plug 'vim-airline/vim-airline', {'commit': '55a9721c22370a47e076e85449897ded6f45386d'}
+Plug 'vim-airline/vim-airline', {'tag': '*'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
