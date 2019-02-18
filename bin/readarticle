@@ -23,7 +23,7 @@ readable_less() {
 }
 
 readable_w3m() {
-  _readable "$@" | w3m-col -T text/html
+  _readable "$@" | w3m-col -M -T text/html
 }
 
 raw_w3m() {
