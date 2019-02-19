@@ -1,0 +1,3 @@
+#!/bin/sh
+notspam classify --spam=spam,-inbox --unk=spamy tag:new
+exec afew --tag --new

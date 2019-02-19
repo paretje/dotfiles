@@ -139,6 +139,7 @@ tags
 /.caff/gnupghome/random_seed
 /.caff/gnupghome/*.gpg
 /.mail
+!/.mail/.notmuch/hooks/post-new
 /.abook/addressbook
 /.sylfilter
 /.config/qpdfview
@@ -242,3 +243,4 @@ tags
 /.cargo
 /.readarticlerc
 /.local/share/qutebrowser/qtwebengine_dictionaries
+/.config/afew/config
