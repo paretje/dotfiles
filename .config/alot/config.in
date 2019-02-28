@@ -122,6 +122,7 @@ timestamp_format = "%b %d %H:%M"
     b = 'refine Bcc'
     c = 'refine Cc'
     S = togglesign
+    E = toggleencrypt
     enter = edit
     'g f' = togglesource
   
