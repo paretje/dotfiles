@@ -698,15 +698,15 @@ endif
 " Custom commands
 com! -nargs=+ -complete=file Ag Grepper -noprompt -tool ag -query <args>
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
-com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
-com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
-com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
-com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -narg=? PyDoc call PyDoc(<f-args>)
-com! -narg=1 Dictionary call Dictionary(<f-args>)
+com! -nargs=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
+com! -nargs=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
+com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
+com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
+com! -nargs=? PyDoc call PyDoc(<f-args>)
+com! -nargs=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiff Gsdiff :1 | Gvdiff
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-com! -narg=1 CppMan call CppMan(<f-args>)
+com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
 
 " TODO: documentation
