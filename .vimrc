@@ -85,6 +85,7 @@ Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
+Plug 'lambdalisue/suda.vim'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -708,6 +709,8 @@ com! Gmdiff Gsdiff :1 | Gvdiff
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
+com! -nargs=1 SudoRead  edit  suda://<args>
+com! SudoWrite write suda://%
 
 " TODO: documentation
 " TODO: abort?
