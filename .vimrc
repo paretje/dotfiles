@@ -709,7 +709,7 @@ com! Gmdiff Gsdiff :1 | Gvdiff
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
-com! -nargs=1 SudoRead  edit  suda://<args>
+com! SudoRead  edit  suda://%
 com! SudoWrite write suda://%
 
 " TODO: documentation
