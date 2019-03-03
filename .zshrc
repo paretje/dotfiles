@@ -24,7 +24,7 @@ zplug "plugins/pip", from:oh-my-zsh
 zplug "wee-slack/wee-slack", use:
 zplug "torhve/weechat-matrix-protocol-script", use:
 zplug "keith/urlview-weechat", use:
-zplug "paretje/weechat-vimode", at:paretje, use:
+zplug "GermainZ/weechat-vimode", use:
 
 zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
