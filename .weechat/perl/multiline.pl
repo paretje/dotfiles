@@ -1,0 +1,1 @@
+/usr/share/weechat/perl/multiline.pl
