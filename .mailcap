@@ -1,4 +1,4 @@
-text/html; lynx -stdin -dump -force_html -nomargins -width=72 -pseudo_inlines=off -nolist -localhost; copiousoutput
+text/html; lynx -stdin -dump -force_html -nomargins -width=72 -pseudo_inlines=off -localhost; copiousoutput
 application/pdf; zathura --mutt '%s'
 application/octet-stream; zathura --mutt'%s'
 image/pdf; zathura --mutt '%s'
