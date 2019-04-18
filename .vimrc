@@ -97,7 +97,7 @@ if has('python') || has('python3')
 endif
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins', 'tag': '4.1'}
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
   " TODO: install.sh
