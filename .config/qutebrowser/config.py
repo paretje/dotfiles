@@ -81,6 +81,8 @@ c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
 c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
 c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
+c.url.searchengines['g'] = "https://www.google.be/search?q={}"
+c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
