@@ -54,6 +54,7 @@
 /PDF
 /davmail.log*
 /.simutrans
+/simutrans
 /workspace
 /.zcompdump
 /.swt
@@ -92,9 +93,9 @@
 /.emacs.d
 /.local/share/lftp
 /node_modules
-/.qalculate/definitions
-/.qalculate/qalc.history
-/.qalculate/eurofxref-daily.xml
+/.config/qalculate/definitions
+/.config/qalculate/qalc.history
+/.config/qalculate/eurofxref-daily.xml
 /.pki
 /.npm
 /.p2
