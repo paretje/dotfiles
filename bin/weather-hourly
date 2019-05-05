@@ -1,2 +1,2 @@
 #!/bin/sh
-exec curl -s https://api.buienradar.nl/data/forecast/1.1/all/2797656 | jq --raw-output --unbuffered '.days[].hours[] | "\(.datetime | sub("T"; " ")) \(.temperature)"' | head -24
+exec curl -s https://forecast.buienradar.nl/2.0/forecast/2797656 | jq --raw-output --unbuffered '.days[].hours[] | "\(.datetime | sub("T"; " "))\t\(.temperature) °C\t\t\(.precipitationmm) mm"' | head -24
