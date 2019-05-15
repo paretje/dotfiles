@@ -102,6 +102,8 @@ sub-font-size=40
 sub-shadow-color="#000000"
 sub-shadow-offset=1
 
+ytdl-format=best[ext=mp4][height<=1440]
+
 ############
 # Profiles #
 ############
