@@ -103,7 +103,7 @@ if hash gpg-agent > /dev/null 2>&1; then
         fi
     else
         gpgconf --launch gpg-agent
-        if [ -x /bin/systemctl ]; then
+        if [ -d "/var/run/user/$UID" ]; then
             export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
         else
             export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
