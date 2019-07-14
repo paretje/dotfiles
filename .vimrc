@@ -389,6 +389,7 @@ call deoplete#custom#var('member', 'prefix_patterns', {
 \ })
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
+let g:deoplete#sources#jedi#ignore_errors = v:true
 
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
