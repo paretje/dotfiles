@@ -83,6 +83,9 @@ c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
 c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
 c.url.searchengines['g'] = "https://www.google.be/search?q={}"
 c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
+c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
+c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
+c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
