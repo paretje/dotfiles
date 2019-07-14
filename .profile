@@ -45,7 +45,7 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-NPM_PACKAGES="${HOME}/.npm-packages"
+export NPM_PACKAGES="${HOME}/.npm-packages"
 if [ -d "$NPM_PACKAGES/bin" ] ; then
     PATH="$NPM_PACKAGES/bin:$PATH"
 fi
