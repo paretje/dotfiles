@@ -245,3 +245,5 @@ tags
 /.readarticlerc
 /.local/share/qutebrowser/qtwebengine_dictionaries
 /.config/afew/config
+/.ansible
+/.config/yarn/link
