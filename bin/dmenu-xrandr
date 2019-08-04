@@ -312,6 +312,7 @@ function bail() {
 }
 
 main
+pkill -u "$USER" -USR1 conky
 
 ################################################################################
 # vim filetype=zsh autoindent expandtab shiftwidth=2 tabstop=2
