@@ -2,6 +2,8 @@ import alot
 import os
 import re
 import subprocess
+import asyncio
+import magic
 from notmuch.thread import Thread
 from notmuch.message import Message
 
@@ -103,6 +105,17 @@ def _sorted_func(func, key):
         result = func(*args, **kwargs)
         return sorted(result, key=key)
     return wrapper
+
+
+async def post_thread_save(ui, dbm, cmd):
+    # we are only concerned when we saved a single focused attachment
+    if cmd.all or not cmd.path:
+        return
+
+    if magic.from_file(cmd.path) == 'ASCII text, with CRLF line terminators':
+        if (await ui.choice("convert Windows text file?", select='yes', cancel='no')) == 'no':
+            return
+        await asyncio.create_subprocess_exec('dos2unix', cmd.path)
 
 
 Thread.get_toplevel_messages = _sorted_func(Thread.get_toplevel_messages,
