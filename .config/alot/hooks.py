@@ -3,6 +3,7 @@ import os
 import re
 import subprocess
 import asyncio
+import shlex
 import magic
 from notmuch.thread import Thread
 from notmuch.message import Message
@@ -112,10 +113,16 @@ async def post_thread_save(ui, dbm, cmd):
     if cmd.all or not cmd.path:
         return
 
-    if magic.from_file(cmd.path) == 'ASCII text, with CRLF line terminators':
+    if magic.from_file(cmd.path).endswith(' text, with CRLF line terminators'):
         if (await ui.choice("convert Windows text file?", select='yes', cancel='no')) == 'no':
             return
-        await asyncio.create_subprocess_exec('dos2unix', cmd.path)
+        process = await asyncio.create_subprocess_exec('dos2unix', cmd.path)
+        await process.wait()
+    if magic.from_file(cmd.path).startswith('ISO-8859 text'):
+        if (await ui.choice("convert ISO-8859 text file?", select='yes', cancel='no')) == 'no':
+            return
+        process = await asyncio.create_subprocess_shell('iconv -f latin1 -t utf8 {0} | sponge {0}'.format(shlex.quote(cmd.path)))
+        await process.wait()
 
 
 Thread.get_toplevel_messages = _sorted_func(Thread.get_toplevel_messages,
