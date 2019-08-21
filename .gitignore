@@ -247,3 +247,4 @@ tags
 /.config/afew/config
 /.ansible
 /.config/yarn/link
+/.config/pavucontrol-qt/pavucontrol-qt.conf
