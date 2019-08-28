@@ -1,8 +1,12 @@
 import alot
 import os
 import re
-import urllib2
 import subprocess
+import asyncio
+import shlex
+import magic
+from notmuch.thread import Thread
+from notmuch.message import Message
 
 
 def _get_threadlines(threadlist):
@@ -46,14 +50,15 @@ def post_buffer_focus(ui, dbm, buf, success):
         _restore_focus(buf)
 
 
-def pre_global_refresh(ui, dbm, cmd):
+async def pre_global_refresh(ui, dbm, cmd):
     _save_focus(ui.current_buffer)
 
 
-def post_global_refresh(ui, dbm, cmd):
+async def post_global_refresh(ui, dbm, cmd):
     _restore_focus(ui.current_buffer)
 
 
+# TODO: async
 # mark current message read at github
 def github_mark_read(ui, msg=None):
     if msg is None:
@@ -61,24 +66,24 @@ def github_mark_read(ui, msg=None):
     msg = msg.get_email()
 
     if msg.is_multipart():
-        msgtext = ""
+        msgtext = b""
         for msgpart in msg.get_payload():
             msgtext += msgpart.get_payload(decode=True)
     else:
         msgtext = msg.get_payload(decode=True)
 
-    r = r'src="(https://github.com/notifications/beacon/.*.gif)"'
+    r = b'src="(https://github.com/notifications/beacon/.*.gif)"'
     beacons = re.findall(r, msgtext)
 
     if beacons:
-        urllib2.urlopen(beacons[0])
+        subprocess.Popen(['curl', '-s', beacons[0]], stdout=open(os.devnull, 'w'))
         ui.notify('removed from github notifications:\n %s' % beacons[0])
     else:
         ui.notify('no beacon found')
 
 
 # automatically mark github notifications as read
-def post_search_select(ui, cmd, dbm):
+async def post_search_select(ui, cmd, dbm):
     current_msg = ui.current_buffer.get_selected_message()
     if current_msg.get_author()[1] == 'notifications@github.com':
         last_msg = list(ui.current_buffer.messagetrees())[-1]._message
@@ -96,33 +101,29 @@ def exit():
     subprocess.call(['notmuch-backup'])
 
 
-from alot.commands import Command, registerCommand
+def _sorted_func(func, key):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return sorted(result, key=key)
+    return wrapper
 
 
-@registerCommand('search', 'tagging',
-                 arguments=[
-                     (['tags'], {'help': 'space separated list of tags'})
-                     ],
-                 help='Reload all configuration files')
-class TaggingCommand(Command):
+async def post_thread_save(ui, dbm, cmd):
+    # we are only concerned when we saved a single focused attachment
+    if cmd.all or not cmd.path:
+        return
 
-    """Reload configuration."""
+    if magic.from_file(cmd.path).endswith(' text, with CRLF line terminators'):
+        if (await ui.choice("convert Windows text file?", select='yes', cancel='no')) == 'no':
+            return
+        process = await asyncio.create_subprocess_exec('dos2unix', cmd.path)
+        await process.wait()
+    if magic.from_file(cmd.path).startswith('ISO-8859 text'):
+        if (await ui.choice("convert ISO-8859 text file?", select='yes', cancel='no')) == 'no':
+            return
+        process = await asyncio.create_subprocess_shell('iconv -f latin1 -t utf8 {0} | sponge {0}'.format(shlex.quote(cmd.path)))
+        await process.wait()
 
-    def __init__(self, tags=u''):
-        self.tagstring = tags
 
-    def apply(self, ui):
-        tagginglist = [t for t in self.tagstring.split(' ') if t]
-        tags = []
-        untags = []
-
-        for tag in tagginglist:
-            if tag[0] == '-':
-                untags.append(tag[1:])
-            else:
-                tags.append(tag[1:] if tag[0] == '+' else tag)
-
-        if tags:
-            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(tags), action='add', flush=True))
-        if untags:
-            ui.apply_command(alot.commands.search.TagCommand(tags=' '.join(untags), action='remove', flush=True))
+Thread.get_toplevel_messages = _sorted_func(Thread.get_toplevel_messages,
+                                            Message.get_date)

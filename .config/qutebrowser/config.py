@@ -1,5 +1,6 @@
-#!/usr/bin.env python3
+#!/usr/bin/env python3
 import sys
+import psutil
 
 # pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
@@ -7,27 +8,30 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 config.load_autoconfig()
 
+# keep backend setting after restart from GUI
 if '--backend' in sys.argv:
     c.backend = sys.argv[sys.argv.index('--backend')+1]
 else:
     c.backend = "webengine"
 
-# c.args.enable_webengine_inspector = True
+# reduce memory usage on low memory machines
+if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
+    c.qt.process_model = 'process-per-site'
 
-c.url.start_pages = ["https://duckduckgo.com/html/?kl=be-nl&kp=-1"]
+c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
 c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
-c.content.developer_extras = True
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
 c.new_instance_open_target = 'tab-silent'
 c.auto_save.session = True
+c.content.autoplay = False
 c.content.headers.accept_language = "en-GB,en,nl-BE,nl"
 c.content.ssl_strict = True
 c.content.netrc_file = "~/.local/share/qutebrowser/netrc"
 c.completion.cmd_history_max_items = 10000
-c.completion.web_history_max_items = 10000
+c.completion.web_history.max_items = 10000
 c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
@@ -58,10 +62,31 @@ c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
 
-c.url.searchengines['DEFAULT'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
-c.url.searchengines['gh'] = "https://github.com/{}"
+c.url.searchengines['ghu'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
+c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
+c.url.searchengines['ubuntu'] = "https://packages.ubuntu.com/search?keywords={}"
+c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=enable_post_methodEEE0N1Nconnect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
+c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['wnl'] = "https://nl.wikipedia.org/w/index.php?search={}"
+c.url.searchengines['wen'] = "https://en.wikipedia.org/w/index.php?search={}"
+c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?q={}"
+c.url.searchengines['gh'] = "https://github.com/search?q={}"
+c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?q={}&l=en"
+c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublanguageid-dut/moviename-{}"
+c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
+c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
+c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
+c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
+c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
+c.url.searchengines['g'] = "https://www.google.be/search?q={}"
+c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
+c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
+c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
+c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
@@ -81,8 +106,8 @@ config.bind('p', 'open -- {clipboard}')
 config.bind('P', 'open -t -- {clipboard}')
 config.bind('[', 'navigate prev')
 config.bind(']', 'navigate next')
-config.bind('{', 'navigate prev -t')
-config.bind('}', 'navigate next -t')
+config.bind('{', 'navigate decrement')
+config.bind('}', 'navigate increment')
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('gh', 'home')

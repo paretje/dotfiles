@@ -31,6 +31,9 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # Disable overlay scrollbar in GTK 3
 export GTK_OVERLAY_SCROLLING=0
 
+# Fix Java programs
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
@@ -44,7 +47,13 @@ fi
 xmodmap -e 'clear lock'
 xmodmap -e 'keysym Caps_Lock = Escape'
 
-if [ "$HOST" = "kevin-laptop" ]; then
+if [ "$HOST" = "kevin-laptop" -o "$HOST" = "chervil" ]; then
+	xmodmap -e 'keysym Print = Hyper_L'
+	xmodmap -e 'keysym Prior = Left'
+	xmodmap -e 'keysym Next = Right'
+fi
+
+if [ "$HOST" = "kevin-chromebook" ]; then
 	xmodmap -e 'keysym Super_L = Escape'
 fi
 
@@ -58,9 +67,9 @@ xmodmap -e 'add mod3 = Hyper_L'
 
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
-	xbacklight -set 30
+	brightnessctl set 30%
 elif [ "$HOST" = "parsley" ]; then
-	xbacklight -set 40
+	brightnessctl set 40%
 fi
 
 # Set default mouse pointer
@@ -70,14 +79,25 @@ xsetroot -cursor_name left_ptr
 xrdb ~/.Xresources
 
 # Touchpad configuration
-synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
 if [ "$HOST" = "kevin-laptop" ]; then
-	# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
-	#       maybe ClickPad, RightButtonArea*, ...?
-	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
-	# TODO: options for intel?
-else [ "$HOST" = "parsley" ]
-	synclient FingerHigh=18 MaxTapMove=20 ClickPad=1
+	xinput set-prop 10 281 1
+	xinput set-prop 11 311 0 1
+elif [ "$HOST" = "chervil" ]; then
+	xinput set-prop 11 278 1
+	# xinput set-prop 12 298 -0.4
+	xinput set-prop 12 307 0 1
+	xinput set-prop 12 298 1
+else
+	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
+	if [ "$HOST" = "kevin-chromebook" ]; then
+		# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
+		#       maybe ClickPad, RightButtonArea*, ...?
+		synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
+		# TODO: options for intel?
+	else [ "$HOST" = "parsley" ]
+		synclient FingerHigh=18 MaxTapMove=20 ClickPad=1
+	fi
+	syndaemon -d -t -R
 fi
 
 # Substitute variables in user-dirs.dirs file
@@ -85,7 +105,6 @@ user-dirs-make
 
 # Start some daemons
 xclipman &
-syndaemon -d -t -R
 if acpi -b | fgrep -vq 'No support'; then
 	sh -c 'while true; do batmonitor ; sleep 2m ; done' &
 fi

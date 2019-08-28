@@ -24,7 +24,7 @@ export ZPLUG_HOME="$HOME/.zplug"
 # set GOPATH
 export GOPATH="$HOME/.go"
 
-# TODO: what happens if a directory in PATH doesn't exist?
+# TODO: just remove these checks, and build the PATH
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
     PATH="$GEM_HOME/bin:$PATH"
@@ -35,6 +35,21 @@ if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
 fi
 
+# set PATH so it includes user's go bin if it exists
+if [ -d "$GOPATH/bin" ] ; then
+    PATH="$GOPATH/bin:$PATH"
+fi
+
+# set PATH so it includes user's cargo bin if it exists
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+export NPM_PACKAGES="${HOME}/.npm-packages"
+if [ -d "$NPM_PACKAGES/bin" ] ; then
+    PATH="$NPM_PACKAGES/bin:$PATH"
+fi
+
 # set PATH so it includes user local bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
@@ -43,11 +58,6 @@ fi
 # set PATH so it includes user's zplug bin if it exists
 if [ -d "$ZPLUG_HOME/bin" ] ; then
     PATH="$ZPLUG_HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's go bin if it exists
-if [ -d "$GOPATH/bin" ] ; then
-    PATH="$GOPATH/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -93,7 +103,7 @@ if hash gpg-agent > /dev/null 2>&1; then
         fi
     else
         gpgconf --launch gpg-agent
-        if [ -x /bin/systemctl ]; then
+        if [ -d "/var/run/user/$UID" ]; then
             export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
         else
             export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
@@ -117,17 +127,21 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # set name and email address
 export NAME="Kevin Velghe"
-if [ "$HOST" = "parsley" -o "$HOST" = "fennel" ]; then
+if [ "$HOST" = "parsley" -o "$HOST" = "fennel" -o "$HOST" = "chervil" ]; then
     export EMAIL="kevin.velghe@senso2.me"
 else
     export EMAIL="kevin@paretje.be"
 fi
 
 # set key to use to sign packages
-export DEB_SIGN_KEYID="64AD7E10"
+if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
+    export DEB_SIGN_KEYID="E672C080A81F2D8CCDF0198C438CD95296C1A48A"
+else
+    export DEB_SIGN_KEYID="A00FD8ECD1BC0694C8ED1C835473109364AD7E10"
+fi
 
 # set default org refile file
-if [ "$HOST" = "parsley" ]; then
+if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
     export ORG_REFILE="$HOME/vcs/senso2me/notes/s2m-refile.org"
 else
     export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
@@ -144,11 +158,14 @@ export LESS="-FRXi"
 export JWT_AUTH_PREFIX='JWT'
 
 # define mail accounts used on different devices
-if [ "$HOST" = "parsley" ]; then
+if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
     export MAIL_ACCOUNTS="senso2me"
 elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
 fi
+
+# disable system install from pip
+export PIP_USER="yes"
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" -a -x /usr/bin/startx ]; then

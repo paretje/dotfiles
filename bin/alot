@@ -21,4 +21,5 @@ if __name__ == "__main__":
     with open(ALOT_CONFIG, 'wb') as config_file:
         config.write(config_file)
 
-    os.execv('/usr/bin/alot', [sys.argv[0], '--mailindex-path', os.environ['MAILDIR']] + sys.argv[1:])
+    # TODO: replace with call
+    os.execv(os.path.expanduser('~/.local/bin/alot'), [sys.argv[0], '--mailindex-path', os.environ['MAILDIR']] + sys.argv[1:])

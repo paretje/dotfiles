@@ -22,7 +22,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline', {'commit': '55a9721c22370a47e076e85449897ded6f45386d'}
+Plug 'vim-airline/vim-airline', {'tag': '*'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'paretje/vim-dotoo', {'branch': 'merged'}
@@ -32,7 +32,7 @@ Plug 'tpope/vim-endwise'
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192e08'}
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim'  " TODO: use?
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -44,15 +44,18 @@ Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession'
-Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 Plug 'cespare/vim-toml', {'for': 'toml'}
-Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
+Plug 'idanarye/vim-vebugger'
+Plug 'lambdalisue/suda.vim'
 
 if has('nvim')
   Plug 'paretje/nvim-man'
-  Plug 'kassio/neoterm'
+  Plug 'kassio/neoterm'  " TODO: use?
 else
   Plug 'congma/vim-fakeclip'
 endif
@@ -168,6 +171,7 @@ if has('nvim')
 endif
 if exists('+signcolumn')
   set signcolumn=yes
+  au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
 else
   let g:gitgutter_sign_column_always = 1
 endif
@@ -175,7 +179,7 @@ endif
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
-let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 let g:airline_detect_spell = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
@@ -188,6 +192,7 @@ let g:airline#extensions#whitespace#trailing_format = "\u2219T[%s]"
 let g:airline#extensions#whitespace#long_format = "\u2219L[%s]"
 let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
 let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
+let g:airline#extensions#csv#column_display = 'Name'
 
 " CtrlP options
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -293,32 +298,23 @@ let g:neomake_sh_bashate_maker = {
 let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
 let g:neomake_python_python_exe = 'python3'
-let g:neomake_python_enabled_makers = ['python', 'flake8', 'mypy']
+let g:neomake_python_mypy_args = ['--check-untyped-defs', '--ignore-missing-imports']
+let g:neomake_python_enabled_makers = ['python', 'flake8']
+
+let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', 'cppcheck']
 
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.html = []
-let g:deoplete#omni_patterns.markdown = []
-
 " TODO: use sources instead of ignore_sources
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['tag', 'buffer']
+let s:ignore_sources = {}
+let s:ignore_sources._ = ['tag', 'buffer']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
-  let g:deoplete#ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
+  let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
 endfor
 
-let g:deoplete#member#prefix_patterns = {}
-let g:deoplete#member#prefix_patterns['markdown.pandoc'] = ':'
-let g:deoplete#member#prefix_patterns['ledger'] = ':'
-let g:deoplete#member#prefix_patterns['dotoo'] = ':'
-
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.ledger = "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']"
-let g:deoplete#keyword_patterns.dotoo = ':\w+'
-
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
+let g:deoplete#sources#jedi#ignore_errors = v:true
 
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
@@ -356,8 +352,9 @@ let g:delimitMate_expand_cr = 1
 let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
 let g:neoterm_autoscroll = 1
-let g:noeterm_fixedsize = 1
+let g:neoterm_fixedsize = 1
 let g:neoterm_repl_python = 'ipython3'
+let g:neoterm_default_mod = 'split'
 
 " wordmotion options
 let g:wordmotion_prefix = "\<Leader>"
@@ -380,7 +377,9 @@ endif
 " vim-grepper options
 let g:grepper = {}
 let g:grepper.dir = 'repo,cwd'
-au User Grepper call GrepperReset()
+let g:grepper.open = 1
+let g:grepper.switch = 1
+let g:grepper.highlight = 1
 
 " cscope.vim options
 let g:cscope_silent = 1
@@ -484,6 +483,7 @@ au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
 
 " sh ft options
 au BufRead ~/.xsession set filetype=sh
+au FileType sh let &l:path = substitute($PATH, ':', ',', '')
 
 " help ft options
 au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> d <C-D> | endif
@@ -495,6 +495,7 @@ au FileType help if !&modifiable | setlocal nospell | endif
 au FileType c,cpp setlocal commentstring=//%s
 au FileType c,cpp call ExtractCMakeBuildArgs()
 au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType cpp   setlocal keywordprg=:CppMan
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -520,6 +521,9 @@ au FileType proto setlocal commentstring=//%s
 " typescript ft options
 au FileType typescript nnoremap <silent> <buffer> <C-]> :TSDef<CR>
 au FileType typescript setlocal keywordprg=:TSDoc
+
+" vim ft options
+au FileType vim setlocal iskeyword+=:
 
 " terminal options
 if has('nvim')
@@ -619,16 +623,20 @@ else
 endif
 
 " Custom commands
-com! -narg=* Ag call Grepper(<f-args>)
+com! -nargs=+ -complete=file Ag Grepper -noprompt -tool ag -query <args>
 com! BeamerBackground hi Normal ctermbg=233 | set background=dark
-com! -narg=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
-com! -narg=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
-com! -narg=1 SpellInstall call spellfile#LoadFile(<q-args>)
-com! -narg=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -narg=? PyDoc call PyDoc(<f-args>)
-com! -narg=1 Dictionary call Dictionary(<f-args>)
+com! -nargs=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
+com! -nargs=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
+com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
+com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
+com! -nargs=? PyDoc call PyDoc(<f-args>)
+com! -nargs=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiff Gsdiff :1 | Gvdiff
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+com! -nargs=1 CppMan call CppMan(<f-args>)
+com! W w
+com! SudoRead  edit  suda://%
+com! SudoWrite write suda://%
 
 " TODO: documentation
 " TODO: abort?
@@ -778,46 +786,6 @@ fun! VimDotoo(func)
   normal! zO
 endfun
 
-fun! Grepper(...)
-  if &filetype ==# 'nerdtree'
-    wincmd p
-  endif
-
-  if !exists('g:grepper_dir')
-    let g:grepper_dir = haslocaldir() ? getcwd() : ''
-  endif
-
-  execute 'Grepper -tool ag -open -switch -highlight -query ' . join(map(copy(a:000), 'shellescape(v:val)'), ' ')
-endfun
-
-fun! GrepperReset()
-  if !exists('g:grepper_dir')
-    return
-  endif
-
-  " TODO: wincmd p should be replaced with an actual test on the origin window
-  " and the qf window
-  call GrepperResetDir()
-  wincmd p
-  call GrepperResetDir()
-  wincmd p
-  unlet g:grepper_dir
-endfun
-
-fun! GrepperResetDir()
-  if g:grepper_dir ==# ''
-    let l:tab = getcwd(-1)
-    let l:global = getcwd(-1, -1)
-    if l:tab != l:global
-      execute 'tcd ' . fnameescape(l:tab)
-    else
-      execute 'cd ' . fnameescape(l:global)
-    endif
-  else
-    execute 'lcd ' . fnameescape(g:grepper_dir)
-  endif
-endfun
-
 fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
@@ -868,15 +836,19 @@ fun! ExtractCMakeBuildArgs()
 
   let b:cmake_compile_db = b:build_dir . '/compile_commands.json'
 
-  if has('nvim')
-    let l:json_db = json_decode(readfile(b:cmake_compile_db))
+  if filereadable(b:cmake_compile_db)
+    if has('nvim')
+      let l:json_db = json_decode(readfile(b:cmake_compile_db))
+    else
+      let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
+    endif
+    let l:current_file = expand('%:p')
+    let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
+    if !empty(b:cmake_compile_args)
+      let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+    endif
   else
-    let l:json_db = json_decode(join(readfile(b:cmake_compile_db), "\n"))
-  endif
-  let l:current_file = expand('%:p')
-  let b:cmake_compile_args = filter(l:json_db, "v:val['file'] == l:current_file")
-  if !empty(b:cmake_compile_args)
-    let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
+    let b:cmake_compile_args = []
   endif
 
   if !empty(b:cmake_compile_args)
@@ -884,10 +856,16 @@ fun! ExtractCMakeBuildArgs()
   endif
 
   " TODO: C
+  let b:neomake_cpp_gcc_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
 
   let g:deoplete#sources#clang#clang_complete_database = b:build_dir
+endfun
+
+fun! CppMan(page) abort
+  execute 'split | terminal cppman ' . shellescape(a:page)
+  doau User ManOpen
 endfun

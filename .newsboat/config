@@ -41,8 +41,9 @@ prepopulate-query-feeds yes
 
 text-width 72
 
+download-path "~/downloads"
+
 include "~/.newsboat/filter"
 
-macro , set browser "curl --compressed --location --silent %u | readability -p article /dev/stdin | lynx -stdin -dump -force_html -width=72 -pseudo_inlines=off -localhost -cfg ~/.lynx.cfg | less -ic -+F" ; open-in-browser ; set browser "sensible-browser"
-macro o set browser "curl --compressed --location --silent %u | readability -p article /dev/stdin | w3m-col -T text/html" ; open-in-browser ; set browser "sensible-browser"
-macro O set browser "w3m-col -o display_image=0 %u" ; open-in-browser ; set browser "sensible-browser"
+macro , edit-flags "" ; set browser "readarticle" ; open-in-browser ; set browser "sensible-browser"
+macro o edit-flags o

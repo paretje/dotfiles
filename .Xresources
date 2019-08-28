@@ -33,27 +33,39 @@ URxvt.scrollBar: false
 ! URxvt*cursorUnderline:                boolean
 ! URxvt*cursorBlink:                    boolean
 ! URxvt*pointerBlank:                   boolean
-URxvt.background: #000000
-URxvt.foreground: #ffffff
-URxvt.color0: #000000000000
-URxvt.color1: #cccc00000000
-URxvt.color2: #4e4e9a9a0606
-URxvt.color3: #c4c4a0a00000
-URxvt.color4: #26d6426368f5
-URxvt.color5: #757550507b7b
-URxvt.color6: #060698989a9a
-URxvt.color7: #d3d3d7d7cfcf
-URxvt.color8: #555557575353
-URxvt.color9: #efef29292929
-URxvt.color10: #8a8ae2e23434
-URxvt.color11: #fcfce9e94f4f
-URxvt.color12: #73739f9fcfcf
-URxvt.color13: #adad7f7fa8a8
-URxvt.color14: #3434e2e2e2e2
-URxvt.color15: #eeeeeeeeecec
+
+URxvt.background: #12140F
+URxvt.foreground: #eeeeec
+
+URxvt.color0: #12140F
+URxvt.color8: #555753
+
+!URxvt.color1: #a40000
+URxvt.color1: #cc0000
+URxvt.color9: #ef2929
+
+URxvt.color2: #4e9a06
+URxvt.color10: #8ae234
+
+URxvt.color3: #c4a000
+URxvt.color11: #fce94f
+
+URxvt.color4: #2c558a
+URxvt.color12: #729fcf
+
+URxvt.color5: #5c3566
+URxvt.color13: #ad7fa8
+
+URxvt.color6: #06989a
+URxvt.color14: #34e2e2
+
+URxvt.color7: #d3d7cf
+URxvt.color15: #eeeeec
+
 ! URxvt*colorBD:                        color
 ! URxvt*colorIT:                        color
 ! URxvt*colorUL:                        color
+! URxvt.colorUL: #8ae234
 ! URxvt*colorRV:                        color
 ! URxvt*underlineColor:                 color
 ! URxvt*scrollColor:                    color
@@ -80,6 +92,7 @@ URxvt.font: xft:Ubuntu Mono:size=11,xft:DejaVu Sans Mono for Powerline:size=10,x
 ! URxvt*title:                          string
 ! URxvt*iconName:                       string
 ! URxvt*saveLines:                      number
+URxvt.saveLines: 2000
 ! URxvt*buffered:                       boolean
 ! URxvt*depth:                          number
 ! URxvt*visual:                         number
@@ -104,7 +117,7 @@ URxvt.letterSpace: 0
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
 ! URxvt*perl-ext-common:                string
-URxvt.perl-ext-common: vim-scrollback,matcher
+URxvt.perl-ext-common: keyboard-select,clipboard,url-select
 ! URxvt*perl-ext:                       string
 ! URxvt*iso14755:                       boolean
 URxvt.iso14755: false
@@ -132,6 +145,18 @@ URxvt.iso14755: false
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
-URxvt.vim-scrollback: M-s
-URxvt.vim-scrollback-paste: C-V
-urxvt.matcher.rend.0: -Uline
+
+URxvt.url-select.launcher: sensible-browser
+
+URxvt.keyboard-select.clipboard: true
+
+URxvt.clipboard.autocopy: false
+URxvt.clipboard.copycmd: xclip -selection clipboard -in
+URxvt.clipboard.pastecmd: xclip -selection clipboard -out
+
+URxvt.keysym.M-s:           perl:keyboard-select:activate
+URxvt.keysym.M-f:           perl:keyboard-select:search
+URxvt.keysym.M-l:           perl:url-select:select_next
+URxvt.keysym.C-C:           perl:clipboard:copy
+URxvt.keysym.C-V:           perl:clipboard:paste
+URxvt.keysym.M-V:           perl:clipboard:paste_escaped

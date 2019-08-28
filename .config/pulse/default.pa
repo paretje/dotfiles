@@ -66,13 +66,13 @@ load-module module-detect
 # .endif
 
 ### Automatically load driver modules for Bluetooth hardware
-# .ifexists module-bluetooth-policy.so
-# load-module module-bluetooth-policy
-# .endif
+.ifexists module-bluetooth-policy.so
+load-module module-bluetooth-policy
+.endif
 
-# .ifexists module-bluetooth-discover.so
-# load-module module-bluetooth-discover
-# .endif
+.ifexists module-bluetooth-discover.so
+load-module module-bluetooth-discover
+.endif
 
 ### Load several protocols
 # .ifexists module-esound-protocol-unix.so
@@ -159,8 +159,8 @@ load-module module-always-sink
 #.fail
 #.endif
 
-load-module module-tunnel-sink server=192.168.2.2 sink_name=kevin-desktop
-load-module module-tunnel-source server=192.168.2.2 source_name=kevin-desktop.source
+# load-module module-tunnel-sink server=192.168.2.2 sink_name=kevin-desktop
+# load-module module-tunnel-source server=192.168.2.2 source_name=kevin-desktop.source
 
 ### Make some devices default
 # set-default-sink alsa

@@ -16,7 +16,7 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "zsh-users/zsh-completions"
 
-zplug "paretje/urxvt-vim-scrollback", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf vim-scrollback ~/.urxvt/ext"
+zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
 zplug load
 PATH="$my_path"
@@ -112,7 +112,7 @@ bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-forward
 
 # Use similar word definition as vim
-WORDCHARS="_-."
+WORDCHARS="_"
 
 # Enable report time
 REPORTTIME=5

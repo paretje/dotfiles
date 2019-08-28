@@ -13,9 +13,10 @@ handle_mouse = True
 # honor_followup_to = True
 # input_timeout = 2.0
 mailinglists = support@senso2.me
+# msg_summary_hides_threadwide_tags = False
 # periodic_hook_frequency = 60
 prefer_plaintext = True
-# print_cmd = 
+print_cmd = muttprint
 quit_on_last_bclose = True
 # reply_force_address = True
 # reply_force_realname = True
@@ -38,7 +39,10 @@ timestamp_format = "%b %d %H:%M"
     encrypt_by_default = all
 
     [[[abook]]]
-        type = abook
+      type = shellcommand
+      command = abook --mutt-query
+      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      ignorecase = True
 
   [[senso2me]]
     realname = Kevin Velghe
@@ -51,7 +55,10 @@ timestamp_format = "%b %d %H:%M"
     encrypt_by_default = all
 
     [[[abook]]]
-        type = abook
+      type = shellcommand
+      command = abook --mutt-query
+      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      ignorecase = True
 
 
 [bindings]
@@ -100,6 +107,7 @@ timestamp_format = "%b %d %H:%M"
     l = retagprompt
     O = refineprompt
     | = refineprompt
+    a =
     'm d' = untag inbox,todo
     'm t' = tag todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
@@ -114,6 +122,7 @@ timestamp_format = "%b %d %H:%M"
     b = 'refine Bcc'
     c = 'refine Cc'
     S = togglesign
+    E = toggleencrypt
     enter = edit
     'g f' = togglesource
   
@@ -134,6 +143,7 @@ timestamp_format = "%b %d %H:%M"
     h = toggleheaders
     P = print --all --separately --add_tags
     S = save --all
+    g =
     r = reply --all
     f = forward
     p = print --add_tags
@@ -151,3 +161,10 @@ timestamp_format = "%b %d %H:%M"
     'g f' = pipeto urlscan 2>/dev/null
     L = reply --list True
     tab = select
+
+[tags]
+  [[sent]]
+    translated = ''
+
+  [[todo]]
+    normal = '','','light red','black','light red','black'

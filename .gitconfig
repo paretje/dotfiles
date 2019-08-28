@@ -10,5 +10,12 @@
 	signingkey = 64AD7E10
 [alias]
 	graph = log --graph --decorate --oneline --all
+	clean-tags = fetch --prune origin +refs/tags/*:refs/tags/*
 [commit]
 	gpgsign = true
+[diff]
+	algorithm = histogram
+	colorMoved = true
+[merge]
+	conflictStyle = diff3
+	log = true

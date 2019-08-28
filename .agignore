@@ -6,3 +6,4 @@ tags
 *.log
 /.vim/spell
 *.mdb
+/.config/nvim/bundle

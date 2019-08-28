@@ -54,6 +54,7 @@
 /PDF
 /davmail.log*
 /.simutrans
+/simutrans
 /workspace
 /.zcompdump
 /.swt
@@ -92,9 +93,9 @@
 /.emacs.d
 /.local/share/lftp
 /node_modules
-/.qalculate/definitions
-/.qalculate/qalc.history
-/.qalculate/eurofxref-daily.xml
+/.config/qalculate/definitions
+/.config/qalculate/qalc.history
+/.config/qalculate/eurofxref-daily.xml
 /.pki
 /.npm
 /.p2
@@ -108,6 +109,7 @@
 /.config/transmission-remote-gtk
 /.config/calibre
 /.gimp-2.8
+/.config/GIMP
 /.local/share/gegl-0.2
 /.config/gtk-3.0/bookmarks
 /.sane/xsane
@@ -138,6 +140,7 @@ tags
 /.caff/gnupghome/random_seed
 /.caff/gnupghome/*.gpg
 /.mail
+!/.mail/.notmuch/hooks/post-new
 /.abook/addressbook
 /.sylfilter
 /.config/qpdfview
@@ -189,7 +192,7 @@ tags
 /.w3m/history
 /.dvdcss/CACHEDIR.TAG
 /repo
-/.texlive2016
+/.texlive20*
 /.local/share/xorg/*.log.old
 /.sudo_as_admin_successful
 /.gnupg/pubring.kbx
@@ -236,3 +239,12 @@ tags
 /.caff/gnupghome/S.*
 /.caff/gnupghome/.gpg-v21-migrated
 /.caff/gnupghome/tofu.db
+/.config/gaupol/search
+/.local/share/fonts/.uuid
+/.cargo
+/.readarticlerc
+/.local/share/qutebrowser/qtwebengine_dictionaries
+/.config/afew/config
+/.ansible
+/.config/yarn/link
+/.config/pavucontrol-qt/pavucontrol-qt.conf
