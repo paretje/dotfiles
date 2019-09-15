@@ -86,7 +86,7 @@ c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
 c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
 c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
-c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
+c.url.searchengines['DEFAULT'] = c.url.searchengines['eco']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
