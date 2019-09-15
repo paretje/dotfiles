@@ -34,30 +34,8 @@ export GTK_OVERLAY_SCROLLING=0
 # Fix Java programs
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# Set keyboard layout
-setxkbmap -layout us -variant altgr-intl
-
-# Remap some keys
-xmodmap -e 'clear lock'
-xmodmap -e 'keysym Caps_Lock = Escape'
-
-if [ "$HOST" = "kevin-laptop" -o "$HOST" = "chervil" ]; then
-	xmodmap -e 'keysym Print = Hyper_L'
-	xmodmap -e 'keysym Prior = Left'
-	xmodmap -e 'keysym Next = Right'
-fi
-
-if [ "$HOST" = "kevin-chromebook" ]; then
-	xmodmap -e 'keysym Super_L = Escape'
-fi
-
-xmodmap -e 'keysym Menu = Hyper_L'
-xmodmap -e 'remove control = Control_R'
-xmodmap -e 'remove mod4 = Super_R'
-xmodmap -e 'remove mod4 = Hyper_L'
-xmodmap -e 'add mod3 = Control_R'
-xmodmap -e 'add mod3 = Super_R'
-xmodmap -e 'add mod3 = Hyper_L'
+# Configure keyboard layout
+keyboard-configuration
 
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
