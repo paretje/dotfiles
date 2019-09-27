@@ -22,10 +22,8 @@ for arg in "$@"; do
 done
 
 # disable notification during playback
-pkill -u $USER -USR1 dunst
 if $smart && test $files -gt 1; then
 	mpv --no-resume-playback "$@"
 else
 	mpv "$@"
 fi
-pkill -u $USER -USR2 dunst
