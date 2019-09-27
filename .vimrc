@@ -45,7 +45,7 @@ Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
-Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192e08'}
+Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'neomake/neomake'
@@ -226,12 +226,8 @@ if has('nvim')
   " split shows a preview window when doing a substitution on multiple lines
   set inccommand=split
 endif
-if exists('+signcolumn')
-  set signcolumn=yes
-  au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
-else
-  let g:gitgutter_sign_column_always = 1
-endif
+set signcolumn=yes
+au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -337,8 +333,8 @@ let g:jedi#usages_command = ';]'
 
 " neomake options
 au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
-let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
-let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
+let g:neomake_error_sign = {'texthl': 'guifg=#ff2222 guibg=<X> ctermfg=1 ctermbg=<Y>'}
+let g:neomake_warning_sign = {'texthl': 'guifg=#bbbb00 guibg=<X> ctermfg=3 ctermbg=<Y>'}
 
 hi NeomakeWarning cterm=underline ctermfg=3 gui=undercurl guisp=Blue
 hi NeomakeError cterm=underline ctermfg=1 gui=undercurl guisp=Red
@@ -473,6 +469,11 @@ let g:gutentags_file_list_command = {
 
 " vim-cmake options
 let g:cmake_export_compile_commands = 1
+
+" gitgutter options
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " Bulk options
 au FileType text,mail,dotoo,markdown    setlocal spell
