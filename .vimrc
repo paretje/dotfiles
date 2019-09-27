@@ -228,6 +228,8 @@ if has('nvim')
 endif
 set signcolumn=yes
 au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
+" Emit CursorHold event sooner (e.g. used by GitGutter) and write swap file
+set updatetime=500
 
 " Airline options
 let g:airline_powerline_fonts = 1
