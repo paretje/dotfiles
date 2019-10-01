@@ -392,6 +392,8 @@ let g:deoplete#sources#jedi#ignore_errors = v:true
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
+let g:deoplete#sources#notmuch#command = ['notmuch', 'address', '--format=json', '--output=recipients', '--deduplicate=address', 'tag:sent']
+
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
 
