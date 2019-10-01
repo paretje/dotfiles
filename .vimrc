@@ -335,8 +335,8 @@ let g:jedi#usages_command = ';]'
 
 " neomake options
 au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
-let g:neomake_error_sign = {'texthl': 'guifg=#ff2222 guibg=<X> ctermfg=1 ctermbg=<Y>'}
-let g:neomake_warning_sign = {'texthl': 'guifg=#bbbb00 guibg=<X> ctermfg=3 ctermbg=<Y>'}
+let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
+let g:neomake_warning_sign = {'texthl': 'GitGutterChange'}
 
 hi NeomakeWarning cterm=underline ctermfg=3 gui=undercurl guisp=Blue
 hi NeomakeError cterm=underline ctermfg=1 gui=undercurl guisp=Red
