@@ -87,6 +87,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
 Plug 'lambdalisue/suda.vim'
 Plug 'solarnz/thrift.vim'
+Plug 'pearofducks/ansible-vim'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -605,6 +606,9 @@ au FileType typescript setlocal keywordprg=:TSDoc
 
 " vim ft options
 au FileType vim setlocal iskeyword+=:
+
+" ansible ft options
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 
 " terminal options
 if has('nvim')
