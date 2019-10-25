@@ -609,6 +609,7 @@ au FileType vim setlocal iskeyword+=:
 
 " ansible ft options
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au FileType yaml.ansible setlocal keywordprg=:AnsibleDoc
 
 " terminal options
 if has('nvim')
@@ -722,6 +723,7 @@ com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
 com! SudoRead  edit  suda://%
 com! SudoWrite write suda://%
+com! -nargs=1 AnsibleDoc call AnsibleDoc(<f-args>)
 
 " TODO: documentation
 " TODO: abort?
@@ -952,5 +954,10 @@ endfun
 
 fun! CppMan(page) abort
   execute 'split | terminal cppman ' . shellescape(a:page)
+  doau User ManOpen
+endfun
+
+fun! AnsibleDoc(plugin) abort
+  execute 'split | terminal ansible-doc ' . shellescape(a:plugin)
   doau User ManOpen
 endfun
