@@ -86,6 +86,7 @@ Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
 Plug 'lambdalisue/suda.vim'
+Plug 'solarnz/thrift.vim'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
