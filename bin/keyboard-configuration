@@ -3,8 +3,7 @@
 setxkbmap -layout us -variant altgr-intl
 
 # Remap some keys
-xmodmap -e 'clear lock'
-xmodmap -e 'keysym Caps_Lock = Escape'
+xmodmap "$HOME/.xmodmap"
 
 if [ "$HOST" = "kevin-laptop" -o "$HOST" = "chervil" ]; then
 	xmodmap -e 'keysym Print = Hyper_L'
@@ -15,14 +14,3 @@ fi
 if [ "$HOST" = "kevin-chromebook" ]; then
 	xmodmap -e 'keysym Super_L = Escape'
 fi
-
-xmodmap -e 'keysym Menu = Hyper_L'
-xmodmap -e 'remove control = Control_R'
-xmodmap -e 'remove mod4 = Super_R'
-xmodmap -e 'remove mod4 = Hyper_L'
-xmodmap -e 'remove mod4 = Super_L'
-xmodmap -e 'add mod3 = Control_R'
-xmodmap -e 'add mod3 = Super_R'
-xmodmap -e 'add mod3 = Hyper_L'
-xmodmap -e 'keysym Super_L = Control_L'
-xmodmap -e 'add control = Control_L'
