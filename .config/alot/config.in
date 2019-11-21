@@ -161,6 +161,7 @@ timestamp_format = "%b %d %H:%M"
     'g f' = pipeto urlscan 2>/dev/null
     L = reply --list True
     tab = select
+    'g u s' = call hooks.unsubscribe_list(ui)
 
 [tags]
   [[sent]]
