@@ -160,7 +160,7 @@ load-module module-always-sink
 #.fail
 #.endif
 
-# load-module module-tunnel-sink server=192.168.2.2 sink_name=kevin-desktop
+load-module module-tunnel-sink server=192.168.2.2 sink_name=kevin-desktop
 # load-module module-tunnel-source server=192.168.2.2 source_name=kevin-desktop.source
 
 ### Make some devices default
