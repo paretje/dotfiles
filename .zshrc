@@ -29,6 +29,7 @@ zplug "GermainZ/weechat-vimode", use:
 zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
 zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key Control_R+shift+q"
+zplug "paretje/st", use:, hook-build:"make clean && make install PREFIX='$HOME/.local'"
 
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
 
