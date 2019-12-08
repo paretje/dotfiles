@@ -6,3 +6,4 @@ pyPEG2
 readability-lxml
 -e git+git://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
 neovim
+-e git+https://github.com/mps-youtube/mps-youtube.git#egg=mps-youtube

@@ -216,6 +216,8 @@ tags
 /.config/mps-youtube/input_history
 /.config/mps-youtube/playlist_v2
 /.config/mps-youtube/play_history
+/.config/mps-youtube/play_history.m3u
+/.local/share/applications/mps-youtube.desktop
 /.local/share/qutebrowser/local-storage
 /.subversion/auth
 /.subversion/README.txt
