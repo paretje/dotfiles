@@ -1,5 +1,5 @@
 #!/bin/bash -e
-for pyver in 3 2; do
+for pyver in 3; do
 	hash pip$pyver 2>&- || continue
 
 	requirements=()
