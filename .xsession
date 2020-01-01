@@ -69,8 +69,8 @@ xrdb ~/.Xresources
 
 # Touchpad configuration
 if [ "$HOST" = "kevin-laptop" ]; then
-	xinput set-prop 10 281 1
-	xinput set-prop 11 311 0 1
+	xinput set-prop "pointer:Synaptics TM3075-002" "libinput Tapping Enabled" 1
+	xinput set-prop "pointer:TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1
 elif [ "$HOST" = "chervil" ]; then
 	xinput set-prop 11 278 1
 	# xinput set-prop 12 298 -0.4
