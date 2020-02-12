@@ -1,2 +1,2 @@
 #!/bin/sh
-exec curl -s 'https://www.buienradar.be/resources/actual/6260' | sed '/temperature/!d;s/^\s*"temperature":\s*"\(-\?[0-9.]*\)",\s*$/\1/'
+exec curl -s 'https://observations.buienradar.nl/1.0/actual/weatherstation/10006434' | jq --raw-output --unbuffered '.temperature | nearbyint'
