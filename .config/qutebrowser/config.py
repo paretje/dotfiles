@@ -36,7 +36,6 @@ c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
 c.downloads.location.directory = "~/downloads"
-c.content.cache.appcache = False
 c.content.cache.size = 52428800
 c.content.javascript.enabled = False
 c.content.webgl = False
@@ -47,7 +46,6 @@ c.content.host_blocking.whitelist = []
 c.hints.uppercase = True
 c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b', r'\b(>>|»)\b', r'\bcontinue\b', r'\bvolgende\b']
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
-c.hints.find_implementation = 'javascript'
 c.fonts.web.size.default = 15
 c.fonts.completion.entry = '8pt monospace'
 c.fonts.completion.category = 'bold 8pt monospace'
@@ -61,6 +59,10 @@ c.fonts.prompts = '8pt sans-serif'
 c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
+
+if c.backend == 'webkit':
+    c.content.cache.appcache = False
+    c.hints.find_implementation = 'javascript'
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
