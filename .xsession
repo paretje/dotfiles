@@ -76,16 +76,12 @@ elif [ "$HOST" = "chervil" ]; then
 	# xinput set-prop 12 298 -0.4
 	xinput set-prop 12 307 0 1
 	xinput set-prop 12 298 1
-else
+elif [ "$HOST" = "kevin-chromebook" ]; then
 	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
-	if [ "$HOST" = "kevin-chromebook" ]; then
-		# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
-		#       maybe ClickPad, RightButtonArea*, ...?
-		synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
-		# TODO: options for intel?
-	else [ "$HOST" = "parsley" ]
-		synclient FingerHigh=18 MaxTapMove=20 ClickPad=1
-	fi
+	# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
+	#       maybe ClickPad, RightButtonArea*, ...?
+	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
+	# TODO: options for intel?
 	syndaemon -d -t -R
 fi
 
