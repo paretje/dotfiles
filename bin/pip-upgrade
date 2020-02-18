@@ -15,28 +15,10 @@ for pyver in 3; do
 	fi
 
 	if [ ${#requirements[@]} -ne 0 ]; then
-		pip="$HOME/.local/bin/pip"
 		pip_compile="$HOME/.local/bin/pip-compile"
 		pip_sync="$HOME/.local/bin/pip-sync"
 
-		test -f "$pip" && mv "$pip" "$pip.bckp"
-		pipver="$(which pip$pyver)"
-
-		{
-			echo '#!/bin/sh'
-			echo 'if [ "$1" = "install" ]; then'
-			echo 'shift'
-			echo 'exec '"$pipver"' install --src "$HOME/.pip/src" "$@"'
-			echo 'else'
-			echo 'exec '"$pipver"' "$@"'
-			echo 'fi'
-		}  > "$pip"
-		chmod +x "$pip"
-
 		python$pyver "$pip_compile" --upgrade -o "${requirements_txt[0]}" "${requirements[@]}"
 		python$pyver "$pip_sync" "$@" "${requirements_txt[@]}"
-
-		rm "$pip"
-		mv "$pip.bckp" "$pip"
 	fi
 done
