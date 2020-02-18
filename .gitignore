@@ -250,3 +250,4 @@ tags
 /.ansible
 /.config/yarn/link
 /.config/pavucontrol-qt/pavucontrol-qt.conf
+/.local/share/ranger
