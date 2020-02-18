@@ -127,7 +127,9 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 
 # set name and email address
 export NAME="Kevin Velghe"
-if [ "$HOST" = "parsley" -o "$HOST" = "fennel" -o "$HOST" = "chervil" ]; then
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+    export EMAIL="kevin.velghe@vib-ugent.be"
+elif [ "$HOST" = "parsley" -o "$HOST" = "fennel" -o "$HOST" = "chervil" ]; then
     export EMAIL="kevin.velghe@senso2.me"
 else
     export EMAIL="kevin@paretje.be"
@@ -141,7 +143,9 @@ else
 fi
 
 # set default org refile file
-if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+    export ORG_REFILE="$HOME/vcs/vib/notes/refile.org"
+elif [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
     export ORG_REFILE="$HOME/vcs/senso2me/notes/s2m-refile.org"
 else
     export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
@@ -158,7 +162,9 @@ export LESS="-FRXi"
 export JWT_AUTH_PREFIX='JWT'
 
 # define mail accounts used on different devices
-if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+    export MAIL_ACCOUNTS="ugent"
+elif [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
     export MAIL_ACCOUNTS="senso2me"
 elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
