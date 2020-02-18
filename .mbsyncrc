@@ -44,6 +44,29 @@ Create Slave
 Patterns "*"
 SyncState "*"
 
+IMAPAccount ugent
+Host owa.ugent.be
+SSLType IMAPS
+SSLVersions TLSv1.2
+User Kevin.Velghe@UGent.be
+PassCmd "pass show email/Kevin.Velghe@UGent.be"
+AuthMechs PLAIN
+
+IMAPStore ugent-remote
+Account ugent
+
+MaildirStore ugent-local
+Path ~/.mail/ugent/
+Inbox ~/.mail/ugent/INBOX
+Flatten .
+
+Channel ugent
+Master :ugent-remote:
+Slave :ugent-local:
+Create Slave
+Patterns "*"
+SyncState "*"
+
 IMAPAccount senso2me
 Host imap.mailprotect.be
 SSLVersions TLSv1.2

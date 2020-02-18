@@ -14,6 +14,14 @@
         imap_idle = false
         periodic_sync_condition = "! 3gusage"
 
+    [accounts.ugent]
+        host =  "owa.ugent.be"
+        username =  "Kevin.Velghe@UGent.be"
+        password_cmd = "pass show email/Kevin.Velghe@UGent.be"
+        sync_interval = 300
+        imap_idle = false
+        periodic_sync_condition = "! 3gusage"
+
     [accounts.senso2me]
         host =  "imap.mailprotect.be"
         username =  "kevin.velghe@senso2.me"
