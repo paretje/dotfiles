@@ -88,6 +88,7 @@ Plug 'idanarye/vim-vebugger'
 Plug 'lambdalisue/suda.vim'
 Plug 'solarnz/thrift.vim'
 Plug 'pearofducks/ansible-vim'
+Plug 'petobens/poet-v', {'for': 'python'}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -475,6 +476,9 @@ let g:gutentags_file_list_command = {
 
 " vim-cmake options
 let g:cmake_export_compile_commands = 1
+
+" poet-v options
+let g:poetv_auto_activate = 1
 
 " gitgutter options
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
