@@ -46,7 +46,7 @@ timestamp_format = "%b %d %H:%M"
 
   [[ugent]]
     realname = Kevin Velghe
-    address = kevin.velghe@vib-ugent.be
+    address = kevin.velghe@ugent.vib.be
     sendmail_command = /usr/bin/msmtp -a ugent -t
     sent_box = maildir://$MAILDIR/ugent/Sent Items
     draft_box = maildir://$MAILDIR/ugent/Drafts
