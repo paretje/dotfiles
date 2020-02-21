@@ -277,10 +277,10 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-if $HOST ==# 'parsley'
-  let g:dotoo#agenda#files = ['~/vcs/senso2me/notes/*.org']
+if $HOST ==# 'kevin-vib-laptop'
+  let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
 else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/s2m-refile.org']
+  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/s2m-refile.org']
 endif
 let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
