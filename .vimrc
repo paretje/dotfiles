@@ -94,7 +94,7 @@ if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
 endif
 
-if has('python') || has('python3')
+if has('python3') || has('python')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 endif
