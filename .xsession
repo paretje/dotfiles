@@ -40,8 +40,8 @@ keyboard-configuration
 # Set brightness of laptop
 if [ "$HOST" = "kevin-laptop" ]; then
 	brightnessctl set 30%
-elif [ "$HOST" = "parsley" ]; then
-	brightnessctl set 40%
+elif [ "$HOST" = "kevin-vib-laptop" ]; then
+	brightnessctl set 20%
 fi
 
 # Some settings for laptop when working at desk
