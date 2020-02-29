@@ -180,7 +180,7 @@ class NewMailNotification(threading.Thread):
             try:
                 self.show_notification()
             except Exception:
-                logging.error("couldn't show notification")
+                logging.error("couldn't show notification", exc_info=True)
             NOTIFICATION_EVENT.clear()
 
 
