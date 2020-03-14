@@ -24,6 +24,12 @@ export ZPLUG_HOME="$HOME/.zplug"
 # set GOPATH
 export GOPATH="$HOME/.go"
 
+# set NPM_PACKAGES
+export NPM_PACKAGES="${HOME}/.npm-packages"
+
+# set PERL5LIB
+export PERL5LIB="$HOME/.local/lib/perl5"
+
 # TODO: just remove these checks, and build the PATH
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
@@ -45,7 +51,6 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-export NPM_PACKAGES="${HOME}/.npm-packages"
 if [ -d "$NPM_PACKAGES/bin" ] ; then
     PATH="$NPM_PACKAGES/bin:$PATH"
 fi
