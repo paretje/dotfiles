@@ -888,13 +888,12 @@ fun! PyDoc(...) abort
     echoerr 'Too many arguments'
     return
   elseif a:0 == 1
-    if g:jedi#force_py_version == 2
-      let l:pydoc = 'pydoc2.7'
-    else
-      let l:pydoc = 'pydoc3'
+    let l:python = 'python' . g:jedi#force_py_version
+    if exists('b:poetv_dir')
+      let l:python = b:poetv_dir . '/bin/' . l:python
     endif
     let l:shell_term = has('nvim') ? '' : '++shell '
-    execute 'split | terminal ' . l:shell_term . l:pydoc . ' ' . shellescape(a:1)
+    execute 'split | terminal ' . l:shell_term . l:python . ' -m pydoc ' . shellescape(a:1)
     doau User ManOpen
   else
     " TODO: handle multiple definitions
