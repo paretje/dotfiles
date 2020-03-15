@@ -938,6 +938,9 @@ fun! ExtractCMakeBuildArgs()
     if !empty(b:cmake_compile_args)
       let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
     endif
+
+    let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
+    let g:deoplete#sources#clang#clang_complete_database = b:build_dir
   else
     let b:cmake_compile_args = []
   endif
@@ -951,9 +954,6 @@ fun! ExtractCMakeBuildArgs()
   let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
-  let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
-
-  let g:deoplete#sources#clang#clang_complete_database = b:build_dir
 endfun
 
 fun! CppMan(page) abort
