@@ -85,6 +85,9 @@ elif [ "$HOST" = "kevin-chromebook" ]; then
 	syndaemon -d -t -R
 fi
 
+# Disable back and forward buttons on Logitech M500 mouse
+xinput set-button-map 'Logitech USB Laser Mouse' 1 2 3 0 0 6 7 0 0 10 11 12
+
 # Substitute variables in user-dirs.dirs file
 user-dirs-make
 
