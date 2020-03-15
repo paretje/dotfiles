@@ -86,8 +86,8 @@ Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
 Plug 'lambdalisue/suda.vim'
-Plug 'solarnz/thrift.vim'
-Plug 'pearofducks/ansible-vim'
+Plug 'solarnz/thrift.vim', {'for': 'thrift'}
+Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
 
 if executable('cmake')
