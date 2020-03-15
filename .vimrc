@@ -893,7 +893,8 @@ fun! PyDoc(...) abort
     else
       let l:pydoc = 'pydoc3'
     endif
-    execute 'split | terminal ' . l:pydoc . ' ' . shellescape(a:1)
+    let l:shell_term = has('nvim') ? '' : '++shell '
+    execute 'split | terminal ' . l:shell_term . l:pydoc . ' ' . shellescape(a:1)
     doau User ManOpen
   else
     " TODO: handle multiple definitions
@@ -957,11 +958,13 @@ fun! ExtractCMakeBuildArgs()
 endfun
 
 fun! CppMan(page) abort
-  execute 'split | terminal cppman ' . shellescape(a:page)
+  let l:shell_term = has('nvim') ? '' : ' ++shell'
+  execute 'split | terminal' . l:shell_term . ' cppman ' . shellescape(a:page)
   doau User ManOpen
 endfun
 
 fun! AnsibleDoc(plugin) abort
-  execute 'split | terminal ansible-doc ' . shellescape(a:plugin)
+  let l:shell_term = has('nvim') ? '' : ' ++shell'
+  execute 'split | terminal' . l:shell_term . ' ansible-doc ' . shellescape(a:plugin)
   doau User ManOpen
 endfun
