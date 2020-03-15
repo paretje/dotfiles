@@ -1,1 +1,0 @@
-../../.zplug/repos/wee-slack/wee-slack/wee_slack.py
