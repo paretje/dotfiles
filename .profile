@@ -51,6 +51,7 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# set PATH so it includes user's npm packages bin if it exists
 if [ -d "$NPM_PACKAGES/bin" ] ; then
     PATH="$NPM_PACKAGES/bin:$PATH"
 fi
@@ -177,6 +178,9 @@ fi
 
 # disable system install from pip
 export PIP_USER="yes"
+
+# set location of pip editable installs
+export PIP_SRC="$HOME/.pip/src"
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
