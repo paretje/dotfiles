@@ -81,13 +81,12 @@ c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublangu
 c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
-c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
 c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
 c.url.searchengines['g'] = "https://www.google.be/search?q={}"
 c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
 c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
-c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
