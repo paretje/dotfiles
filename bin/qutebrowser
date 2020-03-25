@@ -37,8 +37,15 @@ if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	if ! 3gusage; then
 		qutebrowser_args+=(:adblock-update)
 	fi
-elif [[ ${#ipc_files[@]} -ge 1 && $# -eq 1 && "$1" =~ ^[^-] ]]; then
-	echo "{\"args\":[\"$1\"], \"target_arg\":\"\", \"protocol_version\":1}" | socat - UNIX-CONNECT:"${ipc_files[0]}"
+elif [[ ${#ipc_files[@]} -ge 1 && (($# -eq 1 && "$1" =~ ^http && ! "$1" =~ \") || ($# -eq 3 && "$1" == "--target" && "$3" =~ ^http && ! "$3" =~ \")) ]]; then
+	if [[ $# -eq 1 ]]; then
+		url="$1"
+		target=""
+	else
+		url="$3"
+		target="$2"
+	fi
+	echo "{\"args\":[\"${url}\"], \"target_arg\":\"${target}\", \"protocol_version\":1}" | socat - UNIX-CONNECT:"${ipc_files[0]}"
 	exit
 fi
 qutebrowser_args+=("$@")
