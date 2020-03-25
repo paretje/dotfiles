@@ -29,7 +29,7 @@ articlelist-format "%f %D  %?T?|%-10T|  &?%t"
 feedlist-format "%n %11u %t"
 datetime-format "%R %b %d"
 
-browser "sensible-browser"
+browser "qutebrowser --target tab-bg-silent"
 
 show-read-feeds no
 
