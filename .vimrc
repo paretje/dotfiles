@@ -828,21 +828,6 @@ fun! OpenFile()
   endif
 endfun
 
-fun! GitRoot()
-  if exists('g:orig_root')
-    return
-  endif
-  let g:orig_root = getcwd()
-  execute 'cd ' . fnameescape(system('git -C ' . expand('%:p:h:S') . ' rev-parse --show-toplevel 2> /dev/null || pwd')[:-2])
-endfun
-
-fun! ResetRoot()
-  if exists('g:orig_root')
-    execute 'cd ' . fnameescape(g:orig_root)
-    unlet g:orig_root
-  endif
-endfun
-
 fun! LedgerEntry()
   if getline('.') !~? ':'
     call setline('.', shellescape(getline('.')))
