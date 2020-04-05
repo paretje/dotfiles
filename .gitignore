@@ -252,3 +252,10 @@ tags
 /.config/pavucontrol-qt/pavucontrol-qt.conf
 /.local/share/ranger
 /.config/straw-viewer/cli-history.txt
+/.conda
+/.keras
+/.local/share/jupyter
+/.config/sqlitebrowser
+/.docker/.buildNodeID
+/.zoom
+/.config/zoomus.conf
