@@ -89,6 +89,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'solarnz/thrift.vim', {'for': 'thrift'}
 Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
+Plug 'goerz/jupytext.vim'
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
