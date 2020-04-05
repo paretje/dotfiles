@@ -1,10 +1,10 @@
 #!/bin/sh
 mpv() {
 	# choose correct hardware acceleration
-	if [ "$VDPAU_DRIVER" = "nouveau" ]; then
-		/usr/bin/mpv --profile=vdpau "$@"
-	elif [ "$VDPAU_DRIVER" = "va_gl" ]; then
+	if hash vainfo; then
 		/usr/bin/mpv --profile=vaapi "$@"
+	elif hash vdpauinfo; then
+		/usr/bin/mpv --profile=vdpau "$@"
 	else
 		/usr/bin/mpv "$@"
 	fi
