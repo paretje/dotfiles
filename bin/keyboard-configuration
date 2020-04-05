@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 # Set keyboard layout
 setxkbmap -layout us -variant altgr-intl
 
