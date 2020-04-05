@@ -8,3 +8,4 @@ readability-lxml
 neovim
 -e git+https://github.com/afewmail/afew.git#egg=afew
 -e git+https://github.com/mps-youtube/mps-youtube.git#egg=mps-youtube
+ueberzug
