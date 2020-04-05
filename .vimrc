@@ -875,7 +875,7 @@ fun! PyDoc(...) abort
     return
   elseif a:0 == 1
     let l:python = 'python' . g:jedi#force_py_version
-    if exists('b:poetv_dir')
+    if exists('b:poetv_dir') && b:poetv_dir != "none"
       let l:python = b:poetv_dir . '/bin/' . l:python
     endif
     let l:shell_term = has('nvim') ? '' : '++shell '
