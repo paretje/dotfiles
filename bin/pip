@@ -1,6 +1,1 @@
-#!/bin/sh -e
-if [ -n "$VIRTUAL_ENV" ]; then
-	export PIP_USER="no"
-fi
-
-exec /usr/bin/pip "$@"
+pip3
