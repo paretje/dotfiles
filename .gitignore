@@ -259,3 +259,4 @@ tags
 /.docker/.buildNodeID
 /.zoom
 /.config/zoomus.conf
+/.config/teams-for-linux
