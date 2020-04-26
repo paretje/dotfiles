@@ -3,6 +3,9 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
+# Add local completion path
+fpath+=~/.zfunc
+
 # Clone zplug if unavailable
 if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
     git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME"
