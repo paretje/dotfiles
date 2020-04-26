@@ -167,10 +167,15 @@ class NewMailNotification(threading.Thread):
 
         if summary:
             logging.debug("show notification and refresh alot")
-            notify.Notification.new("You've got mail", summary).show()
+
             # TODO: maybe move to dunst?
-            subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
-                             'alot'])
+            try:
+                subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
+                                 'alot'])
+            except Exception:
+                logging.exception("couldn't refresh alot")
+
+            notify.Notification.new("You've got mail", summary).show()
 
     def run(self):
         notify.init('maildaemon')
@@ -180,7 +185,7 @@ class NewMailNotification(threading.Thread):
             try:
                 self.show_notification()
             except Exception:
-                logging.error("couldn't show notification", exc_info=True)
+                logging.exception("couldn't show notification")
             NOTIFICATION_EVENT.clear()
 
 
