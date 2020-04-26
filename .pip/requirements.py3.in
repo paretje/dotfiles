@@ -7,6 +7,7 @@ readability-lxml
 -e git+git://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
 neovim
 msgpack<1.0.0
+imapclient
 -e git+https://github.com/afewmail/afew.git#egg=afew
 -e git+https://github.com/mps-youtube/mps-youtube.git#egg=mps-youtube
 ueberzug
