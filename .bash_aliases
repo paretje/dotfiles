@@ -41,3 +41,6 @@ alias diff='colordiff'
 
 # batchvtest
 alias batchvtest='find -iname "*.mpg" -exec vtest "{}" ";"'
+
+# straw-listener
+alias straw-listener='straw-viewer -n --resolution=audio'

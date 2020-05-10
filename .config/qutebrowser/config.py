@@ -36,7 +36,6 @@ c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
 c.downloads.location.directory = "~/downloads"
-c.content.cache.appcache = False
 c.content.cache.size = 52428800
 c.content.javascript.enabled = False
 c.content.webgl = False
@@ -47,7 +46,6 @@ c.content.host_blocking.whitelist = []
 c.hints.uppercase = True
 c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b', r'\b(>>|»)\b', r'\bcontinue\b', r'\bvolgende\b']
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
-c.hints.find_implementation = 'javascript'
 c.fonts.web.size.default = 15
 c.fonts.completion.entry = '8pt monospace'
 c.fonts.completion.category = 'bold 8pt monospace'
@@ -62,30 +60,34 @@ c.fonts.statusbar = '8pt monospace'
 c.fonts.tabs = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
 
+if c.backend == 'webkit':
+    c.content.cache.appcache = False
+    c.hints.find_implementation = 'javascript'
+
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['ghu'] = "https://github.com/{}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
 c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
 c.url.searchengines['ubuntu'] = "https://packages.ubuntu.com/search?keywords={}"
-c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=enable_post_methodEEE0N1Nconnect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
-c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['sp'] = "https://www.startpage.com/do/search?prfh=lang_homepageEEEs/dawn/en/N1Nenable_post_methodEEE0N1Nconnect_to_serverEEEeuN1Ndisable_family_filterEEE1N1Ndisable_video_family_filterEEE1&query={}"
+c.url.searchengines['pydoc'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['wnl'] = "https://nl.wikipedia.org/w/index.php?search={}"
 c.url.searchengines['wen'] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?q={}"
 c.url.searchengines['gh'] = "https://github.com/search?q={}"
-c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?q={}&l=en"
+c.url.searchengines['tvdb'] = "https://www.thetvdb.com/search?query={}"
 c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublanguageid-dut/moviename-{}"
 c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
-c.url.searchengines['woordenlijst'] = "http://woordenlijst.org/#/?bwc=1&q={}"
 c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
 c.url.searchengines['g'] = "https://www.google.be/search?q={}"
 c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
 c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
-c.url.searchengines['python'] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
@@ -110,6 +112,8 @@ config.bind('{', 'navigate decrement')
 config.bind('}', 'navigate increment')
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
+config.bind('j', 'scroll-px 0 40')
+config.bind('k', 'scroll-px 0 -40')
 config.bind('gh', 'home')
 config.bind('s', 'stop')
 config.unbind(';i')

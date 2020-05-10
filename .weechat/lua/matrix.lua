@@ -1,1 +1,0 @@
-../../.zplug/repos/torhve/weechat-matrix-protocol-script/matrix.lua

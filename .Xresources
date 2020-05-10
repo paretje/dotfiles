@@ -80,7 +80,7 @@ URxvt.cursorColor: green
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 ! URxvt*iconFile:                       file
-URxvt.font: xft:Ubuntu Mono:size=11,xft:DejaVu Sans Mono for Powerline:size=10,xft:DejaVu Sans:size=8.5
+URxvt.font: xft:Ubuntu Mono:size=11,xft:DejaVu Sans Mono for Powerline:size=10,xft:Noto Emoji:size=6:minspace=False
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname

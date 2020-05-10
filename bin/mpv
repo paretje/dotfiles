@@ -1,12 +1,9 @@
 #!/bin/sh
 mpv() {
-        if test "$HOST" = "kevin-eeepc" && echo "$1" | grep -q '^http://'; then
-                /usr/bin/mpv "$(youtube-dl -f best -g "$1")"
-	# choose correct hardware acceleration
-	elif [ "$VDPAU_DRIVER" = "nouveau" ]; then
-		/usr/bin/mpv --profile=vdpau "$@"
-	elif [ "$VDPAU_DRIVER" = "va_gl" ]; then
+	if hash vainfo; then
 		/usr/bin/mpv --profile=vaapi "$@"
+	elif hash vdpauinfo; then
+		/usr/bin/mpv --profile=vdpau "$@"
 	else
 		/usr/bin/mpv "$@"
 	fi
@@ -24,10 +21,8 @@ for arg in "$@"; do
 done
 
 # disable notification during playback
-pkill -u $USER -USR1 dunst
 if $smart && test $files -gt 1; then
 	mpv --no-resume-playback "$@"
 else
 	mpv "$@"
 fi
-pkill -u $USER -USR2 dunst

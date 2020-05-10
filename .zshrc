@@ -3,6 +3,9 @@ if [ "$COLORTERM" = "xfce4-terminal" -a "$TERM" = "xterm" ]; then
     TERM=xterm-256color
 fi
 
+# Add local completion path
+fpath+=~/.zfunc
+
 # Clone zplug if unavailable
 if [ ! -f "$ZPLUG_HOME/init.zsh" ]; then
     git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME"
@@ -24,8 +27,8 @@ PATH="$my_path"
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory histignorespace incappendhistory
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -135,7 +138,7 @@ function xterm_title_preexec () {
     print -n "\e]2;$1\a"
 }
 
-if [[ "$TERM" == (xterm*|rxvt*) ]]; then
+if [[ "$TERM" == (xterm*|rxvt*|st*) ]]; then
     add-zsh-hook -Uz precmd xterm_title_precmd
     add-zsh-hook -Uz preexec xterm_title_preexec
 fi

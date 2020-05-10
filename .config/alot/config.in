@@ -12,7 +12,7 @@ editor_spawn = True
 handle_mouse = True
 # honor_followup_to = True
 # input_timeout = 2.0
-mailinglists = support@senso2.me
+# mailinglists =
 # msg_summary_hides_threadwide_tags = False
 # periodic_hook_frequency = 60
 prefer_plaintext = True
@@ -35,6 +35,22 @@ timestamp_format = "%b %d %H:%M"
     sent_box = maildir://$MAILDIR/prive/Sent
     draft_box = maildir://$MAILDIR/prive/Drafts
     gpg_key = A00FD8ECD1BC0694C8ED1C835473109364AD7E10
+    sign_by_default = True
+    encrypt_by_default = all
+
+    [[[abook]]]
+      type = shellcommand
+      command = abook --mutt-query
+      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      ignorecase = True
+
+  [[ugent]]
+    realname = Kevin Velghe
+    address = kevin.velghe@ugent.vib.be
+    sendmail_command = /usr/bin/msmtp -a ugent -t
+    sent_box = maildir://$MAILDIR/ugent/Sent Items
+    draft_box = maildir://$MAILDIR/ugent/Drafts
+    gpg_key = BA137AAF47EAD0286E34BDCA224F083560F2E437
     sign_by_default = True
     encrypt_by_default = all
 
@@ -161,6 +177,7 @@ timestamp_format = "%b %d %H:%M"
     'g f' = pipeto urlscan 2>/dev/null
     L = reply --list True
     tab = select
+    'g u s' = call hooks.unsubscribe_list(ui)
 
 [tags]
   [[sent]]

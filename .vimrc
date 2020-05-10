@@ -31,7 +31,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
-Plug 'airblade/vim-gitgutter', {'commit': '932ffaca092cca246b82c33e23d2d3a05e192e08'}
+Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/splitjoin.vim'  " TODO: use?
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -52,6 +52,8 @@ Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
 Plug 'lambdalisue/suda.vim'
+Plug 'solarnz/thrift.vim', {'for': 'thrift'}
+Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -169,12 +171,10 @@ if has('nvim')
   " split shows a preview window when doing a substitution on multiple lines
   set inccommand=split
 endif
-if exists('+signcolumn')
-  set signcolumn=yes
-  au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
-else
-  let g:gitgutter_sign_column_always = 1
-endif
+set signcolumn=yes
+au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
+" Emit CursorHold event sooner (e.g. used by GitGutter) and write swap file
+set updatetime=500
 
 " Airline options
 let g:airline_powerline_fonts = 1
@@ -219,10 +219,10 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 let g:necoghc_enable_detailed_browse = 1
 
 " vim-dotoo options
-if $HOST ==# 'parsley'
-  let g:dotoo#agenda#files = ['~/vcs/senso2me/notes/*.org']
+if $HOST ==# 'kevin-vib-laptop'
+  let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
 else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/senso2me/notes/s2m-refile.org']
+  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/s2m-refile.org']
 endif
 let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
@@ -316,8 +316,10 @@ endfor
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 let g:deoplete#sources#jedi#ignore_errors = v:true
 
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-9/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
+let g:deoplete#sources#notmuch#command = ['notmuch', 'address', '--format=json', '--output=recipients', '--deduplicate=address', 'tag:sent']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -398,6 +400,14 @@ let g:gutentags_file_list_command = {
 
 " vim-cmake options
 let g:cmake_export_compile_commands = 1
+
+" poet-v options
+let g:poetv_auto_activate = 1
+
+" gitgutter options
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " Bulk options
 au FileType text,mail,dotoo,markdown    setlocal spell
@@ -525,6 +535,10 @@ au FileType typescript setlocal keywordprg=:TSDoc
 " vim ft options
 au FileType vim setlocal iskeyword+=:
 
+" ansible ft options
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au FileType yaml.ansible setlocal keywordprg=:AnsibleDoc
+
 " terminal options
 if has('nvim')
   au TermOpen * setlocal nospell
@@ -637,6 +651,7 @@ com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
 com! SudoRead  edit  suda://%
 com! SudoWrite write suda://%
+com! -nargs=1 AnsibleDoc call AnsibleDoc(<f-args>)
 
 " TODO: documentation
 " TODO: abort?
@@ -736,21 +751,6 @@ fun! OpenFile()
   endif
 endfun
 
-fun! GitRoot()
-  if exists('g:orig_root')
-    return
-  endif
-  let g:orig_root = getcwd()
-  execute 'cd ' . fnameescape(system('git -C ' . expand('%:p:h:S') . ' rev-parse --show-toplevel 2> /dev/null || pwd')[:-2])
-endfun
-
-fun! ResetRoot()
-  if exists('g:orig_root')
-    execute 'cd ' . fnameescape(g:orig_root)
-    unlet g:orig_root
-  endif
-endfun
-
 fun! LedgerEntry()
   if getline('.') !~? ':'
     call setline('.', shellescape(getline('.')))
@@ -797,12 +797,12 @@ fun! PyDoc(...) abort
     echoerr 'Too many arguments'
     return
   elseif a:0 == 1
-    if g:jedi#force_py_version == 2
-      let l:pydoc = 'pydoc2.7'
-    else
-      let l:pydoc = 'pydoc3'
+    let l:python = 'python' . g:jedi#force_py_version
+    if exists('b:poetv_dir') && b:poetv_dir != "none"
+      let l:python = b:poetv_dir . '/bin/' . l:python
     endif
-    execute 'split | terminal ' . l:pydoc . ' ' . shellescape(a:1)
+    let l:shell_term = has('nvim') ? '' : '++shell '
+    execute 'split | terminal ' . l:shell_term . l:python . ' -m pydoc ' . shellescape(a:1)
     doau User ManOpen
   else
     " TODO: handle multiple definitions
@@ -847,6 +847,9 @@ fun! ExtractCMakeBuildArgs()
     if !empty(b:cmake_compile_args)
       let b:cmake_compile_args = filter(split(b:cmake_compile_args[0]['command'], ' '), "v:val =~# '^-[ID]\\|--std'")
     endif
+
+    let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
+    let g:deoplete#sources#clang#clang_complete_database = b:build_dir
   else
     let b:cmake_compile_args = []
   endif
@@ -860,12 +863,16 @@ fun! ExtractCMakeBuildArgs()
   let b:neomake_cpp_clang_args = ['-fsyntax-only', '-Wall', '-Wextra'] + b:cmake_compile_args
   let b:neomake_cpp_clangcheck_args = ['%:p', '-p', b:build_dir]
   let b:neomake_cpp_clangtidy_args = ['%:p', '-p', b:build_dir]
-  let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
-
-  let g:deoplete#sources#clang#clang_complete_database = b:build_dir
 endfun
 
 fun! CppMan(page) abort
-  execute 'split | terminal cppman ' . shellescape(a:page)
+  let l:shell_term = has('nvim') ? '' : ' ++shell'
+  execute 'split | terminal' . l:shell_term . ' cppman ' . shellescape(a:page)
+  doau User ManOpen
+endfun
+
+fun! AnsibleDoc(plugin) abort
+  let l:shell_term = has('nvim') ? '' : ' ++shell'
+  execute 'split | terminal' . l:shell_term . ' ansible-doc ' . shellescape(a:plugin)
   doau User ManOpen
 endfun

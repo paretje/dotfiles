@@ -94,7 +94,7 @@ af=acompressor
 # video output, otherwise no hardware decoding will be used.
 #hwdec = auto
 
-deinterlace=yes
+# deinterlace=yes
 
 save-position-on-quit
 

@@ -158,8 +158,8 @@ tags
 /.pip/zsh-cache
 /.mutt/postponed
 /.*_history
-/.aspell.nl.prepl
-/.aspell.nl.pws
+/.aspell.*.prepl
+/.aspell.*.pws
 /.vim/spell
 /.newsboat/cache.db
 /.newsboat/history.cmdline
@@ -216,6 +216,8 @@ tags
 /.config/mps-youtube/input_history
 /.config/mps-youtube/playlist_v2
 /.config/mps-youtube/play_history
+/.config/mps-youtube/play_history.m3u
+/.local/share/applications/mps-youtube.desktop
 /.local/share/qutebrowser/local-storage
 /.subversion/auth
 /.subversion/README.txt
@@ -248,3 +250,14 @@ tags
 /.ansible
 /.config/yarn/link
 /.config/pavucontrol-qt/pavucontrol-qt.conf
+/.local/share/ranger
+/.config/straw-viewer/cli-history.txt
+/.conda
+/.keras
+/.local/share/jupyter
+/.config/sqlitebrowser
+/.docker/.buildNodeID
+/.zoom
+/.config/zoomus.conf
+/.config/teams-for-linux
+/.jupyter

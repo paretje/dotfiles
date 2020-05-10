@@ -19,7 +19,6 @@ tmp_dir=$(mktemp -d)
 if [ "$margin" = "" ]; then
         margin=20
 fi
-echo 
 
 unzip "$cbz_file" -d "$tmp_dir"
 find "$tmp_dir" -type f -exec bash -c 'split_image "$0"' "{}" "$margin" ";"

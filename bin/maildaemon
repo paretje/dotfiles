@@ -12,9 +12,12 @@ import appdirs
 import shelve
 import notmuch
 import arrow
-import notify2
+import gi
+from gi.repository import Notify as notify
 from imapclient import IMAPClient
 from email.utils import parseaddr
+
+gi.require_version('Notify', '0.7')
 
 
 NOTIFICATION_EVENT = threading.Event()
@@ -164,20 +167,25 @@ class NewMailNotification(threading.Thread):
 
         if summary:
             logging.debug("show notification and refresh alot")
-            notify2.Notification("You've got mail", summary).show()
+
             # TODO: maybe move to dunst?
-            subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
-                             'alot'])
+            try:
+                subprocess.call(['pkill', '-u', os.environ['USER'], '-USR1',
+                                 'alot'])
+            except Exception:
+                logging.exception("couldn't refresh alot")
+
+            notify.Notification.new("You've got mail", summary).show()
 
     def run(self):
-        notify2.init('maildaemon')
+        notify.init('maildaemon')
         while True:
             NOTIFICATION_EVENT.wait()
             logging.debug("notification event")
             try:
                 self.show_notification()
             except Exception:
-                logging.error("couldn't show notification")
+                logging.exception("couldn't show notification")
             NOTIFICATION_EVENT.clear()
 
 
