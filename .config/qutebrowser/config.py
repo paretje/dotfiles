@@ -63,6 +63,8 @@ c.spellcheck.languages = ['en-GB']
 if c.backend == 'webkit':
     c.content.cache.appcache = False
     c.hints.find_implementation = 'javascript'
+else:
+    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy"]
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
