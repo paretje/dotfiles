@@ -66,7 +66,7 @@ if c.backend == 'webkit':
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
-c.url.searchengines['ghu'] = "https://github.com/{}"
+c.url.searchengines['ghu'] = "https://github.com/{semiquoted}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
 c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
 c.url.searchengines['ubuntu'] = "https://packages.ubuntu.com/search?keywords={}"
