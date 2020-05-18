@@ -1,0 +1,15 @@
+#!/bin/sh
+BACKPORTS_SUITE="$DIST-backports"
+
+if [ -n "$BACKPORTS_DEPS" ]; then
+        echo "deb ${MIRRORSITE} ${BACKPORTS_SUITE} ${COMPONENTS}" > /etc/apt/sources.list.d/backports.list
+
+        echo "Package: ${BACKPORTS_DEPS}" > /etc/apt/preferences.d/99backports
+        echo "Pin: release a=${BACKPORTS_SUITE}" >> /etc/apt/preferences.d/99backports
+        echo "Pin-priority: 500" >> /etc/apt/preferences.d/99backports
+        cat /etc/apt/preferences.d/99backports
+else
+        rm /etc/apt/sources.list.d/backports.list
+fi
+
+apt-get update

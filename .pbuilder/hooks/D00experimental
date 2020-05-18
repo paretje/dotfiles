@@ -1,14 +1,13 @@
 #!/bin/sh
 if [ -n "$EXPERIMENTAL_DEPS" ]; then
-        echo "deb http://ftp.nl.debian.org/debian/ experimental main" > /etc/apt/sources.list.d/experimental.list
+        echo "deb ${MIRRORSITE} experimental ${COMPONENTS}" > /etc/apt/sources.list.d/experimental.list
 
         echo "Package: ${EXPERIMENTAL_DEPS}" > /etc/apt/preferences.d/99experimental
         echo "Pin: release a=experimental" >> /etc/apt/preferences.d/99experimental
         echo "Pin-priority: 500" >> /etc/apt/preferences.d/99experimental
         cat /etc/apt/preferences.d/99experimental
 else
-        rm /etc/apt/sources.list.d/experimental.conf
+        rm /etc/apt/sources.list.d/experimental.list
 fi
 
 apt-get update
-apt-cache policy libqt5webengine5
