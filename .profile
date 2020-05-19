@@ -84,6 +84,11 @@ if [ -d "$HOME/.local/share/man" ]; then
     MANPATH="$HOME/.local/share/man:$MANPATH"
 fi
 
+# set MANPATH so it includes user's private man's if it exists
+if [ -d "$HOME/.local/man" ]; then
+    MANPATH="$HOME/.local/man:$MANPATH"
+fi
+
 # set MANPATH so it includes user's zplug man's if it exists
 if [ -d "$HOME/.zplug/doc/man" ]; then
     MANPATH="$HOME/.zplug/doc/man:$MANPATH"

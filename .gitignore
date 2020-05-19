@@ -262,3 +262,4 @@ tags
 /.config/teams-for-linux
 !/.config/teams-for-linux/config.json
 /.jupyter
+/.local/man
