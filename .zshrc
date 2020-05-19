@@ -33,6 +33,7 @@ zplug "paretje/dwm", use:, hook-build:"make clean && make install && xdotool key
 zplug "paretje/st", use:, hook-build:"make clean && make install PREFIX='$HOME/.local'"
 
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
+zplug "trizen/straw-viewer", hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
 
 zplug load
 PATH="$my_path"
