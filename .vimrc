@@ -360,7 +360,7 @@ let g:neomake_sh_enabled_makers = ['shellcheck', 'checkbashisms', 'sh']
 
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_mypy_args = ['--check-untyped-defs', '--ignore-missing-imports']
-let g:neomake_python_enabled_makers = ['python', 'flake8']
+let g:neomake_python_enabled_makers = ['python', 'flake8', 'pylint']
 
 let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', 'cppcheck']
 
