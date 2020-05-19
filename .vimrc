@@ -722,7 +722,7 @@ com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! -nargs=? PyDoc call PyDoc(<f-args>)
 com! -nargs=1 Dictionary call Dictionary(<f-args>)
-com! Gmdiff Gsdiff :1 | Gvdiff
+com! Gmdiffsplit Ghdiffsplit! :1 | Gvdiffsplit!
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w
