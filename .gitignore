@@ -260,4 +260,5 @@ tags
 /.zoom
 /.config/zoomus.conf
 /.config/teams-for-linux
+!/.config/teams-for-linux/config.json
 /.jupyter
