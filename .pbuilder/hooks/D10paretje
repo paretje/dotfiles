@@ -1,19 +1,18 @@
 #!/bin/sh
-if [ -n "$PARETJE_DEPS" ]; then
-        if [ "$DIST" != "unstable" ]; then
-                PARETJE_SUITE="$DIST-backports"
-        else
-                PARETJE_SUITE="unstable"
-        fi
-
-        echo "deb http://repo.paretje.be ${PARETJE_SUITE} ${COMPONENTS}" > /etc/apt/sources.list.d/paretje.list
-
-        echo "Package: ${PARETJE_DEPS}" > /etc/apt/preferences.d/99paretje
-        echo 'Pin: origin "repo.paretje.be"' >> /etc/apt/preferences.d/99paretje
-        echo "Pin-priority: 500" >> /etc/apt/preferences.d/99paretje
-        cat /etc/apt/preferences.d/99paretje
-else
-        rm /etc/apt/sources.list.d/paretje.list
+if [ -z "$PARETJE_DEPS" ]; then
+        exit
 fi
 
+if [ "$DIST" != "unstable" ]; then
+        PARETJE_SUITE="$DIST-backports"
+else
+        PARETJE_SUITE="unstable"
+fi
+
+echo "deb http://repo.paretje.be ${PARETJE_SUITE} ${COMPONENTS}" > /etc/apt/sources.list.d/paretje.list
+
+echo "Package: ${PARETJE_DEPS}" > /etc/apt/preferences.d/99paretje
+echo 'Pin: origin "repo.paretje.be"' >> /etc/apt/preferences.d/99paretje
+echo "Pin-priority: 500" >> /etc/apt/preferences.d/99paretje
+cat /etc/apt/preferences.d/99paretje
 apt-get update
