@@ -231,8 +231,10 @@ if has('nvim')
   " split shows a preview window when doing a substitution on multiple lines
   set inccommand=split
 endif
+" Enable signcolumn
 set signcolumn=yes
 au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
+highlight! link SignColumn LineNr
 " Emit CursorHold event sooner (e.g. used by GitGutter) and write swap file
 set updatetime=500
 
