@@ -9,53 +9,9 @@ from notmuch.thread import Thread
 from notmuch.message import Message
 
 
-def _get_threadlines(threadlist):
-    threadlines = threadlist.get_lines()
-    for tlw in threadlines:
-        yield tlw
-
-    tlw = threadlist._get_next_item()
-    while tlw:
-        yield tlw
-        tlw = threadlist._get_next_item()
-
-
-def _save_focus(buf):
-    buf.focused_thread = buf.get_selected_thread()
-    if buf.focused_thread:
-        buf.focused_thread = buf.focused_thread.get_thread_id()
-
-
-def _restore_focus(buf):
-    if not hasattr(buf, "focused_thread") or not buf.focused_thread:
-        return
-
-    for pos, tlw in enumerate(_get_threadlines(buf.threadlist)):
-        if tlw.get_thread().get_thread_id() == buf.focused_thread:
-            buf.body.set_focus(pos)
-            break
-
-
 def pre_buffer_focus(ui, dbm, buf):
-    current = ui.current_buffer
-    if isinstance(current, alot.buffers.SearchBuffer):
-        _save_focus(current)
-
     if isinstance(buf, alot.buffers.SearchBuffer):
         buf.rebuild()
-
-
-def post_buffer_focus(ui, dbm, buf, success):
-    if success:
-        _restore_focus(buf)
-
-
-async def pre_global_refresh(ui, dbm, cmd):
-    _save_focus(ui.current_buffer)
-
-
-async def post_global_refresh(ui, dbm, cmd):
-    _restore_focus(ui.current_buffer)
 
 
 # TODO: async

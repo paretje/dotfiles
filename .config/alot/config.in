@@ -178,6 +178,10 @@ timestamp_format = "%b %d %H:%M"
     L = reply --list True
     tab = select
     'g u s' = call hooks.unsubscribe_list(ui)
+    t =
+    't m' = togglemimepart
+    't t' = togglemimetree
+
 
 [tags]
   [[sent]]
