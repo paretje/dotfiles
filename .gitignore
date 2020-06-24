@@ -264,3 +264,4 @@ tags
 /.jupyter
 /.local/man
 /.android
+/.local/share/stig/histories
