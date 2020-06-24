@@ -265,3 +265,4 @@ tags
 /.local/man
 /.android
 /.local/share/stig/histories
+/.redeclipse
