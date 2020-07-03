@@ -483,6 +483,7 @@ let g:cmake_export_compile_commands = 1
 
 " poet-v options
 let g:poetv_auto_activate = 1
+let g:poetv_set_environment = 0
 
 " gitgutter options
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
