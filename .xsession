@@ -56,21 +56,12 @@ display -window root /usr/share/images/desktop-base/desktop-background &
 xrdb ~/.Xresources
 
 # Touchpad configuration
-if [ "$HOST" = "kevin-laptop" ]; then
+if xinput list --name-only | fgrep -q 'Elan Touchpad'; then
+	xinput set-prop "pointer:Elan Touchpad" "libinput Tapping Enabled" 1
+	xinput set-prop "pointer:Elan TrackPoint" "libinput Accel Profile Enabled" 0 1
+elif xinput list --name-only | fgrep -q 'Synaptics TM3075-002'; then
 	xinput set-prop "pointer:Synaptics TM3075-002" "libinput Tapping Enabled" 1
 	xinput set-prop "pointer:TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1
-elif [ "$HOST" = "chervil" ]; then
-	xinput set-prop 11 278 1
-	# xinput set-prop 12 298 -0.4
-	xinput set-prop 12 307 0 1
-	xinput set-prop 12 298 1
-elif [ "$HOST" = "kevin-chromebook" ]; then
-	synclient TapButton1=1 Tapbutton2=3 TapButton3=2 SingleTapTimeout=100 MaxTapTime=100 ClickTime=5 LockedDrags=1 LockedDragTimeout=100
-	# TODO: I don't think I should use/need AreaBottomEdge, and is BottomEdge really what I need?
-	#       maybe ClickPad, RightButtonArea*, ...?
-	synclient FingerLow=10 FingerHigh=10 BottomEdge=400 AreaBottomEdge=400 MaxTapMove=20
-	# TODO: options for intel?
-	syndaemon -d -t -R
 fi
 
 # Disable back and forward buttons on Logitech M500 mouse
