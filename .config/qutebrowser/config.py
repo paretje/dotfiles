@@ -35,6 +35,7 @@ c.completion.web_history.max_items = 10000
 c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
+c.scrolling.bar = 'never'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.size = 52428800
 c.content.javascript.enabled = False
