@@ -92,6 +92,7 @@ c.url.searchengines['dochub'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
 c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
+c.url.searchengines['yt'] = "https://invidious.snopyta.org/search?q={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
