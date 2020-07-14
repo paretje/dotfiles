@@ -41,6 +41,7 @@ c.content.cache.size = 52428800
 c.content.javascript.enabled = False
 c.content.webgl = False
 c.content.geolocation = False
+c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = False
 c.content.host_blocking.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
 c.content.host_blocking.whitelist = []
