@@ -1,7 +1,6 @@
 // ==UserScript==
 // @name            Old School Github
 // @match           https://github.com/*
-// @resource        osgh.css  https://raw.githubusercontent.com/daattali/oldschool-github-extension/master/css/osgh.css
 // @grant           GM_addStyle
 // @run-at          document-body
 // ==/UserScript==
