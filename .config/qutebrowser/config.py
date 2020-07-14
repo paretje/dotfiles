@@ -57,7 +57,8 @@ c.fonts.messages.info = '8pt monospace'
 c.fonts.messages.warning = '8pt monospace'
 c.fonts.prompts = '8pt sans-serif'
 c.fonts.statusbar = '8pt monospace'
-c.fonts.tabs = '8pt monospace'
+c.fonts.tabs.selected = '8pt monospace'
+c.fonts.tabs.unselected = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
 
 if c.backend == 'webkit':
