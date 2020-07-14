@@ -71,6 +71,7 @@ xinput set-button-map 'Logitech USB Laser Mouse' 1 2 3 0 0 6 7 0 0 10 11 12
 user-dirs-make
 
 # Start some daemons
+start-pulseaudio-x11
 xscreensaver -no-splash &
 dunst &
 xclipman &
