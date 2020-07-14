@@ -85,6 +85,6 @@ fi
 # Start daemon with conky
 status=$(mktemp -u)
 mkfifo "$status"
-sh -c "exec > '$status' ; while true; do conky; sleep 5s ; done" &
+sh -c "exec > '$status' ; while true; do echo starting conky 1>&2 ; conky; sleep 5s ; done" &
 
 exec dwm < "$status"
