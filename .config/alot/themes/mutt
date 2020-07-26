@@ -88,3 +88,7 @@
             normal = '','','light gray,bold','black','light gray,bold','black'
         [[[subject]]]
             normal = '','','light gray,bold','black','light gray,bold','black'
+    [[threadline-todo]]
+        tagged_with = todo
+        [[[subject]]]
+            normal = '','','light red','black','light red','black'
