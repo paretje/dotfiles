@@ -1,2 +1,4 @@
 #!/bin/sh
-exec transmission-remote $(sed 's/^machine \([^ ]*\) .*$/\1/' "$HOME/.netrc" | rofi -dmenu) --add "$1"
+host=$(pass ls transmission | tail +2 | sed 's/└── //' | rofi -dmenu)
+user=$(pass transmission/$host | tail -1 | sed 's/^login:\s*//')
+exec stig set connect.host "$host" \; set connect.user "$user" \; set connect.password:eval "pass transmission/$host | head -1" \; add "$1"
