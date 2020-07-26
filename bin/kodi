@@ -2,6 +2,8 @@
 disable-xscreensaver &
 dis_pid=$!
 
+xrandr --output eDP1 --scale 1x1
+
 amixer set Master unmute
 volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
 amixer set Master 100%
