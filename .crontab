@@ -1,2 +1,2 @@
 MAILTO=kevin@paretje.be
-*/15 * * * * which newsboat > /dev/null 2>&1 && ! $HOME/bin/3gusage && chronic cgexec -g memory:newsboat newsboat -x reload
+*/15 * * * * which newsboat > /dev/null 2>&1 && ! $HOME/bin/3gusage && chronic newsboat -x reload
