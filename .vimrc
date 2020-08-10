@@ -85,7 +85,7 @@ Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
-Plug 'lambdalisue/suda.vim'
+Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
 Plug 'solarnz/thrift.vim', {'for': 'thrift'}
 Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
@@ -484,6 +484,9 @@ let g:cmake_export_compile_commands = 1
 " poet-v options
 let g:poetv_auto_activate = 1
 let g:poetv_set_environment = 0
+
+" suda.vim options
+let g:suda#try_without_password = !has('nvim')
 
 " gitgutter options
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
