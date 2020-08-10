@@ -10,5 +10,5 @@
 
 (function() {
     'use strict';
-    window.location.replace("https://yewtu.be" + window.location.pathname + window.location.search);
+    window.location.replace("https://invidious.13ad.de" + window.location.pathname + window.location.search);
 })();
