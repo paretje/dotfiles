@@ -1,2 +1,2 @@
 #!/bin/sh
-exec curl -s 'https://observations.buienradar.nl/1.0/actual/weatherstation/10006434' | jq --raw-output --unbuffered '.temperature | nearbyint'
+curl -s 'https://mooncake.ugent.be/api/measurements/ItzXCMYUzi31xyiEZpLxB7ef' | jq --raw-output '.[-1].temp | nearbyint'
