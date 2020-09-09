@@ -160,3 +160,7 @@ URxvt.keysym.M-l:           perl:url-select:select_next
 URxvt.keysym.C-C:           perl:clipboard:copy
 URxvt.keysym.C-V:           perl:clipboard:paste
 URxvt.keysym.M-V:           perl:clipboard:paste_escaped
+
+Xft.dpi: 192
+rofi.dpi: 192
+*dpi: 192

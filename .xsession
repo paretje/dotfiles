@@ -32,19 +32,7 @@ elif [ "$HOST" = "kevin-vib-laptop" ]; then
 	brightnessctl set 20%
 fi
 
-# Some settings for laptop when working at desk
-if [ "$HOST" = "kevin-laptop" ] && ifconfig eth0 | fgrep -q 'inet'; then
-	if xrandr | fgrep -q 'HDMI1 connected'; then
-		xrandr --output HDMI1 --auto && xrandr --output eDP1 --off
-	fi
-
-	pactl set-default-sink kevin-desktop
-fi
-
-if [ "$HOST" = "chervil" ]; then
-	# xrandr --output eDP1 --mode 2560x1440 --dpi 120
-	xrandr --output eDP1 --mode 2048x1152
-fi
+xrandr --output eDP1 --scale 1.75x1.75 --dpi 192
 
 # Set default mouse pointer
 xsetroot -cursor_name left_ptr
