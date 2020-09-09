@@ -1,1 +1,1 @@
--o '%(title).240s.%(ext)s'
+-o '%(title).220s.%(ext)s'
