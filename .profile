@@ -103,6 +103,9 @@ if [ -d "$GEM_HOME/gems" ] ; then
     fi
 fi
 
+# Set Qt style for pinentry
+export QT_STYLE_OVERRIDE=cleanlooks
+
 # Start gpg-agent if not yet running
 if hash gpg-agent > /dev/null 2>&1; then
     if gpg2 --version | fgrep -q 'gpg (GnuPG) 2.0'; then
@@ -189,7 +192,7 @@ export PIP_SRC="$HOME/.pip/src"
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
-    exec startx
+    exec "$HOME/.swaysession"
 fi
 
 # if running bash
