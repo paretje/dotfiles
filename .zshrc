@@ -153,7 +153,7 @@ function xterm_title_preexec () {
     print -n "\e]2;$1\a"
 }
 
-if [[ "$TERM" == (xterm*|rxvt*|st*) ]]; then
+if [[ "$TERM" == (xterm*|rxvt*|st*|alacritty) ]]; then
     add-zsh-hook -Uz precmd xterm_title_precmd
     add-zsh-hook -Uz preexec xterm_title_preexec
 fi
