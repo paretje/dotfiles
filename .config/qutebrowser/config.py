@@ -21,7 +21,7 @@ if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
 c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
-c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
+c.editor.command = ['x-terminal-emulator', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
 c.new_instance_open_target = 'tab-silent'
