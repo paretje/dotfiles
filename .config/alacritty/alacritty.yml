@@ -1,0 +1,40 @@
+window:
+  padding:
+    x: 2
+    y: 2
+
+font:
+  normal:
+    family: DejaVu Sans Mono for Powerline
+  size: 10.0
+
+colors:
+  primary:
+    background: '#12140F'
+    foreground: '#eeeeec'
+
+  normal:
+      black:   '#12140F'
+      red:     '#cc0000'
+      green:   '#4e9a06'
+      yellow:  '#c4a000'
+      blue:    '#2c558a'
+      magenta: '#5c3566'
+      cyan:    '#06989a'
+      white:   '#d3d7cf'
+
+  bright:
+      black:   '#555753'
+      red:     '#ef2929'
+      green:   '#8ae234'
+      yellow:  '#fce94f'
+      blue:    '#729fcf'
+      magenta: '#ad7fa8'
+      cyan:    '#34e2e2'
+      white:   '#eeeeec'
+
+draw_bold_text_with_bright_colors: true
+
+key_bindings:
+  - { key: S,      mods: Alt,           action: ToggleViMode }
+  - { key: Q,                 mode: Vi, action: ToggleViMode }
