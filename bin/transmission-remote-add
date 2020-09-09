@@ -1,4 +1,4 @@
 #!/bin/sh
-host=$(pass ls transmission | tail +2 | sed 's/└── //' | rofi -dmenu)
+host=$(pass ls transmission | tail +2 | sed 's/└── //' | dmenu)
 user=$(pass transmission/$host | tail -1 | sed 's/^login:\s*//')
 exec stig set connect.host "$host" \; set connect.user "$user" \; set connect.password:eval "pass transmission/$host | head -1" \; add "$1"
