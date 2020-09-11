@@ -5,7 +5,7 @@ window:
 
 font:
   normal:
-    family: DejaVu Sans Mono for Powerline
+    family: DejaVu Sans Mono
   size: 10.0
 
 colors:
