@@ -1,3 +1,16 @@
 font=Ubuntu Mono 10
-border-size=3
+border-size=4
+max-icon-size=32
+markup=0
+sort=-priority
+sort=+time
+default-timeout=10000
 border-color=#aaaaaa
+
+[urgency=high]
+background-color=#900000
+default-timeout=0
+
+[urgency=low]
+background-color=#222222
+text-color=#888888
