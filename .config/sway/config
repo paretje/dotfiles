@@ -47,6 +47,9 @@ exec swayidle -w \
         before-sleep 'swaylock -f' \
         lock 'swaylock -f'
 
+for_window [app_id="kodi"] inhibit_idle open
+for_window [class="Kodi"] inhibit_idle open
+
 exec mako
 exec maildaemon
 exec sh -c 'while true; do batmonitor ; sleep 2m ; done'
