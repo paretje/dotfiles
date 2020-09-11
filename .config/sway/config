@@ -94,7 +94,7 @@ focus_follows_mouse no
     bindsym $mod+Shift+q reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+q exec dmenu-logout
 #
 # Moving around:
 #
