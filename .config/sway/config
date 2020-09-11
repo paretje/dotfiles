@@ -119,6 +119,17 @@ focus_follows_mouse no
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+    bindsym $mod+Ctrl+$left focus output left
+    bindsym $mod+Ctrl+$down focus output down
+    bindsym $mod+Ctrl+$up focus output up
+    bindsym $mod+Ctrl+$right focus output right
+
+    bindsym $mod+Ctrl+Shift+$left move workspace output left
+    bindsym $mod+Ctrl+Shift+$down move workspace output down
+    bindsym $mod+Ctrl+Shift+$up move workspace output up
+    bindsym $mod+Ctrl+Shift+$right move workspace output right
+
 #
 # Workspaces:
 #
