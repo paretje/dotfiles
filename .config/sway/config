@@ -37,9 +37,6 @@ output eDP-1 scale 1.25
 xwayland force
 
 ### Idle configuration
-#
-# Example configuration:
-#
 exec swayidle -w \
         timeout 305 'swaylock -f' \
         timeout 300 'swaymsg "output * dpms off"' \
@@ -50,14 +47,12 @@ exec swayidle -w \
 for_window [app_id="kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
 
+# Start daemons
 exec mako
 exec maildaemon
 exec sh -c 'while true; do batmonitor ; sleep 2m ; done'
 exec matterircd -conf ~/.config/matterircd/matterircd.toml
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+exec_always xrdb -merge ~/.Xresources
 
 ### Input configuration
 #
