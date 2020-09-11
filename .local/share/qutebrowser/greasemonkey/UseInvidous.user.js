@@ -4,11 +4,13 @@
 // @description  Redirect page to Invidious
 // @author       Paretje
 // @match        *://www.youtube.com/*
+// @match        *://yewtu.be/*
+// @match        *://invidious.13ad.de/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
-    window.location.replace("https://invidious.13ad.de" + window.location.pathname + window.location.search);
+    window.location.replace("https://invidious.fdn.fr" + window.location.pathname + window.location.search);
 })();
