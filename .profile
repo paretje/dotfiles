@@ -144,6 +144,9 @@ if hash gpg-agent > /dev/null 2>&1; then
     fi
 fi
 
+# Set Qt platformtheme to gtk2
+export QT_QPA_PLATFORMTHEME=gtk2
+
 # set default editor, pager, ...
 export EDITOR=vi
 export PAGER=less
