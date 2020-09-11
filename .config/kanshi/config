@@ -1,0 +1,8 @@
+profile home {
+        output "Samsung Electric Company S24H85x H4ZM500192" enable
+        output eDP-1 disable
+}
+
+profile t480s {
+        output "Unknown 0x058B 0x00000000" enable scale 1.25
+}
