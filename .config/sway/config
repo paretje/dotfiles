@@ -245,6 +245,8 @@ bar {
     # The default just shows the current date and time.
     status_command conky
 
+    tray_output none
+
     colors {
         statusline #ffffff
         background #323232
