@@ -1,9 +1,4 @@
 #!/bin/sh
-# Load profile if not done yet
-if [ -z "$LEDGER_FILE" ]; then
-	. "$HOME/.profile"
-fi
-
 if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
 	. "$GPG_ENV_FILE"
 	export GPG_TTY=$(tty)
@@ -12,14 +7,6 @@ if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
 	export SSH_AGENT_PID
 fi
 
-# Use GTK style in Qt5 applications
-export QT_STYLE_OVERRIDE=cleanlooks
-export QT_QPA_PLATFORMTHEME=gtk2
-export QT_QPA_PLATFORM=wayland # TODO: vs wayland-egl
-
-# Disable overlay scrollbar in GTK 3
-export GTK_OVERLAY_SCROLLING=0
-
 # Fix Java programs
 export _JAVA_AWT_WM_NONREPARENTING=1
 
@@ -27,20 +14,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export MOZ_ENABLE_WAYLAND=1
 
 # # Configure keyboard layout
-# keyboard-configuration
 export XKB_DEFAULT_LAYOUT=us
 export XKB_DEFAULT_VARIANT=altgr-intl
 export XKB_DEFAULT_OPTIONS=caps:escape,altwin:prtsc_rwin
 
 # Set brightness of laptop
-if [ "$HOST" = "kevin-laptop" ]; then
-	brightnessctl set 30%
-elif [ "$HOST" = "kevin-vib-laptop" ]; then
-	brightnessctl set 20%
-fi
-
-# Load Xresources
-# xrdb ~/.Xresources
+brightnessctl set 20%
 
 # Touchpad configuration
 # if xinput list --name-only | fgrep -q 'Elan Touchpad'; then
@@ -51,8 +30,4 @@ fi
 # 	xinput set-prop "pointer:TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1
 # fi
 
-# Substitute variables in user-dirs.dirs file
-user-dirs-make
-
 exec dbus-run-session sway
-# exec sway

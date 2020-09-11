@@ -103,8 +103,27 @@ if [ -d "$GEM_HOME/gems" ] ; then
     fi
 fi
 
-# Set Qt style for pinentry
-export QT_STYLE_OVERRIDE=cleanlooks
+# Detect if we're using wayland
+if [ -n "$WAYLAND_DISPLAY" -o "$TTY" = "/dev/tty1" ]; then
+    # https://git.alebastr.su/alebastr/dotfiles/-/blob/master/profile
+    export XDG_CURRENT_DESKTOP=sway
+    export XDG_SESSION_TYPE=wayland
+fi
+
+# Set GTK style
+export GTK_THEME=Adwaita
+export GTK_OVERLAY_SCROLLING=0
+
+# Set Qt style
+export QT_STYLE_OVERRIDE=adwaita
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    export QT_QPA_PLATFORM=wayland # TODO: vs wayland-egl
+fi
+
+# Substitute variables in user-dirs.dirs file
+user-dirs-make
 
 # Start gpg-agent if not yet running
 if hash gpg-agent > /dev/null 2>&1; then
