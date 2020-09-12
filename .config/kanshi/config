@@ -6,3 +6,7 @@ profile home {
 profile t480s {
         output "Unknown 0x058B 0x00000000" enable scale 1.25
 }
+
+profile t490 {
+        output "Chimei Innolux Corporation 0x14F2 0x00000000" enable
+}
