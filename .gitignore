@@ -267,3 +267,4 @@ tags
 /.local/share/stig/histories
 /.redeclipse
 /.config/LosslessCut
+/.gcalcli_*
