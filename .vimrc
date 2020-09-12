@@ -91,6 +91,7 @@ Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
 Plug 'goerz/jupytext.vim'
 Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
+Plug 'fisadev/vim-isort', {'for': 'python'}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
