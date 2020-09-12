@@ -9,3 +9,7 @@ Bind = "127.0.0.1:6666"
 #Default 0 (is disabled)
 #Depending on how fast you type 2500 is a good number
 PasteBufferTimeout = 500
+
+[slack]
+JoinDM = true
+PrefixContext = true

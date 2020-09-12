@@ -51,7 +51,7 @@ exec kanshi
 exec mako
 exec maildaemon
 exec sh -c 'while true; do batmonitor ; sleep 2m ; done'
-exec matterircd -conf ~/.config/matterircd/matterircd.toml
+exec matterircd --conf ~/.config/matterircd/matterircd.toml
 exec_always xrdb -merge ~/.Xresources
 
 ### Input configuration
