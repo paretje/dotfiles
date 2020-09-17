@@ -252,6 +252,7 @@ tags
 /.config/pavucontrol-qt/pavucontrol-qt.conf
 /.local/share/ranger
 /.config/straw-viewer/cli-history.txt
+/.config/straw-viewer/instances.json
 /.conda
 /.keras
 /.local/share/jupyter
