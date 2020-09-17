@@ -50,10 +50,10 @@ for_window [class="Kodi"] inhibit_idle open
 exec_always pkill kanshi; exec kanshi
 exec_always xrdb -merge ~/.Xresources
 
-exec mako
-exec flock -n ~/.cache/maildaemon.lock maildaemon
-exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
-exec matterircd --conf ~/.config/matterircd/matterircd.toml
+exec exec mako
+exec exec flock -n ~/.cache/maildaemon.lock maildaemon
+exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
+exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
 
 ### Input configuration
 #
