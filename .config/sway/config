@@ -51,8 +51,8 @@ exec_always pkill kanshi; exec kanshi
 exec_always xrdb -merge ~/.Xresources
 
 exec mako
-exec maildaemon
-exec sh -c 'while true; do batmonitor ; sleep 2m ; done'
+exec flock -n ~/.cache/maildaemon.lock maildaemon
+exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
 exec matterircd --conf ~/.config/matterircd/matterircd.toml
 
 ### Input configuration
