@@ -93,7 +93,7 @@ c.url.searchengines['dochub'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
 c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
-c.url.searchengines['yt'] = "https://invidious.13ad.de/search?q={}"
+c.url.searchengines['yt'] = "https://youtube.com/search?q={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
@@ -127,6 +127,7 @@ config.bind(';iw', 'spawn --detach iceweasel {url}')
 config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabled')
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv --ytdl-raw-options=netrc= {url}')
+config.bind(';sv', 'spawn x-terminal-emulator -e straw-viewer {url}')
 config.bind(';a', 'spawn --userscript play_mpc')
 config.bind('gs', 'view-source --edit')
 config.bind('gf', 'spawn --userscript openfeeds')
