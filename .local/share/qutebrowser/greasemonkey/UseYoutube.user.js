@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Use Invidious
+// @name         Use Youtube
 // @version      0.0.1
 // @description  Redirect page to Invidious
 // @author       Paretje
