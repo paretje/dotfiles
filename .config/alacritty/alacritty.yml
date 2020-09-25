@@ -33,6 +33,17 @@ colors:
       cyan:    '#34e2e2'
       white:   '#eeeeec'
 
+  cursor:
+    cursor: '#eeeeec'
+    text: '#12140F'
+
+  vi_mode_cursor:
+    cursor: '#eeeeec'
+    text: '#12140F'
+
+cursor:
+  vi_mode_style: Block
+
 draw_bold_text_with_bright_colors: true
 
 key_bindings:
