@@ -65,8 +65,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:(ssh|scp|rtmux):*:users' users
 zstyle ':completion:*:(ssh|scp|rranger|rtmux):*:hosts' hosts
 
-# autocompletion for tsocks
+# use other commands as source for autocompletion
 compdef tsocks=exec
+compdef autossh=ssh
 
 # autocompletion for rranger
 _rranger() {
