@@ -6,6 +6,8 @@ sort=-priority
 sort=+time
 default-timeout=10000
 border-color=#aaaaaa
+background-color=#285577FF
+text-color=#FFFFFFFF
 
 [urgency=high]
 background-color=#900000
@@ -14,3 +16,7 @@ default-timeout=0
 [urgency=low]
 background-color=#222222
 text-color=#888888
+
+[app-name=qutebrowser]
+background-color=#285577FF
+text-color=#FFFFFFFF
