@@ -21,13 +21,4 @@ export XKB_DEFAULT_OPTIONS=caps:escape,altwin:prtsc_rwin
 # Set brightness of laptop
 brightnessctl set 20%
 
-# Touchpad configuration
-# if xinput list --name-only | fgrep -q 'Elan Touchpad'; then
-# 	xinput set-prop "pointer:Elan Touchpad" "libinput Tapping Enabled" 1
-# 	xinput set-prop "pointer:Elan TrackPoint" "libinput Accel Profile Enabled" 0 1
-# elif xinput list --name-only | fgrep -q 'Synaptics TM3075-002'; then
-# 	xinput set-prop "pointer:Synaptics TM3075-002" "libinput Tapping Enabled" 1
-# 	xinput set-prop "pointer:TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1
-# fi
-
 exec dbus-run-session sway
