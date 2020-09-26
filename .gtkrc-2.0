@@ -20,6 +20,6 @@ binding "gtk-vi-tree-view"
 class "GtkEntry" binding "gtk-readline"
 class "GtkTreeView" binding "gtk-vi-tree-view"
 
-gtk-theme-name = "Clearlooks"
+gtk-theme-name = "Adwaita"
 gtk-icon-theme-name = "Tango"
 gtk-can-change-accels = 1

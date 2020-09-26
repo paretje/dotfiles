@@ -45,5 +45,5 @@ download-path "~/downloads"
 
 include "~/.newsboat/filter"
 
-macro , edit-flags "" ; set browser "readarticle" ; open-in-browser ; set browser "sensible-browser"
+macro , edit-flags "" ; set browser "readarticle" ; open-in-browser ; set browser "qutebrowser --target tab-bg-silent"
 macro o edit-flags o

@@ -1,6 +1,6 @@
 #!/bin/sh -e
-if [ "$HOST" = "parsley" ]; then
-	folder="$HOME/vcs/senso2me/mail"
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+	folder="$HOME/vcs/vib/mail"
 else
 	folder="$HOME/vcs/personal/mail"
 fi

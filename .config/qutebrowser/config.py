@@ -21,7 +21,7 @@ if c.backend == 'webengine' and psutil.virtual_memory().total < 3 * 1024 ** 3:
 c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
 c.url.auto_search = 'dns'
-c.editor.command = ['urxvt', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
+c.editor.command = ['x-terminal-emulator', '-e', 'nvim', '-b', '-c', 'set noeol', '{}']
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
 c.new_instance_open_target = 'tab-silent'
@@ -35,11 +35,13 @@ c.completion.web_history.max_items = 10000
 c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
+c.scrolling.bar = 'never'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.size = 52428800
 c.content.javascript.enabled = False
 c.content.webgl = False
 c.content.geolocation = False
+c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = False
 c.content.host_blocking.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
 c.content.host_blocking.whitelist = []
@@ -57,16 +59,19 @@ c.fonts.messages.info = '8pt monospace'
 c.fonts.messages.warning = '8pt monospace'
 c.fonts.prompts = '8pt sans-serif'
 c.fonts.statusbar = '8pt monospace'
-c.fonts.tabs = '8pt monospace'
+c.fonts.tabs.selected = '8pt monospace'
+c.fonts.tabs.unselected = '8pt monospace'
 c.spellcheck.languages = ['en-GB']
 
 if c.backend == 'webkit':
     c.content.cache.appcache = False
     c.hints.find_implementation = 'javascript'
+else:
+    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking"]
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
-c.url.searchengines['ghu'] = "https://github.com/{}"
+c.url.searchengines['ghu'] = "https://github.com/{semiquoted}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
 c.url.searchengines['dpkg'] = "https://packages.debian.org/search?keywords={}"
 c.url.searchengines['ubuntu'] = "https://packages.ubuntu.com/search?keywords={}"
@@ -81,13 +86,14 @@ c.url.searchengines['osub'] = "https://www.opensubtitles.org/en/search2/sublangu
 c.url.searchengines['osm'] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines['arch'] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines['dbts'] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
-c.url.searchengines['pip'] = "https://pypi.org/search/?q={}"
+c.url.searchengines['pypi'] = "https://pypi.org/search/?q={}"
 c.url.searchengines['g'] = "https://www.google.be/search?q={}"
 c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
-c.url.searchengines['docker'] = "https://hub.docker.com/search?q={}&type=image"
+c.url.searchengines['dochub'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
 c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
+c.url.searchengines['yt'] = "https://youtube.com/search?q={}"
 c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
 
 c.aliases['h'] = 'help'
@@ -120,7 +126,9 @@ config.unbind(';i')
 config.bind(';iw', 'spawn --detach iceweasel {url}')
 config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabled')
 config.bind(';p', 'spawn --userscript password_fill')
-config.bind(';v', 'spawn mpv {url}')
+config.bind(';v', 'spawn mpv --ytdl-raw-options=netrc= {url}')
+config.bind(';sv', 'spawn x-terminal-emulator -e straw-viewer {url}')
+config.bind(';sk', 'spawn --userscript send_kodi')
 config.bind(';a', 'spawn --userscript play_mpc')
 config.bind('gs', 'view-source --edit')
 config.bind('gf', 'spawn --userscript openfeeds')

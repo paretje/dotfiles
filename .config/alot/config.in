@@ -23,7 +23,7 @@ quit_on_last_bclose = True
 # thread_focus_linewise = False
 # thread_indent_replies = 1
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
-timestamp_format = "%b %d %H:%M"
+timestamp_format = "%d %b %Y %H:%M"
 
 
 [accounts]
@@ -178,6 +178,10 @@ timestamp_format = "%b %d %H:%M"
     L = reply --list True
     tab = select
     'g u s' = call hooks.unsubscribe_list(ui)
+    t =
+    't m' = togglemimepart
+    't t' = togglemimetree
+
 
 [tags]
   [[sent]]

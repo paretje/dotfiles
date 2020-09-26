@@ -53,8 +53,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:(ssh|scp|rtmux):*:users' users
 zstyle ':completion:*:(ssh|scp|rranger|rtmux):*:hosts' hosts
 
-# autocompletion for tsocks
+# use other commands as source for autocompletion
 compdef tsocks=exec
+compdef autossh=ssh
 
 # autocompletion for rranger
 _rranger() {
@@ -138,7 +139,7 @@ function xterm_title_preexec () {
     print -n "\e]2;$1\a"
 }
 
-if [[ "$TERM" == (xterm*|rxvt*|st*) ]]; then
+if [[ "$TERM" == (xterm*|rxvt*|st*|alacritty) ]]; then
     add-zsh-hook -Uz precmd xterm_title_precmd
     add-zsh-hook -Uz preexec xterm_title_preexec
 fi

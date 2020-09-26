@@ -12,3 +12,4 @@ imapclient
 -e git+https://github.com/mps-youtube/mps-youtube.git#egg=mps-youtube
 ueberzug
 poetry
+stig

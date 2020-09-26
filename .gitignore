@@ -252,6 +252,7 @@ tags
 /.config/pavucontrol-qt/pavucontrol-qt.conf
 /.local/share/ranger
 /.config/straw-viewer/cli-history.txt
+/.config/straw-viewer/instances.json
 /.conda
 /.keras
 /.local/share/jupyter
@@ -260,4 +261,17 @@ tags
 /.zoom
 /.config/zoomus.conf
 /.config/teams-for-linux
+!/.config/teams-for-linux/config.json
 /.jupyter
+/.local/man
+/.android
+/.local/share/stig/histories
+/.redeclipse
+/.config/LosslessCut
+/.gcalcli_*
+/.config/Microsoft
+/.config/teams
+/.config/autostart/teams.desktop
+/.ICAClient
+/.config/arnet/LinakDeskApp.ini
+/.config/scdl/scdl.cfg

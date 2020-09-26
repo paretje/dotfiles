@@ -44,3 +44,7 @@ alias batchvtest='find -iname "*.mpg" -exec vtest "{}" ";"'
 
 # straw-listener
 alias straw-listener='straw-viewer -n --resolution=audio'
+
+# gcalcli
+alias gcalm='gcalcli calm --monday'
+alias gagenda='gcalcli --lineart=ascii agenda --details=all| less'

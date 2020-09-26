@@ -51,7 +51,7 @@ Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'
-Plug 'lambdalisue/suda.vim'
+Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
 Plug 'solarnz/thrift.vim', {'for': 'thrift'}
 Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 
@@ -128,7 +128,7 @@ set incsearch
 " set infercase
 " Show tab indentation levels
 set list
-set listchars=tab:¦\ 
+set listchars=tab:¦\ ,trail:·
 " Always show 3 or 5 lines under or above current line
 set scrolloff=3
 " Substitute all occurrences by default
@@ -171,8 +171,10 @@ if has('nvim')
   " split shows a preview window when doing a substitution on multiple lines
   set inccommand=split
 endif
+" Enable signcolumn
 set signcolumn=yes
 au FileType qf,calendar,tagbar,nerdtree setlocal signcolumn=no
+highlight! link SignColumn LineNr
 " Emit CursorHold event sooner (e.g. used by GitGutter) and write swap file
 set updatetime=500
 
@@ -403,6 +405,10 @@ let g:cmake_export_compile_commands = 1
 
 " poet-v options
 let g:poetv_auto_activate = 1
+let g:poetv_set_environment = 0
+
+" suda.vim options
+let g:suda#try_without_password = !has('nvim')
 
 " gitgutter options
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
@@ -645,7 +651,7 @@ com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
 com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
 com! -nargs=? PyDoc call PyDoc(<f-args>)
 com! -nargs=1 Dictionary call Dictionary(<f-args>)
-com! Gmdiff Gsdiff :1 | Gvdiff
+com! Gmdiffsplit Ghdiffsplit! :1 | Gvdiffsplit!
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 com! -nargs=1 CppMan call CppMan(<f-args>)
 com! W w

@@ -4,14 +4,16 @@ mod="Control_R"
 
 case "$choice" in
 	logout)
-		xdotool key $mod+ctrl+shift+q &
+		swaymsg exit
 		;;
 	shutdown)
 		if [ -x /usr/bin/nmcli ]; then
 			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
 		fi
 		if [ -x /bin/systemctl ]; then
-			systemctl poweroff &
+			systemctl poweroff
+		elif [ -x /bin/loginctl ]; then
+			loginctl poweroff
 		elif [ -e /run/runit.stopit ]; then
 			sudo init 0
 		else
@@ -23,7 +25,9 @@ case "$choice" in
 			nmcli device | fgrep connected | sed 's/^\([a-z0-9]*\).*/\1/' | xargs nmcli device disconnect
 		fi
 		if [ -x /bin/systemctl ]; then
-			systemctl reboot &
+			systemctl reboot
+		elif [ -x /bin/loginctl ]; then
+			loginctl reboot
 		elif [ -e /run/runit.stopit ]; then
 			sudo init 6
 		else
@@ -32,16 +36,20 @@ case "$choice" in
 		;;
 	suspend)
 		if [ -x /bin/systemctl ]; then
-			systemctl suspend &
+			systemctl suspend
+		elif [ -x /bin/loginctl ]; then
+			loginctl suspend
 		else
-			sudo pm-suspend &
+			sudo pm-suspend
 		fi
 		;;
 	hibernate)
 		if [ -x /bin/systemctl ]; then
-			systemctl hibernate &
+			systemctl hibernate
+		elif [ -x /bin/loginctl ]; then
+			loginctl hibernate
 		else
-			sudo pm-hibernate &
+			sudo pm-hibernate
 		fi
 		;;
 esac

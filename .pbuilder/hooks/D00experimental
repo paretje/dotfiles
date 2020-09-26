@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ -z "$EXPERIMENTAL_DEPS" ]; then
+        exit
+fi
+
+echo "deb ${MIRRORSITE} experimental ${COMPONENTS}" > /etc/apt/sources.list.d/experimental.list
+
+echo "Package: ${EXPERIMENTAL_DEPS}" > /etc/apt/preferences.d/99experimental
+echo "Pin: release a=experimental" >> /etc/apt/preferences.d/99experimental
+echo "Pin-priority: 500" >> /etc/apt/preferences.d/99experimental
+cat /etc/apt/preferences.d/99experimental
+apt-get update

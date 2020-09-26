@@ -39,7 +39,7 @@ load-module module-card-restore
 
 ### Should be after module-*-restore but before module-*-detect
 load-module module-switch-on-port-available blacklist=
-load-module module-switch-on-connect blacklist="^[^b][^l][^u][^e][^z]"
+# load-module module-switch-on-connect blacklist="^[^b][^l][^u][^e][^z]"
 
 ### Load audio drivers statically
 ### (it's probably better to not load these drivers manually, but instead

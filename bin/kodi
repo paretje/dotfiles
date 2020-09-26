@@ -1,17 +1,8 @@
 #!/bin/sh
-disable-xscreensaver &
-dis_pid=$!
-
 amixer set Master unmute
 volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
 amixer set Master 100%
 
-pkill -u $USER -USR1 dunst
-
 /usr/bin/kodi "$@"
 
-pkill -u $USER -USR2 dunst
-
 amixer set Master $volume
-
-kill $dis_pid

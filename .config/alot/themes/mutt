@@ -58,7 +58,7 @@
         [[[date]]]
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
-            width = 'fit',13,13
+            width = 'fit',18,18
         [[[mailcount]]]
             normal = '','','light gray','black','light gray','black'
             focus = 'standout','','black','dark cyan','black','dark cyan'
@@ -88,3 +88,7 @@
             normal = '','','light gray,bold','black','light gray,bold','black'
         [[[subject]]]
             normal = '','','light gray,bold','black','light gray,bold','black'
+    [[threadline-todo]]
+        tagged_with = todo
+        [[[subject]]]
+            normal = '','','light red','black','light red','black'
