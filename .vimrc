@@ -490,6 +490,8 @@ let g:poetv_set_environment = 0
 let g:suda#try_without_password = !has('nvim')
 
 " gitgutter options
+let g:gitgutter_preview_win_floating = 0
+
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
