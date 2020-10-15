@@ -128,7 +128,7 @@ config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabl
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv --ytdl-raw-options=netrc= {url}')
 config.bind(';sv', 'spawn x-terminal-emulator -e straw-viewer {url}')
-config.bind(';sk', 'spawn --userscript send_kodi')
+config.bind(';sk', 'spawn --userscript play_kodi')
 config.bind(';a', 'spawn --userscript play_mpc')
 config.bind('gs', 'view-source --edit')
 config.bind('gf', 'spawn --userscript openfeeds')

@@ -1,2 +1,2 @@
 #!/bin/sh
-kodi-send $(rofi -dmenu < "$HOME/.upnprc") "$(youtube-dl --netrc -g -f best "$QUTE_URL" | head -n 1)"
+kodi-send $(dmenu < "$HOME/.upnprc") "$(youtube-dl --netrc -g -f best "$QUTE_URL" | head -n 1)"
