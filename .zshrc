@@ -33,6 +33,9 @@ zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREF
 zplug "trizen/straw-viewer", hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
 
+zplug "flatpak/xdg-desktop-portal", hook-build:"NOCONFIGURE=1 ./autogen.sh && ./configure --prefix='$HOME/.local' && make && make install"
+zplug "emersion/xdg-desktop-portal-wlr", hook-build:"meson --prefix '$HOME/.local' build && ninja -C build install"
+
 zplug load
 PATH="$my_path"
 

@@ -275,3 +275,9 @@ tags
 /.ICAClient
 /.config/arnet/LinakDeskApp.ini
 /.config/scdl/scdl.cfg
+/.local/libexec
+/.local/share/dbus-1
+/.local/share/locale
+/.local/share/pkgconfig
+/.local/share/xdg-desktop-portal
+/.config/pipewire-media-session/restore-stream

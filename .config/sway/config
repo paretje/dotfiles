@@ -45,6 +45,9 @@ exec_always pkill kanshi; exec kanshi
 exec_always xrdb -merge ~/.Xresources
 
 exec exec mako
+exec exec pipewire
+exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
+
 exec exec flock -n ~/.cache/maildaemon.lock maildaemon
 exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
 exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
