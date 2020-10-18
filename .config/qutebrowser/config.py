@@ -67,7 +67,7 @@ if c.backend == 'webkit':
     c.content.cache.appcache = False
     c.hints.find_implementation = 'javascript'
 else:
-    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking"]
+    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking", "enable-features=WebRTCPipeWireCapturer", "enable-webrtc-pipewire-capturer"]
 
 c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
