@@ -35,6 +35,7 @@ zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOM
 
 zplug "flatpak/xdg-desktop-portal", at:1.8.0, hook-build:"NOCONFIGURE=1 ./autogen.sh && ./configure --prefix='$HOME/.local' && make && make install"
 zplug "emersion/xdg-desktop-portal-wlr", at:v0.1.0, hook-build:"meson --prefix '$HOME/.local' build && ninja -C build install"
+zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
 
 zplug load
 PATH="$my_path"
