@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Zoom
 Comment=Zoom Video Conference
-Exec=env QT_QPA_PLATFORM= QT_QPA_STYLE_OVERRIDE= QT_QPA_PLATFORMTHEME= /usr/bin/zoom %U
+Exec=env QT_QPA_PLATFORM= QT_QPA_STYLE_OVERRIDE= QT_QPA_PLATFORMTHEME= XDG_CURRENT_DESKTOP=GNOME /usr/bin/zoom %U
 Icon=Zoom.png
 Terminal=false
 Type=Application
