@@ -714,6 +714,9 @@ if has('nvim')
   " TODO: move this to nvim-man
   " TODO: use terminal to render formatting, but use nvim as pager
   au User ManOpen startinsert
+
+  " https://github.com/neovim/neovim/issues/11330#issuecomment-723667383
+  au VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 else
   source $VIMRUNTIME/ftplugin/man.vim
   au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c
