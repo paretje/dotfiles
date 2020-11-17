@@ -281,3 +281,5 @@ tags
 /.local/share/pkgconfig
 /.local/share/xdg-desktop-portal
 /.config/pipewire-media-session/restore-stream
+/.config/pipewire-media-session/default-profile
+/.config/pipewire-media-session/default-routes
