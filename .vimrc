@@ -825,7 +825,7 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\)\(\s\|$\)'
+  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\|mov\)\(\s\|$\)'
     let l:isfname = &isfname
     if getline('.') =~? '^\s*- \[ \] '
       set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
