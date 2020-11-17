@@ -56,7 +56,13 @@ exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
 ### Input configuration
 #
 # Read `man 5 sway-input` for more information about this section.
+#
+input 1267:32:Elan_Touchpad tap enabled
+input 1267:32:Elan_Touchpad click_method clickfinger
+input 1267:32:Elan_TrackPoint accel_profile flat
+
 input 2:7:SynPS/2_Synaptics_TouchPad tap enabled
+input 2:7:SynPS/2_Synaptics_TouchPad click_method clickfinger
 input 2:10:TPPS/2_Elan_TrackPoint accel_profile flat
 
 focus_follows_mouse no
