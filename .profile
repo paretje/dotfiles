@@ -212,6 +212,8 @@ export PIP_USER="yes"
 # set location of pip editable installs
 export PIP_SRC="$HOME/.pip/src"
 
+export PASSWORD_STORE_GENERATED_LENGTH=64
+
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
     exec "$HOME/.swaysession"
