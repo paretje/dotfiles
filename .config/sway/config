@@ -45,9 +45,9 @@ exec_always pkill kanshi; exec kanshi
 exec_always xrdb -merge ~/.Xresources
 
 exec exec mako
-exec exec pipewire
+exec exec flock -n ~/.cache/pipewire.lock pipewire
 exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
-exec exec $ZPLUG_REPOS/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb
+exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
 exec exec flock -n ~/.cache/maildaemon.lock maildaemon
 exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
