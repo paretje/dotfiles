@@ -21,4 +21,12 @@ export XKB_DEFAULT_OPTIONS=caps:escape,altwin:prtsc_rwin
 # Set brightness of laptop
 brightnessctl set 20%
 
-exec dbus-run-session sway
+sway_log_dir="$HOME/.local/share/sway"
+mkdir -p "$sway_log_dir"
+
+sway_log_file="$sway_log_dir/sway.log"
+if [ -f "$sway_log_file" ]; then
+	mv -f "$sway_log_file" "$sway_log_file.0"
+fi
+
+exec dbus-run-session sway > "$sway_log_file" 2>&1
