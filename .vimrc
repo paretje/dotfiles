@@ -92,6 +92,7 @@ Plug 'petobens/poet-v', {'for': 'python'}
 Plug 'goerz/jupytext.vim'
 Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
+Plug 'towolf/vim-helm', {'for': 'helm'}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
