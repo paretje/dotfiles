@@ -1,5 +1,5 @@
 profile home {
-        output "Samsung Electric Company S24H85x H4ZM500192" enable scale 1.0
+        output "Samsung Electric Company S24H85x H4ZM500192" enable mode 2560x1440 scale 1.0
         output eDP-1 disable position 0,1440
         exec "pkill mako; exec mako"
 }
@@ -15,7 +15,7 @@ profile t490 {
 }
 
 profile work {
-        output "Chimei Innolux Corporation 0x14F2 0x00000000" disable position 0,0
-        output "Goldstar Company Ltd LG Ultra HD 0x00003417" enable scale 1.50 position 1920,0 scale 1.0
+        output "Goldstar Company Ltd LG Ultra HD 0x00003417" enable position 1920,0 mode 3840x2160 scale 1.50
+        output "Chimei Innolux Corporation 0x14F2 0x00000000" disable position 0,0 scale 1.0
         exec "pkill mako; exec mako"
 }
