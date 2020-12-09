@@ -30,18 +30,18 @@ output * bg /usr/share/images/desktop-base/desktop-background fill
 xwayland force
 
 ### Idle configuration
-exec swayidle -w \
-        timeout 305 'swaylock -f' \
-        timeout 300 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f' \
-        lock 'swaylock -f'
+exec exec swayidle -w \
+            timeout 305 'swaylock -f' \
+            timeout 300 'swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on"' \
+            before-sleep 'swaylock -f' \
+            lock 'swaylock -f'
 
 for_window [app_id="kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
 
 # Start daemons
-exec_always pkill kanshi; exec kanshi
+exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
 
 exec exec mako
