@@ -283,3 +283,9 @@ tags
 /.config/pipewire-media-session/restore-stream
 /.config/pipewire-media-session/default-profile
 /.config/pipewire-media-session/default-routes
+/.config/gcloud
+/.config/helm/repositories.*
+/.kube
+/.local/share/helm/plugins
+/.local/share/sway/sway.log*
+/.local/share/virtualenv
