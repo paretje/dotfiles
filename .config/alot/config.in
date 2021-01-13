@@ -87,7 +87,7 @@ timestamp_format = "%d %b %Y %H:%M"
   j = move down
   k = move up
   'g g' = move first
-  G = move last; refresh
+  G = move last
   ' ' = move page down
   'ctrl d' = move halfpage down
   'ctrl u' = move halfpage up
@@ -127,6 +127,7 @@ timestamp_format = "%d %b %Y %H:%M"
     'm d' = untag inbox,todo
     'm t' = tag todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
+    G = move last; refresh
   
   [[envelope]]
     a = prompt 'attach ~/'
