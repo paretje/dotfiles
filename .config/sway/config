@@ -41,6 +41,7 @@ exec exec swayidle -w \
 for_window [app_id="kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
 for_window [class="zoom"] inhibit_idle open
+for_window [class="Microsoft Teams - Preview"] inhibit_idle open
 
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
