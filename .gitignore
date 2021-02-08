@@ -291,3 +291,4 @@ tags
 /.local/share/virtualenv
 /.config/syncthing
 /.google_libcloud_auth.*
+/.config/guvcview2
