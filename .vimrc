@@ -118,7 +118,7 @@ else
   Plug 'congma/vim-fakeclip'
 endif
 
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
 Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cmake']}
 Plug 'Shougo/neco-vim', {'for': 'vim'}
