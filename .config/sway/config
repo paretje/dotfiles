@@ -35,6 +35,7 @@ exec exec swayidle -w \
             timeout 300 'swaymsg "output * dpms off"' \
             resume 'swaymsg "output * dpms on"' \
             before-sleep 'swaylock -f' \
+            after-resume 'pactl set-sink-mute @DEFAULT_SINK@ true' \
             lock 'swaylock -f'
 
 for_window [app_id="kodi"] inhibit_idle open
