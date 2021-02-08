@@ -45,8 +45,8 @@ c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = False
-c.content.host_blocking.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
-c.content.host_blocking.whitelist = []
+c.content.blocking.hosts.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
+c.content.blocking.whitelist = []
 c.hints.uppercase = True
 c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b', r'\b(>>|»)\b', r'\bcontinue\b', r'\bvolgende\b']
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
@@ -142,16 +142,16 @@ config.bind(';sp', 'spawn --userscript password_store')
 config.bind('g$', 'tab-focus -1')
 config.bind('gi', 'hint inputs ;; fake-key -g a')
 config.bind(';ip', 'spawn --userscript password_fill_insert')
-config.bind('<Ctrl-N>', 'set-cmd-text -s :buffer')
+config.bind('<Ctrl-N>', 'set-cmd-text -s :tab-select')
 config.bind(',,', 'spawn --userscript usermode')
 config.unbind('<Ctrl-W>')
-config.bind('<Ctrl-Shift-O>', 'open-editor', mode='insert')
+config.bind('<Ctrl-Shift-O>', 'edit-text', mode='insert')
 config.bind('<Ctrl-Shift-A>', 'fake-key <Ctrl-A>', mode='insert')
 config.bind('<Ctrl-A>', 'fake-key <Home>', mode='insert')
 config.bind('<Ctrl-E>', 'fake-key <End>', mode='insert')
 config.bind('<Ctrl-W>', 'fake-key <Ctrl-Backspace>', mode='insert')
 config.bind('<Ctrl-D>', 'fake-key <Del>', mode='insert')
-config.bind('<Ctrl-O>', 'open-editor ;; leave-mode', mode='insert')
+config.bind('<Ctrl-O>', 'edit-text ;; leave-mode', mode='insert')
 config.bind('<Up>', 'command-history-prev', mode='command')
 config.bind('<Down>', 'command-history-next', mode='command')
 config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
