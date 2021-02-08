@@ -71,7 +71,7 @@ if c.backend == 'webkit':
 else:
     c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking", "enable-features=WebRTCPipeWireCapturer", "enable-webrtc-pipewire-capturer"]
 
-c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/?kl=be-nl&kp=-2&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['ghu'] = "https://github.com/{semiquoted}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
