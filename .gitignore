@@ -289,3 +289,4 @@ tags
 /.local/share/helm/plugins
 /.local/share/sway/sway.log*
 /.local/share/virtualenv
+/.config/syncthing
