@@ -290,3 +290,4 @@ tags
 /.local/share/sway/sway.log*
 /.local/share/virtualenv
 /.config/syncthing
+/.google_libcloud_auth.*
