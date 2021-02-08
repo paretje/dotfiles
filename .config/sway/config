@@ -46,6 +46,7 @@ for_window [class="Microsoft Teams - Preview"] inhibit_idle open
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
+exec_always pulseaudio -k
 
 exec exec mako
 exec exec flock -n ~/.cache/pipewire.lock pipewire
