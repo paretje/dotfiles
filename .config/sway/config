@@ -238,6 +238,8 @@ bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" 
 bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 bindsym Ctrl+Space exec makoctl dismiss
 
+bindsym $mod+Shift+z exec swaylock -f
+
 #
 # Status Bar:
 #
