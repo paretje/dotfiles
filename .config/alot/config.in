@@ -24,6 +24,7 @@ quit_on_last_bclose = True
 # thread_indent_replies = 1
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
 timestamp_format = "%d %b %Y %H:%M"
+search_threads_move_last_limit = 10000
 
 
 [accounts]
@@ -127,7 +128,7 @@ timestamp_format = "%d %b %Y %H:%M"
     'm d' = untag inbox,todo
     'm t' = tag todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
-    G = move last; refresh
+    G = move last
   
   [[envelope]]
     a = prompt 'attach ~/'
