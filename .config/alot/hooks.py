@@ -9,8 +9,6 @@ from alot.commands import CommandCanceled
 from alot.helper import mailto_to_envelope
 from alot.settings.const import settings
 from alot.settings.errors import NoMatchingAccount
-from notmuch.message import Message
-from notmuch.thread import Thread
 
 
 def pre_buffer_focus(ui, dbm, buf):
@@ -115,7 +113,3 @@ def unsubscribe_list(ui):
     else:
         ui.notify('focussed mail contains no \'List-Unsubscribe\' header',
                   'error')
-
-
-Thread.get_toplevel_messages = _sorted_func(Thread.get_toplevel_messages,
-                                            Message.get_date)
