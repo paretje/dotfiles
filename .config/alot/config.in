@@ -25,6 +25,7 @@ quit_on_last_bclose = True
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
 timestamp_format = "%d %b %Y %H:%M"
 search_threads_move_last_limit = 10000
+exclude_tags = "spam", "deleted"
 
 
 [accounts]
@@ -116,7 +117,7 @@ search_threads_move_last_limit = 10000
   [[search]]
     enter = select ; move down
     I = untag inbox,spamy,unread
-    S = tag spam; untag inbox,spamy 
+    S = tag --no-flush spam; untag inbox,spamy,unread
     # & = toggletags killed
     # ! = toggletags flagged
     'm r' = untag unread,spamy
@@ -126,7 +127,7 @@ search_threads_move_last_limit = 10000
     | = refineprompt
     a =
     'm d' = untag inbox,todo
-    'm t' = tag todo; untag unread,spamy
+    'm t' = tag --no-flush todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
     G = move last
   
