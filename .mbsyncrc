@@ -67,24 +67,24 @@ Create Slave
 Patterns "*"
 SyncState "*"
 
-IMAPAccount senso2me
+IMAPAccount ionbot-support
 Host imap.mailprotect.be
 SSLVersions TLSv1.2
-User kevin.velghe@senso2.me
-PassCmd "pass show email/kevin.velghe@senso2.me"
+User support@ionbot.cloud
+PassCmd "pass show email/support@ionbot.cloud"
 AuthMechs LOGIN
 
-IMAPStore senso2me-remote
-Account senso2me
+IMAPStore ionbot-support-remote
+Account ionbot-support
 
-MaildirStore senso2me-local
-Path ~/.mail/senso2me/
-Inbox ~/.mail/senso2me/INBOX
+MaildirStore ionbot-support-local
+Path ~/.mail/support/
+Inbox ~/.mail/support/INBOX
 Flatten .
 
-Channel senso2me
-Master :senso2me-remote:
-Slave :senso2me-local:
+Channel ionbot-support
+Master :ionbot-support-remote:
+Slave :ionbot-support-local:
 Create Slave
 Patterns "*"
 SyncState "*"

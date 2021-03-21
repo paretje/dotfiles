@@ -165,8 +165,6 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 export NAME="Kevin Velghe"
 if [ "$HOST" = "kevin-vib-laptop" ]; then
     export EMAIL="kevin.velghe@ugent.vib.be"
-elif [ "$HOST" = "parsley" -o "$HOST" = "fennel" -o "$HOST" = "chervil" ]; then
-    export EMAIL="kevin.velghe@senso2.me"
 else
     export EMAIL="kevin@paretje.be"
 fi
@@ -199,9 +197,7 @@ export JWT_AUTH_PREFIX='JWT'
 
 # define mail accounts used on different devices
 if [ "$HOST" = "kevin-vib-laptop" ]; then
-    export MAIL_ACCOUNTS="ugent"
-elif [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
-    export MAIL_ACCOUNTS="senso2me"
+    export MAIL_ACCOUNTS="ugent ionbot-support"
 elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
 fi
