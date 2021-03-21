@@ -85,7 +85,7 @@ class IDLEIMAPClient(threading.Thread):
                     client.idle_done()
                 client.logout()
             except Exception:
-                logging.warn("lost connection")
+                logging.warn("lost connection with %s", self.account.name, exc_info=True)
                 time.sleep(5)
 
 
