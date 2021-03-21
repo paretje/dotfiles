@@ -293,3 +293,4 @@ tags
 /.config/syncthing
 /.google_libcloud_auth.*
 /.config/guvcview2
+/.minikube
