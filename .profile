@@ -179,8 +179,6 @@ fi
 # set default org refile file
 if [ "$HOST" = "kevin-vib-laptop" ]; then
     export ORG_REFILE="$HOME/vcs/vib/notes/refile.org"
-elif [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
-    export ORG_REFILE="$HOME/vcs/senso2me/notes/s2m-refile.org"
 else
     export ORG_REFILE="$HOME/vcs/personal/notes/refile.org"
 fi

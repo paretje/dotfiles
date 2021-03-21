@@ -288,7 +288,7 @@ let g:necoghc_enable_detailed_browse = 1
 if $HOST ==# 'kevin-vib-laptop'
   let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
 else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/s2m-refile.org']
+  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org']
 endif
 let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
@@ -859,7 +859,7 @@ fun! GitAutocommit(...)
   if a:0 == 0 && index(g:gitautocommit_filetypes, &filetype) != -1
     Git autocommit --force
   else
-    for l:dir in ['personal', 'senso2me']
+    for l:dir in ['personal', 'vib']
       if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
         execute '!git -C ~/vcs/' . l:dir . '/notes autocommit'
       endif
