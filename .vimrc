@@ -28,7 +28,7 @@ Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-Plug 'paretje/vim-dotoo', {'branch': 'merged'}
+Plug 'dhruvasagar/vim-dotoo'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
