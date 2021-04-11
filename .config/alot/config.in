@@ -181,6 +181,7 @@ exclude_tags = "spam", "deleted"
     t =
     't m' = togglemimepart
     't t' = togglemimetree
+    U = fold *  ; unfold tag:unread
 
 
 [tags]
