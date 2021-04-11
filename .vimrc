@@ -377,7 +377,7 @@ call deoplete#custom#option('num_processes', 1)
 
 " TODO: use sources instead of ignore_sources
 let s:ignore_sources = {}
-let s:ignore_sources._ = ['tag', 'buffer']
+let s:ignore_sources._ = ['tag', 'buffer', 'around']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
   let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
 endfor
