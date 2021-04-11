@@ -295,3 +295,4 @@ tags
 /.config/guvcview2
 /.minikube
 /.gsutil
+/.config/pipe-viewer/cli-history.txt
