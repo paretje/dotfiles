@@ -19,6 +19,7 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "olivierverdier/zsh-git-prompt", use:zshrc.sh, hook-build:"zplug clear"
 zplug "zsh-users/zsh-completions"
+zplug "jonmosco/kube-ps1", use:kube-ps1.sh
 
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
@@ -137,21 +138,36 @@ WORDCHARS="_"
 # Enable report time
 REPORTTIME=5
 
+# Configure kube-ps1
+autoload -U regexp-replace
+
+function kubeps1_get_cluster_short() {
+    context="$1"
+    regexp-replace context '.*_' ''
+    echo "$context"
+}
+
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_CLUSTER_FUNCTION=kubeps1_get_cluster_short
+KUBE_PS1_PREFIX="(%B"
+KUBE_PS1_DIVIDER="%b:"
+
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
 
-PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~%b%F{white} $(git_super_status)
+PROMPT='%K{blue}%n@%m%k %B%F{green}%147<...<%~%b%F{white} $(git_super_status) $(kube_ps1)
 %}%F{white} %# %b%f%k'
 
 # Set up terminal title
 autoload -Uz add-zsh-hook
 
-function xterm_title_precmd () {
+function xterm_title_precmd() {
     print -n '\e]2;zsh\a'
 }
 
-function xterm_title_preexec () {
+function xterm_title_preexec() {
     print -n "\e]2;$1\a"
 }
 
