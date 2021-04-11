@@ -38,10 +38,11 @@ exec exec swayidle -w \
             after-resume 'pactl set-sink-mute @DEFAULT_SINK@ true' \
             lock 'swaylock -f'
 
-for_window [app_id="kodi"] inhibit_idle open
+for_window [app_id="Kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
 for_window [class="zoom"] inhibit_idle open
 for_window [class="Microsoft Teams - Preview"] inhibit_idle open
+for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
 
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
