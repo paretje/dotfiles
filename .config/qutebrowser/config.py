@@ -71,7 +71,7 @@ if c.backend == 'webkit':
 else:
     c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking", "enable-features=WebRTCPipeWireCapturer", "enable-webrtc-pipewire-capturer"]
 
-c.url.searchengines['ddg'] = "https://duckduckgo.com/?kl=be-nl&kp=-2&q={}"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/?k1=-1&kl=be-nl&kp=-2&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['ghu'] = "https://github.com/{semiquoted}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
@@ -97,7 +97,7 @@ c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/latest/search.html
 c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
 c.url.searchengines['yt'] = "https://youtube.com/search?q={}"
 c.url.searchengines['tts'] = "https://trythatsoap.com/search/?q={}"
-c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
+c.url.searchengines['DEFAULT'] = c.url.searchengines['ddg']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
