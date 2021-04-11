@@ -152,6 +152,10 @@ KUBE_PS1_CLUSTER_FUNCTION=kubeps1_get_cluster_short
 KUBE_PS1_PREFIX="(%B"
 KUBE_PS1_DIVIDER="%b:"
 
+if ! hash kubectl > /dev/null 2>&1 ; then
+    alias kube_ps1='true'
+fi
+
 
 # Set up the prompt
 autoload -Uz promptinit
