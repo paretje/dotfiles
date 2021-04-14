@@ -4,11 +4,13 @@
 // @description  Redirect page to Nitter
 // @author       Paretje
 // @match        *://twitter.com/*
+// @match        *://nitter.net/*
+// @match        *://nitter.cc/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
-    window.location.replace("https://nitter.net" + window.location.pathname + window.location.search);
+    window.location.replace("https://nitter.eu" + window.location.pathname + window.location.search);
 })();

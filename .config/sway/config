@@ -30,29 +30,45 @@ output * bg /usr/share/images/desktop-base/desktop-background fill
 xwayland force
 
 ### Idle configuration
-exec swayidle -w \
-        timeout 305 'swaylock -f' \
-        timeout 300 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f' \
-        lock 'swaylock -f'
+exec exec swayidle -w \
+            timeout 305 'swaylock -f' \
+            timeout 300 'swaymsg "output * dpms off"' \
+            resume 'swaymsg "output * dpms on"' \
+            before-sleep 'swaylock -f' \
+            after-resume 'pactl set-sink-mute @DEFAULT_SINK@ true' \
+            lock 'swaylock -f'
 
-for_window [app_id="kodi"] inhibit_idle open
+for_window [app_id="Kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
+for_window [class="zoom"] inhibit_idle open
+for_window [class="Microsoft Teams - Preview"] inhibit_idle open
+for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
 
 # Start daemons
-exec_always pkill kanshi; exec kanshi
+exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
+exec_always pulseaudio -k
 
 exec exec mako
+exec exec flock -n ~/.cache/pipewire.lock pipewire
+exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
+exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
+
 exec exec flock -n ~/.cache/maildaemon.lock maildaemon
 exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
 exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
+exec exec syncthing
 
 ### Input configuration
 #
 # Read `man 5 sway-input` for more information about this section.
+#
+input 1267:32:Elan_Touchpad tap enabled
+input 1267:32:Elan_Touchpad click_method clickfinger
+input 1267:32:Elan_TrackPoint accel_profile flat
+
 input 2:7:SynPS/2_Synaptics_TouchPad tap enabled
+input 2:7:SynPS/2_Synaptics_TouchPad click_method clickfinger
 input 2:10:TPPS/2_Elan_TrackPoint accel_profile flat
 
 focus_follows_mouse no
@@ -222,6 +238,8 @@ bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" 
 
 bindsym Ctrl+Shift+Space exec makoctl dismiss --all
 bindsym Ctrl+Space exec makoctl dismiss
+
+bindsym $mod+Shift+z exec swaylock -f
 
 #
 # Status Bar:

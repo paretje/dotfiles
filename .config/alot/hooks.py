@@ -1,16 +1,19 @@
-import alot
 import os
 import re
 import subprocess
 import asyncio
 import shlex
 import magic
-from notmuch.thread import Thread
-from notmuch.message import Message
+from alot.buffers import EnvelopeBuffer, SearchBuffer
+from alot.commands import CommandCanceled
+from alot.helper import mailto_to_envelope
+from alot.settings.const import settings
+from alot.settings.errors import NoMatchingAccount
+from notmuch2 import Thread
 
 
 def pre_buffer_focus(ui, dbm, buf):
-    if isinstance(buf, alot.buffers.SearchBuffer):
+    if isinstance(buf, SearchBuffer):
         buf.rebuild()
 
 
@@ -89,24 +92,32 @@ def unsubscribe_list(ui):
     constructs a unsubsribe-mail according to any mailto-url it finds
     and opens the new mail in an envelope buffer.
     """
-    from alot.helper import mailto_to_envelope
-    from alot.buffers import EnvelopeBuffer
     msg = ui.current_buffer.get_selected_message()
     e = msg.get_email()
     uheader = e['List-Unsubscribe']
     dtheader = e.get('Delivered-To', None)
 
     if uheader is not None:
-        M = re.search(r'<(mailto:\S*)>', uheader)
-        if M is not None:
-            env = mailto_to_envelope(M.group(1))
+        mailto_match = re.search(r'<(mailto:\S*)>', uheader)
+        if mailto_match is not None:
+            envelope = mailto_to_envelope(mailto_match.group(1))
             if dtheader is not None:
-                env['From'] = dtheader
-            ui.buffer_open(EnvelopeBuffer(ui, env))
+                envelope['From'] = dtheader
+                try:
+                    envelope.account = settings.account_matching_address(dtheader)
+                except NoMatchingAccount:
+                    msg = 'Cannot compose mail - ' \
+                          'no account found for `%s`' % dtheader
+                    ui.notify(msg, priority='error')
+                    raise CommandCanceled()
+            ui.buffer_open(EnvelopeBuffer(ui, envelope))
     else:
         ui.notify('focussed mail contains no \'List-Unsubscribe\' header',
                   'error')
 
 
-Thread.get_toplevel_messages = _sorted_func(Thread.get_toplevel_messages,
-                                            Message.get_date)
+def _thread_destroy(self):
+    self._thread_p = None
+
+
+Thread._destroy = _thread_destroy

@@ -25,7 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline', {'tag': '*'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'paretje/vim-dotoo', {'branch': 'merged'}
+Plug 'dhruvasagar/vim-dotoo'
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
@@ -224,7 +224,7 @@ let g:necoghc_enable_detailed_browse = 1
 if $HOST ==# 'kevin-vib-laptop'
   let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
 else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/s2m-refile.org']
+  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org']
 endif
 let g:dotoo#capture#refile = $ORG_REFILE
 let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
@@ -308,9 +308,11 @@ let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', '
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
+call deoplete#custom#option('num_processes', 1)
+
 " TODO: use sources instead of ignore_sources
 let s:ignore_sources = {}
-let s:ignore_sources._ = ['tag', 'buffer']
+let s:ignore_sources._ = ['tag', 'buffer', 'around']
 for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
   let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
 endfor
@@ -411,6 +413,8 @@ let g:poetv_set_environment = 0
 let g:suda#try_without_password = !has('nvim')
 
 " gitgutter options
+let g:gitgutter_preview_win_floating = 0
+
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
@@ -633,6 +637,9 @@ if has('nvim')
   " TODO: move this to nvim-man
   " TODO: use terminal to render formatting, but use nvim as pager
   au User ManOpen startinsert
+
+  " https://github.com/neovim/neovim/issues/11330#issuecomment-723667383
+  au VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 else
   source $VIMRUNTIME/ftplugin/man.vim
   au FileType man nnoremap <silent> <nowait> <buffer> q <C-W>c
@@ -741,7 +748,7 @@ fun! StageSelection() range
 endfun
 
 fun! OpenFile()
-  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\)\(\s\|$\)'
+  if getline('.') =~? '\(^\|\s\)https\?://\|\.\(epub\|cbz\|pdf\|ps\|mp4\|mkv\|mpg\|avi\|wmv\|mpg\|ts\|mpeg\|mov\)\(\s\|$\)'
     let l:isfname = &isfname
     if getline('.') =~? '^\s*- \[ \] '
       set isfname=@,48-57,/,.,-,_,+,,,#,$,%,~,=,32,',&,:,!,?,(,)
@@ -770,7 +777,7 @@ fun! GitAutocommit(...)
   if a:0 == 0 && index(g:gitautocommit_filetypes, &filetype) != -1
     Git autocommit --force
   else
-    for l:dir in ['personal', 'senso2me']
+    for l:dir in ['personal', 'vib']
       if !empty(glob('~/vcs/' . l:dir . '/notes/.git'))
         execute '!git -C ~/vcs/' . l:dir . '/notes autocommit'
       endif

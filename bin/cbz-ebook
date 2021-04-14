@@ -3,6 +3,7 @@ split_image() {
         filename="$1"
         basename="${filename%.*}"
         extension="${filename##*.}"
+        margin="$2"
 
         convert "$filename" -crop "1x2+${margin}+${margin}@"  +repage  +adjoin +rotate 270 "${basename}_%d.${extension}"
         rm "$filename"
@@ -21,6 +22,6 @@ if [ "$margin" = "" ]; then
 fi
 
 unzip "$cbz_file" -d "$tmp_dir"
-find "$tmp_dir" -type f -exec bash -c 'split_image "$0"' "{}" "$margin" ";"
+find "$tmp_dir" -type f -exec bash -c 'split_image "$@"' split_image "{}" "$margin" ";"
 zip -j -r "$name-ebook.cbz" "$tmp_dir"
 rm -r "$tmp_dir"

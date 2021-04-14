@@ -18,6 +18,7 @@ source "$ZPLUG_HOME/init.zsh"
 zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "zsh-users/zsh-completions"
+zplug "jonmosco/kube-ps1", use:kube-ps1.sh
 
 zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
@@ -123,6 +124,25 @@ WORDCHARS="_"
 # Enable report time
 REPORTTIME=5
 
+# Configure kube-ps1
+autoload -U regexp-replace
+
+function kubeps1_get_cluster_short() {
+    context="$1"
+    regexp-replace context '.*_' ''
+    echo "$context"
+}
+
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_CLUSTER_FUNCTION=kubeps1_get_cluster_short
+KUBE_PS1_PREFIX="(%B"
+KUBE_PS1_DIVIDER="%b:"
+
+if ! hash kubectl > /dev/null 2>&1 ; then
+    alias kube_ps1='true'
+fi
+
+
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
@@ -131,11 +151,11 @@ prompt adam1
 # Set up terminal title
 autoload -Uz add-zsh-hook
 
-function xterm_title_precmd () {
+function xterm_title_precmd() {
     print -n '\e]2;zsh\a'
 }
 
-function xterm_title_preexec () {
+function xterm_title_preexec() {
     print -n "\e]2;$1\a"
 }
 

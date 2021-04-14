@@ -260,6 +260,7 @@ tags
 /.docker/.buildNodeID
 /.zoom
 /.config/zoomus.conf
+/.config/Unknown Organization/zoom.conf
 /.config/teams-for-linux
 !/.config/teams-for-linux/config.json
 /.jupyter
@@ -275,3 +276,23 @@ tags
 /.ICAClient
 /.config/arnet/LinakDeskApp.ini
 /.config/scdl/scdl.cfg
+/.local/libexec
+/.local/share/dbus-1
+/.local/share/locale
+/.local/share/pkgconfig
+/.local/share/xdg-desktop-portal
+/.config/pipewire-media-session/restore-stream
+/.config/pipewire-media-session/default-profile
+/.config/pipewire-media-session/default-routes
+/.config/gcloud
+/.config/helm/repositories.*
+/.kube
+/.local/share/helm/plugins
+/.local/share/sway/sway.log*
+/.local/share/virtualenv
+/.config/syncthing
+/.google_libcloud_auth.*
+/.config/guvcview2
+/.minikube
+/.gsutil
+/.config/pipe-viewer/cli-history.txt

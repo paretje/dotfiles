@@ -24,6 +24,8 @@ quit_on_last_bclose = True
 # thread_indent_replies = 1
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
 timestamp_format = "%d %b %Y %H:%M"
+search_threads_move_last_limit = 10000
+exclude_tags = "spam", "deleted"
 
 
 [accounts]
@@ -60,15 +62,12 @@ timestamp_format = "%d %b %Y %H:%M"
       regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
       ignorecase = True
 
-  [[senso2me]]
-    realname = Kevin Velghe
-    address = kevin.velghe@senso2.me
-    sendmail_command = /usr/bin/msmtp -a senso2me -t
-    sent_box = maildir://$MAILDIR/senso2me/Sent
-    draft_box = maildir://$MAILDIR/senso2me/Drafts
-    gpg_key = E672C080A81F2D8CCDF0198C438CD95296C1A48A
-    sign_by_default = True
-    encrypt_by_default = all
+  [[ionbot-support]]
+    realname = Support
+    address = support@ionbot.cloud
+    sendmail_command = /usr/bin/msmtp -a ionbot-support -t
+    sent_box = maildir://$MAILDIR/support/Sent
+    draft_box = maildir://$MAILDIR/support/Drafts
 
     [[[abook]]]
       type = shellcommand
@@ -115,7 +114,7 @@ timestamp_format = "%d %b %Y %H:%M"
   [[search]]
     enter = select ; move down
     I = untag inbox,spamy,unread
-    S = tag spam; untag inbox,spamy 
+    S = tag --no-flush spam; untag inbox,spamy,unread
     # & = toggletags killed
     # ! = toggletags flagged
     'm r' = untag unread,spamy
@@ -125,8 +124,9 @@ timestamp_format = "%d %b %Y %H:%M"
     | = refineprompt
     a =
     'm d' = untag inbox,todo
-    'm t' = tag todo; untag unread,spamy
+    'm t' = tag --no-flush todo; untag unread,spamy
     'ctrl f' = call hooks.getmails(ui)
+    G = move last
   
   [[envelope]]
     a = prompt 'attach ~/'
@@ -181,6 +181,7 @@ timestamp_format = "%d %b %Y %H:%M"
     t =
     't m' = togglemimepart
     't t' = togglemimetree
+    U = fold *  ; unfold tag:unread
 
 
 [tags]

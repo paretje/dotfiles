@@ -35,6 +35,8 @@ c.completion.web_history.max_items = 10000
 c.input.partial_timeout = 1000
 c.tabs.background = True
 c.tabs.last_close = 'blank'
+c.tabs.title.format = "{index}: {current_title} {audio}"
+c.confirm_quit = ['multiple-tabs']
 c.scrolling.bar = 'never'
 c.downloads.location.directory = "~/downloads"
 c.content.cache.size = 52428800
@@ -43,8 +45,8 @@ c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.accept = 'no-3rdparty'
 c.content.cookies.store = False
-c.content.host_blocking.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
-c.content.host_blocking.whitelist = []
+c.content.blocking.hosts.lists = ["https://www.malwaredomainlist.com/hostslist/hosts.txt", "http://someonewhocares.org/hosts/hosts", "http://winhelp2002.mvps.org/hosts.zip", "http://malwaredomains.lehigh.edu/files/justdomains.zip", "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext", "file:///var/cache/qutebrowser/ad_servers.txt"]
+c.content.blocking.whitelist = []
 c.hints.uppercase = True
 c.hints.next_regexes = [r'\bnext\b', r'\bmore\b', r'\bnewer\b', r'\b[>→≫]\b', r'\b(>>|»)\b', r'\bcontinue\b', r'\bvolgende\b']
 c.hints.prev_regexes = [r'\bprev(ious)?\b', r'\bback\b', r'\bolder\b', r'\b[<←≪]\b', r'\b(<<|«)\b', r'\bvorige\b']
@@ -67,9 +69,9 @@ if c.backend == 'webkit':
     c.content.cache.appcache = False
     c.hints.find_implementation = 'javascript'
 else:
-    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking"]
+    c.qt.args = ["ignore-gpu-blacklist", "enable-gpu-rasterization", "enable-zero-copy", "enable-strict-mixed-content-checking", "enable-features=WebRTCPipeWireCapturer", "enable-webrtc-pipewire-capturer"]
 
-c.url.searchengines['ddg'] = "https://duckduckgo.com/html/?kl=be-nl&kp=-1&q={}"
+c.url.searchengines['ddg'] = "https://duckduckgo.com/?k1=-1&kl=be-nl&kp=-2&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&q={}"
 c.url.searchengines['man'] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
 c.url.searchengines['ghu'] = "https://github.com/{semiquoted}"
 c.url.searchengines['taal'] = "https://taal.vrt.be/search/apachesolr_search/{}"
@@ -91,11 +93,11 @@ c.url.searchengines['g'] = "https://www.google.be/search?q={}"
 c.url.searchengines['gm'] = "https://www.google.be/maps?q={}"
 c.url.searchengines['dochub'] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines['eco'] = "https://www.ecosia.org/search?q={}"
-c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/13/search.html?q={}&check_keywords=yes&area=default"
+c.url.searchengines['sqla'] = "https://docs.sqlalchemy.org/en/latest/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines['tmdb'] = "https://www.themoviedb.org/search?query={}"
 c.url.searchengines['yt'] = "https://youtube.com/search?q={}"
 c.url.searchengines['tts'] = "https://trythatsoap.com/search/?q={}"
-c.url.searchengines['DEFAULT'] = c.url.searchengines['sp']
+c.url.searchengines['DEFAULT'] = c.url.searchengines['ddg']
 
 c.aliases['h'] = 'help'
 c.aliases['q'] = 'close ;; session-delete default'
@@ -128,7 +130,7 @@ config.bind(';iw', 'spawn --detach iceweasel {url}')
 config.bind(';js', 'config-cycle -p -u *://{url:host}/* content.javascript.enabled')
 config.bind(';p', 'spawn --userscript password_fill')
 config.bind(';v', 'spawn mpv --ytdl-raw-options=netrc= {url}')
-config.bind(';sv', 'spawn x-terminal-emulator -e straw-viewer {url}')
+config.bind(';sv', 'spawn x-terminal-emulator -e pipe-viewer {url}')
 config.bind(';sk', 'spawn --userscript play_kodi')
 config.bind(';a', 'spawn --userscript play_mpc')
 config.bind('gs', 'view-source --edit')
@@ -140,16 +142,16 @@ config.bind(';sp', 'spawn --userscript password_store')
 config.bind('g$', 'tab-focus -1')
 config.bind('gi', 'hint inputs ;; fake-key -g a')
 config.bind(';ip', 'spawn --userscript password_fill_insert')
-config.bind('<Ctrl-N>', 'set-cmd-text -s :buffer')
+config.bind('<Ctrl-N>', 'set-cmd-text -s :tab-select')
 config.bind(',,', 'spawn --userscript usermode')
 config.unbind('<Ctrl-W>')
-config.bind('<Ctrl-Shift-O>', 'open-editor', mode='insert')
+config.bind('<Ctrl-Shift-O>', 'edit-text', mode='insert')
 config.bind('<Ctrl-Shift-A>', 'fake-key <Ctrl-A>', mode='insert')
 config.bind('<Ctrl-A>', 'fake-key <Home>', mode='insert')
 config.bind('<Ctrl-E>', 'fake-key <End>', mode='insert')
 config.bind('<Ctrl-W>', 'fake-key <Ctrl-Backspace>', mode='insert')
 config.bind('<Ctrl-D>', 'fake-key <Del>', mode='insert')
-config.bind('<Ctrl-O>', 'open-editor ;; leave-mode', mode='insert')
+config.bind('<Ctrl-O>', 'edit-text ;; leave-mode', mode='insert')
 config.bind('<Up>', 'command-history-prev', mode='command')
 config.bind('<Down>', 'command-history-next', mode='command')
 config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
