@@ -308,8 +308,6 @@ let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', '
 " deoplete options
 let g:deoplete#enable_at_startup = 1
 
-call deoplete#custom#option('num_processes', 1)
-
 " TODO: use sources instead of ignore_sources
 let s:ignore_sources = {}
 let s:ignore_sources._ = ['tag', 'buffer', 'around']
