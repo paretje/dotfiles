@@ -13,11 +13,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Enable Firefox Wayland
 export MOZ_ENABLE_WAYLAND=1
 
-# # Configure keyboard layout
-export XKB_DEFAULT_LAYOUT=us
-export XKB_DEFAULT_VARIANT=altgr-intl
-export XKB_DEFAULT_OPTIONS=caps:escape,altwin:prtsc_rwin
-
 # Set brightness of laptop
 brightnessctl set 20%
 

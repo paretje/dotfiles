@@ -50,6 +50,8 @@ exec_always xrdb -merge ~/.Xresources
 exec_always pulseaudio -k
 
 exec exec mako
+# TODO: exec_always?
+# NOTE: pipewire requires xdg-desktop-portal
 exec exec flock -n ~/.cache/pipewire.lock pipewire
 exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
 exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
@@ -63,6 +65,15 @@ exec exec syncthing
 #
 # Read `man 5 sway-input` for more information about this section.
 #
+input * xkb_layout us
+input * xkb_variant altgr-intl
+input * xkb_options caps:escape
+
+input 1:1:AT_Translated_Set_2_keyboard xkb_options caps:escape,altwin:prtsc_rwin
+input 12815:20508:SONiX_USB_Keyboard xkb_options caps:escape,ctrl:swap_rwin_rctl
+
+input * xkb_numlock enabled
+
 input 1267:32:Elan_Touchpad tap enabled
 input 1267:32:Elan_Touchpad click_method clickfinger
 input 1267:32:Elan_TrackPoint accel_profile flat
