@@ -59,7 +59,7 @@ exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulatio
 exec exec flock -n ~/.cache/maildaemon.lock maildaemon
 exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
 exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
-exec exec syncthing
+exec exec syncthing -no-browser
 
 ### Input configuration
 #
