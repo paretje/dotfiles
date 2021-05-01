@@ -48,8 +48,8 @@ for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
 exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
 exec_always pulseaudio -k
+exec_always "pkill dunst; exec dunst"
 
-exec exec mako
 # TODO: exec_always?
 # NOTE: pipewire requires xdg-desktop-portal
 exec exec flock -n ~/.cache/pipewire.lock pipewire
@@ -247,8 +247,8 @@ bindsym $mod+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 
-bindsym Ctrl+Shift+Space exec makoctl dismiss --all
-bindsym Ctrl+Space exec makoctl dismiss
+bindsym Ctrl+Shift+Space exec dunstctl close-all
+bindsym Ctrl+Space exec dunstctl close
 
 bindsym $mod+Shift+z exec swaylock -f
 
