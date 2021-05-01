@@ -246,6 +246,7 @@ bindsym $mod+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
+bindsym Print exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 
 bindsym Ctrl+Shift+Space exec dunstctl close-all
 bindsym Ctrl+Space exec dunstctl close
