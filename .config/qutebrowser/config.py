@@ -132,8 +132,6 @@ c.url.searchengines["osm"] = "https://www.openstreetmap.org/search?query={}"
 c.url.searchengines["arch"] = "https://wiki.archlinux.org/index.php?search={}"
 c.url.searchengines["dbts"] = "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug={}"
 c.url.searchengines["pypi"] = "https://pypi.org/search/?q={}"
-c.url.searchengines["g"] = "https://www.google.be/search?q={}"
-c.url.searchengines["gm"] = "https://www.google.be/maps?q={}"
 c.url.searchengines["dochub"] = "https://hub.docker.com/search?q={}&type=image"
 c.url.searchengines["eco"] = "https://www.ecosia.org/search?q={}"
 c.url.searchengines[
