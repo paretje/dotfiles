@@ -217,7 +217,10 @@ def unregister_existing_interceptor(func: interceptor.InterceptorType):
     interceptors = interceptor.interceptors._interceptors
     existing_func = None
     for reg_func in interceptors:
-        if reg_func.__name__ == func.__name__ and reg_func.__module__ == func.__module__:
+        if (
+            reg_func.__name__ == func.__name__
+            and reg_func.__module__ == func.__module__
+        ):
             existing_func = reg_func
             break
 
@@ -236,7 +239,6 @@ def intercept(info: interceptor.Request) -> None:
     # third_party_request = info.first_party_url != info.request_url
     host = info.request_url.host()
 
-    # TODO: https://github.com/ninewise/dotfiles/blob/master/config/qutebrowser/config.py#L155
     if host in redirects:
         new_url = QUrl(info.request_url)
         new_url.setHost(redirects[host])
