@@ -142,7 +142,7 @@ c.url.searchengines[
 c.url.searchengines["tmdb"] = "https://www.themoviedb.org/search?query={}"
 c.url.searchengines["yt"] = "https://youtube.com/search?q={}"
 c.url.searchengines["tts"] = "https://trythatsoap.com/search/?q={}"
-c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
+c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
 
 c.aliases["h"] = "help"
 c.aliases["q"] = "close ;; session-delete default"
