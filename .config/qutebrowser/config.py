@@ -106,9 +106,7 @@ else:
         "enable-webrtc-pipewire-capturer",
     ]
 
-c.url.searchengines[
-    "ddg"
-] = "https://duckduckgo.com/?k1=-1&kl=be-nl&kp=-2&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&q={}"
+c.url.searchengines["ddg"] = "https://duckduckgo.com/?kp=-2&k1=-1&kaj=m&q={}"
 c.url.searchengines[
     "man"
 ] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
