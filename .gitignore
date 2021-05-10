@@ -296,3 +296,4 @@ tags
 /.minikube
 /.gsutil
 /.config/pipe-viewer/cli-history.txt
+/.config/pipe-viewer/instances.json
