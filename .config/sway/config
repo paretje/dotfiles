@@ -50,10 +50,11 @@ exec_always xrdb -merge ~/.Xresources
 exec_always pulseaudio -k
 exec_always "pkill dunst; exec dunst"
 
-# TODO: exec_always?
 # NOTE: pipewire requires xdg-desktop-portal
-exec exec flock -n ~/.cache/pipewire.lock pipewire
-exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
+exec "pkill pipewire; exec pipewire"
+# NOTE: wlr should be started automatically, but segfauls at the moment.
+# The sleep is because of a race condition between wlr and pipewire
+exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
 exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
 exec exec flock -n ~/.cache/maildaemon.lock maildaemon
