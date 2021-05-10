@@ -21,7 +21,6 @@ for arg in "$@"; do
 	fi
 done
 
-# disable notification during playback
 if $smart && test $files -gt 1; then
 	mpv --no-resume-playback "$@"
 else
