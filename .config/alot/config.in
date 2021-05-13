@@ -58,8 +58,9 @@ exclude_tags = "spam", "deleted"
 
     [[[abook]]]
       type = shellcommand
-      command = abook --mutt-query
-      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      command = notmuch address --format=json --deduplicate=address --output=recipients tag:sent
+      regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+      shellcommand_external_filtering = False
       ignorecase = True
 
   [[ionbot-support]]
@@ -71,8 +72,9 @@ exclude_tags = "spam", "deleted"
 
     [[[abook]]]
       type = shellcommand
-      command = abook --mutt-query
-      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      command = notmuch address --format=json --deduplicate=address --output=recipients from:support@ionbot.cloud
+      regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+      shellcommand_external_filtering = False
       ignorecase = True
 
 
