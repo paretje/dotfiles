@@ -90,6 +90,7 @@ Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'towolf/vim-helm', {'for': 'helm'}
 Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
+Plug 'posva/vim-vue', {'for': 'vue'}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
