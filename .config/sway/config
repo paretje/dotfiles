@@ -50,15 +50,18 @@ exec_always xrdb -merge ~/.Xresources
 exec_always pulseaudio -k
 exec_always "pkill dunst; exec dunst"
 
+# TODO: would dbus-user-session prevent having multiple deamons for old dbus sessions?
+# i.e. would the dbus session be kept alive, and reused?
 # NOTE: pipewire requires xdg-desktop-portal
 exec "pkill pipewire; exec pipewire"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
 exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
+# TODO: pkill
 exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
-exec exec flock -n ~/.cache/maildaemon.lock maildaemon
-exec exec flock -n ~/.cache/batmonitor.lock batmonitor
+exec "pkill maildaemon; exec maildaemon"
+exec "pkill batmonitor; exec batmonitor"
 exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
 exec exec syncthing -no-browser
 
