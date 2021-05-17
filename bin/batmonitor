@@ -7,7 +7,10 @@ check_battery() {
 
 	time_left=$(echo "$message" | sed 's/^Discharging, [0-9]\+%, \([0-9:]\+\) remaining$/0\n\1\n+\np/;s/:/\n+\n60\n*\n/g' | dc)
 	if [ "$time_left" -le 900 ]; then
-		notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
+		action=$(dunstify -u critical -A cancel,cancel "Battery Critically low, suspending in 30s!" "$message")
+		if [ "$action" = "cancel" ]; then
+			return
+		fi
 		sleep 30s
 		if acpi -b | grep -Fvq 'Charging, '; then
 			if [ -x /bin/systemctl ]; then
