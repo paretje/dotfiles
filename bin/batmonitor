@@ -1,22 +1,29 @@
 #!/bin/bash
-message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
-if [[ "${message:0:13}" != "Discharging, " ]]; then
-	exit
-fi
-
-time_left=$(echo "$message" | sed 's/^Discharging, [0-9]\+%, \([0-9:]\+\) remaining$/0\n\1\n+\np/;s/:/\n+\n60\n*\n/g' | dc)
-if [ "$time_left" -le 900 ]; then
-	notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
-	sleep 30s
-	if acpi -b | grep -Fvq 'Charging, '; then
-		if [ -x /bin/systemctl ]; then
-			systemctl suspend &
-		else
-			sudo pm-suspend &
-		fi
+check_battery() {
+	message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
+	if [[ "${message:0:13}" != "Discharging, " ]]; then
+		return
 	fi
-elif [ "$time_left" -le 1200 ]; then
-	notify-send -u critical "Battery getting very low" "$message"
-elif [ "$time_left" -le 1500 ]; then
-	notify-send -u low "Battery getting low" "$message"
-fi
+
+	time_left=$(echo "$message" | sed 's/^Discharging, [0-9]\+%, \([0-9:]\+\) remaining$/0\n\1\n+\np/;s/:/\n+\n60\n*\n/g' | dc)
+	if [ "$time_left" -le 900 ]; then
+		notify-send -u critical "Battery Critically low, suspending in 30s!" "$message"
+		sleep 30s
+		if acpi -b | grep -Fvq 'Charging, '; then
+			if [ -x /bin/systemctl ]; then
+				systemctl suspend &
+			else
+				sudo pm-suspend &
+			fi
+		fi
+	elif [ "$time_left" -le 1200 ]; then
+		notify-send -u critical "Battery getting very low" "$message"
+	elif [ "$time_left" -le 1500 ]; then
+		notify-send -u low "Battery getting low" "$message"
+	fi
+}
+
+while true; do
+	check_battery
+	sleep 2m
+done
