@@ -170,8 +170,8 @@ else
 fi
 
 # set key to use to sign packages
-if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
-    export DEB_SIGN_KEYID="E672C080A81F2D8CCDF0198C438CD95296C1A48A"
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+    export DEB_SIGN_KEYID="BA137AAF47EAD0286E34BDCA224F083560F2E437"
 else
     export DEB_SIGN_KEYID="A00FD8ECD1BC0694C8ED1C835473109364AD7E10"
 fi
