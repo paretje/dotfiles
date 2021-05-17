@@ -52,12 +52,8 @@ c.content.geolocation = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = False
 c.content.blocking.hosts.lists = [
-    "https://www.malwaredomainlist.com/hostslist/hosts.txt",
-    "http://someonewhocares.org/hosts/hosts",
-    "http://winhelp2002.mvps.org/hosts.zip",
-    "http://malwaredomains.lehigh.edu/files/justdomains.zip",
-    "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext",
-    "file:///var/cache/qutebrowser/ad_servers.txt",
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+    "http://malwaredomains.lehigh.edu/files/justdomains.zip",  # TODO: this was removed from qutebrowser, pointless?
 ]
 c.content.blocking.whitelist = []
 c.hints.uppercase = True
