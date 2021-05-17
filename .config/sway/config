@@ -254,6 +254,7 @@ bindsym Print exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && 
 
 bindsym Ctrl+Shift+Space exec dunstctl close-all
 bindsym Ctrl+Space exec dunstctl close
+bindsym Ctrl+Shift+Return exec dunstctl context
 
 bindsym $mod+Shift+z exec swaylock -f
 
