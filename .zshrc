@@ -35,7 +35,7 @@ zplug "trizen/pipe-viewer", hook-build:"perl Build.PL && ./Build install --insta
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
 
 zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
-zplug "fwSmit/dunst", at:wayland-hidpi, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
+zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
 
 zplug load
 PATH="$my_path"
