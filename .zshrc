@@ -31,7 +31,7 @@ zplug "GermainZ/weechat-vimode", use:
 zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
 
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
-zplug "trizen/pipe-viewer", hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
+zplug "trizen/pipe-viewer", at:main, hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
 
 zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
