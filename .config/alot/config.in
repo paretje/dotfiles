@@ -49,6 +49,7 @@ exclude_tags = "spam", "deleted"
   [[ugent]]
     realname = Kevin Velghe
     address = kevin.velghe@ugent.vib.be
+    aliases = kevin.velghe@ugent.be,kevin.velghe@vib-ugent.be
     sendmail_command = /usr/bin/msmtp -a ugent -t
     sent_box = maildir://$MAILDIR/ugent/Sent Items
     draft_box = maildir://$MAILDIR/ugent/Drafts
