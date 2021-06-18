@@ -33,6 +33,7 @@ zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf 
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
 zplug "trizen/pipe-viewer", at:main, hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
+zplug "carnager/rofi-pass", as:command, use:rofi-pass
 
 zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
