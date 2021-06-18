@@ -101,9 +101,3 @@ fi
 
 # Load gpg-agent variables
 export GPG_TTY=$(tty)
-if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
-    . "$GPG_ENV_FILE"
-    export GPG_AGENT_INFO
-    export SSH_AUTH_SOCK
-    export SSH_AGENT_PID
-fi

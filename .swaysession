@@ -1,12 +1,4 @@
 #!/bin/sh
-if [ -n "$GPG_ENV_FILE" -a -f "$GPG_ENV_FILE" ]; then
-	. "$GPG_ENV_FILE"
-	export GPG_TTY=$(tty)
-	export GPG_AGENT_INFO
-	export SSH_AUTH_SOCK
-	export SSH_AGENT_PID
-fi
-
 # Fix Java programs
 export _JAVA_AWT_WM_NONREPARENTING=1
 
