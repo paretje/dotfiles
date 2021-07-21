@@ -4,7 +4,47 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-	wofi -i -no-auto-select "$@"
+	wofi_args=()
+	while [ $# -gt 0 ]; do
+		case "$1" in
+			-dmenu )
+				wofi_args+=("--dmenu")
+				;;
+			-kb-* )
+				shift
+				;;
+			-select )
+				wofi_args+=("--search" "$2")
+				shift
+				;;
+			-password )
+				wofi_pass+=("--password")
+				;;
+			-mesg )
+				mesg="$2"
+				shift
+				;;
+			-p )
+				# When -mesg was passed before -p, add it to prompt
+				if [ -n "$mesg" ]; then
+					prompt="$mesg $2"
+				else
+					prompt="$2"
+				fi
+				wofi_args+=("-p" "$prompt")
+				shift
+				;;
+			-* )
+				echo "ERROR: can't map rofi argument $1 to wofi" 2>&1
+				return 42
+				;;
+			* )
+				wofi_args+=("$1")
+				;;
+		esac
+		shift
+	done
+	wofi -i "${wofi_args[@]}"
 }
 
 # default command to generate passwords
@@ -117,3 +157,5 @@ type_menu="Alt+t"
 help="Alt+h"
 switch="Alt+x"
 insert_pass="Alt+n"
+
+# vim: set ft=sh
