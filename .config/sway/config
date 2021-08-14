@@ -75,6 +75,7 @@ input * xkb_options caps:escape
 
 input 1:1:AT_Translated_Set_2_keyboard xkb_options caps:escape,altwin:prtsc_rwin
 input 12815:20508:SONiX_USB_Keyboard xkb_options caps:escape,ctrl:swap_rwin_rctl
+input 12758:42:GouDan_Tech._SK108 xkb_options caps:escape,altwin:menu_win
 
 input * xkb_numlock enabled
 
