@@ -103,6 +103,7 @@ sub-shadow-color="#000000"
 sub-shadow-offset=1
 
 ytdl-format=bestvideo[height<=1440]+bestaudio/best[protocol!=f4m][height<=1440]
+ytdl-raw-options=youtube-skip-dash-manifest=
 script-opts=ytdl_hook-use_manifests=yes
 
 demuxer-seekable-cache=no

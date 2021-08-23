@@ -1,24 +1,24 @@
 #!/usr/bin/python3
 # coding: utf-8
-import os
-import sys
-import time
 import logging
-import subprocess
-import threading
-import signal
-import toml
-import appdirs
+import os
 import shelve
-import notmuch
-import arrow
-import gi
-from gi.repository import Notify as notify
-from imapclient import IMAPClient
+import signal
+import subprocess
+import sys
+import threading
+import time
 from email.utils import parseaddr
 
-gi.require_version('Notify', '0.7')
+import appdirs
+import arrow
+import gi
+import notmuch
+import toml
+from imapclient import IMAPClient
 
+gi.require_version('Notify', '0.7')
+from gi.repository import Notify as notify
 
 NOTIFICATION_EVENT = threading.Event()
 
@@ -85,7 +85,7 @@ class IDLEIMAPClient(threading.Thread):
                     client.idle_done()
                 client.logout()
             except Exception:
-                logging.warn("lost connection with %s", self.account.name, exc_info=True)
+                logging.warning("lost connection with %s", self.account.name, exc_info=True)
                 time.sleep(5)
 
 

@@ -126,23 +126,8 @@ fi
 user-dirs-make
 
 # Start gpg-agent if not yet running
-if hash gpg-agent > /dev/null 2>&1; then
-    if gpg2 --version | fgrep -q 'gpg (GnuPG) 2.0'; then
-        export GPG_ENV_FILE="$HOME/.gpg-agent-info"
-        . "$GPG_ENV_FILE"
-        export GPG_AGENT_INFO
-        if ! gpg-agent; then
-            gpg-agent --daemon --enable-ssh-support --write-env-file "$GPG_ENV_FILE"
-        fi
-    else
-        gpgconf --launch gpg-agent
-        if [ -d "/var/run/user/$UID" ]; then
-            export SSH_AUTH_SOCK="/var/run/user/$UID/gnupg/S.gpg-agent.ssh"
-        else
-            export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-        fi
-    fi
-fi
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # Set Qt platformtheme to gtk2
 export QT_QPA_PLATFORMTHEME=gtk2
@@ -170,8 +155,8 @@ else
 fi
 
 # set key to use to sign packages
-if [ "$HOST" = "parsley" -o "$HOST" = "chervil" ]; then
-    export DEB_SIGN_KEYID="E672C080A81F2D8CCDF0198C438CD95296C1A48A"
+if [ "$HOST" = "kevin-vib-laptop" ]; then
+    export DEB_SIGN_KEYID="BA137AAF47EAD0286E34BDCA224F083560F2E437"
 else
     export DEB_SIGN_KEYID="A00FD8ECD1BC0694C8ED1C835473109364AD7E10"
 fi

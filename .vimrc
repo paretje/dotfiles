@@ -54,6 +54,7 @@ Plug 'idanarye/vim-vebugger'
 Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
 Plug 'solarnz/thrift.vim', {'for': 'thrift'}
 Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
+Plug 'posva/vim-vue', {'for': 'vue'}
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -818,7 +819,7 @@ fun! PyDoc(...) abort
   else
     " TODO: handle multiple definitions
     " TODO: handle no definitions without silent
-    silent! PythonJedi vim.command('PyDoc ' + jedi_vim.get_script().goto_definitions()[0].full_name)
+    silent! python3 vim.command('PyDoc ' + jedi_vim.goto(mode="definition")[0].full_name)
   endif
 endfun
 

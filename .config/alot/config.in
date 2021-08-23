@@ -49,6 +49,7 @@ exclude_tags = "spam", "deleted"
   [[ugent]]
     realname = Kevin Velghe
     address = kevin.velghe@ugent.vib.be
+    aliases = kevin.velghe@ugent.be,kevin.velghe@vib-ugent.be
     sendmail_command = /usr/bin/msmtp -a ugent -t
     sent_box = maildir://$MAILDIR/ugent/Sent Items
     draft_box = maildir://$MAILDIR/ugent/Drafts
@@ -58,8 +59,9 @@ exclude_tags = "spam", "deleted"
 
     [[[abook]]]
       type = shellcommand
-      command = abook --mutt-query
-      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      command = notmuch address --format=json --deduplicate=address --output=recipients tag:sent
+      regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+      shellcommand_external_filtering = False
       ignorecase = True
 
   [[ionbot-support]]
@@ -71,8 +73,9 @@ exclude_tags = "spam", "deleted"
 
     [[[abook]]]
       type = shellcommand
-      command = abook --mutt-query
-      regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+      command = notmuch address --format=json --deduplicate=address --output=recipients from:support@ionbot.cloud
+      regexp = '\[?{"name": "(?P<name>.*)", "address": "(?P<email>.+)", "name-addr": ".*"}[,\]]?'
+      shellcommand_external_filtering = False
       ignorecase = True
 
 

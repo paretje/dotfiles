@@ -182,7 +182,7 @@ bind index,pager r group-reply
 bind index,pager R reply
 
 # add macro to fetch new mails
-macro index \CF '<shell-escape>getmails --now &<enter>'
+macro index \CF '<shell-escape>pkill -USR1 maildaemon<enter>'
 
 # follow links in mail using urlscan
 macro pager f '<pipe-message>urlscan<enter>'

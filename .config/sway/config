@@ -48,21 +48,37 @@ for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
 exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
 exec_always pulseaudio -k
+exec_always "pkill dunst; exec dunst"
 
-exec exec mako
-exec exec flock -n ~/.cache/pipewire.lock pipewire
-exec exec /home/kevin/.local/libexec/xdg-desktop-portal --verbose -r
+# TODO: would dbus-user-session prevent having multiple deamons for old dbus sessions?
+# i.e. would the dbus session be kept alive, and reused?
+# NOTE: pipewire requires xdg-desktop-portal
+exec "pkill pipewire; exec pipewire"
+# NOTE: wlr should be started automatically, but segfauls at the moment.
+# The sleep is because of a race condition between wlr and pipewire
+exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
+# TODO: pkill
 exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
-exec exec flock -n ~/.cache/maildaemon.lock maildaemon
-exec exec flock -n ~/.cache/batmonitor.lock sh -c 'while true; do batmonitor ; sleep 2m ; done'
+exec "pkill maildaemon; exec maildaemon"
+exec "pkill batmonitor; exec batmonitor"
 exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
-exec exec syncthing
+exec exec syncthing -no-browser
 
 ### Input configuration
 #
 # Read `man 5 sway-input` for more information about this section.
 #
+input * xkb_layout us
+input * xkb_variant altgr-intl
+input * xkb_options caps:escape
+
+input 1:1:AT_Translated_Set_2_keyboard xkb_options caps:escape,altwin:prtsc_rwin
+input 12815:20508:SONiX_USB_Keyboard xkb_options caps:escape,ctrl:swap_rwin_rctl
+input 12758:42:GouDan_Tech._SK108 xkb_options caps:escape,altwin:menu_win
+
+input * xkb_numlock enabled
+
 input 1267:32:Elan_Touchpad tap enabled
 input 1267:32:Elan_Touchpad click_method clickfinger
 input 1267:32:Elan_TrackPoint accel_profile flat
@@ -235,9 +251,11 @@ bindsym $mod+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
+bindsym Print exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 
-bindsym Ctrl+Shift+Space exec makoctl dismiss --all
-bindsym Ctrl+Space exec makoctl dismiss
+bindsym Ctrl+Shift+Space exec dunstctl close-all
+bindsym Ctrl+Space exec dunstctl close
+bindsym Ctrl+Shift+Return exec dunstctl context
 
 bindsym $mod+Shift+z exec swaylock -f
 
