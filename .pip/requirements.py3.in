@@ -1,5 +1,5 @@
 -e git+git://github.com/paretje/notspam.git#egg=notspam
-youtube-dl
+yt-dlp
 vim-vint
 pip-tools
 pyPEG2
