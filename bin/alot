@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 import os
 import sys
+
+import appdirs
 import configobj
 
 ALOT_CONFIG = os.path.expanduser('~/.config/alot/config')
 ALOT_CONFIG_IN = os.path.expanduser('~/.config/alot/config.in')
+ALOT_CACHE = appdirs.user_cache_dir(appname='alot')
+ALOT_TMPDIR = os.path.join(ALOT_CACHE, 'tmp')
 
 if __name__ == "__main__":
     config = configobj.ConfigObj(infile=ALOT_CONFIG_IN, file_error=True, encoding='UTF8')
@@ -20,6 +24,9 @@ if __name__ == "__main__":
 
     with open(ALOT_CONFIG, 'wb') as config_file:
         config.write(config_file)
+
+    os.makedirs(ALOT_TMPDIR, exist_ok=True)
+    os.environ['TMPDIR'] = ALOT_TMPDIR
 
     # TODO: replace with call
     os.execv(os.path.expanduser('~/.local/bin/alot'), [sys.argv[0], '--mailindex-path', os.environ['MAILDIR']] + sys.argv[1:])
