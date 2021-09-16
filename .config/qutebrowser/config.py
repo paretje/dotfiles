@@ -8,6 +8,9 @@ from qutebrowser.api import interceptor
 
 logger = logging.getLogger()
 
+qute_pass = "spawn --userscript qute-pass --username-target secret --username-pattern 'login: (.+)' --dmenu-invocation 'wofi -dmenu' --no-insert-mode"
+
+
 # pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
@@ -178,7 +181,14 @@ config.bind("gf", "spawn --userscript openfeeds")
 config.unbind(";o")
 config.bind(";org", "spawn --verbose --userscript org_add")
 config.bind("D", 'bookmark-del ;; message-info "Bookmark {url} deleted!"')
-config.bind(";ip", "spawn --userscript password_fill_insert")
+config.bind("zl", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass}")
+config.bind("zul", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --username-only")
+config.bind("zpl", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --password-only")
+config.bind("zol", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --otp-only")
+config.bind("zL", qute_pass)
+config.bind("zuL", f"{qute_pass} --username-only")
+config.bind("zpL", f"{qute_pass} --password-only")
+config.bind("zoL", f"{qute_pass} --otp-only")
 config.bind("<Ctrl-N>", "set-cmd-text -s :tab-select")
 config.bind(",,", "spawn --userscript usermode")
 config.unbind("<Ctrl-W>")
@@ -196,7 +206,7 @@ config.bind("<Ctrl-D>", "fake-key <Del>", mode="command")
 config.bind("<Ctrl-W>", "rl-backward-kill-word", mode="command")
 config.bind("<Alt-Backspace>", "rl-unix-word-rubout", mode="command")
 config.bind(
-    "<Ctrl-P>", "spawn --userscript password_fill_prompt_wrapper", mode="prompt"
+    "<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt"
 )
 
 
