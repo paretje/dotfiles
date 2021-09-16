@@ -135,7 +135,7 @@ c.url.searchengines[
     "sqla"
 ] = "https://docs.sqlalchemy.org/en/latest/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines["tmdb"] = "https://www.themoviedb.org/search?query={}"
-c.url.searchengines["yt"] = "https://youtube.com/search?q={}"
+c.url.searchengines["yt"] = "https://yewtu.be/search?q={}"
 c.url.searchengines["tts"] = "https://trythatsoap.com/search/?q={}"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
 
