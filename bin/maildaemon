@@ -28,6 +28,10 @@ def pretty_sender(fromline):
     return name or addr
 
 
+class PasswordCommandError(Exception):
+    pass
+
+
 class PeriodicIMAPSync(threading.Thread):
     def __init__(self, account):
         super().__init__()
@@ -84,6 +88,9 @@ class IDLEIMAPClient(threading.Thread):
                     time.sleep(1)
                     client.idle_done()
                 client.logout()
+            except PasswordCommandError:
+                logging.warning("password command failed, sleep for %ds", self.account.sync_interval)
+                time.sleep(self.account.sync_interval)
             except Exception:
                 logging.warning("lost connection with %s", self.account.name, exc_info=True)
                 time.sleep(5)
@@ -108,8 +115,11 @@ class IMAPAccount():
 
     @property
     def password(self):
-        return subprocess.check_output(self.password_cmd, shell=True) \
-                         .decode('utf8').strip()
+        try:
+            return subprocess.check_output(self.password_cmd, shell=True) \
+                             .decode('utf8').strip()
+        except subprocess.CalledProcessError:
+            raise PasswordCommandError(self.password_cmd)
 
     @property
     def periodic_sync(self):
