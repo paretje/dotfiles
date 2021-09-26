@@ -625,6 +625,7 @@ au FileType vim setlocal iskeyword+=:
 
 " ansible ft options
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yaml set filetype=yaml.ansible
 au FileType yaml.ansible setlocal keywordprg=:AnsibleDoc
 
 " terminal options
