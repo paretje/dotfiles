@@ -11,7 +11,7 @@ if !filereadable($HOME . '/.vim/autoload/plug.vim')
   if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   elseif executable('wget')
-    execute '!mkdir -P ~/.vim/autoload'
+    execute '!mkdir -p ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
   let s:plug_install = 1
