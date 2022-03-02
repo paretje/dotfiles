@@ -43,6 +43,10 @@ for_window [class="Kodi"] inhibit_idle open
 for_window [class="zoom"] inhibit_idle open
 for_window [class="Microsoft Teams - Preview"] inhibit_idle open
 for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
+for_window [class="Pcsx2"] inhibit_idle fullscreen
+for_window [class="yuzu"] inhibit_idle fullscreen
+for_window [class="flycast"] inhibit_idle fullscreen
+for_window [class="PPSSPPDL"] inhibit_idle fullscreen
 
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
