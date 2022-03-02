@@ -54,6 +54,7 @@ exec_always "pkill dunst; exec dunst"
 # i.e. would the dbus session be kept alive, and reused?
 # NOTE: pipewire requires xdg-desktop-portal
 exec "pkill pipewire; exec pipewire"
+exec "pkill wireplumber; exec wireplumber"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
 exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
