@@ -299,3 +299,15 @@ tags
 /.config/pipe-viewer/instances.json
 /.config/pipe-viewer/watched.txt
 /.config/pipe-viewer/playlists
+/.local/share/zsh
+/.local/share/fish
+/.local/share/bash-completion
+/.local/share/yuzu
+/.local/share/flycast
+/.local/share/calibre-parallel
+/.config/whoozle.github.io/aft-linux-cli.history
+/.config/whoozle.github.io/aft-linux-qt.conf
+/.config/yuzu
+/.config/ppsspp
+/.config/PCSX2
+/.config/flycast
