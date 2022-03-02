@@ -1,2 +1,2 @@
 #!/bin/sh
-exec curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Scan", "id": "mybash"}' -H 'content-type: application/json;' "http://kodi:kodi@$1/jsonrpc"
+exec curl --data-binary '{ "jsonrpc": "2.0", "method": "VideoLibrary.Scan", "id": "mybash"}' -H 'content-type: application/json;' "http://$(pass "kodi/$1" | sed 'N;s/\(.*\)\nlogin: \(.*\)/\2:\1/')@$1/jsonrpc"
