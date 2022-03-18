@@ -51,13 +51,13 @@ for_window [class="PPSSPPDL"] inhibit_idle fullscreen
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
-exec_always pulseaudio -k
 exec_always "pkill dunst; exec dunst"
 
 # TODO: would dbus-user-session prevent having multiple deamons for old dbus sessions?
 # i.e. would the dbus session be kept alive, and reused?
 # NOTE: pipewire requires xdg-desktop-portal
 exec "pkill pipewire; exec pipewire"
+exec "pkill pipewire-pulse; exec pipewire-pulse"
 exec "pkill wireplumber; exec wireplumber"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
