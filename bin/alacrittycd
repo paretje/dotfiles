@@ -1,0 +1,10 @@
+#!/bin/bash -e
+set -o pipefail
+shopt -s nullglob
+
+socket_files=(/run/user/$UID/Alacritty*)
+if [ ${#socket_files} -ge 1 ]; then
+        exec "$HOME/.cargo/bin/alacritty" msg create-window "$@"
+else
+        exec "$HOME/.cargo/bin/alacritty" "$@"
+fi
