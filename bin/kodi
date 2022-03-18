@@ -1,8 +1,8 @@
 #!/bin/sh
-amixer set Master unmute
-volume=$(amixer get Master | sed '/\[[0-9]*%\]/!d;s/^.*\[\([0-9]*%\)\].*$/\1/')
-amixer set Master 100%
+pulsemixer --unmute
+volume=$(pulsemixer --get-volume | awk '{print $1}')
+pulsemixer --set-volume 100
 
 /usr/bin/kodi "$@"
 
-amixer set Master $volume
+pulsemixer --set-volume "$volume"
