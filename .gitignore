@@ -311,3 +311,4 @@ tags
 /.config/ppsspp
 /.config/PCSX2
 /.config/flycast
+/.local/state/wireplumber
