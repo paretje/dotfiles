@@ -319,3 +319,4 @@ tags
 /.local/share/openconnect-sso/QtWebEngine
 /.local/share/qutebrowser/adblock-cache.dat
 /.local/share/oauth2ms
+/.ms2pip
