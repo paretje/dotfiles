@@ -207,6 +207,7 @@ focus_follows_mouse no
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+shift+a focus child
 #
 # Scratchpad:
 #
