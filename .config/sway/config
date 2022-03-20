@@ -193,8 +193,8 @@ focus_follows_mouse no
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+t layout tabbed
-    bindsym $mod+e layout default
-    bindsym $mod+d layout toggle split
+    bindsym $mod+e layout toggle split
+    bindsym $mod+d layout splith
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
