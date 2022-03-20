@@ -37,6 +37,7 @@ zplug "carnager/rofi-pass", as:command, use:rofi-pass
 
 zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
+zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
 
 zplug load
 PATH="$my_path"
