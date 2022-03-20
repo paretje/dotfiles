@@ -312,3 +312,9 @@ tags
 /.config/PCSX2
 /.config/flycast
 /.local/state/wireplumber
+/.config/freerdp/known_hosts2
+/.config/gsmartcontrol/gsmartcontrol.conf
+/.erlang.cookie
+/.local/share/python_keyring
+/.local/share/openconnect-sso/QtWebEngine
+/.local/share/qutebrowser/adblock-cache.dat
