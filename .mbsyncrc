@@ -45,12 +45,12 @@ Patterns "*"
 SyncState "*"
 
 IMAPAccount ugent
-Host owa.ugent.be
+Host outlook.office365.com
 SSLType IMAPS
 SSLVersions TLSv1.2
 User Kevin.Velghe@UGent.be
-PassCmd "pass show email/Kevin.Velghe@UGent.be"
-AuthMechs PLAIN
+PassCmd "oauth2ms"
+AuthMechs XOAUTH2
 
 IMAPStore ugent-remote
 Account ugent
