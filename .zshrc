@@ -20,8 +20,8 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 zplug "olivierverdier/zsh-git-prompt", use:zshrc.sh, hook-build:"zplug clear"
 zplug "zsh-users/zsh-completions"
 zplug "jonmosco/kube-ps1", use:kube-ps1.sh
+zplug "jeffreytse/zsh-vi-mode"
 
-zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
 
 # Abuse zplug to keep track of weechat plugins
@@ -120,12 +120,9 @@ export GPG_TTY=$(tty)
 setopt ignoreeof
 
 # Set additional keybindings for vi-mode
-bindkey -M viins '^a' beginning-of-line
-bindkey -M viins '^e' end-of-line
-bindkey -M viins '^d' delete-char
-bindkey -M viins '^r' history-incremental-search-backward
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd '?' history-incremental-search-forward
+zvm_bindkey viins '^d' delete-char
+zvm_bindkey vicmd '/' history-incremental-search-backward
+zvm_bindkey vicmd '?' history-incremental-search-forward
 
 # Use similar word definition as vim
 WORDCHARS="_"
