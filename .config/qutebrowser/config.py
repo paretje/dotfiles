@@ -91,7 +91,7 @@ c.fonts.statusbar = "8pt monospace"
 c.fonts.tabs.selected = "8pt monospace"
 c.fonts.tabs.unselected = "8pt monospace"
 c.qt.highdpi = True
-c.spellcheck.languages = ["en-GB"]
+c.spellcheck.languages = ["en-GB", "nl-NL"]
 
 if c.backend == "webkit":
     c.content.cache.appcache = False
