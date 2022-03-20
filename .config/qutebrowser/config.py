@@ -215,9 +215,9 @@ config.bind(
 redirects = {
     "www.reddit.com": "old.reddit.com",
     "twitter.com": "nitter.cc",
-    "www.youtube.com": "www.youtube-nocookie.com",
-    "invidio.us": "invidious.tube",
-    "invidious.13ad.de": "invidious.tube",
+    "www.youtube.com": "yewtu.be",
+    "invidio.us": "yewtu.be",
+    "invidious.13ad.de": "yewtu.be",
 }
 
 
