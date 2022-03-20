@@ -398,7 +398,14 @@ call deoplete#custom#var('member', 'prefix_patterns', {
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
 let g:deoplete#sources#jedi#ignore_errors = v:true
 
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-9/lib/libclang.so.1'
+
+" https://vi.stackexchange.com/questions/23089/how-to-force-glob-to-make-result-in-numerical-order
+fun! CompareStringsWithNumbers(i1, i2)
+    let l:f = str2nr(matchstr(a:i1, '[0-9]\+'))
+    let l:s = str2nr(matchstr(a:i2, '[0-9]\+'))
+    return l:f == l:s ? 0 : l:f > l:s ? 1 : -1
+endfun
+let g:deoplete#sources#clang#libclang_path = sort(glob('/usr/lib/llvm-*/lib/libclang.so.1', 0, 1), 'CompareStringsWithNumbers')[-1]
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 let g:deoplete#sources#notmuch#command = ['notmuch', 'address', '--format=json', '--output=recipients', '--deduplicate=address', 'tag:sent']
