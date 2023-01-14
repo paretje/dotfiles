@@ -720,9 +720,6 @@ if has('nvim')
   au User ManOpen tmap <buffer> <C-K> <C-W>k
   au User ManOpen tmap <buffer> <C-L> <C-W>l
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
-  " TODO: move this to nvim-man
-  " TODO: use terminal to render formatting, but use nvim as pager
-  au User ManOpen startinsert
 
   " https://github.com/neovim/neovim/issues/11330#issuecomment-723667383
   au VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
@@ -901,7 +898,7 @@ fun! PyDoc(...) abort
       let l:python = b:poetv_dir . '/bin/' . l:python
     endif
     let l:shell_term = has('nvim') ? '' : '++shell '
-    execute 'split | terminal ' . l:shell_term . l:python . ' -m pydoc ' . shellescape(a:1)
+    execute 'split | terminal ' . l:shell_term . 'LESS="$LESS -+F -c" ' . l:python . ' -m pydoc ' . shellescape(a:1)
     doau User ManOpen
   else
     " TODO: handle multiple definitions
@@ -966,12 +963,12 @@ endfun
 
 fun! CppMan(page) abort
   let l:shell_term = has('nvim') ? '' : ' ++shell'
-  execute 'split | terminal' . l:shell_term . ' cppman ' . shellescape(a:page)
+  execute 'split | terminal' . l:shell_term . ' LESS="$LESS -+F -c" cppman ' . shellescape(a:page)
   doau User ManOpen
 endfun
 
 fun! AnsibleDoc(plugin) abort
   let l:shell_term = has('nvim') ? '' : ' ++shell'
-  execute 'split | terminal' . l:shell_term . ' ansible-doc ' . shellescape(a:plugin)
+  execute 'split | terminal' . l:shell_term . ' LESS="$LESS -+F -c" ansible-doc ' . shellescape(a:plugin)
   doau User ManOpen
 endfun
