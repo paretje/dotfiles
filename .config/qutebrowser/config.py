@@ -3,7 +3,7 @@ import logging
 import sys
 
 import psutil
-from PyQt5.QtCore import QUrl
+from PyQt6.QtCore import QUrl
 from qutebrowser.api import interceptor
 
 logger = logging.getLogger()

@@ -3,7 +3,7 @@ set -o pipefail
 shopt -s nullglob
 
 qutebrowser() {
-	"/usr/bin/qutebrowser" "$@"
+	"$HOME/.zplug/bin/qutebrowser" "$@"
 }
 
 clean_history() {
