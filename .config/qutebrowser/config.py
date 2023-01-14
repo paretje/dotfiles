@@ -2,7 +2,6 @@
 import logging
 import sys
 
-import psutil
 from PyQt6.QtCore import QUrl
 from qutebrowser.api import interceptor
 
@@ -24,8 +23,12 @@ else:
     c.backend = "webengine"
 
 # reduce memory usage on low memory machines
-if c.backend == "webengine" and psutil.virtual_memory().total < 3 * 1024 ** 3:
-    c.qt.process_model = "process-per-site"
+try:
+    import psutil
+    if c.backend == "webengine" and psutil.virtual_memory().total < 3 * 1024 ** 3:
+        c.qt.process_model = "process-per-site"
+except ImportError:
+    pass
 
 c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
