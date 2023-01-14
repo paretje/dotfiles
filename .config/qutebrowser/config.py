@@ -57,10 +57,6 @@ c.content.webgl = False
 c.content.geolocation = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = True
-c.content.blocking.hosts.lists = [
-    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
-    "http://malwaredomains.lehigh.edu/files/justdomains.zip",  # TODO: this was removed from qutebrowser, pointless?
-]
 c.content.blocking.whitelist = []
 c.hints.uppercase = True
 c.hints.next_regexes = [
