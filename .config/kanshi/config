@@ -17,6 +17,6 @@ profile work {
 }
 
 profile tv {
-        output "Goldstar Company Ltd LG TV 0x00000101" enable mode 3840x2160 scale 1.0
+        output "Goldstar Company Ltd LG TV 0x00000101" enable mode 1920x1080 scale 1.0
         output eDP-1 disable
 }
