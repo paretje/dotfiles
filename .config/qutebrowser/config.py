@@ -32,7 +32,7 @@ except ImportError:
 
 c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
-c.url.auto_search = "dns"
+c.url.auto_search = "naive"
 c.editor.command = ["x-terminal-emulator", "-e", "nvim", "-b", "-c", "set noeol", "{}"]
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
