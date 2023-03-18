@@ -139,7 +139,9 @@ c.url.searchengines[
 c.url.searchengines["tmdb"] = "https://www.themoviedb.org/search?query={}"
 c.url.searchengines["yt"] = "https://yewtu.be/search?q={}"
 c.url.searchengines["tts"] = "https://trythatsoap.com/search/?q={}"
-c.url.searchengines['psn'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS3"
+c.url.searchengines['psn3'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS3"
+c.url.searchengines['psn4'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS4"
+c.url.searchengines['psn5'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS5"
 c.url.searchengines['ebay'] = "https://www.benl.ebay.be/sch/i.html?_from=R40&_nkw={}&_sacat=0&_sop=15"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
 
