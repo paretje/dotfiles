@@ -9,7 +9,6 @@ neovim
 msgpack<1.0.0
 imapclient
 -e git+https://github.com/afewmail/afew.git#egg=afew
-ueberzug
 poetry
 stig
 tldextract
