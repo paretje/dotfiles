@@ -4,7 +4,7 @@ profile home {
 }
 
 profile t480s {
-        output "Unknown 0x058B 0x00000000" enable scale 1.25
+        output "LG Display 0x058B Unknown" enable scale 1.25
 }
 
 profile t490 {
