@@ -220,6 +220,7 @@ redirects = {
     "www.youtube.com": "yewtu.be",
     "invidio.us": "yewtu.be",
     "invidious.13ad.de": "yewtu.be",
+    "en.m.wikipedia.org": "en.wikipedia.org",
 }
 
 
