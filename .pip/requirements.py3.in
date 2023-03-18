@@ -1,10 +1,10 @@
--e git+git://github.com/paretje/notspam.git#egg=notspam
+-e git+https://github.com/paretje/notspam.git#egg=notspam
 yt-dlp
 vim-vint
 pip-tools
 pyPEG2
 readability-lxml
--e git+git://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
+-e git+https://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
 neovim
 msgpack<1.0.0
 imapclient
