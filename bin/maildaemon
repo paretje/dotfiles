@@ -188,15 +188,21 @@ class NewMailNotification(threading.Thread):
             notify.Notification.new("You've got mail", summary).show()
 
     def run(self):
-        notify.init('maildaemon')
         while True:
-            NOTIFICATION_EVENT.wait()
-            logging.debug("notification event")
-            try:
-                self.show_notification()
-            except Exception:
-                logging.exception("couldn't show notification")
-            NOTIFICATION_EVENT.clear()
+            notify.init('maildaemon')
+            while True:
+                NOTIFICATION_EVENT.wait()
+                logging.debug("notification event")
+                try:
+                    self.show_notification()
+                except gi.repository.GLib.GError as ex:
+                    print(dir(ex))
+                    logging.exception("couldn't show notification, reinit and try again")
+                    notify.uninit()
+                    break
+                except Exception:
+                    logging.exception("couldn't show notification")
+                NOTIFICATION_EVENT.clear()
 
 
 def main():
