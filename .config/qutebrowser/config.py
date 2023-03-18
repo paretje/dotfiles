@@ -214,7 +214,9 @@ config.bind(
 
 redirects = {
     "www.reddit.com": "old.reddit.com",
-    "twitter.com": "nitter.cc",
+    "twitter.com": "nitter.nl",
+    "nitter.cc": "nitter.nl",
+    "nitter.eu": "nitter.nl",
     "www.youtube.com": "yewtu.be",
     "invidio.us": "yewtu.be",
     "invidious.13ad.de": "yewtu.be",
