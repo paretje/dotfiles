@@ -320,3 +320,11 @@ tags
 /.local/share/qutebrowser/adblock-cache.dat
 /.local/share/oauth2ms
 /.ms2pip
+/.pcsxr
+/.local/share/xemu
+/.local/share/qutebrowser/qutebrowser
+/.local/share/ppsspp
+/.local/share/pixmaps
+/.local/share/icons
+/.local/share/applications/PPSSPPSDL.desktop
+/.arduino15
