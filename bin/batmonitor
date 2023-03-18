@@ -6,6 +6,7 @@ check_battery() {
 	fi
 
 	time_left=$(echo "$message" | sed 's/^Discharging, [0-9]\+%, \([0-9:]\+\) remaining$/0\n\1\n+\np/;s/:/\n+\n60\n*\n/g' | dc)
+	test "$time_left" -gt 0 || notify-send -u critical "Something went wrong (batmonitor)" "$message"
 	if [ "$time_left" -le 900 ]; then
 		action=$(timeout 30s dunstify -u critical -A cancel,cancel "Battery Critically low, suspending in 30s!" "$message")
 		if [ "$action" = "cancel" ] || acpi -b | grep -Fq 'Charging, '; then
