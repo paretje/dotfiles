@@ -143,6 +143,10 @@ c.url.searchengines['psn3'] = "https://en.psprices.com/region-be/search/?q={}&pl
 c.url.searchengines['psn4'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS4"
 c.url.searchengines['psn5'] = "https://en.psprices.com/region-be/search/?q={}&platform=PS5"
 c.url.searchengines['ebay'] = "https://www.benl.ebay.be/sch/i.html?_from=R40&_nkw={}&_sacat=0&_sop=15"
+c.url.searchengines['games2trust'] = "https://games2trust.eu/nl/catalogsearch/result/?q={}&cat=27"
+c.url.searchengines['retroplaystation'] = "https://www.retroplaystationkopen.nl/zoeken?query={}"
+c.url.searchengines['gamemania'] = "https://www.gamemania.be/nl/product/search?keyword={}"
+c.url.searchengines['hltb'] = "https://howlongtobeat.com/?q={}"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
 
 c.aliases["h"] = "help"
