@@ -104,7 +104,7 @@ sub-shadow-offset=1
 
 ytdl-format=bestvideo[height<=1440][fps<=60]+bestaudio/best[protocol!=f4m][height<=1440][fps<=60]
 ytdl-raw-options=youtube-skip-dash-manifest=
-script-opts=ytdl_hook-use_manifests=yes
+script-opts=ytdl_hook-use_manifests=yes,sponsorblock-local_database=no,sponsorblock-report_views=no,sponsorblock-audio_fade=yes
 
 demuxer-seekable-cache=no
 
