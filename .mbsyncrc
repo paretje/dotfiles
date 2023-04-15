@@ -69,6 +69,7 @@ SyncState "*"
 
 IMAPAccount ionbot-support
 Host imap.mailprotect.be
+SSLType IMAPS
 SSLVersions TLSv1.2
 User support@ionbot.cloud
 PassCmd "pass show email/support@ionbot.cloud"
