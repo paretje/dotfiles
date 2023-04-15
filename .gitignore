@@ -328,3 +328,16 @@ tags
 /.local/share/icons
 /.local/share/applications/PPSSPPSDL.desktop
 /.arduino15
+/.config/openconnect-sso/config.toml
+/.config/OpenSCAD/OpenSCAD.conf
+/.config/Unknown Organization/zoom.conf
+/.config/gh/hosts.yml
+/.config/pipe-viewer/subscribed_channels.txt
+/.config/pipe-viewer/users.txt
+/.config/rclone/rclone.conf
+/.config/zoom.conf
+/.httpie/version_info.json
+/.local/share/castero
+/.local/share/oauth2token/
+/.x2go
+/.x2goclient
