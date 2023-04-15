@@ -8,12 +8,12 @@ profile t480s {
 }
 
 profile t490 {
-        output "Chimei Innolux Corporation 0x14F2 0x00000000" enable
+        output "Chimei Innolux Corporation 0x14F2 Unknown" enable
 }
 
 profile work {
-        output "Goldstar Company Ltd LG Ultra HD 0x00003417" enable position 1920,0 mode 3840x2160 scale 1.50
-        output "Chimei Innolux Corporation 0x14F2 0x00000000" disable position 0,0 scale 1.0
+        output "LG Electronics LG Ultra HD 0x00003417" enable position 1920,0 mode 3840x2160 scale 1.50
+        output "Chimei Innolux Corporation 0x14F2 Unknown" disable position 0,0 scale 1.0
 }
 
 profile tv {
