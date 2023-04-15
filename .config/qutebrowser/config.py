@@ -98,6 +98,7 @@ c.fonts.tabs.selected = "8pt monospace"
 c.fonts.tabs.unselected = "8pt monospace"
 c.qt.highdpi = True
 c.spellcheck.languages = ["en-GB", "nl-NL"]
+c.url.open_base_url = True
 
 if c.backend == "webkit":
     c.content.cache.appcache = False
@@ -220,9 +221,7 @@ config.bind("<Ctrl-Shift-D>", "completion-item-del", mode="command")
 config.bind("<Ctrl-D>", "fake-key <Del>", mode="command")
 config.bind("<Ctrl-W>", "rl-backward-kill-word", mode="command")
 config.bind("<Alt-Backspace>", "rl-unix-word-rubout", mode="command")
-config.bind(
-    "<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt"
-)
+config.bind("<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt")
 
 
 redirects = {
