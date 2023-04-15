@@ -29,8 +29,6 @@ zplug "keith/urlview-weechat", use:
 zplug "GermainZ/weechat-vimode", use:
 zplug "wee-slack/wee-slack", use:
 
-zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
-
 zplug "po5/mpv_sponsorblock", use:
 
 zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREFIX='$HOME/.local'"
