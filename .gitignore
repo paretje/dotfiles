@@ -341,3 +341,4 @@ tags
 /.local/share/oauth2token/
 /.x2go
 /.x2goclient
+/.config/ncmpcpp/error.log
