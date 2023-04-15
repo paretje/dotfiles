@@ -149,7 +149,7 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 # set name and email address
 export NAME="Kevin Velghe"
 if [ "$HOST" = "kevin-vib-laptop" ]; then
-    export EMAIL="kevin.velghe@ugent.vib.be"
+    export EMAIL="kevin.velghe@ugent.be"
 else
     export EMAIL="kevin@paretje.be"
 fi
