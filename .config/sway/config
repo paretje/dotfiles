@@ -65,7 +65,6 @@ exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-p
 
 exec "pkill maildaemon; exec maildaemon"
 exec "pkill batmonitor; exec batmonitor"
-exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
 exec exec syncthing -no-browser
 
 ### Input configuration
