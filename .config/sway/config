@@ -62,8 +62,6 @@ exec "pkill wireplumber; exec wireplumber"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
 exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
-# TODO: pkill
-exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
 exec "pkill maildaemon; exec maildaemon"
 exec "pkill batmonitor; exec batmonitor"

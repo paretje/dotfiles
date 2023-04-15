@@ -37,7 +37,6 @@ zplug "trizen/pipe-viewer", at:main, hook-build:"perl Build.PL && ./Build instal
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
 zplug "carnager/rofi-pass", as:command, use:rofi-pass
 
-zplug "jamedjo/gnome-dbus-emulation-wlr", from:gitlab, hook-build:"bundle install"
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
 zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
 zplug "qutebrowser/qutebrowser", at:qt6-v2, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
