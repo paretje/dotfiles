@@ -3,7 +3,7 @@ set -o pipefail
 shopt -s nullglob
 
 qutebrowser() {
-	"$HOME/.zplug/bin/qutebrowser" "$@"
+	QUTE_QT_WRAPPER=PyQt6 "$HOME/.zplug/bin/qutebrowser" "$@"
 }
 
 clean_history() {

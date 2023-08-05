@@ -38,7 +38,7 @@ zplug "carnager/rofi-pass", as:command, use:rofi-pass
 
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
 zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
-zplug "qutebrowser/qutebrowser", at:qt6-v2, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
+zplug "qutebrowser/qutebrowser", at:master, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
 
 zplug load
 PATH="$my_path"
@@ -107,6 +107,10 @@ if (( ! $+functions[_git-flow])); then
     if [ -f /usr/share/git-flow/git-flow-completion.zsh ]; then
         . /usr/share/git-flow/git-flow-completion.zsh
     fi
+fi
+
+if [ -f /usr/share/google-cloud-sdk/completion.zsh.inc ]; then
+    . /usr/share/google-cloud-sdk/completion.zsh.inc
 fi
 
 # Load aliases
