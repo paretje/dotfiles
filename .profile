@@ -103,6 +103,7 @@ if [ -d "$GEM_HOME/gems" ] ; then
     fi
 fi
 
+# TODO: move to .swaysession
 # Detect if we're using wayland
 if [ -n "$WAYLAND_DISPLAY" -o "$TTY" = "/dev/tty1" ]; then
     # https://git.alebastr.su/alebastr/dotfiles/-/blob/master/profile
@@ -191,7 +192,11 @@ export PIP_USER="yes"
 # set location of pip editable installs
 export PIP_SRC="$HOME/.pip/src"
 
+# configure default password length
 export PASSWORD_STORE_GENERATED_LENGTH=64
+
+# use new authentication plugin for kubectl
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then
