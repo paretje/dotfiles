@@ -342,3 +342,4 @@ tags
 /.x2go
 /.x2goclient
 /.config/ncmpcpp/error.log
+/.config/Electron
