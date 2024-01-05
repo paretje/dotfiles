@@ -137,4 +137,14 @@ help="Alt+h"
 switch="Alt+x"
 insert_pass="Alt+n"
 
+# Change the clipboard backend for rofi-pass, valid backends are:
+# xclip
+# wl-clipboard
+clipboard_backend=wl-clipboard
+
+# Change the backend for rofi-pass, valid backends are:
+# xdotool
+# wtype
+backend=wtype
+
 # vim: set ft=sh
