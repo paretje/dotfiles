@@ -20,3 +20,8 @@ profile tv {
         output "LG Electronics LG TV 0x00000101" enable mode 1920x1080 scale 1.0
         output eDP-1 disable
 }
+
+profile generic-hdmi {
+        output HDMI-A-2 enable
+        output eDP-1 disable
+}
