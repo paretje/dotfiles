@@ -748,6 +748,7 @@ com! W w
 com! SudoRead  edit  suda://%
 com! SudoWrite write suda://%
 com! -nargs=1 AnsibleDoc call AnsibleDoc(<f-args>)
+com! Gstatus Git
 
 " TODO: documentation
 " TODO: abort?
