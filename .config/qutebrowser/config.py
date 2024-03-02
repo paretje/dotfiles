@@ -155,7 +155,7 @@ c.url.searchengines['games2trust'] = "https://games2trust.eu/nl/catalogsearch/re
 c.url.searchengines['retroplaystation'] = "https://www.retroplaystationkopen.nl/zoeken?query={}"
 c.url.searchengines['gamemania'] = "https://www.gamemania.be/nl/product/search?keyword={}"
 c.url.searchengines['hltb'] = "https://howlongtobeat.com/?q={}"
-c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
+c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
 
 c.aliases["h"] = "help"
 c.aliases["q"] = "close ;; session-delete default"
