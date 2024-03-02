@@ -129,7 +129,7 @@ c.url.searchengines[
 ] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines["wnl"] = "https://nl.wikipedia.org/w/index.php?search={}"
 c.url.searchengines["wen"] = "https://en.wikipedia.org/w/index.php?search={}"
-c.url.searchengines["woordenlijst"] = "http://woordenlijst.org/#/?q={}"
+c.url.searchengines["woordenlijst"] = "https://woordenlijst.org/zoeken/?q={}"
 c.url.searchengines["gh"] = "https://github.com/search?q={}"
 c.url.searchengines["tvdb"] = "https://www.thetvdb.com/search?query={}"
 c.url.searchengines[
