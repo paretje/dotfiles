@@ -5,6 +5,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Enable Firefox Wayland
 export MOZ_ENABLE_WAYLAND=1
 
+# Enable Wayland for SDL
+export SDL_VIDEODRIVER=wayland
+
 # Set brightness of laptop
 brightnessctl set 20%
 
