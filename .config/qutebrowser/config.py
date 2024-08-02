@@ -154,7 +154,10 @@ c.url.searchengines['ebay'] = "https://www.benl.ebay.be/sch/i.html?_from=R40&_nk
 c.url.searchengines['games2trust'] = "https://games2trust.eu/nl/catalogsearch/result/?q={}&cat=27"
 c.url.searchengines['retroplaystation'] = "https://www.retroplaystationkopen.nl/zoeken?query={}"
 c.url.searchengines['gamemania'] = "https://www.gamemania.be/nl/product/search?keyword={}"
+c.url.searchengines['budgetgaming'] = "https://www.budgetgaming.nl/gamessearchresults/1/{}/console-all.html"
 c.url.searchengines['hltb'] = "https://howlongtobeat.com/?q={}"
+c.url.searchengines["sxng"] = "https://searx.be/search?q={}"
+c.url.searchengines['psbc'] = "https://www.backwards-compatible.com/search/?q={}"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
 
 c.aliases["h"] = "help"
