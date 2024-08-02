@@ -19,9 +19,9 @@ check_battery() {
 		else
 			sudo pm-suspend
 		fi
-	elif [ "$time_left" -le 1200 ]; then
+	elif [ "$time_left" -le 1800 ]; then
 		notify-send -u critical "Battery getting very low" "$message"
-	elif [ "$time_left" -le 1500 ]; then
+	elif [ "$time_left" -le 2700 ]; then
 		notify-send -u low "Battery getting low" "$message"
 	fi
 }
