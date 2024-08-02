@@ -92,6 +92,8 @@ input 2:7:SynPS/2_Synaptics_TouchPad tap enabled
 input 2:7:SynPS/2_Synaptics_TouchPad click_method clickfinger
 input 2:10:TPPS/2_Elan_TrackPoint accel_profile flat
 
+input 6127:24646:Chicony_Lenovo_Wireless_Touchpad_K5923 natural_scroll enabled
+
 focus_follows_mouse no
 
 ### Key bindings
