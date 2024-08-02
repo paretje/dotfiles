@@ -164,7 +164,7 @@ c.aliases["h"] = "help"
 c.aliases["q"] = "close ;; session-delete default"
 c.aliases["qa"] = "quit ;; session-delete default"
 
-config.bind("t", "set-cmd-text -s :open -t")
+config.bind("t", "cmd-set-text -s :open -t")
 config.bind("x", "tab-close")
 config.bind("gt", "tab-next")
 config.bind("gT", "tab-prev")
@@ -208,7 +208,7 @@ config.bind("zL", qute_pass)
 config.bind("zuL", f"{qute_pass} --username-only")
 config.bind("zpL", f"{qute_pass} --password-only")
 config.bind("zoL", f"{qute_pass} --otp-only")
-config.bind("<Ctrl-N>", "set-cmd-text -s :tab-select")
+config.bind("<Ctrl-N>", "cmd-set-text -s :tab-select")
 config.bind(",,", "spawn --userscript usermode")
 config.unbind("<Ctrl-W>")
 config.bind("<Ctrl-Shift-O>", "edit-text", mode="insert")
