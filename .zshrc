@@ -38,7 +38,7 @@ zplug "carnager/rofi-pass", as:command, use:rofi-pass
 
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
 zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
-zplug "qutebrowser/qutebrowser", at:master, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
+zplug "qutebrowser/qutebrowser", at:main, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
 
 zplug load
 PATH="$my_path"
