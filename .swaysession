@@ -8,9 +8,6 @@ export MOZ_ENABLE_WAYLAND=1
 # Enable Wayland for SDL
 export SDL_VIDEODRIVER=wayland
 
-# Fix scaling in Qt applications
-export QT_SCALE_FACTOR_ROUNDING_POLICY=Ceil
-
 # Set brightness of laptop
 brightnessctl set 20%
 
