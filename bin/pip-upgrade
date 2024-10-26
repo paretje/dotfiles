@@ -20,6 +20,6 @@ for pyver in 3; do
 
 		python$pyver -m pip install --upgrade pip-tools
 		python$pyver "$pip_compile" --upgrade -o "${requirements_txt[0]}" "${requirements[@]}"
-		python$pyver "$pip_sync" "$@" "${requirements_txt[@]}"
+		python$pyver "$pip_sync" --user --pip-args --break-system-packages "$@" "${requirements_txt[@]}"
 	fi
 done
