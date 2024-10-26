@@ -8,6 +8,10 @@ export MOZ_ENABLE_WAYLAND=1
 # Enable Wayland for SDL
 export SDL_VIDEODRIVER=wayland
 
+# Enable wayland for electron apps
+# NOTE: alternative is auto (but we know we can use wayland here). The default is x11
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+
 # Set brightness of laptop
 brightnessctl set 20%
 
