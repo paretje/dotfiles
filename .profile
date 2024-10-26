@@ -30,6 +30,9 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 # set PERL5LIB
 export PERL5LIB="$HOME/.local/lib/perl5"
 
+# set PYENV_ROOT
+export PYENV_ROOT="$HOME/.pyenv"
+
 # TODO: just remove these checks, and build the PATH
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
@@ -39,6 +42,11 @@ fi
 # set PATH so it includes user's cabal bin if it exists
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
+fi
+
+# set PATH so it includes pyenv bin dir if it exists
+if [ -d "$PYENV_ROOT/bin" ] ; then
+    PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
 # set PATH so it includes user's go bin if it exists
