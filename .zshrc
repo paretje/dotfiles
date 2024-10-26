@@ -35,9 +35,10 @@ zplug "soimort/translate-shell", at:develop, use:, hook-build:"make install PREF
 zplug "trizen/pipe-viewer", at:main, hook-build:"perl Build.PL && ./Build install --install_base='$HOME/.local'"
 zplug "spion/adbfs-rootless", hook-build:"make && make install INSTALL_DIR='$HOME/.local'"
 zplug "carnager/rofi-pass", as:command, use:rofi-pass
+zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
+zplug "thameera/vimv", as:command, use:vimv
 
 zplug "dunst-project/dunst", at:master, hook-build:"make && make install DESTDIR='$HOME/.local' PREFIX=''"
-zplug "harishkrupo/oauth2ms", at:main, as:command, use:oauth2ms
 zplug "qutebrowser/qutebrowser", at:main, as:command, use:".venv-qt6/bin/qutebrowser", hook-build:"PIP_USER='no' python3 scripts/mkvenv.py --venv-dir .venv-qt6 --pyqt-type link --pyqt-version 6 --skip-docs"
 
 zplug load
