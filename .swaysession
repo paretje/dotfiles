@@ -12,6 +12,9 @@ export SDL_VIDEODRIVER=wayland
 # NOTE: alternative is auto (but we know we can use wayland here). The default is x11
 export ELECTRON_OZONE_PLATFORM_HINT=wayland
 
+# Enable wayland in chromium
+export CHROMIUM_FLAGS=--ozone-platform-hint=wayland
+
 # Set brightness of laptop
 brightnessctl set 20%
 
