@@ -3,7 +3,7 @@ set -o pipefail
 shopt -s nullglob
 
 qutebrowser() {
-	QT_SCALE_FACTOR_ROUNDING_POLICY=Ceil "$HOME/.zplug/bin/qutebrowser" "$@"
+	QT_SCALE_FACTOR_ROUNDING_POLICY=Ceil /usr/bin/qutebrowser "$@"
 }
 
 clean_history() {
