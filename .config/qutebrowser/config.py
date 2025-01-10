@@ -158,6 +158,7 @@ c.url.searchengines['budgetgaming'] = "https://www.budgetgaming.nl/gamessearchre
 c.url.searchengines['hltb'] = "https://howlongtobeat.com/?q={}"
 c.url.searchengines["sxng"] = "https://searx.be/search?q={}"
 c.url.searchengines['psbc'] = "https://www.backwards-compatible.com/search/?q={}"
+c.url.searchengines['pride'] = "https://www.ebi.ac.uk/pride/archive?keyword={}"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
 
 c.aliases["h"] = "help"
