@@ -18,7 +18,7 @@ for pyver in 3; do
 		pip_compile="$HOME/.local/bin/pip-compile"
 		pip_sync="$HOME/.local/bin/pip-sync"
 
-		python$pyver -m pip install --upgrade pip-tools
+		python$pyver -m pip install --break-system-packages --upgrade pip-tools
 		python$pyver "$pip_compile" --upgrade -o "${requirements_txt[0]}" "${requirements[@]}"
 		python$pyver "$pip_sync" --user --pip-args --break-system-packages "$@" "${requirements_txt[@]}"
 	fi
