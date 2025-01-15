@@ -266,6 +266,10 @@ def intercept(info: interceptor.Request) -> None:
     # third_party_request = info.first_party_url != info.request_url
     host = info.request_url.host()
 
+    # TODO: switch to more advanced redirect system
+    if host == "www.reddit.com" and ("/media" in info.request_url.toString() or "/gallery" in info.request_url.toString()):
+        return
+
     if host in redirects:
         new_url = QUrl(info.request_url)
         new_url.setHost(redirects[host])
