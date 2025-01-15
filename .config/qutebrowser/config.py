@@ -229,10 +229,6 @@ config.bind("<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt"
 
 
 redirects = {
-    "www.reddit.com": "old.reddit.com",
-    "twitter.com": "nitter.nl",
-    "nitter.cc": "nitter.nl",
-    "nitter.eu": "nitter.nl",
     "www.youtube.com": "yewtu.be",
     "invidio.us": "yewtu.be",
     "invidious.13ad.de": "yewtu.be",
