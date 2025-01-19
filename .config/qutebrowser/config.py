@@ -229,6 +229,7 @@ config.bind("<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt"
 
 
 redirects = {
+    "www.reddit.com": "old.reddit.com",
     "www.youtube.com": "yewtu.be",
     "invidio.us": "yewtu.be",
     "invidious.13ad.de": "yewtu.be",
