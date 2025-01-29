@@ -28,7 +28,7 @@ Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-Plug 'dhruvasagar/vim-dotoo'
+Plug 'nvim-orgmode/orgmode', {'tag': '*'}  " TODO: tag?
 Plug 'Yggdroot/indentLine'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -222,7 +222,7 @@ au BufEnter * if (winnr('$') == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
 " Automatically close preview window
-au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | AirlineRefresh | endif
+au InsertLeave * if pumvisible() == 0 | pclose | AirlineRefresh | endif
 " Disable blinking cursor
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -282,26 +282,6 @@ let g:UltiSnipsExpandTrigger = '<C-J>'
 " neco-ghc options
 let g:necoghc_enable_detailed_browse = 1
 
-" vim-dotoo options
-if $HOST ==# 'kevin-vib-laptop'
-  let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
-else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org']
-endif
-let g:dotoo#capture#refile = $ORG_REFILE
-let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
-let g:dotoo_todo_keyword_faces = [
-  \ ['TODO',      [':foreground 160', ':weight bold']],
-  \ ['NEXT',      [':foreground 27',  ':weight bold']],
-  \ ['DONE',      [':foreground 22',  ':weight bold']],
-  \ ['WAITING',   [':foreground 202', ':weight bold']],
-  \ ['HOLD',      [':foreground 53',  ':weight bold']],
-  \ ['CANCELLED', [':foreground 22',  ':weight bold']],
-  \ ['MEETING',   [':foreground 22',  ':weight bold']],
-  \ ['PHONE',     [':foreground 22',  ':weight bold']],
-  \ ['MAIL',      [':foreground 25',  ':weight bold']]
-\ ]
-
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
 au VimEnter * SpeedDatingFormat %Y/%m/%d
@@ -319,7 +299,7 @@ let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
 au BufEnter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | quit | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
+let g:indentLine_fileTypeExclude = ['help', 'org', 'markdown.pandoc', 'ledger', '']
 let g:indentLine_showFirstIndentLevel = 1
 
 " xml options
@@ -388,13 +368,13 @@ call deoplete#custom#option('keyword_patterns', {
 
 call deoplete#custom#option('keyword_patterns', {
   \ 'ledger': "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']",
-  \ 'dotoo': ':\w+'
+  \ 'org': ':\w+'
 \ })
 
 call deoplete#custom#var('member', 'prefix_patterns', {
   \ 'markdown.pandoc': ':',
   \ 'ledger': ':',
-  \ 'dotoo': ':'
+  \ 'org': ':'
 \ })
 
 let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
@@ -480,7 +460,7 @@ let g:cscope_open_location = 0
 au FileType c,cpp set cscopequickfix-=g-
 
 " gitautocommit options
-let g:gitautocommit_filetypes = ['dotoo', 'ledger']
+let g:gitautocommit_filetypes = ['org', 'ledger']
 
 " vim-gutentags options
 let g:gutentags_file_list_command = {
@@ -506,33 +486,40 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
+" orgmode options
+" TODO: org_archive_location
+lua << EOF
+require('orgmode').setup({
+  org_agenda_files = {'~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org'},
+  org_default_notes_file = os.getenv("ORG_REFILE"),
+  org_startup_indented = true,
+  mappings = {
+    org = {
+      org_do_promote = false,
+      org_do_demote = false,
+      org_toggle_checkbox = 'cic'
+    }
+  }
+})
+EOF
+
 " Bulk options
-au FileType text,mail,dotoo,markdown    setlocal spell
+au FileType text,mail,org,markdown      setlocal spell
 au FileType ledger,bbcode,vim,python    setlocal spell
 au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
-au FileType dotoo*,ledger               setlocal spelllang=nl,en_gb
+au FileType org,ledger                  setlocal spelllang=nl,en_gb
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
-au FileType help,dotoo*                 setlocal nolist " disable indentation lines
+au FileType help,org                    setlocal nolist " disable indentation lines
 
 " Ruby ft options
 au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufEnter *.org              if empty(&filetype) || &filetype == "org" | setfiletype dotoo | endif
-au FileType dotoo*             setlocal textwidth=77
-au FileType dotoo              setlocal foldenable
-au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
-au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
-au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
-au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <C-O>:call DotooNewItem()<CR>
-au FileType dotooagenda        setlocal nowrap
-au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
-au BufHidden nmbs.org          setlocal nobuflisted
-au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
-au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
-au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
+au FileType org setlocal textwidth=77
+au FileType org setlocal foldenable
+au FileType org inoremap <buffer> <C-CR> <cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>
+au FileType org inoreabbrev <silent><buffer> :time: [<C-R>=luaeval("require('orgmode.objects.date').now():to_string()")<CR>]
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -651,8 +638,8 @@ au BufRead /tmp/vimperator-*                       setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
-au VimLeave *      if exists('g:sync_notes') | call GitAutocommit('notes') | endif
-au FileType dotoo* let g:sync_notes = 1
+au VimLeave *   if exists('g:sync_notes') | call GitAutocommit('notes') | endif
+au FileType org let g:sync_notes = 1
 
 " Custom key mappings
 nnoremap <Up> gk
@@ -871,20 +858,6 @@ fun! GitAutocommit(...)
   endif
 endfun
 
-fun! VimDotoo(func)
-  let l:pos = getcurpos()
-  if getline('.') !~? '^\*'
-    call search('^\*', 'b')
-  endif
-  if &modified
-    write
-  endif
-  exe 'call dotoo#' . a:func . '()'
-  call setpos('.', l:pos)
-  normal zuz
-  normal! zO
-endfun
-
 fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
@@ -907,23 +880,6 @@ fun! PyDoc(...) abort
     " TODO: handle multiple definitions
     " TODO: handle no definitions without silent
     silent! python3 vim.command('PyDoc ' + jedi_vim.goto(mode="definition")[0].full_name)
-  endif
-endfun
-
-fun! DotooNewItem()
-  call feedkeys("\<C-O>cc ", 'n')
-
-  let l:pos = getcurpos()
-  if getline('.') !~? '^[[:space:]]*-'
-    call search('^[[:space:]]*-', 'b')
-  endif
-  let l:prev = getline('.')
-  call setpos('.', l:pos)
-
-  if dotoo#checkbox#is_checkbox(l:prev)
-    call feedkeys("\<C-O>c6h- [ ]\<C-O>A", 'n')
-  else
-    call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
   endif
 endfun
 
