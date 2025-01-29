@@ -208,7 +208,9 @@ set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
 set pastetoggle=<Leader>pp
 " Show print dialog instead of using the default printer
-set printexpr=system(['yad-print',v:fname_in])+v:shell_error
+if !has('nvim')
+  set printexpr=system(['yad-print',v:fname_in])+v:shell_error
+endif
 " Don't use tabs unless sleuth detects them
 set expandtab
 " Disable folding by default
