@@ -597,10 +597,10 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
-au FileType c,cpp setlocal commentstring=//%s
-au FileType c,cpp call ExtractCMakeBuildArgs()
-au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
-au FileType cpp   setlocal keywordprg=:CppMan
+au FileType c,cpp,arduino setlocal commentstring=//%s
+au FileType c,cpp         call ExtractCMakeBuildArgs()
+au FileType c,cpp         nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
+au FileType cpp           setlocal keywordprg=:CppMan
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
