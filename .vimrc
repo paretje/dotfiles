@@ -312,6 +312,7 @@ let g:calendar_monday = 1
 " ledger-vim options
 let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
+let g:ledger_align_at = 50
 
 " jedi-vim options
 if !has('python3')
