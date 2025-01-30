@@ -91,6 +91,7 @@ Plug 'towolf/vim-helm', {'for': 'helm'}
 Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
 Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'nvim-treesitter/nvim-treesitter', {'tag': '*', 'do': ':TSUpdate'}
 
 if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
@@ -501,6 +502,15 @@ require('orgmode').setup({
     }
   }
 })
+EOF
+
+" treesitter options
+lua << EOF
+    require('nvim-treesitter.configs').setup({
+      highlight = {
+        enable = true,
+      }
+    })
 EOF
 
 " Bulk options
