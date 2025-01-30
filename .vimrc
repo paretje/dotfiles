@@ -67,24 +67,24 @@ Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
-Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'FelikZ/ctrlp-py-matcher'  " TODO: on?
 Plug 'Konfekt/FastFold'
-Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession', {'on': 'Obsession'}
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'joonty/vdebug'
+Plug 'joonty/vdebug'  " TODO: on
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
-Plug 'ivalkeen/vim-ctrlp-tjump'
+Plug 'ivalkeen/vim-ctrlp-tjump'  " TODO: on?
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
-Plug 'idanarye/vim-vebugger'
+Plug 'idanarye/vim-vebugger'  " TODO: on
 Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
 Plug 'solarnz/thrift.vim', {'for': 'thrift'}
 Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
-Plug 'goerz/jupytext.vim'
+Plug 'goerz/jupytext.vim'  " TODO: on
 Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'towolf/vim-helm', {'for': 'helm'}
