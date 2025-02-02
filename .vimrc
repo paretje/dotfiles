@@ -25,7 +25,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
 Plug 'vim-airline/vim-airline', {'tag': '*'}
 Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'nvim-orgmode/orgmode', {'tag': '*'}  " TODO: tag?
@@ -67,7 +66,6 @@ Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
-Plug 'FelikZ/ctrlp-py-matcher'  " TODO: on?
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession', {'on': 'Obsession'}
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
@@ -77,7 +75,6 @@ Plug 'joonty/vdebug'  " TODO: on
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
-Plug 'ivalkeen/vim-ctrlp-tjump'  " TODO: on?
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
 Plug 'idanarye/vim-vebugger'  " TODO: on
 Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
@@ -92,10 +89,6 @@ Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'nvim-treesitter/nvim-treesitter', {'tag': '*', 'do': ':TSUpdate'}
-
-if executable('cmake')
-  Plug 'nixprime/cpsm', {'do': './install.sh'}
-endif
 
 if has('nvim')
   Plug 'paretje/nvim-man'
@@ -112,6 +105,8 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
+
+  Plug 'ibhagwan/fzf-lua'
 else
   Plug 'congma/vim-fakeclip'
 endif
@@ -251,21 +246,6 @@ let g:airline#extensions#whitespace#long_format = "\u2219L[%s]"
 let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
 let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
 let g:airline#extensions#csv#column_display = 'Name'
-
-" CtrlP options
-let g:ctrlp_cmd = 'CtrlPMixed'
-if executable('ag')
-  let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
-endif
-let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
-let g:ctrlp_switch_buffer = ''
-let g:ctrlp_mruf_exclude_nomod = 1
-if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
-  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
-else
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
-let g:ctrlp_tjump_only_silent = 1
 
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
@@ -568,6 +548,12 @@ if has('nvim')
 EOF
 endif
 
+" fzf-lua options
+" TODO: use no_ignore in homedir?
+if has('nvim')
+  lua require("fzf-lua").setup({'fzf-vim', files={hidden=true}})
+endif
+
 " Bulk options
 au FileType text,mail,org,markdown      setlocal spell
 au FileType ledger,bbcode,vim,python    setlocal spell
@@ -724,7 +710,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <silent> <Leader><C-L> :redraw!<CR>
-nnoremap <silent> <C-N> :CtrlPBuffer<CR>
 nnoremap <silent> <C-G> :NERDTreeToggle<CR>
 nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
@@ -761,9 +746,11 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
-nnoremap <Leader>pt :CtrlPBufTag<CR>
-nnoremap <c-]> :CtrlPtjump<cr>
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
+nnoremap <C-P> :Files<CR>
+nnoremap <C-N> :Buffers<CR>
+nnoremap <C-N> :Buffers<CR>
+nnoremap <Leader>po :FzfLua oldfiles<CR>
+nnoremap <Leader>pt :Tags<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
