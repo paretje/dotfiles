@@ -64,7 +64,6 @@ Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
-Plug 'brookhong/cscope.vim', {'for': ['c', 'cpp']}  " TODO: use?
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession', {'on': 'Obsession'}
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
@@ -389,11 +388,6 @@ let g:grepper.open = 1
 let g:grepper.switch = 1
 let g:grepper.highlight = 1
 
-" cscope.vim options
-let g:cscope_silent = 1
-let g:cscope_open_location = 0
-au FileType c,cpp set cscopequickfix-=g-
-
 " gitautocommit options
 let g:gitautocommit_filetypes = ['org', 'ledger']
 
@@ -649,7 +643,6 @@ au FileType help if !&modifiable | setlocal nospell | endif
 " C and C++ ft options
 au FileType c,cpp,arduino setlocal commentstring=//%s
 au FileType c,cpp         call ExtractCMakeBuildArgs()
-au FileType c,cpp         nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
 au FileType cpp           setlocal keywordprg=:CppMan
 
 " gradle ft options
