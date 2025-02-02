@@ -97,31 +97,24 @@ if executable('cmake')
   Plug 'nixprime/cpsm', {'do': './install.sh'}
 endif
 
-if has('python3') || has('python')
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-endif
-
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', {'tag': '*', 'do': ':UpdateRemotePlugins'}
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
-  " TODO: install.sh
-  " Plug 'mhartington/nvim-typescript', {'do': ':UpdateRemotePlugins'}  " TODO: vim8?
+
+  Plug 'dcampos/nvim-snippy'
+  Plug 'honza/vim-snippets'
+  Plug 'dcampos/cmp-snippy'
+
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
 else
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'Shougo/deoplete.nvim', {'tag': '*'}
   Plug 'congma/vim-fakeclip'
 endif
-
-Plug 'deoplete-plugins/deoplete-jedi', {'for': 'python'}
-Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
-Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cmake']}
-Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'fszymanski/deoplete-abook', {'for': 'mail'}
-Plug 'paretje/deoplete-notmuch', {'for': 'mail'}
-Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
 
 call plug#end()
 
@@ -277,9 +270,6 @@ let g:ctrlp_tjump_only_silent = 1
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
 
-" UltiSnips options
-let g:UltiSnipsExpandTrigger = '<C-J>'
-
 " neco-ghc options
 let g:necoghc_enable_detailed_browse = 1
 
@@ -349,50 +339,6 @@ let g:neomake_python_mypy_args = ['--check-untyped-defs', '--ignore-missing-impo
 let g:neomake_python_enabled_makers = ['python', 'flake8']
 
 let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', 'cppcheck']
-
-" deoplete options
-let g:deoplete#enable_at_startup = 1
-
-call deoplete#custom#option('num_processes', 1)
-
-" TODO: use sources instead of ignore_sources
-let s:ignore_sources = {}
-let s:ignore_sources._ = ['tag', 'buffer', 'around']
-for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
-  let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
-endfor
-call deoplete#custom#option('ignore_sources', s:ignore_sources)
-
-call deoplete#custom#option('keyword_patterns', {
-  \ 'html': [],
-  \ 'markdown': []
-\ })
-
-call deoplete#custom#option('keyword_patterns', {
-  \ 'ledger': "[a-zA-Z](?!.*  )[a-zA-Z.' ]*[a-zA-Z.']",
-  \ 'org': ':\w+'
-\ })
-
-call deoplete#custom#var('member', 'prefix_patterns', {
-  \ 'markdown.pandoc': ':',
-  \ 'ledger': ':',
-  \ 'org': ':'
-\ })
-
-let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
-let g:deoplete#sources#jedi#ignore_errors = v:true
-
-
-" https://vi.stackexchange.com/questions/23089/how-to-force-glob-to-make-result-in-numerical-order
-fun! CompareStringsWithNumbers(i1, i2)
-    let l:f = str2nr(matchstr(a:i1, '[0-9]\+'))
-    let l:s = str2nr(matchstr(a:i2, '[0-9]\+'))
-    return l:f == l:s ? 0 : l:f > l:s ? 1 : -1
-endfun
-let g:deoplete#sources#clang#libclang_path = sort(glob('/usr/lib/llvm-*/lib/libclang.so.1', 0, 1), 'CompareStringsWithNumbers')[-1]
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-
-let g:deoplete#sources#notmuch#command = ['notmuch', 'address', '--format=json', '--output=recipients', '--deduplicate=address', 'tag:sent']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -513,6 +459,114 @@ lua << EOF
       }
     })
 EOF
+
+" cmp-nvim options
+if has('nvim')
+  " cmp-nvim
+  lua <<EOF
+    -- Set up nvim-cmp.
+    local cmp = require'cmp'
+
+    cmp.setup({
+      snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+          -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+          -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+          require('snippy').expand_snippet(args.body) -- For `snippy` users.
+          -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+          -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+        end,
+      },
+      window = {
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+          end
+        end)
+      }),
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        -- { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'ultisnips' }, -- For ultisnips users.
+        { name = 'snippy' }, -- For snippy users.
+      }, {
+        { name = 'buffer' },
+        { name = 'path' },
+      })
+    })
+
+    -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
+    -- Set configuration for specific filetype.
+    --[[ cmp.setup.filetype('gitcommit', {
+      sources = cmp.config.sources({
+        { name = 'git' },
+      }, {
+        { name = 'buffer' },
+      })
+   })
+   require("cmp_git").setup() ]]-- 
+
+    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline({
+        ['<C-p>'] = cmp.mapping.abort(),
+        ['<C-n>'] = cmp.mapping.abort()
+      }),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline({
+        ['<C-p>'] = cmp.mapping.abort(),
+        ['<C-n>'] = cmp.mapping.abort()
+      }),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }),
+      matching = { disallow_symbol_nonprefix_matching = false }
+    })
+
+    -- Set up lspconfig.
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+    require('lspconfig')['jedi_language_server'].setup {
+        capabilities = capabilities
+      }
+    require('lspconfig')['rust_analyzer'].setup {
+        capabilities = capabilities
+      }
+EOF
+endif
+
+if has('nvim')
+  lua <<EOF
+    require('snippy').setup({
+        mappings = {
+            is = {
+                ['<C-J>'] = 'expand_or_advance',
+            }
+        },
+    })
+EOF
+endif
 
 " Bulk options
 au FileType text,mail,org,markdown      setlocal spell
@@ -915,7 +969,6 @@ fun! ExtractCMakeBuildArgs()
     endif
 
     let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
-    let g:deoplete#sources#clang#clang_complete_database = b:build_dir
   else
     let b:cmake_compile_args = []
   endif
