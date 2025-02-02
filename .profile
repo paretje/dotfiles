@@ -136,7 +136,9 @@ user-dirs-make
 
 # Start gpg-agent if not yet running
 gpgconf --launch gpg-agent
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
 # Set Qt platformtheme to gtk2
 export QT_QPA_PLATFORMTHEME=gtk2
