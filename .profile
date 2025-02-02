@@ -196,9 +196,6 @@ elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
 fi
 
-# disable system install from pip
-export PIP_USER="yes"
-
 # set location of pip editable installs
 export PIP_SRC="$HOME/.pip/src"
 
