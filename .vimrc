@@ -60,7 +60,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
 Plug 'yssl/QFEnter', {'for': 'qf'}
 Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
@@ -283,16 +282,6 @@ let g:calendar_monday = 1
 let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
 let g:ledger_align_at = 50
-
-" jedi-vim options
-if !has('python3')
-  let g:jedi#force_py_version = 2
-else
-  let g:jedi#force_py_version = 3
-endif
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_assignments_command = '<C-]>'
-let g:jedi#usages_command = ';]'
 
 " neomake options
 au BufWritePost,BufReadPost * if !exists('b:fugitive_type') | Neomake | endif
@@ -621,7 +610,6 @@ au FileType aptconf setlocal commentstring=//%s
 
 " python ft options
 au FileType python setlocal omnifunc=
-au FileType python nnoremap <silent> <buffer> <Leader>K :PyDoc<CR>
 
 " xmobarrc ft options
 au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
@@ -779,8 +767,6 @@ com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -nargs=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
 com! -nargs=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
-com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -nargs=? PyDoc call PyDoc(<f-args>)
 com! -nargs=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiffsplit Ghdiffsplit! :1 | Gvdiffsplit!
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -913,25 +899,6 @@ endfun
 fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
-  endif
-endfun
-
-fun! PyDoc(...) abort
-  if a:0 > 1
-    echoerr 'Too many arguments'
-    return
-  elseif a:0 == 1
-    let l:python = 'python' . g:jedi#force_py_version
-    if exists('b:poetv_dir') && b:poetv_dir != "none"
-      let l:python = b:poetv_dir . '/bin/' . l:python
-    endif
-    let l:shell_term = has('nvim') ? '' : '++shell '
-    execute 'split | terminal ' . l:shell_term . 'LESS="$LESS -+F -c" ' . l:python . ' -m pydoc ' . shellescape(a:1)
-    doau User ManOpen
-  else
-    " TODO: handle multiple definitions
-    " TODO: handle no definitions without silent
-    silent! python3 vim.command('PyDoc ' + jedi_vim.goto(mode="definition")[0].full_name)
   endif
 endfun
 
