@@ -24,18 +24,16 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
 Plug 'vim-airline/vim-airline', {'tag': '*'}
-Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
-Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}  " TODO: use?
 Plug 'nvim-orgmode/orgmode', {'tag': '*'}  " TODO: tag?
 Plug 'Yggdroot/indentLine'
-Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}  " TODO: use? lsp?
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}
+Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}  " TODO: use?
 Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
-Plug 'vim-scripts/bbcode', {'for': 'bbcode'}
+Plug 'vim-scripts/bbcode', {'for': 'bbcode'}  " TODO: still needed?
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/calendar-vim', {'on': '<Plug>CalendarV'}
@@ -43,19 +41,18 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ledger/vim-ledger', {'for': 'ledger'}
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'}
 Plug 'neomake/neomake'
-Plug 'AndrewRadev/splitjoin.vim'  " TODO: use?
-Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}  " TODO: use? lsp?
 Plug 'tpope/vim-repeat'
-Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/neopairs.vim'  " TODO: use? does it work with nvim-cmp?
 Plug 'tpope/vim-surround'
 Plug 'paretje/async-grepper', {'on': 'Grepper'}
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'  " TODO: lsp?'
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/gv.vim', {'on': 'GV'}
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown.pandoc'}
 Plug 'nelstrom/vim-markdown-folding', {'for': 'markdown'}
 Plug 'tpope/vim-commentary'
@@ -66,23 +63,22 @@ Plug 'junegunn/vader.vim', {'for': ['vim', 'vader']}
 Plug 'dhruvasagar/vim-testify', {'for': 'vim'}
 Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-obsession', {'on': 'Obsession'}
-Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}  " TODO: still needed?
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'joonty/vdebug'  " TODO: on
-Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'joonty/vdebug'  " TODO: on? use?
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
-Plug 'idanarye/vim-vebugger'  " TODO: on
-Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
-Plug 'solarnz/thrift.vim', {'for': 'thrift'}
-Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
+Plug 'idanarye/vim-vebugger'  " TODO: on? use? especially compared to vdebug
+Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}  " TODO: upstream or alternative?
+Plug 'solarnz/thrift.vim', {'for': 'thrift'}  " TODO: still needed?
+Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}  " TODO: I assume still needed?
 Plug 'petobens/poet-v', {'for': 'python'}
-Plug 'goerz/jupytext.vim'  " TODO: on
+Plug 'goerz/jupytext.nvim'  " TODO: on
 Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
-Plug 'towolf/vim-helm', {'for': 'helm'}
+Plug 'towolf/vim-helm', {'for': 'helm'}  " TODO: I assume still needed?
 Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
 Plug 'posva/vim-vue', {'for': 'vue'}
