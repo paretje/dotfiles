@@ -125,9 +125,17 @@ if has('gui_running')
   let g:airline_symbols = get(g:, 'airline_symbols', {})
   let g:airline_symbols.space = "\u3000"
 elseif $TERM !=# ''
+  if has('nvim')
+    colorscheme vim
+  endif
+  set notermguicolors
   set background=dark
-  hi SpellBad ctermfg=Black
+  hi SpellBad ctermfg=White
+  hi SpellCap ctermfg=White
+  hi SpellLocal ctermfg=DarkGrey
   hi SpecialKey ctermfg=8
+  hi Pmenu        ctermfg=15   ctermbg=8
+  hi PmenuSel     ctermfg=8    ctermbg=15
 endif
 
 " Syntax highlighting
