@@ -136,6 +136,16 @@ elseif $TERM !=# ''
   hi SpecialKey ctermfg=8
   hi Pmenu        ctermfg=15   ctermbg=8
   hi PmenuSel     ctermfg=8    ctermbg=15
+
+  if has('nvim')
+    hi link @variable Normal
+    hi link @variable.parameter Normal
+    hi link @variable.member Normal
+    hi link @variable.builtin Identifier
+    " hi link @variable.vim Identifier
+    hi link @type.builtin Type
+    hi link @constructor Identifier
+  endif
 endif
 
 " Syntax highlighting
