@@ -405,29 +405,33 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " orgmode options
 " TODO: org_archive_location
-lua << EOF
-require('orgmode').setup({
-  org_agenda_files = {'~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org'},
-  org_default_notes_file = os.getenv("ORG_REFILE"),
-  org_startup_indented = true,
-  mappings = {
-    org = {
-      org_do_promote = false,
-      org_do_demote = false,
-      org_toggle_checkbox = 'cic'
+if has('nvim')
+  lua << EOF
+  require('orgmode').setup({
+    org_agenda_files = {'~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org'},
+    org_default_notes_file = os.getenv("ORG_REFILE"),
+    org_startup_indented = true,
+    mappings = {
+      org = {
+        org_do_promote = false,
+        org_do_demote = false,
+        org_toggle_checkbox = 'cic'
+      }
     }
-  }
-})
+  })
 EOF
+endif
 
 " treesitter options
-lua << EOF
-    require('nvim-treesitter.configs').setup({
-      highlight = {
-        enable = true,
-      }
-    })
+if has('nvim')
+  lua << EOF
+      require('nvim-treesitter.configs').setup({
+        highlight = {
+          enable = true,
+        }
+      })
 EOF
+endif
 
 " cmp-nvim options
 if has('nvim')
