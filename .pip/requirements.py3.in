@@ -1,17 +1,3 @@
--e git+https://github.com/paretje/notspam.git#egg=notspam
-yt-dlp
-vim-vint
+git+https://github.com/paretje/notspam.git#egg=notspam
 pip-tools
-readability-lxml
--e git+https://github.com/paretje/komodo-python3-dbgp.git#egg=komodo-python3-dbgp
-imapclient
-poetry
-stig
-tldextract
-keyring-pass
-appdirs
-yt-dlp
 adblock
-msal
-openconnect-sso
-vpn-slice
