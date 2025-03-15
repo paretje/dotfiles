@@ -2,9 +2,9 @@ numbered_command = false
 
 mouse_support = true
 focus_on_create = true
-use_trash = true
+use_trash = false
 watch_files = true
-xdg_open = false
+xdg_open = true
 xdg_open_fork = false
 case_insensitive_ext = false
 zoxide_update = false
@@ -16,7 +16,7 @@ custom_commands = []
 mode = "default"
 
 automatically_count_files = false
-collapse_preview = true
+collapse_preview = false
 # ratios for parent view (optional), current view and preview
 column_ratio = [1, 4, 4]
 scroll_offset = 6

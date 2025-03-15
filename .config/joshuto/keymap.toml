@@ -3,10 +3,8 @@
 keymap = [
   { keys = ["escape"], commands = ["escape"] },
   { keys = ["ctrl+t"], commands = ["new_tab"] },
-  { keys = ["alt+t"], commands = ["new_tab --cursor"] },
-  { keys = ["T"], commands = ["new_tab --current"] },
-  { keys = ["W"], commands = ["close_tab"] },
-  { keys = ["ctrl+w"], commands = ["close_tab"] },
+  { keys = ["t"], commands = ["new_tab --cursor"] },
+  { keys = ["g", "n"], commands = ["new_tab --current"] },
   { keys = ["q"], commands = ["close_tab"] },
   { keys = ["ctrl+c"], commands = ["quit"] },
   { keys = ["ctrl+z"], commands = ["suspend"] },
@@ -15,8 +13,8 @@ keymap = [
   { keys = ["R"], commands = ["reload_dirlist"] },
   { keys = ["z", "h"], commands = ["toggle_hidden"] },
   { keys = ["ctrl+h"], commands = ["toggle_hidden"] },
-  { keys = ["\t"], commands = ["tab_switch 1"] },
-  { keys = ["backtab"], commands = ["tab_switch -1"] },
+  { keys = ["g", "t"], commands = ["tab_switch 1"] },
+  { keys = ["g", "T"], commands = ["tab_switch -1"] },
 
   { keys = ["alt+1"], commands = ["tab_switch_index 1"] },
   { keys = ["alt+2"], commands = ["tab_switch_index 2"] },
@@ -77,9 +75,6 @@ keymap = [
   { keys = ["p", "l"], commands = ["symlink_files --relative=false"] },
   { keys = ["p", "L"], commands = ["symlink_files --relative=true"] },
 
-  { keys = ["delete"], commands = ["delete_files"] },
-  { keys = ["d", "D"], commands = ["delete_files"] },
-
   { keys = ["p", "p"], commands = ["paste_files"] },
   { keys = ["p", "o"], commands = ["paste_files --overwrite=true"] },
 
@@ -89,7 +84,7 @@ keymap = [
   { keys = ["f", "t"], commands = [":touch "] },
 
   { keys = [" "], commands = ["select --toggle=true"] },
-  { keys = ["t"], commands = ["select --all=true --toggle=true"] },
+  { keys = ["v"], commands = ["select --all=true --toggle=true"] },
   { keys = ["V"], commands = ["toggle_visual"] },
 
   { keys = ["w"], commands = ["show_tasks --exit-key=w"] },

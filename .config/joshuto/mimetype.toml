@@ -32,14 +32,10 @@ video_default = [
 ]
 
 text_default = [
-  { command = "micro" },
-  { command = "gedit", fork = true, silent = true },
-  { command = "bat", args = [
-    "--paging=always",
-  ] },
+  { command = "nvim-gui", fork = true, silent = true },
 ]
 
-reader_default = [{ command = "evince", fork = true, silent = true }]
+reader_default = [{ command = "zathura", fork = true, silent = true }]
 
 libreoffice_default = [{ command = "libreoffice", fork = true, silent = true }]
 
