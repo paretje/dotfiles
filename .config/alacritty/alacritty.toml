@@ -1,0 +1,75 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#2e3436"
+red = "#ef2929"
+green = "#8ae234"
+yellow = "#fce94f"
+blue = "#729fcf"
+magenta = "#ad7fa8"
+cyan = "#34e2e2"
+white = "#ffffff"
+
+[colors.cursor]
+cursor = "#eeeeec"
+text = "#1b1f1c"
+
+[colors.normal]
+black = "#1b1f1c"
+red = "#cc0000"
+green = "#73d216"
+yellow = "#edd400"
+blue = "#3465a4"
+magenta = "#75507b"
+cyan = "#06989a"
+white = "#d3d7cf"
+
+[colors.primary]
+background = "#1b1f1c"
+foreground = "#eeeeec"
+
+[colors.vi_mode_cursor]
+cursor = "#eeeeec"
+text = "#1b1f1c"
+
+[cursor]
+vi_mode_style = "Block"
+
+[font]
+size = 10.0
+
+[font.normal]
+family = "DejaVu Sans Mono"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "S"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Q"
+mode = "Vi"
+
+[[keyboard.bindings]]
+action = "Last"
+key = 5
+mode = "Vi"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "Bracket"
+key = 6
+mode = "Vi"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "FirstOccupied"
+key = 7
+mode = "Vi"
+mods = "Shift"
+
+[window.padding]
+x = 2
+y = 2
