@@ -40,7 +40,7 @@ vi_mode_style = "Block"
 size = 10.0
 
 [font.normal]
-family = "DejaVu Sans Mono"
+family = "DejaVuSansM Nerd Font Mono"
 
 [[keyboard.bindings]]
 action = "ToggleViMode"
