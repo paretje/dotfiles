@@ -267,7 +267,7 @@ bindsym $mod+Pause exec mpc toggle
 bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 bindsym Print exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 
-bindsym $mod+F10 exec sh -c "if [ '$(connmanctl technologies | awk '/Type = bluetooth/{getline; print $3}')' = 'True' ]; then connmanctl disable bluetooth; else connmanctl enable bluetooth; fi | xargs -d '\n' notify-send"
+bindsym $mod+F10 exec sh -c "if rfkill list | fgrep -C 1 tpacpi_bluetooth_sw | fgrep -q 'Soft blocked: no'; then rfkill block bluetooth; notify-send 'Bluetooth disabled'; else rfkill unblock bluetooth; notify-send 'Bluetooth enabled'; fi"
 
 bindsym Ctrl+Shift+Space exec dunstctl close-all
 bindsym Ctrl+Space exec dunstctl close
