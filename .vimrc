@@ -427,6 +427,11 @@ if has('nvim')
         org_do_demote = false,
         org_toggle_checkbox = 'cic'
       }
+    },
+    ui = {
+      folds = {
+        colored = false
+      }
     }
   })
 EOF
