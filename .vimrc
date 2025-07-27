@@ -125,6 +125,7 @@ elseif $TERM !=# ''
   endif
   set notermguicolors
   set background=dark
+  hi Title cterm=bold
   hi SpellBad ctermfg=White
   hi SpellCap ctermfg=White
   hi SpellLocal ctermfg=DarkGrey
@@ -140,6 +141,7 @@ elseif $TERM !=# ''
     " hi link @variable.vim Identifier
     hi link @type.builtin Type
     hi link @constructor Identifier
+    hi link @markup.list Identifier
   endif
 endif
 
