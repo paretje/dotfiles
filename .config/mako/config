@@ -20,3 +20,7 @@ text-color=#888888
 [app-name=qutebrowser]
 background-color=#285577FF
 text-color=#FFFFFFFF
+
+[mode=away]
+default-timeout=0
+ignore-timeout=1
