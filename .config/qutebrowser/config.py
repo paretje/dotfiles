@@ -105,12 +105,8 @@ if c.backend == "webkit":
     c.hints.find_implementation = "javascript"
 else:
     c.qt.args = [
-        "ignore-gpu-blacklist",
-        "enable-gpu-rasterization",
-        "enable-zero-copy",
         "enable-strict-mixed-content-checking",
-        "enable-features=WebRTCPipeWireCapturer",
-        "enable-webrtc-pipewire-capturer",
+        "enable-features=WebRTCPipeWireCapturer",  # TODO: seems to have been removed
     ]
 
 c.url.searchengines["ddg"] = "https://duckduckgo.com/?kp=-2&k1=-1&kaj=m&kl=be-nl&q={}"
