@@ -11,7 +11,7 @@ if !filereadable($HOME . '/.vim/autoload/plug.vim')
   if executable('curl')
     execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   elseif executable('wget')
-    execute '!mkdir -P ~/.vim/autoload'
+    execute '!mkdir -p ~/.vim/autoload'
     execute '!wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
   let s:plug_install = 1
@@ -23,16 +23,14 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline', {'tag': '*'}
-Plug 'Keithbsmiley/tmux.vim', {'for': 'tmux'}
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dhruvasagar/vim-dotoo'
+Plug 'nvim-orgmode/orgmode', {'tag': '*'}  " TODO: tag?
 Plug 'Yggdroot/indentLine'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'paretje/securemodelines'
 Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
-Plug 'AndrewRadev/splitjoin.vim'  " TODO: use?
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -41,24 +39,21 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'chaoren/vim-wordmotion'
 Plug 'yssl/QFEnter', {'for': 'qf'}
-Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Konfekt/FastFold'
-Plug 'tpope/vim-obsession'
-Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+Plug 'tpope/vim-obsession', {'on': 'Obsession'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}  " TODO: still needed?
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
-Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
-Plug 'idanarye/vim-vebugger'
-Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
-Plug 'solarnz/thrift.vim', {'for': 'thrift'}
-Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
-Plug 'posva/vim-vue', {'for': 'vue'}
+Plug 'idanarye/vim-vebugger'  " TODO: on? use? especially compared to vdebug
+Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}  " TODO: upstream or alternative?
+Plug 'solarnz/thrift.vim', {'for': 'thrift'}  " TODO: still needed?
+Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}  " TODO: I assume still needed?
 
 if has('nvim')
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
+  Plug 'ibhagwan/fzf-lua'
 else
   Plug 'congma/vim-fakeclip'
 endif
@@ -78,9 +73,29 @@ if has('gui_running')
   let g:airline_symbols = get(g:, 'airline_symbols', {})
   let g:airline_symbols.space = "\u3000"
 elseif $TERM !=# ''
+  if has('nvim')
+    colorscheme vim
+  endif
+  set notermguicolors
   set background=dark
-  hi SpellBad ctermfg=Black
+  hi Title cterm=bold
+  hi SpellBad ctermfg=White
+  hi SpellCap ctermfg=White
+  hi SpellLocal ctermfg=DarkGrey
   hi SpecialKey ctermfg=8
+  hi Pmenu        ctermfg=15   ctermbg=8
+  hi PmenuSel     ctermfg=8    ctermbg=15
+
+  if has('nvim')
+    hi link @variable Normal
+    hi link @variable.parameter Normal
+    hi link @variable.member Normal
+    hi link @variable.builtin Identifier
+    " hi link @variable.vim Identifier
+    hi link @type.builtin Type
+    hi link @constructor Identifier
+    hi link @markup.list Identifier
+  endif
 endif
 
 " Syntax highlighting
@@ -149,7 +164,9 @@ set shortmess+=I
 " Toggle paste option to safely paste via tmux (eg. when using ssh)
 set pastetoggle=<Leader>pp
 " Show print dialog instead of using the default printer
-set printexpr=system(['yad-print',v:fname_in])+v:shell_error
+if !has('nvim')
+  set printexpr=system(['yad-print',v:fname_in])+v:shell_error
+endif
 " Don't use tabs unless sleuth detects them
 set expandtab
 " Disable folding by default
@@ -161,7 +178,7 @@ au BufEnter * if (winnr('$') == 1 && &filetype ==# 'qf') | quit | endif
 " Set window title
 set title
 " Automatically close preview window
-au InsertLeave * if pumvisible() == 0 && &filetype !=# 'dotoo' | pclose | AirlineRefresh | endif
+au InsertLeave * if pumvisible() == 0 | pclose | AirlineRefresh | endif
 " Disable blinking cursor
 if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -197,49 +214,11 @@ let g:airline#extensions#whitespace#mixed_indent_format = "\u2219M[%s]"
 let g:airline#extensions#whitespace#mixed_indent_file_format = "\u2219M[%s]"
 let g:airline#extensions#csv#column_display = 'Name'
 
-" CtrlP options
-let g:ctrlp_cmd = 'CtrlPMixed'
-if executable('ag')
-  let g:ctrlp_user_command = 'sh -c "cd %s; ag -l --nocolor --hidden -f -g \"\""'
-endif
-let g:ctrlp_mruf_exclude = '/\.git/.*\|/tmp/.*\|term://.*'
-let g:ctrlp_switch_buffer = ''
-let g:ctrlp_mruf_exclude_nomod = 1
-if filereadable($HOME . '/.vim/bundle/cpsm/bin/cpsm_py.so')
-  let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
-else
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
-let g:ctrlp_tjump_only_silent = 1
-
 " Fugitive options
 au BufReadPost fugitive://* set bufhidden=delete
 
-" UltiSnips options
-let g:UltiSnipsExpandTrigger = '<C-J>'
-
 " neco-ghc options
 let g:necoghc_enable_detailed_browse = 1
-
-" vim-dotoo options
-if $HOST ==# 'kevin-vib-laptop'
-  let g:dotoo#agenda#files = ['~/vcs/vib/notes/*.org']
-else
-  let g:dotoo#agenda#files = ['~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org']
-endif
-let g:dotoo#capture#refile = $ORG_REFILE
-let g:dotoo#parser#todo_keywords = ['TODO', 'NEXT', 'WAITING', 'HOLD', 'PHONE', 'MEETING', 'MAIL', '|', 'CANCELLED', 'DONE']
-let g:dotoo_todo_keyword_faces = [
-  \ ['TODO',      [':foreground 160', ':weight bold']],
-  \ ['NEXT',      [':foreground 27',  ':weight bold']],
-  \ ['DONE',      [':foreground 22',  ':weight bold']],
-  \ ['WAITING',   [':foreground 202', ':weight bold']],
-  \ ['HOLD',      [':foreground 53',  ':weight bold']],
-  \ ['CANCELLED', [':foreground 22',  ':weight bold']],
-  \ ['MEETING',   [':foreground 22',  ':weight bold']],
-  \ ['PHONE',     [':foreground 22',  ':weight bold']],
-  \ ['MAIL',      [':foreground 25',  ':weight bold']]
-\ ]
 
 " vim-speeddating options
 au VimEnter * 1SpeedDatingFormat %Y-%m-%d %a %H:%M | 1SpeedDatingFormat %Y-%m-%d %a
@@ -258,7 +237,7 @@ let g:NERDTreeIgnore = ['\.class$', '\.pb.\(h\|cc\)$']
 au BufEnter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | quit | endif
 
 " indentLine options
-let g:indentLine_fileTypeExclude = ['help', 'dotoo', 'dotoocapture', 'dotooagenda', 'markdown.pandoc', 'ledger', '']
+let g:indentLine_fileTypeExclude = ['help', 'org', 'markdown.pandoc', 'ledger', '']
 let g:indentLine_showFirstIndentLevel = 1
 
 " xml options
@@ -270,16 +249,7 @@ let g:calendar_monday = 1
 " ledger-vim options
 let g:ledger_fold_blanks = 1
 let g:ledger_maxwidth = 120
-
-" jedi-vim options
-if !has('python3')
-  let g:jedi#force_py_version = 2
-else
-  let g:jedi#force_py_version = 3
-endif
-let g:jedi#completions_enabled = 0
-let g:jedi#goto_assignments_command = '<C-]>'
-let g:jedi#usages_command = ';]'
+let g:ledger_align_at = 50
 
 " neomake options
 let g:neomake_error_sign = {'texthl': 'GitGutterDelete'}
@@ -305,24 +275,6 @@ let g:neomake_python_mypy_args = ['--check-untyped-defs', '--ignore-missing-impo
 let g:neomake_python_enabled_makers = ['python', 'flake8']
 
 let g:neomake_cpp_enabled_makers = ['gcc', 'clang', 'clangtidy', 'clangcheck', 'cppcheck']
-
-" deoplete options
-let g:deoplete#enable_at_startup = 1
-
-" TODO: use sources instead of ignore_sources
-let s:ignore_sources = {}
-let s:ignore_sources._ = ['tag', 'buffer', 'around']
-for s:ft in ['c', 'cpp', 'python', 'vim', 'java']
-  let s:ignore_sources[s:ft] = ['tag', 'buffer', 'omni', 'around']
-endfor
-
-let g:deoplete#sources#jedi#python_path = 'python' . g:jedi#force_py_version
-let g:deoplete#sources#jedi#ignore_errors = v:true
-
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-9/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-
-let g:deoplete#sources#notmuch#command = ['notmuch', 'address', '--format=json', '--output=recipients', '--deduplicate=address', 'tag:sent']
 
 " tagbar options
 let g:tagbar_ctags_bin = 'ctags'
@@ -386,13 +338,8 @@ let g:grepper.open = 1
 let g:grepper.switch = 1
 let g:grepper.highlight = 1
 
-" cscope.vim options
-let g:cscope_silent = 1
-let g:cscope_open_location = 0
-au FileType c,cpp set cscopequickfix-=g-
-
 " gitautocommit options
-let g:gitautocommit_filetypes = ['dotoo', 'ledger']
+let g:gitautocommit_filetypes = ['org', 'ledger']
 
 " vim-gutentags options
 let g:gutentags_file_list_command = {
@@ -418,33 +365,53 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
+" orgmode options
+" TODO: org_archive_location
+if has('nvim')
+  lua << EOF
+  require('orgmode').setup({
+    org_agenda_files = {'~/vcs/personal/notes/*.org', '~/vcs/vib/notes/refile.org'},
+    org_default_notes_file = os.getenv("ORG_REFILE"),
+    org_startup_indented = true,
+    mappings = {
+      org = {
+        org_do_promote = false,
+        org_do_demote = false,
+        org_toggle_checkbox = 'cic'
+      }
+    },
+    ui = {
+      folds = {
+        colored = false
+      }
+    }
+  })
+EOF
+endif
+
+" fzf-lua options
+" TODO: use no_ignore in homedir?
+if has('nvim')
+  lua require("fzf-lua").setup({'fzf-vim', files={hidden=true}})
+endif
+
 " Bulk options
-au FileType text,mail,dotoo,markdown    setlocal spell
+au FileType text,mail,org,markdown      setlocal spell
 au FileType ledger,bbcode,vim,python    setlocal spell
 au FileType c,cpp,gitcommit             setlocal spell
 au FileType tex,mail                    setlocal spelllang=nl
-au FileType dotoo*,ledger               setlocal spelllang=nl,en_gb
+au FileType org,ledger                  setlocal spelllang=nl,en_gb
 au FileType tex,text,bbcode,markdown    setlocal linebreak " don't wrap randomly in a word
-au FileType help,dotoo*                 setlocal nolist " disable indentation lines
+au FileType help,org                    setlocal nolist " disable indentation lines
 
 " Ruby ft options
 au FileType eruby inoremap <silent> <buffer> / <C-O>:call CloseTag()<CR>
 
 " Org ft options
-au BufEnter *.org              if empty(&filetype) | setfiletype dotoo | endif
-au FileType dotoo*             setlocal textwidth=77
-au FileType dotoo              setlocal foldenable
-au FileType dotoo              nmap <buffer> <C-A> <Plug>SpeedDatingUp
-au FileType dotoo              nmap <buffer> <C-X> <Plug>SpeedDatingDown
-au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :date: '['.strftime(g:dotoo#time#date_day_format).']'
-au FileType dotoocapture       iabbrev <expr> <buffer> <silent> :time: '['.strftime(g:dotoo#time#datetime_format).']'
-au FileType dotoo,dotoocapture inoremap <buffer> <C-B> <C-O>:call DotooNewItem()<CR>
-au FileType dotooagenda        setlocal nowrap
-au FileType dotooagenda        nnoremap <buffer> / :call dotoo#agenda#filter_agendas()<CR>tags<CR>
-au BufHidden nmbs.org          setlocal nobuflisted
-au FileType dotoo              nnoremap <buffer> <silent> gI :call VimDotoo('clock#start')<CR>
-au FileType dotoo              nnoremap <buffer> <silent> gO :call VimDotoo('clock#stop')<CR>
-au FileType dotoo              nnoremap <buffer> <silent> cit :call VimDotoo('change_todo')<CR>
+au FileType org setlocal textwidth=77
+au FileType org setlocal foldenable
+au FileType org inoremap <buffer> <C-CR> <cmd>lua require("orgmode").action("org_mappings.meta_return")<CR>
+au FileType org inoreabbrev <silent><buffer> :time: [<C-R>=luaeval("require('orgmode.objects.date').now():to_string()")<CR>]
 
 " Java ft options
 au FileType java setlocal tags+=/usr/lib/jvm/openjdk-8/tags
@@ -495,7 +462,6 @@ au FileType aptconf setlocal commentstring=//%s
 
 " python ft options
 au FileType python setlocal omnifunc=
-au FileType python nnoremap <silent> <buffer> <Leader>K :PyDoc<CR>
 
 " xmobarrc ft options
 au BufRead ~/.xmobarrc setlocal syntax=haskell nospell
@@ -511,10 +477,9 @@ au FileType help if !&modifiable | nnoremap <silent> <nowait> <buffer> q <C-W>c 
 au FileType help if !&modifiable | setlocal nospell | endif
 
 " C and C++ ft options
-au FileType c,cpp setlocal commentstring=//%s
-au FileType c,cpp call ExtractCMakeBuildArgs()
-au FileType c,cpp nnoremap <buffer> <Leader>] :call CscopeFind('c', expand('<cword>'))<CR>
-au FileType cpp   setlocal keywordprg=:CppMan
+au FileType c,cpp,arduino setlocal commentstring=//%s
+au FileType c,cpp         call ExtractCMakeBuildArgs()
+au FileType cpp           setlocal keywordprg=:CppMan
 
 " gradle ft options
 au BufRead,BufNewFile *.gradle setfiletype groovy
@@ -546,6 +511,7 @@ au FileType vim setlocal iskeyword+=:
 
 " ansible ft options
 au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yaml set filetype=yaml.ansible
 au FileType yaml.ansible setlocal keywordprg=:AnsibleDoc
 
 " terminal options
@@ -562,8 +528,8 @@ au BufRead /tmp/vimperator-*                       setlocal ft=markdown
 au BufRead /tmp/qutebrowser-editor-*               setlocal ft=markdown
 
 " notes options
-au VimLeave *      if exists('g:sync_notes') | call GitAutocommit('notes') | endif
-au FileType dotoo* let g:sync_notes = 1
+au VimLeave *   if exists('g:sync_notes') | call GitAutocommit('notes') | endif
+au FileType org let g:sync_notes = 1
 
 " Custom key mappings
 nnoremap <Up> gk
@@ -583,7 +549,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <silent> <Leader><C-L> :redraw!<CR>
-nnoremap <silent> <C-N> :CtrlPBuffer<CR>
 nnoremap <silent> <C-G> :NERDTreeToggle<CR>
 nnoremap <Leader>s :call GitAutocommit()<CR><CR>
 nnoremap <Leader>l :call ToggleSpellLang()<CR>
@@ -620,9 +585,11 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
-nnoremap <Leader>pt :CtrlPBufTag<CR>
-nnoremap <c-]> :CtrlPtjump<cr>
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
+nnoremap <C-P> :Files<CR>
+nnoremap <C-N> :Buffers<CR>
+nnoremap <C-N> :Buffers<CR>
+nnoremap <Leader>po :FzfLua oldfiles<CR>
+nnoremap <Leader>pt :Tags<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
@@ -633,9 +600,6 @@ if has('nvim')
   au User ManOpen tmap <buffer> <C-K> <C-W>k
   au User ManOpen tmap <buffer> <C-L> <C-W>l
   au User ManOpen tmap <buffer> <Esc> <C-\><C-N>M
-  " TODO: move this to nvim-man
-  " TODO: use terminal to render formatting, but use nvim as pager
-  au User ManOpen startinsert
 
   " https://github.com/neovim/neovim/issues/11330#issuecomment-723667383
   au VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
@@ -654,8 +618,6 @@ com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -nargs=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
 com! -nargs=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
-com! -nargs=1 JediPythonVersion call jedi#force_py_version(<q-args>) | JediClearCache
-com! -nargs=? PyDoc call PyDoc(<f-args>)
 com! -nargs=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiffsplit Ghdiffsplit! :1 | Gvdiffsplit!
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -664,6 +626,7 @@ com! W w
 com! SudoRead  edit  suda://%
 com! SudoWrite write suda://%
 com! -nargs=1 AnsibleDoc call AnsibleDoc(<f-args>)
+com! Gstatus Git
 
 " TODO: documentation
 " TODO: abort?
@@ -784,59 +747,9 @@ fun! GitAutocommit(...)
   endif
 endfun
 
-fun! VimDotoo(func)
-  let l:pos = getcurpos()
-  if getline('.') !~? '^\*'
-    call search('^\*', 'b')
-  endif
-  if &modified
-    write
-  endif
-  exe 'call dotoo#' . a:func . '()'
-  call setpos('.', l:pos)
-  normal zuz
-  normal! zO
-endfun
-
 fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
-  endif
-endfun
-
-fun! PyDoc(...) abort
-  if a:0 > 1
-    echoerr 'Too many arguments'
-    return
-  elseif a:0 == 1
-    let l:python = 'python' . g:jedi#force_py_version
-    if exists('b:poetv_dir') && b:poetv_dir != "none"
-      let l:python = b:poetv_dir . '/bin/' . l:python
-    endif
-    let l:shell_term = has('nvim') ? '' : '++shell '
-    execute 'split | terminal ' . l:shell_term . l:python . ' -m pydoc ' . shellescape(a:1)
-    doau User ManOpen
-  else
-    " TODO: handle multiple definitions
-    " TODO: handle no definitions without silent
-    silent! python3 vim.command('PyDoc ' + jedi_vim.goto(mode="definition")[0].full_name)
-  endif
-endfun
-
-fun! DotooNewItem()
-  call feedkeys("\<C-O>cc ", 'n')
-
-  let l:pos = getcurpos()
-  if getline('.') !~? '^[[:space:]]*-'
-    call search('^[[:space:]]*-', 'b')
-  endif
-  let l:prev = getline('.')
-  call setpos('.', l:pos)
-
-  if dotoo#checkbox#is_checkbox(l:prev)
-    call feedkeys("\<C-O>c6h- [ ]\<C-O>A", 'n')
-  else
-    call feedkeys("\<C-O>c2h-\<C-O>A", 'n')
   endif
 endfun
 
@@ -861,7 +774,6 @@ fun! ExtractCMakeBuildArgs()
     endif
 
     let b:neomake_cpp_cppcheck_args = ['--quiet', '--language=c++', '--enable=warning', '--project=' . b:cmake_compile_db]
-    let g:deoplete#sources#clang#clang_complete_database = b:build_dir
   else
     let b:cmake_compile_args = []
   endif
@@ -879,12 +791,12 @@ endfun
 
 fun! CppMan(page) abort
   let l:shell_term = has('nvim') ? '' : ' ++shell'
-  execute 'split | terminal' . l:shell_term . ' cppman ' . shellescape(a:page)
+  execute 'split | terminal' . l:shell_term . ' LESS="$LESS -+F -c" cppman ' . shellescape(a:page)
   doau User ManOpen
 endfun
 
 fun! AnsibleDoc(plugin) abort
   let l:shell_term = has('nvim') ? '' : ' ++shell'
-  execute 'split | terminal' . l:shell_term . ' ansible-doc ' . shellescape(a:plugin)
+  execute 'split | terminal' . l:shell_term . ' LESS="$LESS -+F -c" ansible-doc ' . shellescape(a:plugin)
   doau User ManOpen
 endfun

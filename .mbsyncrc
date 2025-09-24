@@ -15,9 +15,9 @@ Inbox ~/.mail/prive/INBOX
 Flatten .
 
 Channel prive
-Master :prive-remote:
-Slave :prive-local:
-Create Slave
+Far :prive-remote:
+Near :prive-local:
+Create Near
 Patterns "*"
 SyncState "*"
 
@@ -38,19 +38,19 @@ Inbox ~/.mail/notes/INBOX
 Flatten .
 
 Channel notes
-Master :notes-remote:
-Slave :notes-local:
-Create Slave
+Far :notes-remote:
+Near :notes-local:
+Create Near
 Patterns "*"
 SyncState "*"
 
 IMAPAccount ugent
-Host owa.ugent.be
+Host outlook.office365.com
 SSLType IMAPS
 SSLVersions TLSv1.2
 User Kevin.Velghe@UGent.be
-PassCmd "pass show email/Kevin.Velghe@UGent.be"
-AuthMechs PLAIN
+PassCmd "oauth2ms"
+AuthMechs XOAUTH2
 
 IMAPStore ugent-remote
 Account ugent
@@ -61,14 +61,15 @@ Inbox ~/.mail/ugent/INBOX
 Flatten .
 
 Channel ugent
-Master :ugent-remote:
-Slave :ugent-local:
-Create Slave
+Far :ugent-remote:
+Near :ugent-local:
+Create Near
 Patterns "*"
 SyncState "*"
 
 IMAPAccount ionbot-support
 Host imap.mailprotect.be
+SSLType IMAPS
 SSLVersions TLSv1.2
 User support@ionbot.cloud
 PassCmd "pass show email/support@ionbot.cloud"
@@ -83,8 +84,8 @@ Inbox ~/.mail/support/INBOX
 Flatten .
 
 Channel ionbot-support
-Master :ionbot-support-remote:
-Slave :ionbot-support-local:
-Create Slave
+Far :ionbot-support-remote:
+Near :ionbot-support-local:
+Create Near
 Patterns "*"
 SyncState "*"

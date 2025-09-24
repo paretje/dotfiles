@@ -30,6 +30,9 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 # set PERL5LIB
 export PERL5LIB="$HOME/.local/lib/perl5"
 
+# set PYENV_ROOT
+export PYENV_ROOT="$HOME/.pyenv"
+
 # TODO: just remove these checks, and build the PATH
 # set PATH so it includes user's rubygems bin if it exists
 if [ "$GEM_HOME" != "" ] ; then
@@ -39,6 +42,11 @@ fi
 # set PATH so it includes user's cabal bin if it exists
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
+fi
+
+# set PATH so it includes pyenv bin dir if it exists
+if [ -d "$PYENV_ROOT/bin" ] ; then
+    PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
 # set PATH so it includes user's go bin if it exists
@@ -103,6 +111,7 @@ if [ -d "$GEM_HOME/gems" ] ; then
     fi
 fi
 
+# TODO: move to .swaysession
 # Detect if we're using wayland
 if [ -n "$WAYLAND_DISPLAY" -o "$TTY" = "/dev/tty1" ]; then
     # https://git.alebastr.su/alebastr/dotfiles/-/blob/master/profile
@@ -127,7 +136,9 @@ user-dirs-make
 
 # Start gpg-agent if not yet running
 gpgconf --launch gpg-agent
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
 # Set Qt platformtheme to gtk2
 export QT_QPA_PLATFORMTHEME=gtk2
@@ -149,7 +160,7 @@ export ANT_ARGS="-logger org.apache.tools.ant.listener.AnsiColorLogger -emacs"
 # set name and email address
 export NAME="Kevin Velghe"
 if [ "$HOST" = "kevin-vib-laptop" ]; then
-    export EMAIL="kevin.velghe@ugent.vib.be"
+    export EMAIL="kevin.velghe@ugent.be"
 else
     export EMAIL="kevin@paretje.be"
 fi
@@ -185,13 +196,14 @@ elif [ "$HOST" = "kevin-laptop" ]; then
     export MAIL_ACCOUNTS="prive notes"
 fi
 
-# disable system install from pip
-export PIP_USER="yes"
-
 # set location of pip editable installs
 export PIP_SRC="$HOME/.pip/src"
 
+# configure default password length
 export PASSWORD_STORE_GENERATED_LENGTH=64
+
+# use new authentication plugin for kubectl
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # if this is tty1, start X server
 if [ "$TTY" = "/dev/tty1" ]; then

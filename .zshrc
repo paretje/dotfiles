@@ -19,14 +19,17 @@ zplug 'zplug/zplug', hook-build:"zplug --self-manage"
 
 zplug "zsh-users/zsh-completions"
 zplug "jonmosco/kube-ps1", use:kube-ps1.sh
+zplug "jeffreytse/zsh-vi-mode"
 
-zplug "paretje/urxvt-perls", use:, hook-build:"mkdir -p ~/.urxvt/ext && ln -srf keyboard-select deprecated/clipboard deprecated/url-select ~/.urxvt/ext"
+zplug "plugins/pip", from:oh-my-zsh
+
+zplug "thameera/vimv", as:command, use:vimv
 
 zplug load
 PATH="$my_path"
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-setopt histignorealldups sharehistory histignorespace incappendhistory
+setopt histignorealldups sharehistory histignorespace
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -91,6 +94,10 @@ if (( ! $+functions[_git-flow])); then
     fi
 fi
 
+if [ -f /usr/share/google-cloud-sdk/completion.zsh.inc ]; then
+    . /usr/share/google-cloud-sdk/completion.zsh.inc
+fi
+
 # Load aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -103,14 +110,9 @@ export GPG_TTY=$(tty)
 setopt ignoreeof
 
 # Set additional keybindings for vi-mode
-bindkey -M viins '^a' beginning-of-line
-bindkey -M viins '^e' end-of-line
-bindkey -M viins '^d' delete-char
-bindkey -M viins '^p' up-history
-bindkey -M viins '^n' down-history
-bindkey -M viins '^r' history-incremental-search-backward
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd '?' history-incremental-search-forward
+zvm_bindkey viins '^d' delete-char
+zvm_bindkey vicmd '/' history-incremental-search-backward
+zvm_bindkey vicmd '?' history-incremental-search-forward
 
 # Use similar word definition as vim
 WORDCHARS="_"

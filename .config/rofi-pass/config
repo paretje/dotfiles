@@ -59,27 +59,6 @@ _image_viewer () {
 	display
 }
 
-# It is possible to use wl-copy and wl-paste from wl-clipboard
-# Just uncomment the lines with wl-copy and wl-paste
-# and comment the xclip lines
-#
-_clip_in_primary() {
-	wl-copy -p
-}
-
-_clip_in_clipboard() {
-	wl-copy
-}
-
-_clip_out_primary() {
-	wl-paste -p
-}
-
-_clip_out_clipboard() {
-	wl-paste
-}
-
-
 # xdotool needs the keyboard layout to be set using setxkbmap
 # You can do this in your autostart scripts (e.g. xinitrc)
 
@@ -103,7 +82,7 @@ delay=2
 wait=0.2
 
 # delay between keypresses when typing (in ms)
-xdotool_delay=12
+type_delay=12
 
 ## Programs to be used
 # Editor
@@ -157,5 +136,15 @@ type_menu="Alt+t"
 help="Alt+h"
 switch="Alt+x"
 insert_pass="Alt+n"
+
+# Change the clipboard backend for rofi-pass, valid backends are:
+# xclip
+# wl-clipboard
+clipboard_backend=wl-clipboard
+
+# Change the backend for rofi-pass, valid backends are:
+# xdotool
+# wtype
+backend=wtype
 
 # vim: set ft=sh

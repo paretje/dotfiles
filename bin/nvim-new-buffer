@@ -2,5 +2,7 @@
 from neovim import attach
 import os
 import sys
+
+path = os.path.abspath(sys.argv[1])
 nvim = attach('socket', path=os.getenv('NVIM_LISTEN_ADDRESS'))
-nvim.command('e ' + sys.argv[1].replace(' ', '\ '))
+nvim.command(f"e {path.replace(' ', '\ ')}")

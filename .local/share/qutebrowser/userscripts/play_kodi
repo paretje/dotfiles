@@ -1,2 +1,13 @@
-#!/bin/sh
-kodi-send $(dmenu < "$HOME/.upnprc") "$(youtube-dl --netrc -g -f best "$QUTE_URL" | head -n 1)"
+#!/bin/bash
+# TODO: move this to kodi-send
+host_and_id=$(dmenu < "$HOME/.upnprc")
+read host id <<< "$host_and_id"
+if [[ $QUTE_URL == *yewtu.be* ]]; then
+        youtube_id="$(python -c 'import urllib.parse; import sys; print(urllib.parse.parse_qs(urllib.parse.urlparse(sys.argv[1]).query)["v"][0])' "$QUTE_URL")"
+        # TODO: port constant?
+        rpc_host=$(sed 's/:[0-9]\+$/:8080/' <<< "$host")
+        auth="$(pass show "kodi/$rpc_host" | sed 'N;s/\nlogin: /:/')"
+        curl -X POST -H 'Cache-Control: no-cache' -H 'Content-Type: application/json' "http://$auth@$rpc_host/jsonrpc" -d "{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"Player.Open\",\"params\":{\"item\":{\"file\":\"plugin://plugin.video.youtube/play/?video_id=${youtube_id}\"}}}"
+else
+        kodi-send $host_and_id "$(youtube-dl --netrc -g -f best "$QUTE_URL" | head -n 1)"
+fi

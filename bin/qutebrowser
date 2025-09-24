@@ -3,11 +3,11 @@ set -o pipefail
 shopt -s nullglob
 
 qutebrowser() {
-	"/usr/bin/qutebrowser" "$@"
+	QT_SCALE_FACTOR_ROUNDING_POLICY=Ceil /usr/bin/qutebrowser "$@"
 }
 
 clean_history() {
-	for location in history.sqlite local-storage offiline-storage webengine; do
+	for location in cookies history.sqlite local-storage offiline-storage webengine; do
 		rm -rf "$HOME/.local/share/qutebrowser/$location"
 	done
 	touch "$HOME/.local/share/qutebrowser/cmd-history"
@@ -27,7 +27,7 @@ case "$1" in
 esac
 
 qutebrowser_args=()
-ipc_files=(/tmp/runtime-$USER/qutebrowser/*)
+ipc_files=(/run/user/$UID/qutebrowser/*)
 if [ "$(pgrep -c qutebrowser)" -eq 1 ]; then
 	if [ ${#ipc_files[@]} -eq 0 ]; then
 		touch "$HOME/.local/share/qutebrowser/netrc"

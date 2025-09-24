@@ -35,34 +35,39 @@ exec exec swayidle -w \
             timeout 300 'swaymsg "output * dpms off"' \
             resume 'swaymsg "output * dpms on"' \
             before-sleep 'swaylock -f' \
-            after-resume 'pactl set-sink-mute @DEFAULT_SINK@ true' \
+            after-resume 'wpctl set-mute @DEFAULT_AUDIO_SINK@ 1' \
             lock 'swaylock -f'
 
 for_window [app_id="Kodi"] inhibit_idle open
 for_window [class="Kodi"] inhibit_idle open
 for_window [class="zoom"] inhibit_idle open
-for_window [class="Microsoft Teams - Preview"] inhibit_idle open
+for_window [app_id="teams-for-linux"] inhibit_idle fullscreen
+for_window [class="teams-for-linux"] inhibit_idle fullscreen
 for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
+for_window [class="Pcsx2"] inhibit_idle fullscreen
+for_window [class="yuzu"] inhibit_idle fullscreen
+for_window [class="flycast"] inhibit_idle fullscreen
+for_window [class="PPSSPPSDL"] inhibit_idle fullscreen
+for_window [app_id="duckstation-qt"] inhibit_idle fullscreen
+for_window [app_id="chiaki"] inhibit_idle fullscreen
 
 # Start daemons
 exec_always "pkill kanshi; exec kanshi"
 exec_always xrdb -merge ~/.Xresources
-exec_always pulseaudio -k
 exec_always "pkill dunst; exec dunst"
 
 # TODO: would dbus-user-session prevent having multiple deamons for old dbus sessions?
 # i.e. would the dbus session be kept alive, and reused?
 # NOTE: pipewire requires xdg-desktop-portal
 exec "pkill pipewire; exec pipewire"
+exec "pkill pipewire-pulse; exec pipewire-pulse"
+exec "pkill wireplumber; exec wireplumber"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
 exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
-# TODO: pkill
-exec exec $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/gnome_dbus_emulation.rb $ZPLUG_HOME/repos/jamedjo/gnome-dbus-emulation-wlr/grim.sh
 
 exec "pkill maildaemon; exec maildaemon"
 exec "pkill batmonitor; exec batmonitor"
-exec exec matterircd --conf ~/.config/matterircd/matterircd.toml
 exec exec syncthing -no-browser
 
 ### Input configuration
@@ -87,6 +92,8 @@ input 2:7:SynPS/2_Synaptics_TouchPad tap enabled
 input 2:7:SynPS/2_Synaptics_TouchPad click_method clickfinger
 input 2:10:TPPS/2_Elan_TrackPoint accel_profile flat
 
+input 6127:24646:Chicony_Lenovo_Wireless_Touchpad_K5923 natural_scroll enabled
+
 focus_follows_mouse no
 
 ### Key bindings
@@ -98,6 +105,7 @@ focus_follows_mouse no
 
     # Kill focused window
     bindsym $mod+Shift+c kill
+    bindsym $mod+Shift+x exec swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid' | xargs -L 1 kill -9
 
     # Start your launcher
     bindsym $mod+p exec $menu
@@ -188,8 +196,8 @@ focus_follows_mouse no
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+t layout tabbed
-    bindsym $mod+e layout default
-    bindsym $mod+d layout toggle split
+    bindsym $mod+e layout toggle split
+    bindsym $mod+d layout splith
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -202,6 +210,10 @@ focus_follows_mouse no
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+shift+a focus child
+
+    bindsym $mod+m sticky toggle
+
 #
 # Scratchpad:
 #
@@ -239,19 +251,23 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
-bindsym $mod+F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym $mod+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+F1 exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym $mod+F2 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym $mod+F3 exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+
+bindsym $mod+Pause exec mpc toggle
 
 bindsym $mod+F12 exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
 bindsym Print exec grim "$HOME/cloud/screens/$(date +'%Y-%m-%d_%H%M%S').png" && notify-send "Screenshot saved"
+
+bindsym $mod+F10 exec sh -c "if rfkill list | fgrep -C 1 tpacpi_bluetooth_sw | fgrep -q 'Soft blocked: no'; then rfkill block bluetooth; notify-send 'Bluetooth disabled'; else rfkill unblock bluetooth; notify-send 'Bluetooth enabled'; fi"
 
 bindsym Ctrl+Shift+Space exec dunstctl close-all
 bindsym Ctrl+Space exec dunstctl close
@@ -272,7 +288,6 @@ bar {
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
 

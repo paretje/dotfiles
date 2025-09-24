@@ -1,0 +1,15 @@
+theme = "tango-dark"
+padding-x = 2
+padding-y = [-3, 4]
+draw-bold-text-with-light-colors = true
+
+[fonts]
+size = 13.5
+family = "DejaVuSansM Nerd Font Mono"
+hinting = false
+
+[bindings]
+keys = [
+  # Enable VI mode on escape, when not in VI mode.
+  { key = "s", with = "alt", mode = "~vi", action = "ToggleVIMode" },
+]

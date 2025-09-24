@@ -4,14 +4,24 @@ profile home {
 }
 
 profile t480s {
-        output "Unknown 0x058B 0x00000000" enable scale 1.25
+        output "LG Display 0x058B Unknown" enable scale 1.25
 }
 
 profile t490 {
-        output "Chimei Innolux Corporation 0x14F2 0x00000000" enable
+        output "Chimei Innolux Corporation 0x14F2 Unknown" enable
 }
 
 profile work {
-        output "Goldstar Company Ltd LG Ultra HD 0x00003417" enable position 1920,0 mode 3840x2160 scale 1.50
-        output "Chimei Innolux Corporation 0x14F2 0x00000000" disable position 0,0 scale 1.0
+        output "LG Electronics LG Ultra HD 0x00003417" enable position 1920,0 mode 3840x2160 scale 1.50
+        output "Chimei Innolux Corporation 0x14F2 Unknown" disable position 0,0 scale 1.0
+}
+
+profile tv {
+        output "LG Electronics LG TV 0x00000101" enable mode 1920x1080 scale 1.0
+        output eDP-1 disable
+}
+
+profile generic-hdmi {
+        output HDMI-A-2 enable
+        output eDP-1 disable
 }

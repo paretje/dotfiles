@@ -1,0 +1,24 @@
+[colors]
+background = '#1b1f1c'
+foreground = '#eeeeec'
+
+selection-background = '#b5d5ff'
+selection-foreground = '#000000'
+
+cursor = '#eeeeec'
+black = "#1b1f1c"
+blue = "#3465a4"
+cyan = "#06989a"
+green = "#73d216"
+magenta = "#75507b"
+red = "#cc0000"
+white = "#d3d7cf"
+yellow = "#edd400"
+light-black = "#2e3436"
+light-red = "#ef2929"
+light-green = "#8ae234"
+light-yellow = "#fce94f"
+light-blue = "#729fcf"
+light-magenta = "#ad7fa8"
+light-cyan = "#34e2e2"
+light-white = "#ffffff"

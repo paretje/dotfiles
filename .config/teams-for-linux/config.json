@@ -1,3 +1,7 @@
 {
-    "closeAppOnCross": true
+	"closeAppOnCross": true,
+	"spellCheckerLanguages": [
+		"nl",
+		"en-GB"
+	]
 }

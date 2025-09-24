@@ -2,11 +2,13 @@
 import logging
 import sys
 
-import psutil
-from PyQt5.QtCore import QUrl
+from PyQt6.QtCore import QUrl
 from qutebrowser.api import interceptor
 
 logger = logging.getLogger()
+
+qute_pass = "spawn --userscript qute-pass --username-target secret --username-pattern 'login: (.+)' --dmenu-invocation 'wofi -dmenu' --no-insert-mode"
+
 
 # pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
@@ -21,12 +23,16 @@ else:
     c.backend = "webengine"
 
 # reduce memory usage on low memory machines
-if c.backend == "webengine" and psutil.virtual_memory().total < 3 * 1024 ** 3:
-    c.qt.process_model = "process-per-site"
+try:
+    import psutil
+    if c.backend == "webengine" and psutil.virtual_memory().total < 3 * 1024 ** 3:
+        c.qt.process_model = "process-per-site"
+except ImportError:
+    pass
 
 c.url.start_pages = ["about:blank"]
 c.url.default_page = "about:blank"
-c.url.auto_search = "dns"
+c.url.auto_search = "naive"
 c.editor.command = ["x-terminal-emulator", "-e", "nvim", "-b", "-c", "set noeol", "{}"]
 c.content.xss_auditing = True
 c.content.default_encoding = "utf-8"
@@ -34,7 +40,7 @@ c.new_instance_open_target = "tab-silent"
 c.auto_save.session = True
 c.content.autoplay = False
 c.content.headers.accept_language = "en-GB,en,nl-BE,nl"
-c.content.ssl_strict = True
+c.content.tls.certificate_errors = "ask-block-thirdparty"
 c.content.netrc_file = "~/.local/share/qutebrowser/netrc"
 c.completion.cmd_history_max_items = 10000
 c.completion.web_history.max_items = 10000
@@ -47,13 +53,16 @@ c.scrolling.bar = "never"
 c.downloads.location.directory = "~/downloads"
 c.content.cache.size = 52428800
 c.content.javascript.enabled = False
-c.content.webgl = False
+c.content.webgl = True
 c.content.geolocation = False
 c.content.cookies.accept = "no-3rdparty"
-c.content.cookies.store = False
-c.content.blocking.hosts.lists = [
+c.content.cookies.store = True
+c.content.blocking.method = "both"
+c.content.blocking.adblock.lists = [
     "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
-    "http://malwaredomains.lehigh.edu/files/justdomains.zip",  # TODO: this was removed from qutebrowser, pointless?
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt",
 ]
 c.content.blocking.whitelist = []
 c.hints.uppercase = True
@@ -88,22 +97,19 @@ c.fonts.statusbar = "8pt monospace"
 c.fonts.tabs.selected = "8pt monospace"
 c.fonts.tabs.unselected = "8pt monospace"
 c.qt.highdpi = True
-c.spellcheck.languages = ["en-GB"]
+c.spellcheck.languages = ["en-GB", "nl-NL"]
+c.url.open_base_url = True
 
 if c.backend == "webkit":
     c.content.cache.appcache = False
     c.hints.find_implementation = "javascript"
 else:
     c.qt.args = [
-        "ignore-gpu-blacklist",
-        "enable-gpu-rasterization",
-        "enable-zero-copy",
         "enable-strict-mixed-content-checking",
-        "enable-features=WebRTCPipeWireCapturer",
-        "enable-webrtc-pipewire-capturer",
+        "enable-features=WebRTCPipeWireCapturer",  # TODO: seems to have been removed
     ]
 
-c.url.searchengines["ddg"] = "https://duckduckgo.com/?kp=-2&k1=-1&kaj=m&q={}"
+c.url.searchengines["ddg"] = "https://duckduckgo.com/?kp=-2&k1=-1&kaj=m&kl=be-nl&q={}"
 c.url.searchengines[
     "man"
 ] = "http://manpages.debian.org/cgi-bin/man.cgi?query={}&manpath=Debian+unstable+si"
@@ -119,7 +125,7 @@ c.url.searchengines[
 ] = "https://docs.python.org/3/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines["wnl"] = "https://nl.wikipedia.org/w/index.php?search={}"
 c.url.searchengines["wen"] = "https://en.wikipedia.org/w/index.php?search={}"
-c.url.searchengines["woordenlijst"] = "http://woordenlijst.org/#/?q={}"
+c.url.searchengines["woordenlijst"] = "https://woordenlijst.org/zoeken/?q={}"
 c.url.searchengines["gh"] = "https://github.com/search?q={}"
 c.url.searchengines["tvdb"] = "https://www.thetvdb.com/search?query={}"
 c.url.searchengines[
@@ -135,23 +141,38 @@ c.url.searchengines[
     "sqla"
 ] = "https://docs.sqlalchemy.org/en/latest/search.html?q={}&check_keywords=yes&area=default"
 c.url.searchengines["tmdb"] = "https://www.themoviedb.org/search?query={}"
-c.url.searchengines["yt"] = "https://youtube.com/search?q={}"
+c.url.searchengines["yt"] = "https://yewtu.be/search?q={}"
 c.url.searchengines["tts"] = "https://trythatsoap.com/search/?q={}"
-c.url.searchengines["DEFAULT"] = c.url.searchengines["sp"]
+c.url.searchengines['psn3'] = "https://psprices.com/region-be/games/?q={}&platform=PS3"
+c.url.searchengines['psn4'] = "https://psprices.com/region-be/games/?q={}&platform=PS4"
+c.url.searchengines['psn5'] = "https://psprices.com/region-be/games/?q={}&platform=PS5,PS4"
+c.url.searchengines['ebay'] = "https://www.benl.ebay.be/sch/i.html?_from=R40&_nkw={}&_sacat=0&_sop=15"
+c.url.searchengines['games2trust'] = "https://games2trust.eu/nl/catalogsearch/result/?q={}"
+c.url.searchengines['retroplaystation'] = "https://www.retroplaystationkopen.nl/zoeken?query={}"
+c.url.searchengines['retroxbox'] = "https://www.retroxboxkopen.nl/zoeken?query={}"
+c.url.searchengines['budgetgaming'] = "https://www.budgetgaming.nl/gamessearchresults/1/{}/console-all.html"
+c.url.searchengines['hltb'] = "https://howlongtobeat.com/?q={}"
+c.url.searchengines["sxng"] = "https://searx.be/search?q={}"
+c.url.searchengines['psbc'] = "https://www.backwards-compatible.com/search/?q={}"
+c.url.searchengines['pride'] = "https://www.ebi.ac.uk/pride/archive?keyword={}"
+c.url.searchengines['protondb'] = "https://www.protondb.com/search?q={}"
+c.url.searchengines["pcgamingwiki"] = "https://www.pcgamingwiki.com/w/index.php?search={}"
+c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
 
 c.aliases["h"] = "help"
 c.aliases["q"] = "close ;; session-delete default"
 c.aliases["qa"] = "quit ;; session-delete default"
 
-config.bind("t", "set-cmd-text -s :open -t")
+config.bind("t", "cmd-set-text -s :open -t")
 config.bind("x", "tab-close")
 config.bind("gt", "tab-next")
 config.bind("gT", "tab-prev")
-config.bind("f", "hint all current")
-config.bind(";f", "hint all current")
-config.bind(";F", "hint all tab-fg")
+config.bind("f", "hint --add-history all current")
+config.bind("F", "hint --add-history all tab-bg")
+config.bind(";f", "hint --add-history all current")
+config.bind(";F", "hint --add-history all tab-fg")
+config.bind("af", "hint --add-history --rapid links tab-bg")
 config.bind("yf", "hint links yank")
-config.bind("af", "hint --rapid links tab-bg")
 config.bind("X", "undo")
 config.bind("p", "open -- {clipboard}")
 config.bind("P", "open -t -- {clipboard}")
@@ -169,8 +190,8 @@ config.unbind(";i")
 config.bind(";iw", "spawn --detach iceweasel {url}")
 config.bind(";js", "config-cycle -p -u *://{url:host}/* content.javascript.enabled")
 config.bind(";p", "spawn --userscript password_fill")
-config.bind(";v", "spawn mpv --ytdl-raw-options-append=netrc= {url}")
-config.bind(";sv", "spawn x-terminal-emulator -e pipe-viewer {url}")
+config.bind(";v", "spawn --detach mpv --ytdl-raw-options-append=netrc= {url}")
+config.bind(";sv", "spawn --detach x-terminal-emulator -e pipe-viewer {url}")
 config.bind(";sk", "spawn --userscript play_kodi")
 config.bind(";a", "spawn --userscript play_mpc")
 config.bind("gs", "view-source --edit")
@@ -178,8 +199,15 @@ config.bind("gf", "spawn --userscript openfeeds")
 config.unbind(";o")
 config.bind(";org", "spawn --verbose --userscript org_add")
 config.bind("D", 'bookmark-del ;; message-info "Bookmark {url} deleted!"')
-config.bind(";ip", "spawn --userscript password_fill_insert")
-config.bind("<Ctrl-N>", "set-cmd-text -s :tab-select")
+config.bind("zl", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass}")
+config.bind("zul", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --username-only")
+config.bind("zpl", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --password-only")
+config.bind("zol", f"hint inputs -f ;; later 100 mode-enter normal ;; {qute_pass} --otp-only")
+config.bind("zL", qute_pass)
+config.bind("zuL", f"{qute_pass} --username-only")
+config.bind("zpL", f"{qute_pass} --password-only")
+config.bind("zoL", f"{qute_pass} --otp-only")
+config.bind("<Ctrl-N>", "cmd-set-text -s :tab-select")
 config.bind(",,", "spawn --userscript usermode")
 config.unbind("<Ctrl-W>")
 config.bind("<Ctrl-Shift-O>", "edit-text", mode="insert")
@@ -188,24 +216,22 @@ config.bind("<Ctrl-A>", "fake-key <Home>", mode="insert")
 config.bind("<Ctrl-E>", "fake-key <End>", mode="insert")
 config.bind("<Ctrl-W>", "fake-key <Ctrl-Backspace>", mode="insert")
 config.bind("<Ctrl-D>", "fake-key <Del>", mode="insert")
-config.bind("<Ctrl-O>", "edit-text ;; leave-mode", mode="insert")
+config.bind("<Ctrl-O>", "edit-text ;; mode-enter normal", mode="insert")
 config.bind("<Up>", "command-history-prev", mode="command")
 config.bind("<Down>", "command-history-next", mode="command")
 config.bind("<Ctrl-Shift-D>", "completion-item-del", mode="command")
 config.bind("<Ctrl-D>", "fake-key <Del>", mode="command")
 config.bind("<Ctrl-W>", "rl-backward-kill-word", mode="command")
 config.bind("<Alt-Backspace>", "rl-unix-word-rubout", mode="command")
-config.bind(
-    "<Ctrl-P>", "spawn --userscript password_fill_prompt_wrapper", mode="prompt"
-)
+config.bind("<Ctrl-P>", "spawn --userscript password_fill_prompt", mode="prompt")
 
 
 redirects = {
     "www.reddit.com": "old.reddit.com",
-    "twitter.com": "nitter.cc",
-    "www.youtube.com": "www.youtube-nocookie.com",
-    "invidio.us": "invidious.tube",
-    "invidious.13ad.de": "invidious.tube",
+    "www.youtube.com": "yewtu.be",
+    "invidio.us": "yewtu.be",
+    "invidious.13ad.de": "yewtu.be",
+    "en.m.wikipedia.org": "en.wikipedia.org",
 }
 
 
@@ -234,6 +260,10 @@ def intercept(info: interceptor.Request) -> None:
     # TODO: don't do host redirects for third party requests
     # third_party_request = info.first_party_url != info.request_url
     host = info.request_url.host()
+
+    # TODO: switch to more advanced redirect system
+    if host == "www.reddit.com" and ("/media" in info.request_url.toString() or "/gallery" in info.request_url.toString()):
+        return
 
     if host in redirects:
         new_url = QUrl(info.request_url)

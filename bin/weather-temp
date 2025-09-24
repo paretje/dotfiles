@@ -1,2 +1,2 @@
 #!/bin/sh
-curl -s 'https://mooncake.ugent.be/api/measurements/ItzXCMYUzi31xyiEZpLxB7ef' | jq --raw-output '.[-1].temp | nearbyint'
+curl -s --connect-timeout 20 'https://mooncake.ugent.be/api/measurements/ItzXCMYUzi31xyiEZpLxB7ef' | jq --raw-output '.[-1].temp | nearbyint'

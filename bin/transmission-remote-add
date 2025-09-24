@@ -1,4 +1,9 @@
-#!/bin/sh
-host=$(pass ls transmission | tail +2 | sed 's/[└├]── //' | dmenu)
+#!/bin/bash
+host=$(pass ls transmission | tail +2 | sed 's/[└├]── //;s/\x1b\[[0-9;]*m//g' | dmenu)
 user=$(pass transmission/$host | tail -1 | sed 's/^login:\s*//')
-exec stig set connect.host "$host" \; set connect.user "$user" \; set connect.password:eval "pass transmission/$host | head -1" \; add "$1"
+file="$1"
+if [[ $file == file://* ]]; then
+        file="${file:7}"
+fi
+
+exec stig set connect.host "$host" \; set connect.user "$user" \; set connect.password:eval "pass transmission/$host | head -1" \; add "$file"

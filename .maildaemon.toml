@@ -15,10 +15,11 @@
         periodic_sync_condition = "! 3gusage"
 
     [accounts.ugent]
-        host =  "owa.ugent.be"
+        host =  "outlook.office365.com"
         username =  "Kevin.Velghe@UGent.be"
         password_cmd = "pass show email/Kevin.Velghe@UGent.be"
         sync_interval = 300
+        imap_idle = false
         periodic_sync_condition = "! 3gusage"
 
     [accounts.ionbot-support]

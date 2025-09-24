@@ -1,11 +1,12 @@
 #!/bin/bash
 check_battery() {
-	message=$(acpi -b | sed 's/^Battery 0: //;2,$d')
+	message=$(acpi -b | sed -n '/unavailable/d;s/^Battery [0-9]: //;p')
 	if [[ "${message:0:13}" != "Discharging, " ]]; then
 		return
 	fi
 
 	time_left=$(echo "$message" | sed 's/^Discharging, [0-9]\+%, \([0-9:]\+\) remaining$/0\n\1\n+\np/;s/:/\n+\n60\n*\n/g' | dc)
+	test "$time_left" -gt 0 || notify-send -u critical "Something went wrong (batmonitor)" "$message"
 	if [ "$time_left" -le 900 ]; then
 		action=$(timeout 30s dunstify -u critical -A cancel,cancel "Battery Critically low, suspending in 30s!" "$message")
 		if [ "$action" = "cancel" ] || acpi -b | grep -Fq 'Charging, '; then
@@ -18,9 +19,9 @@ check_battery() {
 		else
 			sudo pm-suspend
 		fi
-	elif [ "$time_left" -le 1200 ]; then
+	elif [ "$time_left" -le 1800 ]; then
 		notify-send -u critical "Battery getting very low" "$message"
-	elif [ "$time_left" -le 1500 ]; then
+	elif [ "$time_left" -le 2700 ]; then
 		notify-send -u low "Battery getting low" "$message"
 	fi
 }

@@ -2,7 +2,7 @@
 export NVIM_LISTEN_ADDRESS=/tmp/nvim-gui
 if [ ! -S $NVIM_LISTEN_ADDRESS ]; then
 	unset TERM
-	x-terminal-emulator -e nvim &
+	x-terminal-emulator -e nvim --listen $NVIM_LISTEN_ADDRESS &
 	while [ ! -S $NVIM_LISTEN_ADDRESS ]; do
 		sleep 0.5s
 	done

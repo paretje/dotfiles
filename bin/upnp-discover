@@ -1,2 +1,2 @@
 #!/bin/sh
-gssdp-discover -t urn:schemas-upnp-org:service:AVTransport:1 -m available  -n 1 | sed -n '/USN:/{N;s/^\s*USN:\s*uuid:\([^:]*\)::urn:schemas-upnp-org:service:AVTransport:1\n\s*Location: http:\/\/\(.*\)\/$/\2 \1/;p}'
+gssdp-discover -t urn:schemas-upnp-org:service:AVTransport:1 -m available -n 1 "$@" | sed -n '/USN:/{N;s/^\s*USN:\s*uuid:\([^:]*\)::urn:schemas-upnp-org:service:AVTransport:1\n\s*Location: http:\/\/\(.*\)\/$/\2 \1/;p}'

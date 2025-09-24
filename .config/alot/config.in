@@ -26,6 +26,7 @@ thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {mes
 timestamp_format = "%d %b %Y %H:%M"
 search_threads_move_last_limit = 10000
 exclude_tags = "spam", "deleted"
+hooksfile = $XDG_CONFIG_HOME/alot/hooks.py
 
 
 [accounts]
@@ -48,9 +49,9 @@ exclude_tags = "spam", "deleted"
 
   [[ugent]]
     realname = Kevin Velghe
-    address = kevin.velghe@ugent.vib.be
-    aliases = kevin.velghe@ugent.be,kevin.velghe@vib-ugent.be
-    sendmail_command = /usr/bin/msmtp -a ugent -t
+    address = kevin.velghe@ugent.be
+    aliases = kevin.velghe@ugent.vib.be,kevin.velghe@vib-ugent.be
+    sendmail_command = /usr/bin/msmtp -a ugent-office365 -t
     sent_box = maildir://$MAILDIR/ugent/Sent Items
     draft_box = maildir://$MAILDIR/ugent/Drafts
     gpg_key = BA137AAF47EAD0286E34BDCA224F083560F2E437
