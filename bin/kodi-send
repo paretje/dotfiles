@@ -1,12 +1,12 @@
-#!/bin/sh -e
+#!/bin/bash -e
 host="$1"
-id="$2"
-url="$3"
+user="$2"
+password="$3"
+url="$4"
 
-if [ "$host" = "" -o "$id" = "" -o "$url" = "" ]; then
-	echo "Usage: kodi-send HOST:PORT ID URL" >&2
+if [ "$host" = "" -o "$user" = "" -o "$password" = "" -o "$url" = "" ]; then
+	echo "Usage: kodi-send HOST:PORT USER PASSWORD URL" >&2
 	exit 1
 fi
 
-chronic curl -H 'Content-Type: text/xml; charset=utf-8' -H 'SOAPAction: "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><u:SetAVTransportURI xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"><InstanceID>0</InstanceID><CurrentURI><![CDATA['"$url"']]></CurrentURI><CurrentURIMetaData></CurrentURIMetaData></u:SetAVTransportURI></s:Body></s:Envelope>' 'http://'"$host"'/AVTransport/'"$id"'/control.xml'
-chronic curl -H 'Content-Type: text/xml; charset=utf-8' -H 'SOAPAction: "urn:schemas-upnp-org:service:AVTransport:1#Play"' -d '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body><u:Play xmlns:u="urn:schemas-upnp-org:service:AVTransport:1"><InstanceID>0</InstanceID><Speed>1</Speed></u:Play></s:Body></s:Envelope>' 'http://'"$host"'/AVTransport/'"$id"'/control.xml'
+chronic curl -X POST -H 'Cache-Control: no-cache' -H 'Content-Type: application/json' "http://$user:$password@$host/jsonrpc" -d '{"jsonrpc": "2.0", "method": "Player.Open", "params": {"item": {"file": "plugin://plugin.video.sendtokodi/?'"$url"'"}}, "id": 1}'
