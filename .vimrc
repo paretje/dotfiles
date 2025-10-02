@@ -100,6 +100,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
+  Plug 'michaeladler/cmp-notmuch'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'windwp/nvim-autopairs'
 
@@ -478,10 +479,8 @@ if has('nvim')
       }),
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        -- { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'ultisnips' }, -- For ultisnips users.
-        { name = 'snippy' }, -- For snippy users.
+        { name = 'snippy' },
+        { name = 'notmuch' },
       }, {
         { name = 'buffer' },
         { name = 'path' },
@@ -526,7 +525,6 @@ if has('nvim')
 
     -- Set up lspconfig.
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
     vim.lsp.config('jedi_language_server', {
         capabilities = capabilities
     })
