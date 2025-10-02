@@ -108,6 +108,18 @@ if has('nvim')
 
   Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
   Plug 'folke/todo-comments.nvim'
+
+  " TODO:
+  " https://github.com/quangnguyen30192/cmp-nvim-tags?
+  " https://github.com/hrsh7th/cmp-copilot?
+  " https://github.com/hrsh7th/cmp-omni?
+  " https://github.com/kdheepak/cmp-latex-symbols?
+  " https://github.com/lukas-reineke/cmp-rg?
+  " https://github.com/petertriho/cmp-git
+  " https://github.com/ray-x/cmp-treesitter?
+  " https://github.com/piero-vic/cmp-ledger
+  " https://github.com/tzachar/cmp-fuzzy-path?
+  " https://github.com/mfussenegger/nvim-lint
 else
   Plug 'congma/vim-fakeclip'
 endif
