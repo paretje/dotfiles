@@ -8,10 +8,12 @@ check_battery() {
 	percentage=$(echo "$message" | sed 's/^Discharging, \([0-9]\+\)%, \([0-9:]\+\) remaining$/\1/')
 	test "$percentage" -gt 0 || notify-send -u critical "Something went wrong (batmonitor)" "$message"
 	if [ "$percentage" -le 10 ]; then
-		action=$(timeout 30s dunstify -u critical -A cancel,cancel "Battery Critically low, suspending in 30s!" "$message")
+		echo "battery low: ${time_left}s left, notify user"
+		action=$(timeout 30s notify-send -u critical -A default=cancel "Battery Critically low, suspending in 30s!" "$message")
 		if [ "$action" = "cancel" ] || acpi -b | grep -Fq 'Charging, '; then
 			return
 		fi
+		echo "battery low, suspend system"
 		if [ -x /bin/systemctl ]; then
 			systemctl suspend
 		elif [ -x /bin/loginctl ]; then
