@@ -8,6 +8,6 @@ if [ ! -S $NVIM_LISTEN_ADDRESS ]; then
 	done
 	sleep 0.5s
 fi
-if [ "$1" != "" ]; then
-	nvim-new-buffer "$1"
-fi
+for file in "$@"; do
+	nvim-new-buffer "$file"
+done
