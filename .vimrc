@@ -811,6 +811,7 @@ com! BeamerBackground hi Normal ctermbg=233 | set background=dark
 com! -nargs=1 JavaDoc call system('find /usr/share/doc/openjdk-8-doc/api/ /usr/share/doc/junit4/api/ -name "' . <q-args> . '.html" -a -not -path "*/class-use/*" -a -not -path "*/src-html/*" | xargs sensible-browser')
 com! -nargs=1 HtmlDoc call system('sensible-browser http://www.w3schools.com/TAGS/tag_' . <q-args> . '.asp')
 com! -nargs=1 SpellInstall call spellfile#LoadFile(<q-args>)
+com! -nargs=? PyDoc call PyDoc(<f-args>)
 com! -nargs=1 Dictionary call Dictionary(<f-args>)
 com! Gmdiffsplit Ghdiffsplit! :1 | Gvdiffsplit!
 com! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
@@ -943,6 +944,18 @@ endfun
 fun! Dictionary(word)
   if &spelllang =~# 'nl'
     call system('sensible-browser ' . shellescape('http://woordenlijst.org/#/?bwc=1&q=' . a:word))
+  endif
+endfun
+
+fun! PyDoc(...) abort
+  if a:0 > 1
+    echoerr 'Too many arguments'
+    return
+  elseif a:0 == 1
+    let l:python = 'python'
+    let l:shell_term = has('nvim') ? '' : '++shell '
+    execute 'split | terminal ' . l:shell_term . 'LESS="$LESS -+F -c" ' . l:python . ' -m pydoc ' . shellescape(a:1)
+    doau User ManOpen
   endif
 endfun
 
