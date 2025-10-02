@@ -14,7 +14,7 @@ case "$choice" in
 			systemctl poweroff
 		elif [ -x /bin/loginctl ]; then
 			loginctl poweroff
-		elif [ -e /run/runit.stopit ]; then
+		elif [ -e /etc/runit/stopit ]; then
 			sudo init 0
 		else
 			sudo -- shutdown -h now
@@ -28,7 +28,7 @@ case "$choice" in
 			systemctl reboot
 		elif [ -x /bin/loginctl ]; then
 			loginctl reboot
-		elif [ -e /run/runit.stopit ]; then
+		elif [ -e /etc/runit/stopit ]; then
 			sudo init 6
 		else
 			sudo -- shutdown -r now
