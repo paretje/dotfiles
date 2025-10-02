@@ -64,7 +64,7 @@ exec "pkill pipewire-pulse; exec pipewire-pulse"
 exec "pkill wireplumber; exec wireplumber"
 # NOTE: wlr should be started automatically, but segfauls at the moment.
 # The sleep is because of a race condition between wlr and pipewire
-exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & /usr/libexec/xdg-desktop-portal -r"
+exec "sleep 5s; /usr/libexec/xdg-desktop-portal-wlr & ; sleep 5s; /usr/libexec/xdg-desktop-portal -r"
 
 exec "pkill maildaemon; exec maildaemon"
 exec "pkill batmonitor; exec batmonitor"
