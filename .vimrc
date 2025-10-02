@@ -109,6 +109,8 @@ if has('nvim')
   Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
   Plug 'folke/todo-comments.nvim'
 
+  Plug 'amrbashir/nvim-docs-view', {'on': 'DocsViewToggle'}
+
   " TODO:
   " https://github.com/quangnguyen30192/cmp-nvim-tags?
   " https://github.com/hrsh7th/cmp-copilot?
@@ -589,6 +591,14 @@ endif
 lua require("todo-comments").setup({})
 hi TodoBgTODO ctermbg=11 ctermfg=0
 hi TodoBgNOTE ctermbg=11 ctermfg=0
+
+" nvim-docs-view
+lua << EOF
+  require("docs-view").setup {
+    position = "top",
+    height = 20
+  }
+EOF
 
 " Bulk options
 au FileType text,mail,org,markdown      setlocal spell
