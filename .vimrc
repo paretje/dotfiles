@@ -147,6 +147,7 @@ elseif $TERM !=# ''
     hi link @variable.builtin Identifier
     " hi link @variable.vim Identifier
     hi link @type.builtin Type
+    hi link @function.builtin Identifier
     hi link @constructor Identifier
     hi link @markup.list Identifier
 
