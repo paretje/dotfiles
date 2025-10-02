@@ -768,6 +768,7 @@ nnoremap <C-N> :Buffers<CR>
 nnoremap <C-N> :Buffers<CR>
 nnoremap <Leader>po :FzfLua oldfiles<CR>
 nnoremap <Leader>pt :Tags<CR>
+nnoremap grr :lua vim.lsp.buf.references()<CR>
 
 if has('nvim')
   tnoremap <C-Q> <C-\><C-N>
