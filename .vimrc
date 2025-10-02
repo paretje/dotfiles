@@ -487,7 +487,8 @@ if has('nvim')
       }, {
         { name = 'buffer' },
         { name = 'path' },
-      })
+      }),
+      preselect = cmp.PreselectMode.None
     })
 
     -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
