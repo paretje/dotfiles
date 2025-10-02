@@ -744,7 +744,8 @@ imap <C-L> <Plug>delimitMateS-Tab
 nnoremap <Leader>cc :cclose<CR>
 nnoremap <Leader>cl :lclose<CR>
 nnoremap <Leader>cp :pclose<CR>
-nnoremap <C-P> :Files<CR>
+" TODO: cwd=require'fzf-lua.path'.git_root(vim.loop.cwd(), true) or vim.loop.cwd()
+nnoremap <C-P> :FzfLua combine pickers=oldfiles;files<CR>
 nnoremap <C-N> :Buffers<CR>
 nnoremap <C-N> :Buffers<CR>
 nnoremap <Leader>po :FzfLua oldfiles<CR>
