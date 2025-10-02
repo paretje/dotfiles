@@ -745,10 +745,6 @@ nnoremap \ ,
 vnoremap , ;
 vnoremap \ ,
 vnoremap <silent> <Leader>hs :call StageSelection()<CR>
-nnoremap <silent> <Leader>rt :call neoterm#test#run('all')<CR>
-nnoremap <silent> <Leader>rf :call neoterm#test#run('file')<CR>
-nnoremap <silent> <Leader>rc :call neoterm#test#run('current')<CR>
-nnoremap <silent> <Leader>rr :call neoterm#test#rerun()<CR>
 nnoremap <silent> <Leader>tc :call neoterm#kill()<CR>
 nnoremap <silent> <Leader>tl :call neoterm#clear()<CR>
 nnoremap <silent> <Leader>tt :call neoterm#toggle()<CR>
