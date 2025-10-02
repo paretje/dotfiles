@@ -31,7 +31,6 @@ Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}  " TODO: use? lsp?
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-rails', {'for': ['ruby', 'eruby']}  " TODO: use?
 Plug 'dhruvasagar/vim-table-mode', {'on': 'TableModeToggle'}
-Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-endwise'
 Plug 'vim-scripts/bbcode', {'for': 'bbcode'}  " TODO: still needed?
 Plug 'paretje/securemodelines'
@@ -44,7 +43,6 @@ Plug 'neomake/neomake'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'lucapette/vim-ruby-doc', {'for': ['ruby', 'eruby']}  " TODO: use? lsp?
 Plug 'tpope/vim-repeat'
-Plug 'Shougo/neopairs.vim'  " TODO: use? does it work with nvim-cmp?
 Plug 'tpope/vim-surround'
 Plug 'paretje/async-grepper', {'on': 'Grepper'}
 " TODO: https://github.com/liuchengxu/vista.vim
@@ -103,6 +101,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
+  Plug 'windwp/nvim-autopairs'
 
   Plug 'ibhagwan/fzf-lua'
 else
@@ -355,9 +354,6 @@ let g:secure_modelines_allowed_items = [
 " table-mode options
 let g:table_mode_toggle_map = 't'
 
-" delimitMate options
-let g:delimitMate_expand_cr = 1
-
 " neoterm options
 let g:neoterm_size = 15
 let g:neoterm_shell = 'busybox sh'
@@ -540,6 +536,7 @@ if has('nvim')
 EOF
 endif
 
+" snippy options
 if has('nvim')
   lua <<EOF
     require('snippy').setup({
@@ -556,6 +553,21 @@ endif
 " TODO: use no_ignore in homedir?
 if has('nvim')
   lua require("fzf-lua").setup({'fzf-vim', files={hidden=true}})
+endif
+
+" nvim-autopairs options
+if has('nvim')
+  lua << EOF
+    require("nvim-autopairs").setup({})
+
+    -- If you want insert `(` after select function or method item
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+    local cmp = require('cmp')
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
+EOF
 endif
 
 " Bulk options
