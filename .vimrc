@@ -25,7 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
 Plug 'vim-airline/vim-airline', {'tag': '*'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}  " TODO: use?
-Plug 'nvim-orgmode/orgmode', {'tag': '*'}  " TODO: tag?
+Plug 'nvim-orgmode/orgmode', {'tag': '*'}
 Plug 'Yggdroot/indentLine'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}  " TODO: use? lsp?
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -47,6 +47,7 @@ Plug 'tpope/vim-repeat'
 Plug 'Shougo/neopairs.vim'  " TODO: use? does it work with nvim-cmp?
 Plug 'tpope/vim-surround'
 Plug 'paretje/async-grepper', {'on': 'Grepper'}
+" TODO: https://github.com/liuchengxu/vista.vim
 Plug 'majutsushi/tagbar'  " TODO: lsp?'
 Plug 'tpope/vim-scriptease', {'for': 'vim'}
 Plug 'tpope/vim-eunuch'
@@ -66,23 +67,26 @@ Plug 'tpope/vim-obsession', {'on': 'Obsession'}
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}  " TODO: still needed?
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
-Plug 'joonty/vdebug'  " TODO: on? use?
 Plug 'vhdirk/vim-cmake', {'for': ['c', 'cpp', 'cmake']}
 Plug 'skywind3000/asyncrun.vim' " used by async-grepper and vim-cmake
-Plug 'Shougo/vimproc.vim', {'do' : 'make'} " used by vim-vebugger
-Plug 'idanarye/vim-vebugger'  " TODO: on? use? especially compared to vdebug
-Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}  " TODO: upstream or alternative?
-Plug 'solarnz/thrift.vim', {'for': 'thrift'}  " TODO: still needed?
-Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}  " TODO: I assume still needed?
+" TODO: https://github.com/lambdalisue/vim-suda
+" TODO: https://github.com/HE7086/sudoedit.nvim
+" TODO: https://github.com/Grafcube/suedit.nvim
+Plug 'paretje/suda.vim', {'branch': 'feature/disable-no-password-check'}
+" NOTE: https://github.com/neovim/neovim/commit/1b5a394ffd4bb638ec9cbbb5e4d12d11225389cf,
+" i.e. support was added but hasn't been released yet
+Plug 'solarnz/thrift.vim', {'for': 'thrift'}
+Plug 'pearofducks/ansible-vim', {'for': 'yaml.ansible'}
 Plug 'petobens/poet-v', {'for': 'python'}
 Plug 'goerz/jupytext.nvim'  " TODO: on
 Plug 'psf/black', {'for': 'python', 'branch': 'stable'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
-Plug 'towolf/vim-helm', {'for': 'helm'}  " TODO: I assume still needed?
+Plug 'towolf/vim-helm', {'for': 'helm'}
 Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'nvim-treesitter/nvim-treesitter', {'tag': '*', 'do': ':TSUpdate'}
+" TODO: https://github.com/mfussenegger/nvim-dap
 
 if has('nvim')
   Plug 'paretje/nvim-man'
