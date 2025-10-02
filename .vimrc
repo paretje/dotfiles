@@ -105,6 +105,9 @@ if has('nvim')
   Plug 'windwp/nvim-autopairs'
 
   Plug 'ibhagwan/fzf-lua'
+
+  Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
+  Plug 'folke/todo-comments.nvim'
 else
   Plug 'congma/vim-fakeclip'
 endif
@@ -567,6 +570,11 @@ if has('nvim')
     )
 EOF
 endif
+
+" todo-comments options
+lua require("todo-comments").setup({})
+hi TodoBgTODO ctermbg=11 ctermfg=0
+hi TodoBgNOTE ctermbg=11 ctermfg=0
 
 " Bulk options
 au FileType text,mail,org,markdown      setlocal spell
