@@ -142,6 +142,9 @@ elseif $TERM !=# ''
     hi link @type.builtin Type
     hi link @constructor Identifier
     hi link @markup.list Identifier
+
+    hi StatusLine cterm=NONE gui=NONE
+    hi StatusLineNC cterm=NONE gui=NONE
   endif
 endif
 
@@ -208,8 +211,6 @@ set clipboard=unnamedplus
 set nostartofline
 " Skip intro
 set shortmess+=I
-" Toggle paste option to safely paste via tmux (eg. when using ssh)
-set pastetoggle=<Leader>pp
 " Show print dialog instead of using the default printer
 if !has('nvim')
   set printexpr=system(['yad-print',v:fname_in])+v:shell_error
@@ -526,12 +527,12 @@ if has('nvim')
     -- Set up lspconfig.
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-    require('lspconfig')['jedi_language_server'].setup {
+    vim.lsp.config('jedi_language_server', {
         capabilities = capabilities
-      }
-    require('lspconfig')['rust_analyzer'].setup {
+    })
+    vim.lsp.config('rust_analyzer', {
         capabilities = capabilities
-      }
+    })
 EOF
 endif
 
