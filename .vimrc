@@ -84,9 +84,11 @@ Plug 'martinda/Jenkinsfile-vim-syntax', {'for': 'Jenkinsfile'}
 Plug 'vim-scripts/groovyindent-unix', {'for': 'groovy'}
 Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'nvim-treesitter/nvim-treesitter', {'tag': '*', 'do': ':TSUpdate'}
-" TODO: https://github.com/mfussenegger/nvim-dap
 
+" TODO: just assume nvim
 if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
+
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
 
@@ -102,16 +104,15 @@ if has('nvim')
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'michaeladler/cmp-notmuch'
   Plug 'hrsh7th/nvim-cmp'
-  Plug 'windwp/nvim-autopairs'
 
   Plug 'ibhagwan/fzf-lua'
 
-  Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
+  Plug 'windwp/nvim-autopairs'
   Plug 'folke/todo-comments.nvim'
-
   Plug 'amrbashir/nvim-docs-view', {'on': 'DocsViewToggle'}
 
   " TODO:
+  " https://github.com/github/copilot.vim
   " https://github.com/quangnguyen30192/cmp-nvim-tags?
   " https://github.com/hrsh7th/cmp-copilot?
   " https://github.com/hrsh7th/cmp-omni?
@@ -122,6 +123,7 @@ if has('nvim')
   " https://github.com/piero-vic/cmp-ledger
   " https://github.com/tzachar/cmp-fuzzy-path?
   " https://github.com/mfussenegger/nvim-lint
+  " https://github.com/mfussenegger/nvim-dap
 else
   Plug 'congma/vim-fakeclip'
 endif
