@@ -483,7 +483,6 @@ endif
 " cmp-nvim options
 if has('nvim')
   lua <<EOF
-    -- Set up nvim-cmp.
     local cmp = require'cmp'
 
     cmp.setup({
@@ -497,12 +496,12 @@ if has('nvim')
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           else
-            fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+            fallback()
           end
         end)
       }),
@@ -517,18 +516,6 @@ if has('nvim')
       preselect = cmp.PreselectMode.None
     })
 
-    -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
-    -- Set configuration for specific filetype.
-    --[[ cmp.setup.filetype('gitcommit', {
-      sources = cmp.config.sources({
-        { name = 'git' },
-      }, {
-        { name = 'buffer' },
-      })
-   })
-   require("cmp_git").setup() ]]-- 
-
-    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline({
         ['<C-p>'] = cmp.mapping.abort(),
@@ -539,7 +526,6 @@ if has('nvim')
       }
     })
 
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline({
         ['<C-p>'] = cmp.mapping.abort(),
@@ -553,7 +539,6 @@ if has('nvim')
       matching = { disallow_symbol_nonprefix_matching = false }
     })
 
-    -- Set up lspconfig.
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     for i, lsp_server in pairs(vim.g.enabled_lsp_servers) do
       vim.lsp.config(lsp_server, {
@@ -587,7 +572,7 @@ if has('nvim')
   lua << EOF
     require("nvim-autopairs").setup({})
 
-    -- If you want insert `(` after select function or method item
+    -- add pair after selecting function or method
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
     cmp.event:on(
