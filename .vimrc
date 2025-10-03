@@ -470,9 +470,18 @@ if has('nvim')
 EOF
 endif
 
+" nvim-lspconfig options
+let g:enabled_lsp_servers = ['jedi_language_server', 'rust_analyzer']
+if has('nvim')
+  lua <<EOF
+    for i, lsp_server in pairs(vim.g.enabled_lsp_servers) do
+      vim.lsp.enable(lsp_server)
+    end
+EOF
+endif
+
 " cmp-nvim options
 if has('nvim')
-  " cmp-nvim
   lua <<EOF
     -- Set up nvim-cmp.
     local cmp = require'cmp'
@@ -546,12 +555,11 @@ if has('nvim')
 
     -- Set up lspconfig.
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    vim.lsp.config('jedi_language_server', {
-        capabilities = capabilities
-    })
-    vim.lsp.config('rust_analyzer', {
-        capabilities = capabilities
-    })
+    for i, lsp_server in pairs(vim.g.enabled_lsp_servers) do
+      vim.lsp.config(lsp_server, {
+          capabilities = capabilities
+      })
+    end
 EOF
 endif
 
