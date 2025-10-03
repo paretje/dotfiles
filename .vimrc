@@ -598,9 +598,12 @@ hi TodoBgNOTE ctermbg=11 ctermfg=0
 lua << EOF
   require("docs-view").setup {
     position = "top",
-    height = 20
+    height = 20,
+    update_mode = "manual"
   }
 EOF
+au FileType python nnoremap <silent> <buffer> K :DocsViewUpdate<CR>
+au FileType rust nnoremap <silent> <buffer> K :DocsViewUpdate<CR>
 
 " Bulk options
 au FileType text,mail,org,markdown      setlocal spell
