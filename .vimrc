@@ -87,7 +87,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'tag': '*', 'do': ':TSUpdate'}
 
 " TODO: just assume nvim
 if has('nvim')
-  Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim
+  Plug 'nvim-lua/plenary.nvim'  " used by todo-comments.nvim and cmp-ledger
 
   Plug 'paretje/nvim-man'
   Plug 'kassio/neoterm'  " TODO: use?
@@ -103,6 +103,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'michaeladler/cmp-notmuch'
+  Plug 'piero-vic/cmp-ledger'
   Plug 'hrsh7th/nvim-cmp'
 
   Plug 'ibhagwan/fzf-lua'
@@ -120,7 +121,6 @@ if has('nvim')
   " https://github.com/lukas-reineke/cmp-rg?
   " https://github.com/petertriho/cmp-git
   " https://github.com/ray-x/cmp-treesitter?
-  " https://github.com/piero-vic/cmp-ledger
   " https://github.com/tzachar/cmp-fuzzy-path?
   " https://github.com/mfussenegger/nvim-lint
   " https://github.com/mfussenegger/nvim-dap
@@ -509,6 +509,7 @@ if has('nvim')
         { name = 'nvim_lsp' },
         { name = 'snippy' },
         { name = 'notmuch' },
+        { name = 'ledger' },
       }, {
         { name = 'buffer' },
         { name = 'path' },
