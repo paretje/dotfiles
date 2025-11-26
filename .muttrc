@@ -134,7 +134,7 @@ bind attach,index,browser g first-entry
 bind attach,index,browser G last-entry
 
 # enable backward search
-bind alias,attach,browser,index,compose,pager,pgp,postpone,mix N search-opposite
+bind alias,attach,browser,index,compose,pager,pgp,postpone N search-opposite
 
 # keybindings to navigate in sidebar
 bind index,pager \CN sidebar-next
