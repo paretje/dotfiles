@@ -25,6 +25,7 @@ quit_on_last_bclose = True
 thread_statusbar = [{buffer_no}: thread] {subject}, {input_queue} messages: {message_count}
 timestamp_format = "%d %b %Y %H:%M"
 search_threads_move_last_limit = 10000
+search_threads_limit = 1000
 exclude_tags = "spam", "deleted"
 hooksfile = $XDG_CONFIG_HOME/alot/hooks.py
 
