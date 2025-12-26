@@ -23,9 +23,9 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'} " used by vim-table-mode
-Plug 'vim-airline/vim-airline', {'tag': '*'}
+Plug 'vim-airline/vim-airline'
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}  " TODO: use?
-Plug 'nvim-orgmode/orgmode', {'tag': '*'}
+Plug 'nvim-orgmode/orgmode'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}  " TODO: use? lsp?
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
