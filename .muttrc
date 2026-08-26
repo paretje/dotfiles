@@ -3,7 +3,7 @@ set folder=$MAILDIR
 
 # define virtual folders
 set nm_default_uri=notmuch://$MAILDIR
-virtual-mailboxes \
+named-mailboxes \
                   "inbox"          "notmuch://?query=tag:inbox" \
                   "backlog"        "notmuch://?query=tag:backlog" \
                   "todo"           "notmuch://?query=tag:todo" \
@@ -11,7 +11,7 @@ virtual-mailboxes \
                   "spam"           "notmuch://?query=tag:spam AND NOT tag:archive" \
 
 # open first virtual mailbox when starting
-set virtual_spoolfile=yes
+set virtual_spool_file=yes
 
 # pgp settings
 set pgp_autosign=yes
