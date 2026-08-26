@@ -1,1 +1,2 @@
 -o '%(title).220s.%(ext)s'
+--js-runtimes node
