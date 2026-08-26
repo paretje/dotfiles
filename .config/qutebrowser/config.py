@@ -158,6 +158,8 @@ c.url.searchengines['pride'] = "https://www.ebi.ac.uk/pride/archive?keyword={}"
 c.url.searchengines['protondb'] = "https://www.protondb.com/search?q={}"
 c.url.searchengines["pcgamingwiki"] = "https://www.pcgamingwiki.com/w/index.php?search={}"
 c.url.searchengines["unimod"] = "http://www.unimod.org/modifications_view.php?editid1={}"
+c.url.searchengines['steamdb'] = "https://steamdb.info/search/?a=all&q={}"
+c.url.searchengines['gogdb'] = "https://www.gogdb.org/products?search={}"
 c.url.searchengines["DEFAULT"] = c.url.searchengines["ddg"]
 
 c.aliases["h"] = "help"
