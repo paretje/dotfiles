@@ -57,7 +57,7 @@ c.content.webgl = True
 c.content.geolocation = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = True
-c.content.blocking.method = "both"
+c.content.blocking.method = "auto"
 c.content.blocking.adblock.lists = [
     "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
     "https://easylist.to/easylist/easylist.txt",
